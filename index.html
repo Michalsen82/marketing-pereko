@@ -3,72 +3,94 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#0f1f16" />
-  <title>PEREKO Marketing Dashboard</title>
+  <meta name="theme-color" content="#171717" />
+  <title>PEREKO — Centrum Projektów Marketingowych</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-  <div class="app">
-    <aside class="sidebar">
-      <div class="brand">
-        <div class="brand-mark">P</div>
-        <div><h1>PEREKO Marketing</h1><small>Project dashboard</small></div>
+  <header class="topbar-shell">
+    <div class="topbar">
+      <div class="brand-zone">
+        <div class="brand-badge">P</div>
+        <div class="brand-copy">
+          <strong>PEREKO</strong>
+          <span>Centrum Projektów Marketingowych</span>
+        </div>
       </div>
-      <nav class="nav">
-        <button class="active"><span class="nav-line"></span><span>Dashboard</span></button>
-        <button><span class="nav-line"></span><span>Projekty</span></button>
-        <button><span class="nav-line"></span><span>Kampanie</span></button>
-        <button><span class="nav-line"></span><span>Materiały</span></button>
-      </nav>
-      <div class="sidebar-footer"><b>Marketing PEREKO</b><span>Zmiany kodu publikują się automatycznie przez GitHub i Cloudflare.</span></div>
-    </aside>
-
-    <main class="main">
-      <header class="topbar">
-        <div class="headline">
-          <div class="eyebrow">CENTRUM PROJEKTÓW</div>
-          <h2>Marketing Dashboard</h2>
-          <p>Zarządzaj projektami, terminami i zadaniami zespołu w jednym miejscu.</p>
+      <div class="topbar-actions">
+        <div class="support-card">
+          <span class="support-label">OBSŁUGA</span>
+          <strong>Michał Bukowski</strong>
+          <span class="support-sub">Dział Marketingu</span>
         </div>
-        <div class="top-actions">
-          <button class="btn secondary" id="resetDemo">Przywróć projekty startowe</button>
-          <button class="btn primary" id="addProject">+ Nowy projekt</button>
-        </div>
-      </header>
+        <button class="top-button" id="addProject">+ Nowy projekt</button>
+      </div>
+    </div>
+  </header>
 
-      <section class="grid-kpi">
-        <article class="kpi"><div class="label">Wszystkie projekty</div><div class="value" id="kpiProjects">0</div><div class="trend">Portfel marketingowy</div></article>
-        <article class="kpi"><div class="label">W realizacji</div><div class="value" id="kpiActive">0</div><div class="trend">Aktywne teraz</div></article>
-        <article class="kpi"><div class="label">Planowane</div><div class="value" id="kpiPlan">0</div><div class="trend">Do uruchomienia</div></article>
-        <article class="kpi"><div class="label">Średni postęp</div><div class="value" id="kpiProgress">0%</div><div class="trend">Średnia projektów</div></article>
-      </section>
+  <main class="page-shell">
+    <section class="intro-row">
+      <div>
+        <div class="section-kicker">PANEL ROBOCZY</div>
+        <h1>Marketing PEREKO</h1>
+        <p>Zarządzaj projektami, zadaniami, terminami i współpracą zespołu w jednym miejscu.</p>
+      </div>
+      <div class="date-box" id="todayBox"></div>
+    </section>
 
-      <section class="content-grid">
-        <div class="panel projects-panel">
-          <div class="panel-head">
-            <div><h3>Projekty marketingowe</h3><p class="panel-subtitle">Termin możesz zmienić bezpośrednio przy projekcie.</p></div>
+    <section class="stats-grid">
+      <article class="stat-card"><span>Wszystkie projekty</span><strong id="kpiProjects">0</strong><small>aktywny portfel marketingowy</small></article>
+      <article class="stat-card"><span>W realizacji</span><strong id="kpiActive">0</strong><small>projekty prowadzone teraz</small></article>
+      <article class="stat-card"><span>Planowane</span><strong id="kpiPlan">0</strong><small>projekty do uruchomienia</small></article>
+      <article class="stat-card"><span>Średni postęp</span><strong id="kpiProgress">0%</strong><small>średnia całego portfela</small></article>
+    </section>
+
+    <section class="dashboard-grid">
+      <div class="main-column">
+        <section class="module projects-module">
+          <div class="module-head">
+            <div>
+              <span class="module-label">PROJEKTY</span>
+              <h2>Projekty marketingowe</h2>
+            </div>
             <div class="filters">
-              <button class="chip active" data-filter="all">Wszystkie</button>
-              <button class="chip" data-filter="work">W realizacji</button>
-              <button class="chip" data-filter="plan">Planowane</button>
-              <button class="chip" data-filter="done">Zakończone</button>
+              <button class="filter active" data-filter="all">Wszystkie</button>
+              <button class="filter" data-filter="work">W realizacji</button>
+              <button class="filter" data-filter="plan">Planowane</button>
+              <button class="filter" data-filter="done">Zakończone</button>
             </div>
           </div>
           <div class="project-list" id="projectList"></div>
-        </div>
+        </section>
+      </div>
 
-        <div class="side-stack">
-          <div class="panel"><div class="panel-head"><h3>Najbliższe terminy</h3></div><div class="deadlines" id="deadlineList"></div></div>
-          <div class="panel"><div class="panel-head"><h3>Zadania na teraz</h3></div><div class="tasks" id="taskList"></div></div>
-          <div class="panel"><div class="panel-head"><h3>Zespół</h3></div><div class="team"><div class="person"><div class="avatar">MB</div><span>Michał</span></div><div class="person"><div class="avatar">W</div><span>Wiktoria</span></div><div class="person"><div class="avatar">Ł</div><span>Łukasz</span></div><div class="person"><div class="avatar">AG</div><span>Andrzej</span></div></div></div>
-        </div>
-      </section>
-    </main>
-  </div>
+      <aside class="side-column">
+        <section class="module">
+          <div class="module-head compact"><div><span class="module-label">TERAZ</span><h2>Zadania na teraz</h2></div></div>
+          <div class="tasks" id="taskList"></div>
+        </section>
+
+        <section class="module">
+          <div class="module-head compact"><div><span class="module-label">TERMINY</span><h2>Najbliższe terminy</h2></div></div>
+          <div class="deadlines" id="deadlineList"></div>
+        </section>
+
+        <section class="module">
+          <div class="module-head compact"><div><span class="module-label">ZESPÓŁ</span><h2>Współpracownicy</h2></div></div>
+          <div class="team-grid">
+            <div class="person"><div class="avatar">MB</div><div><strong>Michał Bukowski</strong><span>Marketing</span></div></div>
+            <div class="person"><div class="avatar">W</div><div><strong>Wiktoria</strong><span>Marketing</span></div></div>
+            <div class="person"><div class="avatar">Ł</div><div><strong>Łukasz</strong><span>Eksport / sprzedaż</span></div></div>
+            <div class="person"><div class="avatar">AG</div><div><strong>Andrzej Guzera</strong><span>Handel</span></div></div>
+          </div>
+        </section>
+      </aside>
+    </section>
+  </main>
 
   <div class="modal" id="modal">
     <div class="modal-card">
-      <h3>Nowy projekt</h3>
+      <div class="modal-head"><div><span class="module-label">NOWY PROJEKT</span><h3>Dodaj projekt marketingowy</h3></div><button class="icon-close" id="closeModal" type="button">×</button></div>
       <form id="projectForm">
         <div class="form-grid">
           <div class="field full"><label>Nazwa projektu</label><input name="name" required placeholder="np. Kampania Q4" /></div>
@@ -78,7 +100,7 @@
           <div class="field"><label>Termin</label><input name="deadline" type="date" required /></div>
           <div class="field full"><label>Opis</label><textarea name="desc" placeholder="Krótki opis celu i zakresu projektu"></textarea></div>
         </div>
-        <div class="modal-actions"><button type="button" class="btn secondary" id="closeModal">Anuluj</button><button class="btn primary" type="submit">Dodaj projekt</button></div>
+        <div class="modal-actions"><button type="button" class="btn secondary" id="resetDemo">Przywróć projekty startowe</button><div class="spacer"></div><button type="button" class="btn secondary" id="cancelModal">Anuluj</button><button class="btn primary" type="submit">Dodaj projekt</button></div>
       </form>
     </div>
   </div>
