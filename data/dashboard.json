@@ -4,10 +4,15 @@
       "id": "f57bda3e-80bc-4400-bd68-1a80cf6465f6",
       "name": "o nazwie targi warszawskie  w projekcie targi warszawskie Zmień datę na 21 października 2026",
       "owner": "Michał",
-      "status": "plan",
+      "status": "work",
       "progress": 0,
       "deadline": "2026-10-21",
-      "desc": ""
+      "desc": "",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "9da7e7d7-a0ab-4674-87b5-ffa7697e99fb",
@@ -16,7 +21,12 @@
       "status": "plan",
       "progress": 0,
       "deadline": "",
-      "desc": ""
+      "desc": "",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "p1",
@@ -25,7 +35,12 @@
       "status": "work",
       "progress": 55,
       "deadline": "2026-10-15",
-      "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe."
+      "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "p2",
@@ -34,7 +49,12 @@
       "status": "plan",
       "progress": 15,
       "deadline": "2027-03-01",
-      "desc": "Plan targów, harmonogram, ekspozycja, materiały i komunikacja."
+      "desc": "Plan targów, harmonogram, ekspozycja, materiały i komunikacja.",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "p3",
@@ -43,7 +63,12 @@
       "status": "plan",
       "progress": 10,
       "deadline": "2026-11-20",
-      "desc": "Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków."
+      "desc": "Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.",
+      "members": [
+        "Wiktoria"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "p4",
@@ -52,7 +77,12 @@
       "status": "plan",
       "progress": 8,
       "deadline": "2027-02-15",
-      "desc": "Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji."
+      "desc": "Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji.",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "p5",
@@ -61,7 +91,12 @@
       "status": "work",
       "progress": 25,
       "deadline": "2026-10-05",
-      "desc": "Artykuły, reklamy, materiały produktowe i terminy publikacji."
+      "desc": "Artykuły, reklamy, materiały produktowe i terminy publikacji.",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     }
   ],
   "tasks": [
@@ -90,5 +125,5 @@
       "done": false
     }
   ],
-  "updatedAt": "2026-09-17T11:50:53.664Z"
+  "updatedAt": "2026-09-17T11:53:15.472Z"
 }
