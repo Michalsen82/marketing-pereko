@@ -11,7 +11,15 @@
       "members": [
         "Michał"
       ],
-      "projectTasks": [],
+      "projectTasks": [
+        {
+          "id": "014a722b-b048-479e-9c1a-a5b82bc09dc0",
+          "text": "kjgjlkh",
+          "assignee": "Wiktoria",
+          "deadline": "2026-09-26",
+          "done": false
+        }
+      ],
       "comments": []
     },
     {
@@ -125,5 +133,5 @@
       "done": false
     }
   ],
-  "updatedAt": "2026-09-17T11:53:20.928Z"
+  "updatedAt": "2026-09-17T11:53:41.975Z"
 }
