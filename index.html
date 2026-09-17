@@ -3,39 +3,57 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="theme-color" content="#112117" />
+  <meta name="theme-color" content="#0f1f16" />
   <title>PEREKO Marketing Dashboard</title>
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <div class="app">
     <aside class="sidebar">
-      <div class="brand"><div class="brand-mark">P</div><div><h1>PEREKO Marketing</h1><small>Project dashboard</small></div></div>
+      <div class="brand">
+        <div class="brand-mark">P</div>
+        <div><h1>PEREKO Marketing</h1><small>Project dashboard</small></div>
+      </div>
       <nav class="nav">
-        <button class="active"><span class="dot"></span><span>Dashboard</span></button>
-        <button><span class="dot"></span><span>Projekty</span></button>
-        <button><span class="dot"></span><span>Kampanie</span></button>
-        <button><span class="dot"></span><span>Materiały</span></button>
+        <button class="active"><span class="nav-line"></span><span>Dashboard</span></button>
+        <button><span class="nav-line"></span><span>Projekty</span></button>
+        <button><span class="nav-line"></span><span>Kampanie</span></button>
+        <button><span class="nav-line"></span><span>Materiały</span></button>
       </nav>
-      <div class="sidebar-footer"><b>Tryb roboczy</b><span>Zmiany mogą być wprowadzane przez ChatGPT i publikowane z GitHuba.</span></div>
+      <div class="sidebar-footer"><b>Marketing PEREKO</b><span>Zmiany kodu publikują się automatycznie przez GitHub i Cloudflare.</span></div>
     </aside>
 
     <main class="main">
       <header class="topbar">
-        <div class="headline"><h2>Marketing Dashboard</h2><p>Jedno miejsce do zarządzania projektami, terminami i zadaniami zespołu.</p></div>
-        <div class="top-actions"><button class="btn secondary" id="resetDemo">Dane demo</button><button class="btn primary" id="addProject">+ Nowy projekt</button></div>
+        <div class="headline">
+          <div class="eyebrow">CENTRUM PROJEKTÓW</div>
+          <h2>Marketing Dashboard</h2>
+          <p>Zarządzaj projektami, terminami i zadaniami zespołu w jednym miejscu.</p>
+        </div>
+        <div class="top-actions">
+          <button class="btn secondary" id="resetDemo">Przywróć projekty startowe</button>
+          <button class="btn primary" id="addProject">+ Nowy projekt</button>
+        </div>
       </header>
 
       <section class="grid-kpi">
-        <article class="kpi"><div class="label">Wszystkie projekty</div><div class="value" id="kpiProjects">0</div><div class="trend">Pełny portfel marketingowy</div></article>
+        <article class="kpi"><div class="label">Wszystkie projekty</div><div class="value" id="kpiProjects">0</div><div class="trend">Portfel marketingowy</div></article>
         <article class="kpi"><div class="label">W realizacji</div><div class="value" id="kpiActive">0</div><div class="trend">Aktywne teraz</div></article>
-        <article class="kpi"><div class="label">Zakończone</div><div class="value" id="kpiDone">0</div><div class="trend">Zamknięte działania</div></article>
-        <article class="kpi"><div class="label">Średni postęp</div><div class="value" id="kpiProgress">0%</div><div class="trend">Średnia dla wszystkich projektów</div></article>
+        <article class="kpi"><div class="label">Planowane</div><div class="value" id="kpiPlan">0</div><div class="trend">Do uruchomienia</div></article>
+        <article class="kpi"><div class="label">Średni postęp</div><div class="value" id="kpiProgress">0%</div><div class="trend">Średnia projektów</div></article>
       </section>
 
       <section class="content-grid">
-        <div class="panel">
-          <div class="panel-head"><h3>Projekty marketingowe</h3><div class="filters"><button class="chip active" data-filter="all">Wszystkie</button><button class="chip" data-filter="work">W realizacji</button><button class="chip" data-filter="plan">Planowane</button><button class="chip" data-filter="done">Zakończone</button></div></div>
+        <div class="panel projects-panel">
+          <div class="panel-head">
+            <div><h3>Projekty marketingowe</h3><p class="panel-subtitle">Termin możesz zmienić bezpośrednio przy projekcie.</p></div>
+            <div class="filters">
+              <button class="chip active" data-filter="all">Wszystkie</button>
+              <button class="chip" data-filter="work">W realizacji</button>
+              <button class="chip" data-filter="plan">Planowane</button>
+              <button class="chip" data-filter="done">Zakończone</button>
+            </div>
+          </div>
           <div class="project-list" id="projectList"></div>
         </div>
 
