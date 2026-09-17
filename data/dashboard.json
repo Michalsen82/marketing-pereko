@@ -210,7 +210,25 @@
           "createdAt": "2026-09-17T12:19:38.613Z"
         }
       ]
+    },
+    {
+      "id": "b97de975-2f68-4002-901c-a013367b9759",
+      "text": "adsfasd",
+      "done": false,
+      "createdAt": "2026-09-17T12:19:59.333Z",
+      "scheduledFor": "2026-09-18",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "d4e41b44-802c-4fd6-a8fe-8d077b2c4b88",
+          "type": "created",
+          "text": "Utworzono zadanie na 18.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-17T12:19:59.333Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-17T12:19:39.089Z"
+  "updatedAt": "2026-09-17T12:20:00.155Z"
 }
