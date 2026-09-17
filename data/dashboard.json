@@ -26,7 +26,7 @@
           "text": "zadanie nr 2 - opis zadania szczegółowo!",
           "assignee": "Wiktoria",
           "deadline": "2026-09-18",
-          "done": false
+          "done": true
         },
         {
           "id": "07fa904f-a8fc-4e78-8f42-a751c818a663",
@@ -218,5 +218,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-17T12:51:24.850Z"
+  "updatedAt": "2026-09-17T12:51:27.851Z"
 }
