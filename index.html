@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#112117" />
+  <title>PEREKO Marketing Dashboard</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="app">
+    <aside class="sidebar">
+      <div class="brand"><div class="brand-mark">P</div><div><h1>PEREKO Marketing</h1><small>Project dashboard</small></div></div>
+      <nav class="nav">
+        <button class="active"><span class="dot"></span><span>Dashboard</span></button>
+        <button><span class="dot"></span><span>Projekty</span></button>
+        <button><span class="dot"></span><span>Kampanie</span></button>
+        <button><span class="dot"></span><span>Materiały</span></button>
+      </nav>
+      <div class="sidebar-footer"><b>Tryb roboczy</b><span>Zmiany mogą być wprowadzane przez ChatGPT i publikowane z GitHuba.</span></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="headline"><h2>Marketing Dashboard</h2><p>Jedno miejsce do zarządzania projektami, terminami i zadaniami zespołu.</p></div>
+        <div class="top-actions"><button class="btn secondary" id="resetDemo">Dane demo</button><button class="btn primary" id="addProject">+ Nowy projekt</button></div>
+      </header>
+
+      <section class="grid-kpi">
+        <article class="kpi"><div class="label">Wszystkie projekty</div><div class="value" id="kpiProjects">0</div><div class="trend">Pełny portfel marketingowy</div></article>
+        <article class="kpi"><div class="label">W realizacji</div><div class="value" id="kpiActive">0</div><div class="trend">Aktywne teraz</div></article>
+        <article class="kpi"><div class="label">Zakończone</div><div class="value" id="kpiDone">0</div><div class="trend">Zamknięte działania</div></article>
+        <article class="kpi"><div class="label">Średni postęp</div><div class="value" id="kpiProgress">0%</div><div class="trend">Średnia dla wszystkich projektów</div></article>
+      </section>
+
+      <section class="content-grid">
+        <div class="panel">
+          <div class="panel-head"><h3>Projekty marketingowe</h3><div class="filters"><button class="chip active" data-filter="all">Wszystkie</button><button class="chip" data-filter="work">W realizacji</button><button class="chip" data-filter="plan">Planowane</button><button class="chip" data-filter="done">Zakończone</button></div></div>
+          <div class="project-list" id="projectList"></div>
+        </div>
+
+        <div class="side-stack">
+          <div class="panel"><div class="panel-head"><h3>Najbliższe terminy</h3></div><div class="deadlines" id="deadlineList"></div></div>
+          <div class="panel"><div class="panel-head"><h3>Zadania na teraz</h3></div><div class="tasks" id="taskList"></div></div>
+          <div class="panel"><div class="panel-head"><h3>Zespół</h3></div><div class="team"><div class="person"><div class="avatar">MB</div><span>Michał</span></div><div class="person"><div class="avatar">W</div><span>Wiktoria</span></div><div class="person"><div class="avatar">Ł</div><span>Łukasz</span></div><div class="person"><div class="avatar">AG</div><span>Andrzej</span></div></div></div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div class="modal" id="modal">
+    <div class="modal-card">
+      <h3>Nowy projekt</h3>
+      <form id="projectForm">
+        <div class="form-grid">
+          <div class="field full"><label>Nazwa projektu</label><input name="name" required placeholder="np. Kampania Q4" /></div>
+          <div class="field"><label>Osoba odpowiedzialna</label><input name="owner" required placeholder="np. Michał" /></div>
+          <div class="field"><label>Status</label><select name="status"><option value="work">W realizacji</option><option value="plan">Planowany</option><option value="done">Zakończony</option></select></div>
+          <div class="field"><label>Postęp (%)</label><input name="progress" type="number" min="0" max="100" value="0" required /></div>
+          <div class="field"><label>Termin</label><input name="deadline" type="date" required /></div>
+          <div class="field full"><label>Opis</label><textarea name="desc" placeholder="Krótki opis celu i zakresu projektu"></textarea></div>
+        </div>
+        <div class="modal-actions"><button type="button" class="btn secondary" id="closeModal">Anuluj</button><button class="btn primary" type="submit">Dodaj projekt</button></div>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
