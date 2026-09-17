@@ -1,21 +1,12 @@
 {
   "projects": [
     {
-      "id": "1d28e7ba-f9f5-4824-855e-7c06a96776d8",
-      "name": "ZUM - oświadczenie",
-      "owner": "sdfg",
-      "status": "plan",
-      "progress": 12,
-      "deadline": "2026-09-17",
-      "desc": "1212"
-    },
-    {
       "id": "p1",
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
       "status": "work",
       "progress": 55,
-      "deadline": "2026-10-21",
+      "deadline": "2026-10-15",
       "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe."
     },
     {
@@ -73,9 +64,9 @@
       "done": false
     },
     {
-      "text": "test zadania",
-      "done": true
+      "text": "dodawanie produktów na listę z nim",
+      "done": false
     }
   ],
-  "updatedAt": "2026-09-17T11:23:19.317Z"
+  "updatedAt": "2026-09-17T11:35:19.375Z"
 }
