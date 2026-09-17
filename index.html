@@ -93,6 +93,27 @@
     </section>
   </main>
 
+  <button class="assistant-fab" id="assistantFab" aria-label="Otwórz AI Asystenta"><span class="assistant-fab-icon">AI</span><span>Asystent</span></button>
+  <section class="assistant-panel" id="assistantPanel" aria-hidden="true">
+    <div class="assistant-head">
+      <div><span class="assistant-eyebrow">DARMOWY ASYSTENT KOMEND</span><h3>AI Asystent</h3><p>Pracuje na aktualnych danych dashboardu i zapisuje zmiany centralnie.</p></div>
+      <button class="assistant-close" id="assistantClose" type="button">×</button>
+    </div>
+    <div class="assistant-messages" id="assistantMessages">
+      <div class="assistant-msg bot"><strong>Asystent</strong><span>Możesz napisać np. „Zmień termin Centrum Partnera na 20 października 2026”, „Ustaw Targi HVAC 2027 na 60%” albo „Dodaj zadanie: przygotować mailing”.</span></div>
+    </div>
+    <div class="assistant-suggestions">
+      <button data-assistant-example="Pokaż projekty">Pokaż projekty</button>
+      <button data-assistant-example="Pokaż najbliższe terminy">Najbliższe terminy</button>
+      <button data-assistant-example="Pomoc">Pomoc</button>
+    </div>
+    <form class="assistant-input-row" id="assistantForm">
+      <textarea id="assistantInput" rows="2" placeholder="Wpisz polecenie, np. Zmień termin Centrum Partnera na 20 października 2026"></textarea>
+      <button type="submit">Wykonaj</button>
+    </form>
+    <div class="assistant-note">Bez OpenAI API — bez dodatkowych opłat. Asystent rozpoznaje obsługiwane komendy i działa na wspólnych danych GitHub.</div>
+  </section>
+
   <div class="modal" id="modal">
     <div class="modal-card">
       <div class="modal-head"><div><span class="module-label">NOWY PROJEKT</span><h3>Dodaj projekt marketingowy</h3></div><button class="icon-close" id="closeModal" type="button">×</button></div>
