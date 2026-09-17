@@ -1,20 +1,6 @@
 {
   "projects": [
     {
-      "id": "9da7e7d7-a0ab-4674-87b5-ffa7697e99fb",
-      "name": "o nazwie targi warszawskie",
-      "owner": "Michał",
-      "status": "plan",
-      "progress": 0,
-      "deadline": "",
-      "desc": "",
-      "members": [
-        "Michał"
-      ],
-      "projectTasks": [],
-      "comments": []
-    },
-    {
       "id": "p1",
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
@@ -208,5 +194,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-17T12:49:40.070Z"
+  "updatedAt": "2026-09-17T12:49:44.562Z"
 }
