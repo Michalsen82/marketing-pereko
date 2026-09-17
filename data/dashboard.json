@@ -1,6 +1,15 @@
 {
   "projects": [
     {
+      "id": "f57bda3e-80bc-4400-bd68-1a80cf6465f6",
+      "name": "o nazwie targi warszawskie  w projekcie targi warszawskie Zmień datę na 21 października 2026",
+      "owner": "Michał",
+      "status": "plan",
+      "progress": 0,
+      "deadline": "2026-10-21",
+      "desc": ""
+    },
+    {
       "id": "9da7e7d7-a0ab-4674-87b5-ffa7697e99fb",
       "name": "o nazwie targi warszawskie",
       "owner": "Michał",
@@ -77,5 +86,5 @@
       "done": false
     }
   ],
-  "updatedAt": "2026-09-17T11:35:42.894Z"
+  "updatedAt": "2026-09-17T11:35:58.260Z"
 }
