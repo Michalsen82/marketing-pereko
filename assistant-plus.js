@@ -29,6 +29,13 @@
     raw=raw.replace(/^(?:pod\s+)?(?:tytulem|tytułem)\s*/i,'').trim();
     return raw;
   };
+  const taskNameFromCreate=s=>{
+    let raw=String(s||'').trim();
+    raw=raw.replace(/^.*?(?:dodaj|utworz|utwórz|stworz|stwórz)(?:\s+mi)?(?:\s+nowe|\s+nowy)?\s+zadanie\s*/i,'');
+    raw=raw.replace(/^(?:o\s+)?(?:nazwie|nazwa|tytule|tytułem|tytulem)\s*/i,'');
+    raw=raw.replace(/^[:\-–—]\s*/,'').trim();
+    return raw;
+  };
   const ownerFrom=s=>{
     const m=String(s||'').match(/(?:przypisz\s+(?:go\s+)?do|odpowiedzialn(?:y|a)\s+(?:ma\s+byc|ma\s+być)?|wlasciciel(?:em)?|właściciel(?:em)?)\s+([A-ZĄĆĘŁŃÓŚŹŻ][\p{L}-]*(?:\s+[A-ZĄĆĘŁŃÓŚŹŻ][\p{L}-]*)?)/iu);
     return m?m[1].trim():null;
@@ -40,6 +47,15 @@
 
   async function enhancedRunCommand(raw){
     const n=clean(raw);
+
+    if(/(?:dodaj|utworz|stworz).*zadanie/.test(n)){
+      const text=taskNameFromCreate(raw);
+      if(text&&text.length>=2){
+        tasks.push({text,done:false});
+        await commit(`Dodałem zadanie: ${text}`);
+        return;
+      }
+    }
 
     if(/dodaj.*projekt/.test(n)){
       const name=projectNameFromCreate(raw);
@@ -70,10 +86,10 @@
     }
 
     if(/zmien.*opis|ustaw.*opis/.test(n)){
-      const m=String(raw).match(/(?:zmien|zmień|ustaw)\s+opis\s+(.+?)\s+(?:na|:) ?(.+)/i);
+      const m=String(raw).match(/(?:zmien|zmień|ustaw)\s+opis\s+(.+?)\s+(?:na|:)\s*(.+)/i);
       if(m){
         const p=findProject(m[1]);
-        if(p){p.desc=m[2].trim();await commit(`Zmienilem opis projektu „${p.name}”.`);return;}
+        if(p){p.desc=m[2].trim();await commit(`Zmieniłem opis projektu „${p.name}”.`);return;}
       }
     }
 
