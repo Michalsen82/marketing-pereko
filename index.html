@@ -12,6 +12,7 @@
   <link rel="stylesheet" href="readability.css" />
   <link rel="stylesheet" href="dashboard-polish.css" />
   <link rel="stylesheet" href="footer.css" />
+  <link rel="stylesheet" href="layout-v2.css" />
 </head>
 <body>
   <header class="topbar-shell">
@@ -28,12 +29,11 @@
           <span class="sync-dot" id="syncDot"></span>
           <div><strong id="syncTitle">Dane lokalne</strong><span id="syncText">Synchronizacja nieaktywna</span></div>
         </div>
-        <div class="support-card">
-          <span class="support-label">OBSŁUGA</span>
-          <strong>Michał Bukowski</strong>
-        </div>
         <button class="top-button secondary-top" id="syncNow">Synchronizuj dane</button>
-        <button class="top-button" id="addProject">+ Nowy projekt</button>
+        <div class="user-zone" aria-label="Zalogowany użytkownik">
+          <strong>Michał Bukowski</strong>
+          <span>Zalogowany użytkownik</span>
+        </div>
       </div>
     </div>
   </header>
@@ -45,7 +45,10 @@
         <h1>Marketing PEREKO</h1>
         <p>Zarządzaj projektami, zadaniami, terminami i współpracą zespołu w jednym miejscu.</p>
       </div>
-      <div class="date-box" id="todayBox"></div>
+      <div class="intro-actions">
+        <div class="date-box" id="todayBox"></div>
+        <button class="intro-add-project" id="addProject" type="button"><span>+</span> Nowy projekt</button>
+      </div>
     </section>
 
     <section class="stats-grid">
