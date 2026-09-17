@@ -170,12 +170,22 @@
     },
     {
       "text": "przeniesione na jutro",
-      "done": false,
+      "done": true,
       "id": "4c1cc809-c17a-40e1-b478-b48511c93193",
       "createdAt": "2026-09-17T11:56:12.385Z",
       "scheduledFor": "2026-09-17",
-      "history": []
+      "history": [
+        {
+          "id": "a81df77a-c5bd-435b-a031-f588b41ca577",
+          "type": "done",
+          "text": "Zadanie oznaczono jako wykonane",
+          "date": "2026-09-17",
+          "createdAt": "2026-09-17T11:56:22.226Z"
+        }
+      ],
+      "completedAt": "2026-09-17T11:56:22.226Z",
+      "completedOn": "2026-09-17"
     }
   ],
-  "updatedAt": "2026-09-17T11:56:21.437Z"
+  "updatedAt": "2026-09-17T11:56:23.039Z"
 }
