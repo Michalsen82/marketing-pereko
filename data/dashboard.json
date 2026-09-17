@@ -11,7 +11,15 @@
       "members": [
         "Michał"
       ],
-      "projectTasks": [],
+      "projectTasks": [
+        {
+          "id": "07fa904f-a8fc-4e78-8f42-a751c818a663",
+          "text": "zadanie nr 1 - opis zadania szczegółowo!",
+          "assignee": "Michał Bukowski",
+          "deadline": "2026-09-18",
+          "done": false
+        }
+      ],
       "comments": []
     },
     {
@@ -194,5 +202,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-17T12:49:44.562Z"
+  "updatedAt": "2026-09-17T12:50:27.630Z"
 }
