@@ -185,7 +185,32 @@
       ],
       "completedAt": "2026-09-17T11:56:22.226Z",
       "completedOn": "2026-09-17"
+    },
+    {
+      "id": "896ad480-7737-422b-875c-64f9f1edd4be",
+      "text": "dfasdf",
+      "done": false,
+      "createdAt": "2026-09-17T12:19:38.613Z",
+      "scheduledFor": "2026-09-17",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "8e3ee239-01be-4982-b180-51936a827a7f",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 16.09",
+          "date": "2026-09-17",
+          "createdAt": "2026-09-17T12:19:38.613Z"
+        },
+        {
+          "id": "7dd13f57-9666-403f-8740-a25c0ab6b109",
+          "type": "created",
+          "text": "Utworzono zadanie na 16.09",
+          "date": "2026-09-16",
+          "createdAt": "2026-09-17T12:19:38.613Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-17T11:56:23.039Z"
+  "updatedAt": "2026-09-17T12:19:39.089Z"
 }
