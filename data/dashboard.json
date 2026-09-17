@@ -134,11 +134,21 @@
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
-      "done": false,
+      "done": true,
       "id": "5c8e5418-5f77-4dd5-989b-da62d43f965a",
       "createdAt": "2026-09-17T11:56:12.385Z",
       "scheduledFor": "2026-09-17",
-      "history": []
+      "history": [
+        {
+          "id": "c47b8b0f-36bc-43c6-a311-451e84e8ba62",
+          "type": "done",
+          "text": "Zadanie oznaczono jako wykonane",
+          "date": "2026-09-17",
+          "createdAt": "2026-09-17T11:56:20.618Z"
+        }
+      ],
+      "completedAt": "2026-09-17T11:56:20.618Z",
+      "completedOn": "2026-09-17"
     },
     {
       "text": "dodawanie produktów na listę z nim",
@@ -167,5 +177,5 @@
       "history": []
     }
   ],
-  "updatedAt": "2026-09-17T11:56:20.060Z"
+  "updatedAt": "2026-09-17T11:56:21.437Z"
 }
