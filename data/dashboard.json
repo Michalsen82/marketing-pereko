@@ -110,28 +110,52 @@
   "tasks": [
     {
       "text": "Ustalić najbliższe terminy dla wszystkich projektów",
-      "done": false
+      "done": false,
+      "id": "4eea1516-9fe4-40fb-b237-cfe0b95b4d49",
+      "createdAt": "2026-09-17T11:56:12.066Z",
+      "scheduledFor": "2026-09-17",
+      "history": []
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
-      "done": false
+      "done": false,
+      "id": "8387d96a-5d9e-4dbf-a27d-a835ccec8f98",
+      "createdAt": "2026-09-17T11:56:12.066Z",
+      "scheduledFor": "2026-09-17",
+      "history": []
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
-      "done": false
+      "done": false,
+      "id": "061c8db5-8487-4849-8c0d-d232e7cf7a97",
+      "createdAt": "2026-09-17T11:56:12.066Z",
+      "scheduledFor": "2026-09-17",
+      "history": []
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
-      "done": false
+      "done": false,
+      "id": "dcdf5023-5c0e-4bd9-8b1e-d69f4aeef44a",
+      "createdAt": "2026-09-17T11:56:12.066Z",
+      "scheduledFor": "2026-09-17",
+      "history": []
     },
     {
       "text": "dodawanie produktów na listę z nim",
-      "done": false
+      "done": false,
+      "id": "a206624e-5eef-4832-85d6-87221630e3cb",
+      "createdAt": "2026-09-17T11:56:12.067Z",
+      "scheduledFor": "2026-09-17",
+      "history": []
     },
     {
       "text": "przeniesione na jutro",
-      "done": false
+      "done": false,
+      "id": "9bd1f7da-3820-4b88-8628-bc1c8ee05eac",
+      "createdAt": "2026-09-17T11:56:12.067Z",
+      "scheduledFor": "2026-09-17",
+      "history": []
     }
   ],
-  "updatedAt": "2026-09-17T11:53:41.975Z"
+  "updatedAt": "2026-09-17T11:56:12.357Z"
 }
