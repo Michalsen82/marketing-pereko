@@ -6,6 +6,7 @@
   <meta name="theme-color" content="#171717" />
   <title>PEREKO — Centrum Projektów Marketingowych</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="voice.css" />
 </head>
 <body>
   <header class="topbar-shell">
@@ -108,7 +109,7 @@
       <button data-assistant-example="Pomoc">Pomoc</button>
     </div>
     <form class="assistant-input-row" id="assistantForm">
-      <textarea id="assistantInput" rows="2" placeholder="Wpisz polecenie, np. Zmień termin Centrum Partnera na 20 października 2026"></textarea>
+      <textarea id="assistantInput" rows="2" placeholder="Wpisz lub podyktuj polecenie"></textarea>
       <button type="submit">Wykonaj</button>
     </form>
     <div class="assistant-note">Bez OpenAI API — bez dodatkowych opłat. Asystent rozpoznaje obsługiwane komendy i działa na wspólnych danych GitHub.</div>
@@ -132,5 +133,6 @@
   </div>
 
   <script src="app.js"></script>
+  <script src="voice.js"></script>
 </body>
 </html>
