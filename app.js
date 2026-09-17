@@ -11,7 +11,7 @@ const defaultTasks=[
 {text:'Przygotować założenia do upominków świątecznych',done:false},
 {text:'Ustalić zakres materiałów do Świata Kominków',done:false}
 ];
-const VERSION='2';
+const VERSION='3';
 const $=s=>document.querySelector(s); const $$=s=>[...document.querySelectorAll(s)];
 let storedVersion=localStorage.getItem('pereko_dashboard_version');
 let projects=storedVersion===VERSION?JSON.parse(localStorage.getItem('pereko_projects')||'null'):null;
@@ -22,6 +22,7 @@ let activeFilter='all';
 const save=()=>{localStorage.setItem('pereko_dashboard_version',VERSION);localStorage.setItem('pereko_projects',JSON.stringify(projects));localStorage.setItem('pereko_tasks',JSON.stringify(tasks));};
 save();
 const statusText={work:'W realizacji',plan:'Planowany',done:'Zakończony'};
+
 function render(){
  const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
  $('#projectList').innerHTML=visible.length?visible.map(p=>`<article class="project">
@@ -39,8 +40,12 @@ function render(){
 }
 function esc(v=''){return String(v).replace(/[&<>'\"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','\"':'&quot;'}[c]))}
 $$('[data-filter]').forEach(btn=>btn.onclick=()=>{$$('[data-filter]').forEach(b=>b.classList.remove('active'));btn.classList.add('active');activeFilter=btn.dataset.filter;render();});
-$('#addProject').onclick=()=>$('#modal').classList.add('open'); $('#closeModal').onclick=()=>$('#modal').classList.remove('open');
+$('#addProject').onclick=()=>$('#modal').classList.add('open');
+$('#closeModal').onclick=()=>$('#modal').classList.remove('open');
+$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');
 $('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').classList.remove('open')};
 $('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open');};
 $('#resetDemo').onclick=()=>{if(confirm('Przywrócić projekty startowe?')){projects=structuredClone(defaultProjects);tasks=structuredClone(defaultTasks);save();render();}};
+const now=new Date();
+$('#todayBox').innerHTML=`<strong>${now.toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'})}</strong><span>${now.getFullYear()}</span>`;
 render();
