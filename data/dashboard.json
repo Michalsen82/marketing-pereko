@@ -13,6 +13,13 @@
       ],
       "projectTasks": [
         {
+          "id": "5ca73bc0-566d-42c2-86f9-a74803d461c9",
+          "text": "zadanie nr 3 - opis zadania szczegółowo!",
+          "assignee": "Łukasz",
+          "deadline": "2026-09-19",
+          "done": false
+        },
+        {
           "id": "17d1f9ac-ecd9-4f73-b13e-70019407d7aa",
           "text": "zadanie nr 2 - opis zadania szczegółowo!",
           "assignee": "Wiktoria",
@@ -209,5 +216,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-17T12:50:37.151Z"
+  "updatedAt": "2026-09-17T12:50:46.130Z"
 }
