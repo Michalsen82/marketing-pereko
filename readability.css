@@ -1,0 +1,69 @@
+/* Czytelność zgodna z dashboardem Centrum Partnera PEREKO */
+body{font-size:14px;line-height:1.5}
+
+/* Topbar */
+.brand-copy strong::after{font-size:14px!important;line-height:1.15!important;font-weight:700!important}
+.brand-copy span::after{font-size:10px!important;line-height:1.35!important}
+.support-label{font-size:9px!important}.support-card strong{font-size:12px!important}.support-sub{font-size:10px!important}
+.sync-card strong{font-size:11px!important}.sync-card span:not(.sync-dot){font-size:9.5px!important}
+.top-button{font-size:11.5px!important;height:42px!important;min-height:42px!important;padding:0 15px!important}
+
+/* Główne nagłówki i opisy */
+.section-kicker,.module-label{font-size:11px!important;letter-spacing:.12em!important}
+.intro-row h1{font-size:clamp(34px,4vw,48px)!important;line-height:1.05!important}
+.intro-row p{font-size:17px!important;line-height:1.55!important}
+.date-box strong{font-size:15px!important}.date-box span{font-size:12px!important}
+
+/* KPI */
+.stat-card{padding:20px 20px 18px!important}
+.stat-card span{font-size:12.5px!important}
+.stat-card strong{font-size:32px!important}
+.stat-card small{font-size:11.5px!important}
+
+/* Sekcje i filtry */
+.module-head{padding:20px!important}
+.module-head h2{font-size:23px!important;line-height:1.2!important}
+.filter{min-height:36px!important;padding:0 13px!important;font-size:11.5px!important}
+
+/* Projekty */
+.project{padding:19px 8px!important}
+.project h4{font-size:17px!important;line-height:1.28!important}
+.project p{font-size:13.5px!important;line-height:1.48!important}
+.status{font-size:10.5px!important;padding:6px 9px!important}
+.deadline-edit label{font-size:9.5px!important}.deadline-edit input{font-size:13px!important;height:42px!important}
+.progress-wrap small{font-size:11.5px!important}
+.project-open-btn{height:36px!important;padding:0 13px!important;font-size:11.5px!important}
+
+/* Zadania, terminy, zespół */
+.task span{font-size:13.5px!important;line-height:1.45!important}
+.deadline h5{font-size:13.5px!important}.deadline p{font-size:12px!important}
+.datebox b{font-size:18px!important}.datebox span{font-size:9.5px!important}
+.person strong{font-size:13px!important}.person span{font-size:11px!important}.avatar{font-size:11px!important}
+.empty{font-size:12.5px!important}
+
+/* Kalendarz zadań */
+.task-glass-btn{height:36px!important;padding:0 12px!important;font-size:11.5px!important}
+.task-date-nav{padding:12px 14px!important;grid-template-columns:38px 1fr 38px!important}
+.task-nav-arrow{width:38px!important;height:38px!important;font-size:22px!important}
+.task-date-main span{font-size:14px!important}.task-date-main small{font-size:11px!important}
+.task-add-form input{height:38px!important;font-size:13px!important}.task-save-btn{height:38px!important;font-size:11.5px!important}
+.task-calendar-item strong{font-size:13px!important;line-height:1.4!important}.task-calendar-item small{font-size:11px!important}
+.task-day-empty{font-size:12px!important}.task-closed-head span,.task-history-head span{font-size:9.5px!important}.task-closed-head strong{font-size:10px!important}
+.task-history-head small{font-size:10.5px!important}.task-history-event strong{font-size:12px!important}.task-history-event span{font-size:11px!important}.task-history-event small{font-size:9.5px!important}
+
+/* Formularze */
+.modal-head h3{font-size:24px!important}.field label{font-size:11.5px!important}.field input,.field select,.field textarea{font-size:14px!important}.btn{font-size:11.5px!important;min-height:42px!important}
+
+/* Widok projektu */
+.project-detail-kicker{font-size:10px!important}.project-detail-top h2{font-size:30px!important}.project-detail-top p{font-size:13.5px!important}
+.pd-card-head span{font-size:9.5px!important}.pd-card-head h3{font-size:18px!important}
+.pd-field>span{font-size:11.5px!important}.pd-field input,.pd-field select,.pd-field textarea,.pd-task-form input,.pd-task-form select,.pd-comment-form textarea,.pd-member-add select{font-size:13.5px!important}
+.pd-progress-control strong{font-size:13px!important}.pd-glass-btn,.pd-accent-btn{font-size:11.5px!important;min-height:38px!important}
+.pd-task strong{font-size:13px!important}.pd-task small{font-size:11px!important}.pd-comment-meta strong{font-size:11.5px!important}.pd-comment-meta span{font-size:10px!important}.pd-comment p{font-size:12.5px!important}.pd-member strong{font-size:12.5px!important}.pd-member span{font-size:10.5px!important}.pd-summary-row span{font-size:12px!important}.pd-summary-row strong{font-size:12.5px!important}.pd-empty{font-size:12px!important}
+
+/* AI Asystent */
+.assistant-fab{font-size:13px!important}.assistant-eyebrow{font-size:10px!important}.assistant-head h3{font-size:21px!important}.assistant-head p{font-size:12.5px!important}.assistant-msg{font-size:13px!important}.assistant-msg strong{font-size:12px!important}.assistant-suggestions button{font-size:11px!important}.assistant-input-row textarea{font-size:13px!important}.assistant-input-row button{font-size:12px!important}.assistant-note,.voice-status{font-size:10.5px!important}
+
+@media(max-width:760px){
+  .intro-row h1{font-size:34px!important}.intro-row p{font-size:15px!important}.module-head h2{font-size:21px!important}.project h4{font-size:16px!important}.project p{font-size:13px!important}
+}
