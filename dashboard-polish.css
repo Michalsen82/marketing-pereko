@@ -1,0 +1,50 @@
+/* Finalne dopasowanie Centrum Projektów Marketingowych do stylu Centrum Partnera PEREKO */
+.topbar-shell{height:88px;background:#050505!important;border-bottom:1px solid rgba(255,255,255,.10)!important;box-shadow:0 8px 28px rgba(0,0,0,.18)!important}
+.topbar{height:88px!important}
+.brand-copy strong::after{font-size:15px!important}
+.brand-copy span::after{font-size:10px!important;color:#b9c2c6!important}
+.support-sub{display:none!important}.support-card{align-content:center!important;min-width:176px!important}
+.support-card strong{font-size:12px!important;margin-top:3px!important}
+.support-label{font-size:9px!important}
+.sync-card strong{font-size:11px!important}.sync-card span:not(.sync-dot){font-size:9px!important}
+.top-button{font-size:11.5px!important;height:42px!important;min-height:42px!important;padding:0 15px!important}
+
+.page-shell{padding-top:38px!important}
+.intro-row h1{font-size:clamp(42px,4.3vw,58px)!important;line-height:1!important;letter-spacing:-.045em!important;margin:12px 0 12px!important}
+.intro-row p{font-size:17px!important;line-height:1.55!important;max-width:760px!important}
+.section-kicker,.module-label{font-size:11px!important;letter-spacing:.10em!important}
+.module-head h2{font-size:23px!important;letter-spacing:-.025em!important}
+.stat-card span{font-size:12px!important}.stat-card strong{font-size:34px!important}.stat-card small{font-size:11.5px!important}
+.filter{font-size:11.5px!important;min-height:36px!important;padding:0 13px!important}
+
+/* Każdy projekt jako osobny, wyraźny box */
+.project-list{display:grid!important;gap:14px!important;padding:16px!important;background:#f5f7f7!important}
+.project{display:grid!important;grid-template-columns:minmax(0,1fr) 165px 130px!important;gap:18px!important;align-items:center!important;padding:20px!important;border:1px solid #dce2e4!important;border-radius:16px!important;background:#fff!important;box-shadow:0 10px 28px rgba(24,34,39,.055)!important;transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease!important}
+.project:hover{transform:translateY(-2px)!important;box-shadow:0 18px 42px rgba(24,34,39,.09)!important;border-color:#cbd4d7!important;background:#fff!important}
+.project h4{font-size:18px!important;line-height:1.25!important;margin-bottom:7px!important}
+.project p{font-size:14px!important;line-height:1.5!important;color:#69767d!important}
+.project-meta{margin-top:11px!important}.status{font-size:10.5px!important;padding:6px 9px!important}
+.deadline-edit label{font-size:9px!important}.deadline-edit input{font-size:13px!important;height:42px!important}
+.progress-wrap small{font-size:11px!important}
+.project-actions{display:flex!important;gap:8px!important;flex-wrap:wrap!important;margin-top:13px!important}
+.project-open-btn,.project-delete-btn{height:36px!important;padding:0 12px!important;border-radius:10px!important;font:700 10.5px/1 'Montserrat',sans-serif!important;transition:.16s ease!important}
+.project-open-btn{border:1px solid #d3dade!important;background:#f8fafa!important;color:#2e3a40!important}
+.project-open-btn:hover{border-color:#c8b200!important;background:rgba(255,221,0,.11)!important}
+.project-delete-btn{border:1px solid #ead7d5!important;background:#fffafa!important;color:#a14239!important}
+.project-delete-btn:hover{border-color:#cf8e87!important;background:#fff2f1!important;color:#8f3028!important}
+
+/* Data jak w panelu premium */
+.date-box{min-width:235px!important;display:grid!important;grid-template-columns:66px 1fr!important;gap:14px!important;align-items:center!important;text-align:left!important;border-left:0!important;padding:0!important}
+.date-daynum{width:66px;height:66px;border-radius:16px;background:#20292d;color:#fff;display:grid;place-items:center;font:800 30px/1 'Montserrat',sans-serif!important;box-shadow:0 10px 28px rgba(20,28,32,.12)}
+.date-copy{display:grid;gap:3px}.date-copy .date-weekday{font:800 10px/1 'Montserrat',sans-serif!important;letter-spacing:.11em;text-transform:uppercase;color:#8a7215!important}.date-copy strong{font:700 15px/1.2 'Montserrat',sans-serif!important;text-transform:capitalize}.date-copy span{font-size:12px!important;color:#7d898f!important}
+
+/* Typografia modułów bocznych jak w Centrum Partnera */
+.task-calendar-item strong,.deadline h5,.person strong{font-size:13px!important}.task-calendar-item small,.deadline p,.person span{font-size:11.5px!important}
+.task-glass-btn{font-size:10.5px!important;height:34px!important}.task-date-main span{font-size:13px!important}.task-date-main small{font-size:10.5px!important}.task-add-form input{font-size:12.5px!important;height:38px!important}.task-save-btn{font-size:10.5px!important;height:38px!important}
+.task-history-event strong{font-size:11.5px!important}.task-history-event span{font-size:10.5px!important}.task-history-event small{font-size:9.5px!important}
+
+/* Wnętrze projektu - czytelność zgodna z dashboardem */
+.project-detail-top h2{font-size:30px!important}.project-detail-top p{font-size:13.5px!important}.pd-card-head h3{font-size:18px!important}.pd-card-head span,.project-detail-kicker{font-size:10px!important}.pd-field>span{font-size:11.5px!important}.pd-field input,.pd-field select,.pd-field textarea,.pd-task-form input,.pd-task-form select,.pd-comment-form textarea,.pd-member-add select{font-size:13px!important}.pd-task strong{font-size:13px!important}.pd-task small{font-size:11px!important}.pd-comment p{font-size:12.5px!important}.pd-member strong{font-size:12.5px!important}.pd-member span,.pd-summary-row span,.pd-summary-row strong{font-size:11.5px!important}.pd-glass-btn,.pd-accent-btn{font-size:10.5px!important}
+
+@media(max-width:900px){.project{grid-template-columns:1fr!important}.date-box{min-width:0!important}}
+@media(max-width:640px){.intro-row h1{font-size:36px!important}.intro-row p{font-size:15px!important}.project-list{padding:10px!important}.project{padding:16px!important}.project h4{font-size:17px!important}.date-box{grid-template-columns:56px 1fr!important}.date-daynum{width:56px;height:56px;font-size:26px!important}}
