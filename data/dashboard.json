@@ -1,0 +1,16 @@
+{
+  "projects": [
+    {"id":"p1","name":"Centrum Partnera PEREKO","owner":"Michał","status":"work","progress":55,"deadline":"2026-10-15","desc":"Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe."},
+    {"id":"p2","name":"Targi HVAC 2027","owner":"Michał","status":"plan","progress":15,"deadline":"2027-03-01","desc":"Plan targów, harmonogram, ekspozycja, materiały i komunikacja."},
+    {"id":"p3","name":"Upominki świąteczne","owner":"Wiktoria","status":"plan","progress":10,"deadline":"2026-11-20","desc":"Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków."},
+    {"id":"p4","name":"Świat Kominków — Targi 2027","owner":"Michał","status":"plan","progress":8,"deadline":"2027-02-15","desc":"Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji."},
+    {"id":"p5","name":"Świat Kominków — materiały do gazety","owner":"Michał","status":"work","progress":25,"deadline":"2026-10-05","desc":"Artykuły, reklamy, materiały produktowe i terminy publikacji."}
+  ],
+  "tasks": [
+    {"text":"Ustalić najbliższe terminy dla wszystkich projektów","done":false},
+    {"text":"Rozpisać kolejne etapy Centrum Partnera PEREKO","done":false},
+    {"text":"Przygotować założenia do upominków świątecznych","done":false},
+    {"text":"Ustalić zakres materiałów do Świata Kominków","done":false}
+  ],
+  "updatedAt": null
+}
