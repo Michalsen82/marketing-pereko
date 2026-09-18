@@ -1110,3 +1110,56 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
   color:rgba(255,255,255,.50)!important;
   font-size:9.5px!important;
 }
+
+
+/* Status projektu — tylko biała ramka, bez jasnego wypełnienia */
+.project-status-badge,
+.project-status-badge.work,
+.project-status-badge.plan,
+.project-status-badge.done{
+  background:transparent!important;
+  border:1px solid rgba(255,255,255,.88)!important;
+  box-shadow:none!important;
+}
+.project-status-badge span{
+  color:rgba(255,255,255,.58)!important;
+}
+.project-status-badge strong{
+  color:#fff!important;
+}
+
+/* Akcje nagłówka modułu projektów */
+.project-module-actions{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  gap:9px!important;
+}
+.gantt-open-btn{
+  height:34px!important;
+  padding:0 12px!important;
+  border-radius:9px!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  font:700 9px/1 'Montserrat',sans-serif!important;
+  cursor:pointer!important;
+}
+.gantt-open-btn svg{
+  width:14px!important;
+  height:14px!important;
+  fill:currentColor!important;
+}
+.gantt-open-btn:hover{
+  background:rgba(255,221,0,.10)!important;
+  border-color:rgba(255,221,0,.48)!important;
+}
+@media(max-width:760px){
+  .project-module-actions{
+    width:100%!important;
+    align-items:flex-start!important;
+  }
+}
