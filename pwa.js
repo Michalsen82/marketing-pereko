@@ -277,8 +277,8 @@
     settingsModal.querySelector('#pwaNotifyDetail').textContent=note.detail;
     settingsModal.querySelector('#pwaInstallBtn').disabled=isStandalone();
     settingsModal.querySelector('#pwaInstallBtn').textContent=isStandalone()?'Aplikacja zainstalowana':'Zainstaluj aplikację';
-    settingsModal.querySelector('#pwaEnableNotifications').disabled=hasNotifications()&&Notification.permission==='granted';
-    settingsModal.querySelector('#pwaEnableNotifications').textContent=hasNotifications()&&Notification.permission==='granted'?'Powiadomienia włączone':'Włącz powiadomienia';
+    settingsModal.querySelector('#pwaEnableNotifications').disabled=!hasNotifications();
+    settingsModal.querySelector('#pwaEnableNotifications').textContent=hasNotifications()&&Notification.permission==='granted'?'Połącz powiadomienia':'Włącz powiadomienia';
     settingsModal.querySelector('#pwaDeviceTitle').textContent=platformName();
     settingsModal.querySelector('#pwaDeviceInfo').textContent=(isStandalone()?'Tryb aplikacji · ':'Tryb przeglądarki · ')+(navigator.onLine?'online':'offline')+'. Identyfikator urządzenia: '+deviceId().slice(0,8)+'…';
     settingsModal.querySelector('#pwaQrWrap').hidden=isMobile();
@@ -360,6 +360,9 @@
     refreshAll();
     setTimeout(maybeOnboard,750);
     handleDeepLink(location.href);
+    if(hasNotifications()&&Notification.permission==='granted'){
+      setTimeout(()=>subscribePush().catch(()=>{}),1100);
+    }
   });
   window.addEventListener('online',refreshAll);
   window.addEventListener('offline',refreshAll);
