@@ -19,6 +19,17 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm2 2v3h3V6H6Zm7-2h7v7h-7V4Zm2 2v3h3V6h-3ZM4 13h7v7H4v-7Zm2 2v3h3v-3H6Zm7-2h7v7h-7v-7Zm2 2v3h3v-3h-3Z"/></svg>';
   };
 
+  const closeInfo=deadline=>{
+    if(!deadline)return {days:'—',label:'dni',text:'Brak terminu zamknięcia projektu',state:'none'};
+    const today=new Date();today.setHours(0,0,0,0);
+    const end=new Date(deadline+'T00:00:00');end.setHours(0,0,0,0);
+    const diff=Math.round((end-today)/86400000);
+    if(diff<0)return {days:String(Math.abs(diff)),label:'dni',text:'Projekt przeterminowany · '+Math.abs(diff)+' dni po terminie',state:'overdue'};
+    if(diff===0)return {days:'0',label:'dni',text:'Dziś należy zamknąć projekt',state:'today'};
+    if(diff===1)return {days:'1',label:'dzień',text:'Pozostał 1 dzień do zamknięcia projektu',state:'soon'};
+    return {days:String(diff),label:'dni',text:'Pozostało '+diff+' dni do zamknięcia projektu',state:diff<=7?'soon':'normal'};
+  };
+
   const previewHtml=p=>{
     const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
     const tasks=list.slice(0,5).map(t=>`<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></div></div>`).join('');
@@ -68,10 +79,19 @@
       if(!controls){
         controls=document.createElement('div');
         controls.className='project-card-controls';
-        controls.innerHTML='<button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button>';
+        const info=closeInfo(p.deadline);
+        controls.innerHTML='<div class="project-close-info '+info.state+'"><div class="project-close-badge"><strong>'+info.days+'</strong><span>'+info.label+'</span></div><div class="project-close-copy">'+info.text+'</div></div><div class="project-card-actions"><button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button></div>';
         card.appendChild(controls);
       }
 
+      const infoNow=closeInfo(p.deadline);
+      const infoBox=controls.querySelector('.project-close-info');
+      if(infoBox){
+        infoBox.className='project-close-info '+infoNow.state;
+        infoBox.querySelector('.project-close-badge strong').textContent=infoNow.days;
+        infoBox.querySelector('.project-close-badge span').textContent=infoNow.label;
+        infoBox.querySelector('.project-close-copy').textContent=infoNow.text;
+      }
       controls.querySelector('.project-open-btn').onclick=()=>window.openProjectDetail?.(p.id);
       const expand=controls.querySelector('.project-expand-btn');
       expand.classList.toggle('open',expanded.has(p.id));
