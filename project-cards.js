@@ -66,7 +66,7 @@
   };
 
   const decorate=()=>{
-    const visible=window.getVisibleProjects?window.getVisibleProjects():(activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter));
+    const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
     document.querySelectorAll('.project').forEach((card,i)=>{
       const p=visible[i]; if(!p)return;
       card.dataset.projectId=p.id;
