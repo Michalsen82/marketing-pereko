@@ -648,3 +648,28 @@ html body input[type="date"]::-webkit-clear-button{
   .intro-row{grid-template-columns:1fr!important}
   .date-box{transform:none!important}
 }
+
+
+/* Ujednolicenie boksów dat w „Najbliższe terminy” do rozmiaru ikon projektów: 44x44 */
+.deadline{
+  grid-template-columns:44px 1fr!important;
+  gap:12px!important
+}
+.deadline .datebox{
+  width:44px!important;
+  min-width:44px!important;
+  height:44px!important;
+  min-height:44px!important;
+  padding:4px!important;
+  border-radius:12px!important;
+  box-sizing:border-box!important
+}
+.deadline .datebox b{
+  font-size:15px!important;
+  line-height:1!important
+}
+.deadline .datebox span{
+  font-size:7.5px!important;
+  line-height:1!important;
+  margin-top:3px!important
+}
