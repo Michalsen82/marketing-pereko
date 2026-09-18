@@ -2,12 +2,27 @@
   const SUPABASE_URL='https://gtzbjpgpxopccauicumz.supabase.co';
   const SUPABASE_KEY='sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
   const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{
-    auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true,
+      detectSessionInUrl:true,
+      storage:window.localStorage,
+      storageKey:'pereko-marketing-auth'
+    }
   });
   window.perekoSupabase=client;
   window.perekoAuthReady=(async()=>{
-    const {data:{session},error}=await client.auth.getSession();
-    if(error||!session){
+    const firstSession=await client.auth.getSession().catch(()=>({data:{session:null},error:null}));
+    let session=firstSession.data?.session||null;
+    let error=firstSession.error||null;
+
+    if(!session){
+      const refreshed=await client.auth.refreshSession().catch(err=>({data:{session:null},error:err}));
+      session=refreshed?.data?.session||null;
+      error=refreshed?.error||error;
+    }
+
+    if(!session){
       window.location.replace('login.html');
       throw error||new Error('Brak aktywnej sesji');
     }
