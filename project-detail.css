@@ -214,3 +214,18 @@ body.detail-open{overflow:hidden}
   gap:6px!important;
   margin-top:7px!important;
 }
+
+
+/* Numer zadania w szczegółach projektu */
+.pd-task-number{
+  display:block!important;
+  margin:0 0 4px!important;
+  color:#7c898e!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.08em!important;
+  text-decoration:none!important
+}
+.pd-task.done .pd-task-number{
+  color:#9ba5a9!important;
+  text-decoration:none!important
+}
