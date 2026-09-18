@@ -50,6 +50,9 @@
     try{
       if(typeof window.perekoFlushSync==='function')await window.perekoFlushSync();
     }catch{}
+    try{
+      if(typeof window.perekoPushUnregister==='function')await window.perekoPushUnregister();
+    }catch{}
     await client.auth.signOut();
     window.location.replace('login.html');
   });
