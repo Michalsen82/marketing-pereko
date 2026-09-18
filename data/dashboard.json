@@ -1,6 +1,20 @@
 {
   "projects": [
     {
+      "id": "8012987e-7d52-4090-973b-7a1482e4fa8b",
+      "name": "TESTOWY PROJEKT",
+      "owner": "Michał Bukowski",
+      "status": "plan",
+      "progress": 0,
+      "deadline": "2026-09-24",
+      "desc": "Projekt utworzony po zmianach",
+      "members": [
+        "Michał Bukowski"
+      ],
+      "projectTasks": [],
+      "comments": []
+    },
+    {
       "id": "p1",
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
@@ -256,5 +270,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T07:58:16.476Z"
+  "updatedAt": "2026-09-18T08:25:50.938Z"
 }
