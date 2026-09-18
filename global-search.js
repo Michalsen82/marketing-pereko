@@ -60,13 +60,13 @@
     const projectHtml=projectHits.map(p=>`
       <button class="global-search-result" type="button" data-search-project="${escHtml(p.id)}">
         <span class="global-search-number">${escHtml(projectLabel(p))}</span>
-        <span class="global-search-copy"><strong>${escHtml(p.name)}</strong><small>Projekt · ${escHtml(statusText?.[p.status]||'')}</small></span>
+        <span class="global-search-copy"><strong>${escHtml(p.name)}</strong><small>Projekt · ${escHtml(statusText?.[p.status]||'')} · Odpowiedzialny: ${escHtml(p.owner||'Nieprzypisany')}</small></span>
         <span class="global-search-arrow">→</span>
       </button>`).join('');
     const taskHtml=taskHits.map(x=>`
       <button class="global-search-result" type="button" data-search-task="${escHtml(x.task.id||'')}" data-search-source="${x.source}" data-search-project="${escHtml(x.project?.id||'')}">
         <span class="global-search-number">${escHtml(taskLabel(x.task))}</span>
-        <span class="global-search-copy"><strong>${escHtml(x.task.text)}</strong><small>${x.project?'Zadanie · projekt: '+escHtml(x.project.name):'Zadanie'+(x.task.scheduledFor?' · '+escHtml(x.task.scheduledFor):'')}</small></span>
+        <span class="global-search-copy"><strong>${escHtml(x.task.text)}</strong><small>${x.project?'Zadanie · projekt: '+escHtml(x.project.name):'Zadanie'+(x.task.scheduledFor?' · '+escHtml(x.task.scheduledFor):'')} · Odpowiedzialny: ${escHtml(x.task.assignee||'Nieprzypisany')}</small></span>
         <span class="global-search-arrow">→</span>
       </button>`).join('');
 
