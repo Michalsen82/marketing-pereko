@@ -6,6 +6,8 @@
     return [...new Set([...TEAM,...local.map(p=>p?.name),window.perekoLoggedPerson?.name].filter(Boolean))];
   };
   let currentProjectId=null;
+  let editingTaskIndex=null;
+  let editingCommentIndex=null;
   const normPerson=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
   const isLoggedAssignee=assignee=>{
     const person=window.perekoLoggedPerson||{};
@@ -141,7 +143,7 @@
     $('#pdClose').onclick=closeProjectDetail;
     modal.addEventListener('click',e=>{if(e.target===modal)closeProjectDetail()});
     $('#pdAddTask').onclick=()=>$('#pdTaskText').focus();
-    $('#pdTaskSave').onclick=addProjectTask;
+    $('#pdTaskSave').onclick=saveProjectTask;
     $('#pdCommentSave').onclick=addProjectComment;
     $('#pdMemberAdd').onclick=addMember;
 
@@ -176,6 +178,8 @@
 
   function openProjectDetail(id){
     buildModal();
+    editingTaskIndex=null;
+    editingCommentIndex=null;
     currentProjectId=id;
     const p=getCurrent();
     if(!p)return;
@@ -255,7 +259,10 @@
             ${canClose?'':`<em class="pd-task-lock">${lockText}</em>`}
           </span>
         </label>
-        <button type="button" data-pd-task-remove="${i}" aria-label="Usuń">×</button>
+        <div class="pd-task-actions">
+          <button type="button" class="pd-row-edit" data-pd-task-edit="${i}">Edytuj</button>
+          <button type="button" class="pd-row-remove" data-pd-task-remove="${i}" aria-label="Usuń zadanie">×</button>
+        </div>
       </div>`;
     }).join(''):'<div class="pd-empty">Nie ma jeszcze zadań w tym projekcie.</div>';
 
@@ -278,19 +285,127 @@
       render();
       fillDetail(p);
     });
-    $$('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
+
+    $$('[data-pd-task-edit]').forEach(el=>el.onclick=()=>beginTaskEdit(p,+el.dataset.pdTaskEdit));
+    $$('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{
+      const idx=+el.dataset.pdTaskRemove;
+      const task=p.projectTasks[idx];
+      if(!task)return;
+      if(!confirm(`Usunąć zadanie „${task.text}”?`))return;
+      p.projectTasks.splice(idx,1);
+      if(editingTaskIndex===idx)cancelTaskEdit();
+      syncProjectProgress(p);
+      save();
+      render();
+      fillDetail(p);
+    });
   }
 
-  function addProjectTask(){
+  function beginTaskEdit(p,index){
+    const t=p.projectTasks[index];if(!t)return;
+    editingTaskIndex=index;
+    $('#pdTaskText').value=t.text||'';
+    $('#pdTaskAssignee').value=t.assignee||'';
+    $('#pdTaskDeadline').value=t.deadline||'';
+    $('#pdTaskSave').textContent='Zapisz zmiany';
+    $('#pdAddTask').textContent='Anuluj edycję';
+    $('#pdAddTask').onclick=cancelTaskEdit;
+    $('#pdTaskText').focus();
+  }
+
+  function cancelTaskEdit(){
+    editingTaskIndex=null;
+    $('#pdTaskText').value='';
+    $('#pdTaskDeadline').value='';
+    $('#pdTaskAssignee').value='';
+    $('#pdTaskSave').textContent='Dodaj';
+    $('#pdAddTask').textContent='+ Dodaj zadanie';
+    $('#pdAddTask').onclick=()=>$('#pdTaskText').focus();
+  }
+
+  function saveProjectTask(){
     const p=getCurrent();if(!p)return;
     const text=$('#pdTaskText').value.trim();if(!text)return;
-    p.projectTasks.unshift({id:crypto.randomUUID(),text,assignee:$('#pdTaskAssignee').value,deadline:$('#pdTaskDeadline').value,done:false});
-    $('#pdTaskText').value='';$('#pdTaskDeadline').value='';$('#pdTaskAssignee').value='';
-    syncProjectProgress(p);save();render();fillDetail(p);
+    const payload={
+      text,
+      assignee:$('#pdTaskAssignee').value,
+      deadline:$('#pdTaskDeadline').value
+    };
+    if(editingTaskIndex!==null&&p.projectTasks[editingTaskIndex]){
+      p.projectTasks[editingTaskIndex]={...p.projectTasks[editingTaskIndex],...payload};
+    }else{
+      p.projectTasks.unshift({id:crypto.randomUUID(),...payload,done:false});
+    }
+    cancelTaskEdit();
+    syncProjectProgress(p);
+    save();
+    render();
+    fillDetail(p);
   }
 
   function renderComments(p){
-    $('#pdComments').innerHTML=p.comments.length?p.comments.map(c=>{const author=c.author||'Użytkownik';const initials=author.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();return `<div class="pd-comment"><div class="pd-comment-avatar">${esc(initials)}</div><div><div class="pd-comment-meta"><strong>${esc(author)}</strong><span>${esc(formatDateTime(c.createdAt))}</span></div><p>${esc(c.text)}</p></div></div>`}).join(''):'<div class="pd-empty">Brak komentarzy i notatek.</div>';
+    $('#pdComments').innerHTML=p.comments.length?p.comments.map((c,i)=>{
+      const author=c.author||'Użytkownik';
+      const initials=author.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
+      if(editingCommentIndex===i){
+        return `<div class="pd-comment pd-comment-editing">
+          <div class="pd-comment-avatar">${esc(initials)}</div>
+          <div>
+            <div class="pd-comment-meta"><strong>${esc(author)}</strong><span>${esc(formatDateTime(c.createdAt))}</span></div>
+            <textarea class="pd-comment-edit-input" data-comment-edit-input="${i}" rows="3">${esc(c.text)}</textarea>
+            <div class="pd-comment-edit-actions">
+              <button type="button" class="pd-row-edit primary" data-comment-save="${i}">Zapisz</button>
+              <button type="button" class="pd-row-edit" data-comment-cancel> Anuluj </button>
+            </div>
+          </div>
+        </div>`;
+      }
+      return `<div class="pd-comment">
+        <div class="pd-comment-avatar">${esc(initials)}</div>
+        <div>
+          <div class="pd-comment-meta">
+            <strong>${esc(author)}</strong>
+            <span>${esc(formatDateTime(c.createdAt))}</span>
+            <div class="pd-comment-actions">
+              <button type="button" class="pd-row-edit" data-comment-edit="${i}">Edytuj</button>
+              <button type="button" class="pd-row-remove" data-comment-remove="${i}" aria-label="Usuń komentarz">×</button>
+            </div>
+          </div>
+          <p>${esc(c.text)}</p>
+        </div>
+      </div>`;
+    }).join(''):'<div class="pd-empty">Brak komentarzy i notatek.</div>';
+
+    $$('[data-comment-edit]').forEach(btn=>btn.onclick=()=>{
+      editingCommentIndex=+btn.dataset.commentEdit;
+      renderComments(p);
+    });
+    $$('[data-comment-cancel]').forEach(btn=>btn.onclick=()=>{
+      editingCommentIndex=null;
+      renderComments(p);
+    });
+    $$('[data-comment-save]').forEach(btn=>btn.onclick=()=>{
+      const idx=+btn.dataset.commentSave;
+      const input=$(`[data-comment-edit-input="${idx}"]`);
+      const text=input?.value.trim();
+      if(!text)return;
+      p.comments[idx].text=text;
+      p.comments[idx].editedAt=new Date().toISOString();
+      editingCommentIndex=null;
+      save();
+      render();
+      renderComments(p);
+    });
+    $$('[data-comment-remove]').forEach(btn=>btn.onclick=()=>{
+      const idx=+btn.dataset.commentRemove;
+      const c=p.comments[idx];if(!c)return;
+      if(!confirm('Usunąć ten komentarz?'))return;
+      p.comments.splice(idx,1);
+      if(editingCommentIndex===idx)editingCommentIndex=null;
+      save();
+      render();
+      renderComments(p);
+    });
   }
 
   function addProjectComment(){
@@ -298,7 +413,9 @@
     const text=$('#pdCommentText').value.trim();if(!text)return;
     p.comments.unshift({id:crypto.randomUUID(),text,author:window.perekoLoggedPerson?.name||'Użytkownik',createdAt:new Date().toISOString()});
     $('#pdCommentText').value='';
-    save();renderComments(p);
+    save();
+    render();
+    renderComments(p);
   }
 
   function renderSummary(p){
