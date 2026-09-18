@@ -4,15 +4,16 @@
     {name:'Wiktoria Adamczyk',role:'Marketing Specialist'},
     {name:'Łukasz Drozdowski',role:'Creative Content & Design Specialist'},
     {name:'Paweł Chaja',role:'AI Implementation Specialist'},
-    {name:'Piotr Haja',role:'Team Member'}
+    {name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist'}
   ];
   let team=JSON.parse(localStorage.getItem('pereko_team')||'null')||defaults;
   // Migracja wcześniejszych zapisów lokalnych po korekcie nazwisk i przywróceniu Piotra Haja.
   team=team.map(p=>({
     ...p,
-    name:p.name==='Łukasz Drzodowski'?'Łukasz Drozdowski':p.name==='Paweł Haja'?'Paweł Chaja':p.name
+    name:p.name==='Łukasz Drzodowski'?'Łukasz Drozdowski':p.name==='Paweł Haja'?'Paweł Chaja':p.name==='Piotr Haja'?'Piotr Chaja':p.name,
+    role:(p.name==='Piotr Haja'||p.name==='Piotr Chaja')?'AI Transformation & Implementation Specialist':p.role
   }));
-  if(!team.some(p=>p.name==='Piotr Haja')) team.push({name:'Piotr Haja',role:'Team Member'});
+  if(!team.some(p=>p.name==='Piotr Chaja')) team.push({name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist'});
   localStorage.setItem('pereko_team',JSON.stringify(team));
   const initials=name=>name.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
   const grid=document.querySelector('.team-grid');
