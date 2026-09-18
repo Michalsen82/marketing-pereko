@@ -42,7 +42,27 @@
     window.location.replace('index.html');
   });
 
-  document.querySelector('#forgotPassword')?.addEventListener('click',()=>{
-    message.textContent='Reset hasła skonfigurujemy w kolejnym kroku.';
+  document.querySelector('#forgotPassword')?.addEventListener('click',async()=>{
+    const mail=email.value.trim();
+    if(!mail){
+      message.textContent='Najpierw wpisz adres e-mail, dla którego chcesz zresetować hasło.';
+      email.focus();
+      return;
+    }
+    const btn=document.querySelector('#forgotPassword');
+    btn.disabled=true;
+    btn.textContent='Wysyłanie linku…';
+    message.textContent='';
+    const redirectTo=new URL('reset-password.html',window.location.href).href;
+    const {error}=await client.auth.resetPasswordForEmail(mail,{redirectTo});
+    if(error){
+      message.textContent='Nie udało się wysłać wiadomości. Sprawdź adres e-mail i spróbuj ponownie.';
+      btn.disabled=false;
+      btn.textContent='Nie pamiętasz hasła?';
+      return;
+    }
+    message.textContent='Wysłaliśmy link do ustawienia nowego hasła. Sprawdź skrzynkę e-mail.';
+    btn.disabled=false;
+    btn.textContent='Wyślij link ponownie';
   });
 })();
