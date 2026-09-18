@@ -104,13 +104,15 @@
       }
 
       const ownerText=String(p.owner||'Brak właściciela').trim();
-      let ownerBadge=card.querySelector('.project-owner-badge');
-      if(!ownerBadge){
-        ownerBadge=document.createElement('div');
-        ownerBadge.className='project-owner-badge';
-        card.appendChild(ownerBadge);
+      let meta=main?.querySelector('.project-top-meta');
+      if(!meta){
+        meta=document.createElement('div');
+        meta.className='project-top-meta';
+        main?.appendChild(meta);
       }
-      ownerBadge.innerHTML='<span>Właściciel projektu</span><strong>'+esc(ownerText)+'</strong>';
+      meta.innerHTML=
+        '<div class="project-owner-badge"><span>Właściciel projektu</span><strong>'+esc(ownerText)+'</strong></div>'+
+        '<div class="project-status-badge '+esc(p.status||'')+'"><span>Status</span><strong>'+esc(statusText[p.status]||'—')+'</strong></div>';
       const oldOwner=main?.querySelector('.project-owner');
       if(oldOwner) oldOwner.style.display='none';
 
@@ -119,7 +121,8 @@
         controls=document.createElement('div');
         controls.className='project-card-controls';
         const info=closeInfo(p.deadline);
-        controls.innerHTML='<div class="project-close-info '+info.state+'"><div class="project-close-badge"><strong>'+info.days+'</strong><span>'+info.label+'</span></div><div class="project-close-copy">'+info.text+'</div></div><div class="project-card-actions"><button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button></div>';
+        const closeDate=p.deadline?new Date(p.deadline+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'Brak daty';
+        controls.innerHTML='<div class="project-close-info '+info.state+'"><div class="project-close-badge"><strong>'+info.days+'</strong><span>'+info.label+'</span></div><div class="project-close-copy"><strong class="project-close-text">'+info.text+'</strong><small>Termin zakończenia projektu: '+esc(closeDate)+'</small></div></div><div class="project-card-actions"><button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button></div>';
         card.appendChild(controls);
       }
 
@@ -129,7 +132,11 @@
         infoBox.className='project-close-info '+infoNow.state;
         infoBox.querySelector('.project-close-badge strong').textContent=infoNow.days;
         infoBox.querySelector('.project-close-badge span').textContent=infoNow.label;
-        infoBox.querySelector('.project-close-copy').textContent=infoNow.text;
+        const closeDate=p.deadline?new Date(p.deadline+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'Brak daty';
+        const closeText=infoBox.querySelector('.project-close-text');
+        const closeDateEl=infoBox.querySelector('.project-close-copy small');
+        if(closeText)closeText.textContent=infoNow.text;
+        if(closeDateEl)closeDateEl.textContent='Termin zakończenia projektu: '+closeDate;
       }
       controls.querySelector('.project-open-btn').onclick=()=>window.openProjectDetail?.(p.id);
       const expand=controls.querySelector('.project-expand-btn');
