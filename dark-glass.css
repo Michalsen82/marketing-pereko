@@ -673,3 +673,22 @@ html body input[type="date"]::-webkit-clear-button{
   line-height:1!important;
   margin-top:3px!important
 }
+
+
+/* Dokładnie ten sam format 44x44 co ikony projektów i zespołu */
+.deadline{
+  grid-template-columns:44px 1fr!important;
+  align-items:center!important;
+}
+.deadline .datebox{
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  max-width:44px!important;
+  max-height:44px!important;
+  flex:0 0 44px!important;
+  aspect-ratio:1/1!important;
+  border-radius:12px!important;
+  box-sizing:border-box!important;
+}
