@@ -1,0 +1,88 @@
+/* Ciemna, jednolita wersja Centrum Projektów Marketingowych */
+html,body{background:#060606!important;color:#f4f4f2!important}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-2;background:radial-gradient(circle at 12% 18%,rgba(255,221,0,.045),transparent 28%),radial-gradient(circle at 88% 14%,rgba(255,255,255,.04),transparent 26%),radial-gradient(circle at 70% 78%,rgba(255,221,0,.025),transparent 24%),linear-gradient(180deg,#070707 0%,#0d0e10 100%)}
+body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background-image:linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);background-size:34px 34px;opacity:.28}
+.topbar-shell,.site-footer{background:#020202!important;border-color:rgba(255,255,255,.08)!important;box-shadow:0 12px 34px rgba(0,0,0,.36)!important}
+.brand-copy strong,.footer-copy strong,.user-zone strong,.intro-row h1,.module-head h2,.stat-card strong,.project h4,.deadline h5,.person strong,.date-copy strong{color:#fff!important}
+.brand-copy span,.footer-copy span,.user-zone span,.intro-row p,.project p,.deadline p,.person span,.stat-card span,.stat-card small,.task-calendar-item small,.date-copy span,.date-weekday,.module-label,.section-kicker{color:rgba(255,255,255,.68)!important}
+.page-shell{max-width:1440px!important;padding-bottom:56px!important}
+
+/* Glass */
+.stat-card,.module,.project,.task-add-form,.task-history-panel,.pd-card,.assistant-panel,.modal-card,.footer-sync-btn,.footer-status-btn,.task-calendar-item,.task-history-event,.deadline,.person,.date-box{
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:0 18px 42px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important
+}
+.module,.stat-card,.project,.assistant-panel,.modal-card,.pd-card,.date-box{border-radius:18px!important}
+.module-head{border-bottom:1px solid rgba(255,255,255,.08)!important}
+.project-list{background:transparent!important;padding:16px 0 0!important;gap:16px!important}
+.project{grid-template-columns:minmax(0,1fr) 170px 140px!important;gap:18px!important;align-items:center!important;padding:22px!important}
+.project:hover,.stat-card:hover,.module:hover{border-color:rgba(255,255,255,.18)!important;box-shadow:0 22px 54px rgba(0,0,0,.30)!important;background:rgba(255,255,255,.075)!important}
+
+/* KPI bez żółtych pionowych elementów */
+.stat-card::before{display:none!important}
+.stats-grid{gap:14px!important;align-items:stretch!important}
+.stat-card{padding:22px 20px 19px!important;overflow:hidden!important}
+.stat-card span{display:block!important;margin-bottom:4px!important}
+.stat-card strong{line-height:1.05!important;margin:0 0 6px!important}
+
+/* Data + nowy projekt */
+.intro-row{align-items:center!important;gap:28px!important;margin-bottom:24px!important}
+.intro-actions{display:flex!important;align-items:center!important;gap:14px!important;justify-content:flex-end!important}
+.date-box{min-width:280px!important;max-width:340px!important;grid-template-columns:72px 1fr!important;gap:16px!important;align-items:center!important;padding:14px 16px!important;text-align:left!important}
+.date-daynum{width:72px!important;height:72px!important;border-radius:16px!important;background:rgba(255,255,255,.09)!important;color:#fff!important;border:1px solid rgba(255,255,255,.12)!important;box-shadow:none!important}
+.date-copy{min-width:0!important}
+.date-copy .date-weekday,.date-copy strong,.date-copy span{white-space:nowrap!important;overflow:hidden!important;text-overflow:ellipsis!important}
+.date-copy .date-weekday{color:rgba(255,255,255,.62)!important}
+.date-copy strong{font-size:16px!important}
+.intro-add-project{height:44px!important;padding:0 16px!important;border-radius:11px!important;background:#ffdd00!important;color:#111!important;border:1px solid rgba(255,221,0,.34)!important;box-shadow:0 10px 24px rgba(255,221,0,.12)!important;font:700 11.5px/1 'Montserrat',sans-serif!important;white-space:nowrap!important}
+.intro-add-project:hover{background:#ffe44d!important;box-shadow:0 12px 28px rgba(255,221,0,.22)!important}
+
+/* Żółty tylko przyciski / progress / aktywne */
+.top-button,.btn.primary,.assistant-input-row button,.footer-sync-btn,.project-open-btn,.task-glass-btn.active,.pd-accent-btn{background:#ffdd00!important;color:#111!important;border:1px solid rgba(255,221,0,.28)!important;box-shadow:0 10px 24px rgba(255,221,0,.12)!important}
+.top-button:hover,.btn.primary:hover,.assistant-input-row button:hover,.footer-sync-btn:hover,.project-open-btn:hover,.pd-accent-btn:hover{background:#ffe44d!important;color:#111!important;border-color:rgba(255,221,0,.45)!important}
+.filter,.btn.secondary,.project-delete-btn,.footer-status-btn,.task-glass-btn,.pd-glass-btn,.assistant-suggestions button{background:rgba(255,255,255,.055)!important;color:#fff!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:none!important}
+.filter.active{background:rgba(255,221,0,.14)!important;color:#fff!important;border-color:rgba(255,221,0,.38)!important}
+.project-delete-btn:hover,.filter:hover,.btn.secondary:hover,.task-glass-btn:hover,.pd-glass-btn:hover,.assistant-suggestions button:hover,.footer-status-btn:hover{background:rgba(255,255,255,.10)!important;border-color:rgba(255,255,255,.22)!important;color:#fff!important}
+.progress{background:rgba(255,255,255,.10)!important}
+.progress>span{background:#ffdd00!important}
+.progress-wrap small{color:rgba(255,255,255,.72)!important}
+.status.work,.status.plan,.status.done{background:rgba(255,255,255,.09)!important;border:1px solid rgba(255,255,255,.12)!important;color:#fff!important}
+
+/* pola */
+.deadline-edit input,.field input,.field select,.field textarea,.assistant-input-row textarea,.task-add-form input,.pd-field input,.pd-field select,.pd-field textarea,.pd-task-form input,.pd-task-form select,.pd-comment-form textarea,.pd-member-add select{background:rgba(0,0,0,.22)!important;color:#fff!important;border:1px solid rgba(255,255,255,.14)!important}
+.deadline-edit input::placeholder,.field input::placeholder,.field textarea::placeholder,.assistant-input-row textarea::placeholder,.task-add-form input::placeholder,.pd-comment-form textarea::placeholder{color:rgba(255,255,255,.42)!important}
+.field label,.pd-field>span{color:rgba(255,255,255,.74)!important}
+
+/* białe ikony */
+.avatar{background:rgba(255,255,255,.075)!important;color:#fff!important;border:1px solid rgba(255,255,255,.12)!important}
+.project-topic-icon{background:rgba(255,255,255,.075)!important;color:#fff!important;border:1px solid rgba(255,255,255,.14)!important;box-shadow:none!important}
+.project-topic-icon svg{fill:currentColor!important}
+.task input,.pd-task-check input{accent-color:#ffdd00!important}
+
+/* sidebar */
+.tasks,.deadlines,.team-grid{padding:14px 16px 16px!important}
+.task,.deadline,.person,.task-calendar-item,.task-history-event{border-bottom-color:rgba(255,255,255,.08)!important}
+.dashboard-grid{grid-template-columns:minmax(0,1.52fr) minmax(340px,.78fr)!important;gap:18px!important}
+
+/* assistant / modal / detail */
+.assistant-panel,.modal-card,.pd-card,.project-detail-shell{color:#fff!important}
+.assistant-msg.bot,.assistant-msg.user{background:rgba(255,255,255,.055)!important;border:1px solid rgba(255,255,255,.10)!important;color:#fff!important}
+.assistant-msg strong{color:#fff!important}
+.assistant-note,.assistant-eyebrow{color:rgba(255,255,255,.62)!important}
+
+/* footer */
+.site-footer{margin-top:20px!important}
+.footer-sync-btn,.footer-status-btn{height:42px!important;border-radius:12px!important}
+.footer-status-btn[data-state="ok"]{background:rgba(255,221,0,.14)!important;border-color:rgba(255,221,0,.34)!important;color:#fff!important}
+.footer-status-btn[data-state="saving"]{background:rgba(255,255,255,.08)!important}
+.footer-status-btn[data-state="error"]{background:rgba(255,120,120,.12)!important;border-color:rgba(255,120,120,.30)!important}
+.footer-status-dot{background:#fff!important}
+.footer-status-btn[data-state="ok"] .footer-status-dot{background:#ffdd00!important}
+.footer-status-btn[data-state="error"] .footer-status-dot{background:#ff8b8b!important}
+
+@media(max-width:1100px){.dashboard-grid{grid-template-columns:1fr!important}.intro-row{align-items:flex-start!important}.intro-actions{width:100%!important}.date-box{max-width:none!important;flex:1!important}}
+@media(max-width:760px){.stats-grid{grid-template-columns:1fr 1fr!important}.intro-row{align-items:stretch!important}.intro-actions{flex-direction:column!important;align-items:stretch!important}.date-box{width:100%!important}.intro-add-project{width:100%!important}}
+@media(max-width:620px){.stats-grid{grid-template-columns:1fr!important}.project{grid-template-columns:1fr!important}.date-daynum{width:64px!important;height:64px!important}.date-box{grid-template-columns:64px 1fr!important}}
