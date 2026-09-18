@@ -87,7 +87,26 @@
       "scheduledFor": "2026-09-18",
       "history": [],
       "assignee": "Michał Bukowski"
+    },
+    {
+      "id": "d2cc27ea-f6ec-4757-8d2a-00d6e0c76905",
+      "text": "test taska Wiktorii",
+      "assignee": "Wiktoria Adamczyk",
+      "done": false,
+      "createdAt": "2026-09-18T12:07:00.202Z",
+      "scheduledFor": "2026-09-18",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "c9fbb17d-64a3-488c-ab14-d999a0dd1650",
+          "type": "created",
+          "text": "Utworzono task na 18.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-18T12:07:00.202Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-18T12:06:27.996Z"
+  "updatedAt": "2026-09-18T12:07:00.955Z"
 }
