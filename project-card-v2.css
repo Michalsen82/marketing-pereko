@@ -272,3 +272,56 @@ html body input[type="date"]::-webkit-clear-button{
   .project-deadline-status{grid-template-columns:1fr!important}
   .project-deadline-status .status{justify-self:start!important}
 }
+
+
+/* =========================================================
+   Korekta marginesów projektu + finalny selektor daty
+   ========================================================= */
+
+/* Margines treści zgodny z początkiem tytułu (po ikonie 44px + 13px przerwy) */
+.project .progress-wrap{
+  margin-left:57px!important
+}
+.project-preview{
+  margin-left:57px!important
+}
+.project-card-controls{
+  justify-content:flex-end!important
+}
+
+/* Całkowicie ukryj natywny czarny picker; zostaje tylko biała ikona tła */
+html body input[type="date"]{
+  position:relative!important;
+  -webkit-appearance:none!important;
+  appearance:none!important;
+  color-scheme:dark!important;
+  padding-right:38px!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 12px center!important;
+  background-size:15px 15px!important
+}
+html body input[type="date"]::-webkit-calendar-picker-indicator{
+  display:none!important;
+  opacity:0!important;
+  visibility:hidden!important;
+  width:0!important;
+  height:0!important;
+  margin:0!important;
+  padding:0!important
+}
+
+/* Przycisk otwarcia + podglądu po prawej */
+.project-card-controls{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:8px!important
+}
+
+@media(max-width:640px){
+  .project .progress-wrap,
+  .project-preview{
+    margin-left:0!important
+  }
+}
