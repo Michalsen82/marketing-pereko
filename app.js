@@ -47,7 +47,7 @@ function render(){
   $$('[data-task]').forEach(x=>x.onchange=()=>{tasks[+x.dataset.task].done=x.checked;save();render()});
   $$('[data-deadline]').forEach(x=>x.onchange=()=>{const p=projects.find(y=>y.id===x.dataset.deadline);if(p){p.deadline=x.value;save();render()}})
 }
-$('[data-filter]').forEach(b=>b.onclick=()=>{$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
+$$('[data-filter]').forEach(b=>b.onclick=()=>{$$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
 function applyStatsVisibility(){
   const grid=$('.stats-grid'),btn=$('#toggleStats');if(!grid||!btn)return;
   const hidden=localStorage.getItem('pereko_stats_hidden')==='1';
