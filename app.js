@@ -9,7 +9,44 @@ const saveLocal=()=>{localStorage.setItem('pereko_projects',JSON.stringify(proje
 async function pushRemote(manual=false){if(!cloudSyncEnabled&&!manual)return false;setSyncStatus('syncing','Zapisywanie…','Synchronizacja zmian');try{const r=await fetch('/api/dashboard',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects,tasks})}),p=await r.json().catch(()=>({}));if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);cloudSyncEnabled=true;localStorage.setItem('pereko_cloud_sync','1');setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
 function save(){saveLocal();if(cloudSyncEnabled){clearTimeout(syncTimer);syncTimer=setTimeout(()=>pushRemote(),600)}}
 async function loadRemote(){if(!cloudSyncEnabled){setSyncStatus('local','Dane lokalne','Kliknij „Synchronizuj dane”');return false}try{const r=await fetch('/api/dashboard',{cache:'no-store'}),p=await r.json();if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);if(Array.isArray(p.projects))projects=p.projects;if(Array.isArray(p.tasks))tasks=p.tasks;saveLocal();render();setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
-function render(){const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);$('#projectList').innerHTML=visible.length?visible.map(p=>`<article class="project"><div><h4>${esc(p.name)}</h4><p>${esc(p.owner)}<br>${esc(p.desc)}</p><div class="project-meta"><span class="status ${p.status}">${statusText[p.status]}</span></div></div><div class="deadline-edit"><label>Termin</label><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}"></div><div class="progress-wrap"><div class="progress"><span style="width:${p.progress||0}%"></span></div><small>${p.progress||0}%</small></div></article>`).join(''):'<div class="empty">Brak projektów.</div>';$('#kpiProjects').textContent=projects.length;$('#kpiActive').textContent=projects.filter(p=>p.status==='work').length;$('#kpiPlan').textContent=projects.filter(p=>p.status==='plan').length;$('#kpiProgress').textContent=Math.round(projects.reduce((a,p)=>a+(+p.progress||0),0)/(projects.length||1))+'%';const sorted=[...projects].filter(p=>p.status!=='done'&&p.deadline).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,5);$('#deadlineList').innerHTML=sorted.map(p=>{const d=new Date(p.deadline+'T12:00:00');return `<div class="deadline"><div class="datebox"><b>${String(d.getDate()).padStart(2,'0')}</b><span>${d.toLocaleString('pl-PL',{month:'short'}).replace('.','')}</span></div><div><h5>${esc(p.name)}</h5><p>${esc(p.owner)} · ${statusText[p.status]}</p></div></div>`}).join('')||'<div class="empty">Brak terminów.</div>';$('#taskList').innerHTML=tasks.map((t,i)=>`<label class="task ${t.done?'done':''}"><input type="checkbox" data-task="${i}" ${t.done?'checked':''}><span>${esc(t.text)}</span></label>`).join('');$$('[data-task]').forEach(x=>x.onchange=()=>{tasks[+x.dataset.task].done=x.checked;save();render()});$$('[data-deadline]').forEach(x=>x.onchange=()=>{const p=projects.find(y=>y.id===x.dataset.deadline);if(p){p.deadline=x.value;save();render()}})}
+const projectProgressInfo=p=>{
+  const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
+  if(!list.length)return {progress:0,done:0,total:0,hasTasks:false};
+  const done=list.filter(t=>t.done).length;
+  return {progress:Math.round(done/list.length*100),done,total:list.length,hasTasks:true};
+};
+function render(){
+  const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
+  $('#projectList').innerHTML=visible.length?visible.map(p=>{
+    const pi=projectProgressInfo(p);
+    p.progress=pi.progress;
+    return `<article class="project" data-project-id="${p.id}">
+      <div class="project-main">
+        <h4>${esc(p.name)}</h4>
+        <p class="project-desc">${esc(p.desc||'')}</p>
+        <div class="project-owner">${esc(p.owner||'')}</div>
+      </div>
+      <div class="project-deadline-status">
+        <div class="deadline-edit"><label>Termin</label><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}"></div>
+        <span class="status ${p.status}">${statusText[p.status]}</span>
+      </div>
+      <div class="progress-wrap ${pi.hasTasks?'':'no-tasks'}">
+        <div class="progress"><span style="width:${pi.progress}%"></span></div>
+        <div class="project-progress-caption">${pi.hasTasks?`<strong>${pi.progress}%</strong><span>${pi.done}/${pi.total} zadań zakończonych</span>`:'<strong>—</strong><span>Podłącz zadania, aby liczyć postęp</span>'}</div>
+      </div>
+    </article>`;
+  }).join(''):'<div class="empty">Brak projektów.</div>';
+  $('#kpiProjects').textContent=projects.length;
+  $('#kpiActive').textContent=projects.filter(p=>p.status==='work').length;
+  $('#kpiPlan').textContent=projects.filter(p=>p.status==='plan').length;
+  const progressValues=projects.map(p=>projectProgressInfo(p)).filter(x=>x.hasTasks).map(x=>x.progress);
+  $('#kpiProgress').textContent=progressValues.length?Math.round(progressValues.reduce((a,b)=>a+b,0)/progressValues.length)+'%':'—';
+  const sorted=[...projects].filter(p=>p.status!=='done'&&p.deadline).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,5);
+  $('#deadlineList').innerHTML=sorted.map(p=>{const d=new Date(p.deadline+'T12:00:00');return `<div class="deadline"><div class="datebox"><b>${String(d.getDate()).padStart(2,'0')}</b><span>${d.toLocaleString('pl-PL',{month:'short'}).replace('.','')}</span></div><div><h5>${esc(p.name)}</h5><p>${esc(p.owner)} · ${statusText[p.status]}</p></div></div>`}).join('')||'<div class="empty">Brak terminów.</div>';
+  $('#taskList').innerHTML=tasks.map((t,i)=>`<label class="task ${t.done?'done':''}"><input type="checkbox" data-task="${i}" ${t.done?'checked':''}><span>${esc(t.text)}</span></label>`).join('');
+  $$('[data-task]').forEach(x=>x.onchange=()=>{tasks[+x.dataset.task].done=x.checked;save();render()});
+  $$('[data-deadline]').forEach(x=>x.onchange=()=>{const p=projects.find(y=>y.id===x.dataset.deadline);if(p){p.deadline=x.value;save();render()}})
+}
 $$('[data-filter]').forEach(b=>b.onclick=()=>{$$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
 $('#addProject').onclick=()=>$('#modal').classList.add('open');$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#resetDemo').onclick=()=>{if(confirm('Przywrócić projekty startowe?')){projects=structuredClone(defaultProjects);tasks=structuredClone(defaultTasks);save();render()}};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
 const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
