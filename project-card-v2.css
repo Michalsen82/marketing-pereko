@@ -901,3 +901,58 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     white-space:normal!important;
   }
 }
+
+
+/* Przełącznik widoku projektów: wszystkie / z moimi zadaniami */
+.project-head-controls{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  gap:9px!important;
+}
+.project-view-switch{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  padding:4px!important;
+  border-radius:11px!important;
+  background:rgba(255,255,255,.045)!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+}
+.project-view-btn{
+  min-height:30px!important;
+  padding:0 11px!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  color:rgba(255,255,255,.60)!important;
+  font:700 9px/1 'Montserrat',sans-serif!important;
+  cursor:pointer!important;
+  white-space:nowrap!important;
+  transition:.16s ease!important;
+}
+.project-view-btn:hover{
+  color:#fff!important;
+  background:rgba(255,255,255,.07)!important;
+}
+.project-view-btn.active{
+  background:#fff!important;
+  color:#1f2325!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.18)!important;
+}
+.project-view-btn[data-project-scope="mine"].active{
+  background:#ffdd00!important;
+  color:#17191a!important;
+}
+@media(max-width:760px){
+  .project-head-controls{
+    width:100%!important;
+    align-items:flex-start!important;
+  }
+  .project-view-switch{
+    width:100%!important;
+  }
+  .project-view-btn{
+    flex:1!important;
+  }
+}
