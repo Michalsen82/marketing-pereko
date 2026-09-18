@@ -44,14 +44,32 @@
 
   const previewHtml=p=>{
     const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
+    const comments=Array.isArray(p.comments)?p.comments:[];
     const tasks=list.slice(0,5).map(t=>{const due=closeInfo(t.deadline);return `<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div class="project-preview-task-copy"><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small>${t.done?'':`<em>${t.deadline?due.text:'Brak terminu zadania'}</em>`}</div>${t.done?'':`<span class="project-preview-days ${due.state}"><strong>${due.days}</strong><small>${due.label}</small></span>`}</div>`}).join('');
     const remaining=Math.max(0,list.length-5);
+    const commentRows=comments.map(c=>{
+      const author=c.author||'Użytkownik';
+      const initials=author.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
+      let when='';
+      try{when=new Date(c.createdAt).toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch{}
+      return `<div class="project-preview-comment">
+        <span class="project-preview-comment-avatar">${esc(initials)}</span>
+        <div class="project-preview-comment-copy">
+          <strong>${esc(c.text)}</strong>
+          <small>${esc(author)}${when?' · '+esc(when):''}</small>
+        </div>
+      </div>`;
+    }).join('');
     const projectDue=closeInfo(p.deadline);
     return `<div class="project-preview">
       <div class="project-preview-grid">
-        <div class="project-preview-block">
+        <div class="project-preview-block project-preview-left">
           <span class="project-preview-label">ZADANIA</span>
           ${list.length?tasks+' '+(remaining?`<div class="project-preview-more">+${remaining} kolejnych zadań</div>`:''):'<div class="project-preview-empty">Brak zadań. Dodaj je wewnątrz projektu.</div>'}
+          <div class="project-preview-comments">
+            <span class="project-preview-label">KOMENTARZE</span>
+            ${comments.length?commentRows:'<div class="project-preview-empty">Brak komentarzy w tym projekcie.</div>'}
+          </div>
         </div>
         <div class="project-preview-block">
           <span class="project-preview-label">PODSUMOWANIE</span>
@@ -59,7 +77,8 @@
           <div class="project-preview-fact"><span>Odpowiedzialny</span><strong>${esc(p.owner||'—')}</strong></div>
           <div class="project-preview-fact"><span>Status</span><strong>${esc(statusText[p.status]||'—')}</strong></div>
           <div class="project-preview-fact"><span>Koniec projektu</span><strong>${projectDue.state==='none'?'Brak terminu':projectDue.days+' '+(projectDue.days==='1'?'dzień':'dni')}</strong></div>
-          <div class="project-preview-fact"><span>Taski</span><strong>${list.filter(t=>t.done).length}/${list.length}</strong></div>
+          <div class="project-preview-fact"><span>Zadania</span><strong>${list.filter(t=>t.done).length}/${list.length}</strong></div>
+          <div class="project-preview-fact"><span>Komentarze</span><strong>${comments.length}</strong></div>
         </div>
       </div>
     </div>`;
