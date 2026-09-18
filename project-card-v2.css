@@ -97,22 +97,6 @@
 }
 
 
-/* Globalny biały selektor daty — niezależny od natywnego koloru przeglądarki */
-html body input[type="date"]{
-  color-scheme:dark!important;
-  padding-right:38px!important;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z'/%3E%3C/svg%3E")!important;
-  background-repeat:no-repeat!important;
-  background-position:right 12px center!important;
-  background-size:15px 15px!important
-}
-html body input[type="date"]::-webkit-calendar-picker-indicator{
-  opacity:0!important;
-  width:20px!important;
-  height:20px!important;
-  cursor:pointer!important
-}
-
 /* Mniejszy przycisk rozwijania, stylistycznie jak ikona projektu */
 .project-expand-btn{
   width:34px!important;
@@ -183,32 +167,6 @@ html body input[type="date"]::-webkit-calendar-picker-indicator{
 }
 .project-owner{
   margin-top:7px!important
-}
-
-/* Tylko biały selektor daty — usunięcie natywnej czarnej ikonki */
-html body input[type="date"]{
-  -webkit-appearance:none!important;
-  appearance:none!important;
-  color-scheme:dark!important;
-  padding-right:38px!important;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z'/%3E%3C/svg%3E")!important;
-  background-repeat:no-repeat!important;
-  background-position:right 12px center!important;
-  background-size:15px 15px!important
-}
-html body input[type="date"]::-webkit-calendar-picker-indicator{
-  opacity:0!important;
-  display:block!important;
-  position:absolute!important;
-  right:8px!important;
-  width:24px!important;
-  height:24px!important;
-  cursor:pointer!important
-}
-html body input[type="date"]::-webkit-inner-spin-button,
-html body input[type="date"]::-webkit-clear-button{
-  display:none!important;
-  -webkit-appearance:none!important
 }
 
 /* Dyskretny przycisk rozwijania — jak mała ikonka projektu */
@@ -289,28 +247,6 @@ html body input[type="date"]::-webkit-clear-button{
   justify-content:flex-end!important
 }
 
-/* Całkowicie ukryj natywny czarny picker; zostaje tylko biała ikona tła */
-html body input[type="date"]{
-  position:relative!important;
-  -webkit-appearance:none!important;
-  appearance:none!important;
-  color-scheme:dark!important;
-  padding-right:38px!important;
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z'/%3E%3C/svg%3E")!important;
-  background-repeat:no-repeat!important;
-  background-position:right 12px center!important;
-  background-size:15px 15px!important
-}
-html body input[type="date"]::-webkit-calendar-picker-indicator{
-  display:none!important;
-  opacity:0!important;
-  visibility:hidden!important;
-  width:0!important;
-  height:0!important;
-  margin:0!important;
-  padding:0!important
-}
-
 /* Przycisk otwarcia + podglądu po prawej */
 .project-card-controls{
   display:flex!important;
@@ -324,4 +260,20 @@ html body input[type="date"]::-webkit-calendar-picker-indicator{
   .project-preview{
     margin-left:0!important
   }
+}
+
+
+/* FINAL: tylko biała ikonka kalendarza, bez natywnej czarnej ikonki */
+html body input[type="date"]{
+  color-scheme:dark!important;
+  padding-right:38px!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 12px center!important;
+  background-size:15px 15px!important;
+}
+html body input[type="date"]::-webkit-calendar-picker-indicator{
+  opacity:0!important;
+  filter:none!important;
+  cursor:pointer!important;
 }
