@@ -283,7 +283,7 @@
     list.innerHTML=p.projectTasks.length?p.projectTasks.map((t,i)=>{
       const canClose=isLoggedAssignee(t.assignee);
       const lockText=!t.assignee?'Najpierw przypisz zadanie do osoby':`Tylko ${esc(t.assignee)} może zmienić status tego zadania`;
-      return `<div class="pd-task ${t.done?'done':''} ${canClose?'':'locked'}">
+      return `<div class="pd-task ${t.done?'done':''} ${canClose?'':'locked'}" data-pd-task-id="${esc(t.id||'')}">
         <label title="${canClose?'':lockText}">
           <input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''} ${canClose?'':'disabled'}>
           <span>
@@ -484,6 +484,24 @@
     });
   };
 
+  function openDeepLink({projectId,taskId}={}){
+    if(!projectId)return false;
+    const exists=projects.some(p=>p.id===projectId);
+    if(!exists)return false;
+    openProjectDetail(projectId);
+    if(taskId){
+      setTimeout(()=>{
+        const target=[...document.querySelectorAll('[data-pd-task-id]')].find(el=>String(el.dataset.pdTaskId)===String(taskId));
+        if(!target)return;
+        target.classList.add('pwa-deep-link-target');
+        target.scrollIntoView({behavior:'smooth',block:'center'});
+        setTimeout(()=>target.classList.remove('pwa-deep-link-target'),3200);
+      },220);
+    }
+    return true;
+  }
+
   window.openProjectDetail=openProjectDetail;
+  window.perekoOpenDeepLink=openDeepLink;
   render();
 })();
