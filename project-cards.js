@@ -32,9 +32,11 @@
 
   const previewHtml=p=>{
     const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
-    const tasks=list.slice(0,5).map(t=>`<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></div></div>`).join('');
+    const tasks=list.slice(0,5).map(t=>{const due=closeInfo(t.deadline);return `<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><span class="project-preview-days ${due.state}"><strong>${due.days}</strong><small>${due.label}</small></span><div><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small><em>${t.deadline?due.text:'Brak terminu zadania'}</em></div></div>`}).join('');
     const remaining=Math.max(0,list.length-5);
+    const projectDue=closeInfo(p.deadline);
     return `<div class="project-preview">
+      <div class="project-preview-summary ${projectDue.state}"><span class="project-preview-summary-badge"><strong>${projectDue.days}</strong><small>${projectDue.label}</small></span><span>${projectDue.text}</span></div>
       <div class="project-preview-grid">
         <div class="project-preview-block">
           <span class="project-preview-label">ZADANIA</span>
