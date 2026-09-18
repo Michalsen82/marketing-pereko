@@ -36,7 +36,14 @@
           "done": false
         }
       ],
-      "comments": []
+      "comments": [
+        {
+          "id": "3bdf193b-6b11-4922-aec1-fef9cd736f39",
+          "text": "ok -notatka",
+          "author": "Michał",
+          "createdAt": "2026-09-18T07:58:15.560Z"
+        }
+      ]
     },
     {
       "id": "p2",
@@ -249,5 +256,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T07:55:35.046Z"
+  "updatedAt": "2026-09-18T07:58:16.476Z"
 }
