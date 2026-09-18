@@ -5,13 +5,20 @@
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
       "status": "work",
-      "progress": 33,
+      "progress": 25,
       "deadline": "2026-10-15",
       "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
       "members": [
         "Michał"
       ],
       "projectTasks": [
+        {
+          "id": "1fd5c19a-6fe0-4b82-bd4b-b63b142fa8eb",
+          "text": "3241235ger retwert34523",
+          "assignee": "Łukasz Drozdowski",
+          "deadline": "2026-10-02",
+          "done": false
+        },
         {
           "id": "cbb8c902-658a-41e3-9b9d-0a58a093a2a1",
           "text": "Centrum Partnera PEREKO | Centrum Partnera PEREKO",
@@ -154,5 +161,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T12:44:36.034Z"
+  "updatedAt": "2026-09-18T12:45:16.626Z"
 }
