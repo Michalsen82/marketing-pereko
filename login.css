@@ -1,0 +1,164 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Source+Sans+3:wght@400;500;600;700&display=swap');
+
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;background:#050505;color:#fff}
+body{font-family:'Source Sans 3','Segoe UI',Arial,sans-serif;-webkit-font-smoothing:antialiased}
+button,input{font:inherit}
+button{cursor:pointer}
+
+.login-shell{
+  min-height:100vh;
+  display:grid;
+  grid-template-columns:minmax(0,1.25fr) minmax(420px,.75fr);
+  background:
+    radial-gradient(circle at 16% 18%,rgba(255,221,0,.08),transparent 29%),
+    linear-gradient(135deg,#050505 0%,#0a0b0c 55%,#111416 100%);
+}
+.login-visual{
+  position:relative;
+  min-height:100vh;
+  padding:52px 64px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  overflow:hidden;
+  border-right:1px solid rgba(255,255,255,.08);
+}
+.login-visual::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    linear-gradient(125deg,rgba(255,255,255,.035),transparent 42%),
+    repeating-linear-gradient(90deg,transparent 0 89px,rgba(255,255,255,.018) 90px),
+    repeating-linear-gradient(0deg,transparent 0 89px,rgba(255,255,255,.018) 90px);
+  pointer-events:none;
+}
+.login-brand,.login-visual-bottom{position:relative;z-index:1}
+.login-brand{max-width:720px}
+.login-logo{
+  width:174px;height:46px;
+  background:url('https://cp-b2b.pages.dev/assets/logo-pereko.png') left center/164px auto no-repeat;
+  margin-bottom:66px;
+}
+.login-brand-copy>span{
+  display:block;
+  color:rgba(255,255,255,.46);
+  font:800 10px/1 'Montserrat',sans-serif;
+  letter-spacing:.17em;
+}
+.login-brand-copy h1{
+  margin:14px 0 12px;
+  font:800 clamp(38px,5vw,72px)/.98 'Montserrat',sans-serif;
+  letter-spacing:-.055em;
+}
+.login-brand-copy p{
+  margin:0;
+  max-width:560px;
+  color:rgba(255,255,255,.62);
+  font-size:16px;
+  line-height:1.55;
+}
+.login-visual-bottom{display:flex;flex-direction:column;gap:8px}
+.login-visual-bottom span{
+  color:rgba(255,255,255,.44);
+  font:700 9px/1 'Montserrat',sans-serif;
+  letter-spacing:.12em;
+}
+.login-visual-bottom small{color:rgba(255,255,255,.28);font-size:10px}
+
+.login-panel{
+  min-height:100vh;
+  display:grid;
+  place-items:center;
+  padding:42px;
+  background:rgba(0,0,0,.22);
+}
+.login-card{
+  width:min(430px,100%);
+  padding:34px;
+  border-radius:20px;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035));
+  border:1px solid rgba(255,255,255,.11);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 32px 90px rgba(0,0,0,.36);
+  backdrop-filter:blur(22px);
+}
+.login-card-head>span{
+  color:rgba(255,255,255,.46);
+  font:800 9px/1 'Montserrat',sans-serif;
+  letter-spacing:.15em;
+}
+.login-card-head h2{
+  margin:9px 0 8px;
+  font:800 28px/1.05 'Montserrat',sans-serif;
+  letter-spacing:-.035em;
+}
+.login-card-head p{margin:0;color:rgba(255,255,255,.55);font-size:13px}
+
+#loginForm{display:grid;gap:15px;margin-top:28px}
+#loginForm label{display:grid;gap:7px}
+#loginForm label>span{
+  color:rgba(255,255,255,.66);
+  font:700 10px/1 'Montserrat',sans-serif;
+}
+#loginForm input{
+  width:100%;
+  height:46px;
+  padding:0 13px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.13);
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  outline:none;
+}
+#loginForm input::placeholder{color:rgba(255,255,255,.28)}
+#loginForm input:focus{border-color:rgba(255,255,255,.28);box-shadow:0 0 0 3px rgba(255,255,255,.035)}
+.password-field{position:relative}
+.password-field input{padding-right:48px!important}
+.password-field button{
+  position:absolute;right:6px;top:50%;transform:translateY(-50%);
+  width:36px;height:34px;border:0;border-radius:9px;
+  background:transparent;color:rgba(255,255,255,.58);
+  display:grid;place-items:center;
+}
+.password-field button:hover{background:rgba(255,255,255,.07);color:#fff}
+.password-field svg{width:18px;height:18px;fill:currentColor}
+
+.login-submit{
+  height:46px;
+  margin-top:4px;
+  border-radius:11px;
+  border:1px solid rgba(255,255,255,.18);
+  background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.075));
+  color:#fff;
+  font:700 11px/1 'Montserrat',sans-serif;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 10px 24px rgba(0,0,0,.18);
+}
+.login-submit:hover{background:linear-gradient(145deg,rgba(255,255,255,.23),rgba(255,255,255,.11));border-color:rgba(255,255,255,.27)}
+.login-forgot{
+  justify-self:center;
+  border:0;background:transparent;color:rgba(255,255,255,.48);
+  font:600 9.5px/1 'Montserrat',sans-serif;
+}
+.login-forgot:hover{color:#fff}
+.login-message{min-height:18px;text-align:center;color:rgba(255,255,255,.55);font-size:10px;line-height:1.35}
+.login-security{
+  margin-top:23px;padding-top:18px;border-top:1px solid rgba(255,255,255,.07);
+  display:grid;grid-template-columns:20px 1fr;gap:9px;align-items:start;
+  color:rgba(255,255,255,.38);font-size:9.5px;line-height:1.4;
+}
+.login-security svg{width:18px;height:18px;fill:rgba(255,255,255,.42)}
+
+@media(max-width:900px){
+  .login-shell{grid-template-columns:1fr}
+  .login-visual{min-height:36vh;padding:34px 28px;border-right:0;border-bottom:1px solid rgba(255,255,255,.08)}
+  .login-logo{margin-bottom:34px}
+  .login-brand-copy h1{font-size:40px}
+  .login-panel{min-height:64vh;padding:28px}
+}
+@media(max-width:520px){
+  .login-visual{padding:28px 20px}
+  .login-panel{padding:20px}
+  .login-card{padding:25px 20px}
+  .login-brand-copy h1{font-size:34px}
+}
