@@ -545,3 +545,50 @@
     width:36px!important;height:36px!important;min-width:36px!important;
   }
 }
+
+
+/* Mobile: ustawienie użytkownika względem bloku „Centrum Projektów Marketingowych” */
+@media(max-width:760px){
+  .topbar-actions{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-columns:128px minmax(0,1fr)!important;
+    column-gap:12px!important;
+    align-items:center!important;
+    justify-self:stretch!important;
+  }
+  .topbar-actions .user-zone{
+    grid-column:2!important;
+    grid-row:1!important;
+    justify-self:end!important;
+    margin-left:auto!important;
+    order:initial!important;
+  }
+  .topbar-actions .password-change-btn{
+    grid-column:2!important;
+    grid-row:1!important;
+    justify-self:end!important;
+    margin-right:46px!important;
+    order:initial!important;
+  }
+  .topbar-actions .logout-btn{
+    grid-column:2!important;
+    grid-row:1!important;
+    justify-self:end!important;
+    order:initial!important;
+  }
+  .user-zone-copy{
+    margin-right:92px!important;
+    align-items:flex-start!important;
+  }
+}
+@media(max-width:420px){
+  .topbar-actions{
+    grid-template-columns:112px minmax(0,1fr)!important;
+    column-gap:9px!important;
+  }
+  .topbar-actions .password-change-btn{margin-right:43px!important}
+  .user-zone-copy{margin-right:86px!important}
+}
