@@ -68,7 +68,7 @@
       if(!controls){
         controls=document.createElement('div');
         controls.className='project-card-controls';
-        controls.innerHTML='<button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button><button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button>';
+        controls.innerHTML='<button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button>';
         card.appendChild(controls);
       }
 
