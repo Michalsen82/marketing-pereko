@@ -1,20 +1,29 @@
 (()=>{
   const defaults=[
-    {name:'Michał Bukowski',role:'Marketing Manager',email:''},
-    {name:'Wiktoria Adamczyk',role:'Marketing Specialist',email:''},
-    {name:'Łukasz Drozdowski',role:'Creative Content & Design Specialist',email:''},
+    {name:'Michał Bukowski',role:'Marketing Manager',email:'michal.bukowski@pereko.pl'},
+    {name:'Wiktoria Adamczyk',role:'Marketing Specialist',email:'wiktoria.adamczyk@pereko.pl'},
+    {name:'Łukasz Drozdowski',role:'Creative Content & Design Specialist',email:'lukasz.drozdowski@pereko.pl'},
     {name:'Paweł Chaja',role:'AI Implementation Specialist',email:''},
-    {name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:''}
+    {name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.haja@pereko.pl'}
   ];
   let team=JSON.parse(localStorage.getItem('pereko_team')||'null')||defaults;
   // Migracja wcześniejszych zapisów lokalnych po korekcie nazwisk i przywróceniu Piotra Haja.
-  team=team.map(p=>({
-    ...p,
-    name:p.name==='Łukasz Drzodowski'?'Łukasz Drozdowski':p.name==='Paweł Haja'?'Paweł Chaja':p.name==='Piotr Haja'?'Piotr Chaja':p.name,
-    role:(p.name==='Piotr Haja'||p.name==='Piotr Chaja')?'AI Transformation & Implementation Specialist':p.role,
-    email:typeof p.email==='string'?p.email:''
-  }));
-  if(!team.some(p=>p.name==='Piotr Chaja')) team.push({name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:''});
+  team=team.map(p=>{
+    const name=p.name==='Łukasz Drzodowski'?'Łukasz Drozdowski':p.name==='Paweł Haja'?'Paweł Chaja':p.name==='Piotr Haja'?'Piotr Chaja':p.name;
+    const knownEmails={
+      'Michał Bukowski':'michal.bukowski@pereko.pl',
+      'Wiktoria Adamczyk':'wiktoria.adamczyk@pereko.pl',
+      'Łukasz Drozdowski':'lukasz.drozdowski@pereko.pl',
+      'Piotr Chaja':'piotr.haja@pereko.pl'
+    };
+    return {
+      ...p,
+      name,
+      role:(p.name==='Piotr Haja'||p.name==='Piotr Chaja')?'AI Transformation & Implementation Specialist':p.role,
+      email:(typeof p.email==='string'&&p.email.trim())?p.email.trim():(knownEmails[name]||'')
+    };
+  });
+  if(!team.some(p=>p.name==='Piotr Chaja')) team.push({name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.haja@pereko.pl'});
   localStorage.setItem('pereko_team',JSON.stringify(team));
   const initials=name=>name.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
   const escHtml=v=>String(v||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
