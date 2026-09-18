@@ -1,10 +1,8 @@
 (()=>{
   const expanded=new Set();
   const searchNorm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
-  const projectNumberLabel=p=>{
-    const n=Number(p?.projectNumber);
-    return Number.isInteger(n)&&n>0?'P-'+String(n).padStart(3,'0'):'P-—';
-  };
+  const projectNumberLabel=p=>window.perekoProjectNumberLabel?.(p)||'P-—';
+  const taskNumberLabel=t=>window.perekoTaskNumberLabel?.(t)||'Z-—';
   const matchesProjectSearch=(p,raw)=>{
     const q=searchNorm(raw);
     if(!q)return true;
@@ -68,7 +66,7 @@
   const previewHtml=p=>{
     const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
     const comments=Array.isArray(p.comments)?p.comments:[];
-    const tasks=list.slice(0,5).map(t=>{const due=closeInfo(t.deadline);return `<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div class="project-preview-task-copy"><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small>${t.done?'':`<em>${t.deadline?due.text:'Brak terminu zadania'}</em>`}</div>${t.done?`<span class="project-preview-days completed" title="Zadanie wykonane" aria-label="Zadanie wykonane"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"/></svg></span>`:`<span class="project-preview-days ${due.state}"><strong>${due.days}</strong><small>${due.label}</small></span>`}</div>`}).join('');
+    const tasks=list.slice(0,5).map(t=>{const due=closeInfo(t.deadline);return `<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div class="project-preview-task-copy"><span class="project-preview-task-number">${esc(taskNumberLabel(t))}</span><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small>${t.done?'':`<em>${t.deadline?due.text:'Brak terminu zadania'}</em>`}</div>${t.done?`<span class="project-preview-days completed" title="Zadanie wykonane" aria-label="Zadanie wykonane"><svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path fill="currentColor" d="M9 16.2 4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2Z"/></svg></span>`:`<span class="project-preview-days ${due.state}"><strong>${due.days}</strong><small>${due.label}</small></span>`}</div>`}).join('');
     const remaining=Math.max(0,list.length-5);
     const commentRows=comments.map(c=>{
       const author=c.author||'Użytkownik';
