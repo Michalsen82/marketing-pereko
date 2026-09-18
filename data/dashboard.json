@@ -15,20 +15,6 @@
       "comments": []
     },
     {
-      "id": "p4",
-      "name": "Świat Kominków — Targi 2027",
-      "owner": "Michał",
-      "status": "plan",
-      "progress": 0,
-      "deadline": "2027-02-15",
-      "desc": "Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji.",
-      "members": [
-        "Michał"
-      ],
-      "projectTasks": [],
-      "comments": []
-    },
-    {
       "id": "p5",
       "name": "Świat Kominków — materiały do gazety",
       "owner": "Michał",
@@ -77,5 +63,5 @@
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T11:56:22.567Z"
+  "updatedAt": "2026-09-18T11:56:35.256Z"
 }
