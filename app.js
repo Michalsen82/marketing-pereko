@@ -27,7 +27,7 @@ function render(){
         <div class="project-owner">${esc(p.owner||'')}</div>
       </div>
       <div class="project-deadline-status">
-        <div class="deadline-edit"><label>Termin</label><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}"></div>
+        <div class="deadline-edit"><label>Termin</label><div class="deadline-date-shell"><span class="deadline-date-value">${p.deadline?new Date(p.deadline+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'Brak daty'}</span><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}"></div></div>
         <span class="status ${p.status}">${statusText[p.status]}</span>
       </div>
       <div class="progress-wrap ${pi.hasTasks?'':'no-tasks'}">
