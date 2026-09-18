@@ -1,5 +1,17 @@
 (()=>{
   const expanded=new Set();
+  const normPerson=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+  const taskForLoggedUser=t=>{
+    const person=window.perekoLoggedPerson;
+    if(!person||!t||t.done)return false;
+    const assignee=normPerson(t.assignee);
+    if(!assignee)return false;
+    const full=normPerson(person.name);
+    const email=normPerson(person.email);
+    const first=full.split(' ')[0];
+    return assignee===full||assignee===email||(first&&assignee===first);
+  };
+  const myOpenTasks=p=>(Array.isArray(p.projectTasks)?p.projectTasks:[]).filter(taskForLoggedUser);
 
   const formatToday=()=>{
     const box=document.querySelector('#todayBox');
@@ -58,6 +70,8 @@
     document.querySelectorAll('.project').forEach((card,i)=>{
       const p=visible[i]; if(!p)return;
       card.dataset.projectId=p.id;
+      const myTasks=myOpenTasks(p);
+      card.classList.toggle('has-my-tasks',myTasks.length>0);
 
       const main=card.querySelector('.project-main')||card.firstElementChild;
       const h4=main?.querySelector('h4');
@@ -75,6 +89,18 @@
         copy.appendChild(h4);
         const desc=main.querySelector('.project-desc');
         if(desc)copy.appendChild(desc);
+      }
+      const titleCopy=main?.querySelector('.project-title-copy');
+      let mine=titleCopy?.querySelector('.project-my-task-badge');
+      if(myTasks.length){
+        if(!mine){
+          mine=document.createElement('div');
+          mine.className='project-my-task-badge';
+          titleCopy?.appendChild(mine);
+        }
+        mine.textContent=myTasks.length===1?'1 zadanie przypisane do Ciebie':myTasks.length+' zadania przypisane do Ciebie';
+      }else if(mine){
+        mine.remove();
       }
 
       let controls=card.querySelector('.project-card-controls');
@@ -120,6 +146,7 @@
     formatToday();
   };
 
+  document.addEventListener('pereko:user-ready',()=>decorate());
   formatToday();
   decorate();
 })();
