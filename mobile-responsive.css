@@ -457,3 +457,91 @@
   .stats-toggle-btn{width:max-content!important;min-width:0!important}
   .project-top-meta{grid-template-columns:1fr 1fr!important}
 }
+
+/* Mobile fine-tuning 18.09 — akcje użytkownika po prawej + widoczny postęp */
+@media(max-width:760px){
+  /* Akcje konta: grupa przy imieniu, po prawej stronie */
+  .topbar-actions{
+    width:max-content!important;
+    max-width:100%!important;
+    margin-left:auto!important;
+    justify-self:end!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,auto) 38px 38px!important;
+    gap:8px!important;
+    align-items:center!important;
+  }
+  .topbar-actions .user-zone{
+    order:1!important;
+    width:auto!important;
+    min-width:0!important;
+    justify-content:flex-end!important;
+    padding:0 4px 0 0!important;
+  }
+  .topbar-actions .password-change-btn{order:2!important}
+  .topbar-actions .logout-btn{order:3!important}
+  .user-zone-copy{
+    max-width:180px!important;
+  }
+  .user-zone-copy strong{
+    font-size:12.5px!important;
+  }
+
+  /* Pasek postępu projektu — pełna szerokość i osobna linia */
+  .project .progress-wrap{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+  }
+  .project .progress{
+    display:block!important;
+    width:100%!important;
+    min-width:100%!important;
+    height:10px!important;
+    flex:none!important;
+    border-radius:999px!important;
+    background:rgba(255,255,255,.12)!important;
+    overflow:hidden!important;
+  }
+  .project .progress>span{
+    display:block!important;
+    height:100%!important;
+    min-width:0!important;
+    background:#ffdd00!important;
+    border-radius:999px!important;
+  }
+  .project-progress-caption{
+    width:100%!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:12px!important;
+    margin:0!important;
+  }
+  .project-progress-caption strong{
+    flex:0 0 auto!important;
+    font-size:11.5px!important;
+  }
+  .project-progress-caption span{
+    max-width:72%!important;
+    text-align:right!important;
+  }
+  .progress-wrap.no-tasks .progress{
+    opacity:.72!important;
+  }
+}
+
+@media(max-width:420px){
+  .topbar-actions{
+    grid-template-columns:minmax(0,auto) 36px 36px!important;
+    gap:7px!important;
+  }
+  .user-zone-copy{max-width:155px!important}
+  .user-zone-copy strong{font-size:11.5px!important}
+  .password-change-btn,.logout-btn{
+    width:36px!important;height:36px!important;min-width:36px!important;
+  }
+}
