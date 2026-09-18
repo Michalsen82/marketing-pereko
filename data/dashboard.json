@@ -11,7 +11,15 @@
       "members": [
         "Michał"
       ],
-      "projectTasks": [],
+      "projectTasks": [
+        {
+          "id": "e978f0f0-f299-4b7a-9d9c-40e4888aa916",
+          "text": "wqeerqwer",
+          "assignee": "Wiktoria Adamczyk",
+          "deadline": "2026-09-25",
+          "done": false
+        }
+      ],
       "comments": []
     },
     {
@@ -105,5 +113,5 @@
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T11:57:43.246Z"
+  "updatedAt": "2026-09-18T12:01:09.940Z"
 }
