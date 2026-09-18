@@ -58,7 +58,8 @@
       "id": "481b1465-ed29-48e8-8e9d-cf48e11f1019",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
-      "history": []
+      "history": [],
+      "assignee": "Michał Bukowski"
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
@@ -66,7 +67,8 @@
       "id": "611b9a4b-593e-4740-940b-fdd59316e60b",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
-      "history": []
+      "history": [],
+      "assignee": "Michał Bukowski"
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
@@ -74,7 +76,8 @@
       "id": "f9b21f06-9c74-418c-b6f5-2c4d52506009",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
-      "history": []
+      "history": [],
+      "assignee": "Michał Bukowski"
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
@@ -82,8 +85,9 @@
       "id": "de10a715-5f38-4a07-858d-d4e2f1b622ff",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
-      "history": []
+      "history": [],
+      "assignee": "Michał Bukowski"
     }
   ],
-  "updatedAt": "2026-09-18T12:03:52.050Z"
+  "updatedAt": "2026-09-18T12:06:27.996Z"
 }
