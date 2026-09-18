@@ -162,3 +162,92 @@ button{cursor:pointer}
   .login-card{padding:25px 20px}
   .login-brand-copy h1{font-size:34px}
 }
+
+/* Belka i marginesy identyczne jak na stronie głównej */
+.topbar-shell{
+  position:sticky;top:0;z-index:1000;
+  width:100%;height:84px;
+  background:
+    radial-gradient(circle at 82% 12%,rgba(255,221,0,.105) 0,transparent 31%),
+    linear-gradient(135deg,#101618 0%,#1c2529 52%,#29353a 100%);
+  border-bottom:1px solid rgba(255,255,255,.11);
+  box-shadow:0 5px 22px rgba(8,12,14,.17);
+}
+.topbar{
+  width:min(1400px,calc(100% - 48px));height:84px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;gap:24px;
+}
+.brand-zone{display:flex;align-items:center;gap:16px;min-width:0;color:#fff}
+.brand-badge{
+  width:156px;height:38px;flex:0 0 156px;
+  background:url('https://cp-b2b.pages.dev/assets/logo-pereko.png') left center/148px auto no-repeat;
+  color:transparent;font-size:0
+}
+.brand-copy{
+  min-height:39px;padding-left:17px;border-left:1px solid rgba(255,255,255,.24);
+  display:flex;flex-direction:column;justify-content:center;white-space:nowrap
+}
+.brand-copy strong{font-size:0}
+.brand-copy strong::after{
+  content:'Centrum Projektów Marketingowych';
+  display:block;color:#fff;
+  font:700 14px/1.15 'Montserrat',sans-serif;
+}
+.brand-copy span{font-size:0}
+.brand-copy span::after{
+  content:'Planowanie, realizacja i kontrola działań marketingowych PEREKO';
+  display:block;margin-top:4px;color:#c0c9cd;
+  font:500 9px/1.25 'Montserrat',sans-serif;
+}
+.login-topbar-note{
+  min-width:210px;padding:7px 12px;
+  border:1px solid rgba(255,255,255,.14);
+  border-radius:10px;background:rgba(255,255,255,.05);
+}
+.login-topbar-note span{
+  display:block;color:rgba(255,255,255,.48);
+  font:800 7.5px/1 'Montserrat',sans-serif;letter-spacing:.11em
+}
+.login-topbar-note strong{
+  display:block;margin-top:4px;color:#fff;
+  font:700 10px/1.1 'Montserrat',sans-serif
+}
+
+.login-page{
+  min-height:calc(100vh - 84px);
+  background:
+    radial-gradient(circle at 16% 18%,rgba(255,221,0,.08),transparent 29%),
+    linear-gradient(135deg,#050505 0%,#0a0b0c 55%,#111416 100%);
+}
+.login-page>.login-shell{
+  width:min(1400px,calc(100% - 48px));
+  min-height:calc(100vh - 84px);
+  margin:0 auto;
+  background:transparent;
+}
+.login-page .login-visual,
+.login-page .login-panel{
+  min-height:calc(100vh - 84px);
+}
+.login-page .login-visual{
+  padding-left:16px;
+  padding-right:48px;
+}
+.login-page .login-panel{
+  padding-right:16px;
+}
+.login-page .login-logo{display:none}
+
+@media(max-width:900px){
+  .topbar{width:min(1400px,calc(100% - 32px))}
+  .login-page>.login-shell{width:min(1400px,calc(100% - 32px))}
+  .login-topbar-note{display:none}
+  .login-page .login-visual{padding-left:0;padding-right:0}
+  .login-page .login-panel{padding-right:28px;padding-left:28px}
+}
+@media(max-width:620px){
+  .topbar{width:calc(100% - 24px)}
+  .brand-badge{width:132px;flex-basis:132px;background-size:126px auto}
+  .brand-copy{display:none}
+  .login-page>.login-shell{width:calc(100% - 24px)}
+}
