@@ -2,32 +2,70 @@ const defaultProjects=[{id:'p1',name:'Centrum Partnera PEREKO',owner:'Michał',s
 const defaultTasks=[{text:'Ustalić najbliższe terminy dla wszystkich projektów',done:false},{text:'Rozpisać kolejne etapy Centrum Partnera PEREKO',done:false},{text:'Przygotować założenia do upominków świątecznych',done:false},{text:'Ustalić zakres materiałów do Świata Kominków',done:false}];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let projects=JSON.parse(localStorage.getItem('pereko_projects')||'null')||structuredClone(defaultProjects),tasks=JSON.parse(localStorage.getItem('pereko_tasks')||'null')||structuredClone(defaultTasks),activeFilter='all',cloudSyncEnabled=true,remoteReady=false,syncTimer=null;
+const currentNumberingYear=()=>new Date().getFullYear();
+const itemYear=(item,key)=>{
+  const raw=Number(item?.[key]);
+  if(Number.isInteger(raw)&&raw>=2000&&raw<=9999)return raw;
+  const created=item?.createdAt?new Date(item.createdAt):null;
+  return created&&!Number.isNaN(created.getTime())?created.getFullYear():currentNumberingYear();
+};
+const allTaskObjects=()=>[
+  ...tasks,
+  ...projects.flatMap(p=>Array.isArray(p.projectTasks)?p.projectTasks:[])
+];
 const ensureProjectNumbers=()=>{
   let changed=false;
-  const used=new Set();
-  let max=projects.reduce((m,p)=>{
-    const n=Number(p?.projectNumber);
-    return Number.isInteger(n)&&n>0?Math.max(m,n):m;
-  },0);
+  const usedByYear=new Map();
   projects.forEach(p=>{
-    let n=Number(p?.projectNumber);
-    if(Number.isInteger(n)&&n>0&&!used.has(n)){
-      p.projectNumber=n;
-      used.add(n);
-      return;
-    }
-    do{max+=1}while(used.has(max));
-    p.projectNumber=max;
-    used.add(max);
-    changed=true;
+    const year=itemYear(p,'projectYear');
+    if(p.projectYear!==year){p.projectYear=year;changed=true}
+    if(!usedByYear.has(year))usedByYear.set(year,new Set());
+    const used=usedByYear.get(year);
+    const n=Number(p.projectNumber);
+    if(Number.isInteger(n)&&n>0&&!used.has(n)){used.add(n);return}
+    let next=1;while(used.has(next))next+=1;
+    p.projectNumber=next;used.add(next);changed=true;
   });
   return changed;
 };
-const nextProjectNumber=()=>projects.reduce((m,p)=>{
-  const n=Number(p?.projectNumber);
-  return Number.isInteger(n)&&n>0?Math.max(m,n):m;
+const ensureTaskNumbers=()=>{
+  let changed=false;
+  const usedByYear=new Map();
+  allTaskObjects().forEach(t=>{
+    const year=itemYear(t,'taskYear');
+    if(t.taskYear!==year){t.taskYear=year;changed=true}
+    if(!usedByYear.has(year))usedByYear.set(year,new Set());
+    const used=usedByYear.get(year);
+    const n=Number(t.taskNumber);
+    if(Number.isInteger(n)&&n>0&&!used.has(n)){used.add(n);return}
+    let next=1;while(used.has(next))next+=1;
+    t.taskNumber=next;used.add(next);changed=true;
+  });
+  return changed;
+};
+const nextProjectNumber=(year=currentNumberingYear())=>projects.reduce((m,p)=>{
+  const n=Number(p?.projectNumber),y=itemYear(p,'projectYear');
+  return y===year&&Number.isInteger(n)&&n>0?Math.max(m,n):m;
 },0)+1;
+const nextTaskIdentity=(year=currentNumberingYear())=>{
+  const next=allTaskObjects().reduce((m,t)=>{
+    const n=Number(t?.taskNumber),y=itemYear(t,'taskYear');
+    return y===year&&Number.isInteger(n)&&n>0?Math.max(m,n):m;
+  },0)+1;
+  return {taskNumber:next,taskYear:year};
+};
+const numberYearSuffix=year=>String(Number(year)||currentNumberingYear()).slice(-2).padStart(2,'0');
+window.perekoProjectNumberLabel=p=>{
+  const n=Number(p?.projectNumber),year=itemYear(p,'projectYear');
+  return Number.isInteger(n)&&n>0?`P-${String(n).padStart(3,'0')}/${numberYearSuffix(year)}`:'P-—';
+};
+window.perekoTaskNumberLabel=t=>{
+  const n=Number(t?.taskNumber),year=itemYear(t,'taskYear');
+  return Number.isInteger(n)&&n>0?`Z-${String(n).padStart(3,'0')}/${numberYearSuffix(year)}`:'Z-—';
+};
+window.perekoNextTaskIdentity=nextTaskIdentity;
 ensureProjectNumbers();
+ensureTaskNumbers();
 const statusText={work:'W realizacji',plan:'Planowany',done:'Zakończony'};
 const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const setSyncStatus=(state,title,text)=>{const c=$('#syncCard');if(!c)return;c.dataset.state=state;$('#syncTitle').textContent=title;$('#syncText').textContent=text};
@@ -64,15 +102,16 @@ async function loadRemote(){
       p=await r.json();
     if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);
     if(Array.isArray(p.projects))projects=p.projects;
-    const projectNumbersAdded=ensureProjectNumbers();
     if(Array.isArray(p.tasks))tasks=p.tasks;
+    const projectNumbersAdded=ensureProjectNumbers();
+    const taskNumbersAdded=ensureTaskNumbers();
     remoteReady=true;
     window.perekoRemoteReady=true;
     localStorage.setItem('pereko_cloud_sync','1');
     saveLocal();
     render();
     setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');
-    if(projectNumbersAdded)setTimeout(()=>pushRemote(),120);
+    if(projectNumbersAdded||taskNumbersAdded)setTimeout(()=>pushRemote(),120);
     return true
   }catch(e){
     remoteReady=false;
@@ -116,7 +155,7 @@ function render(){
   $('#kpiProgress').textContent=progressValues.length?Math.round(progressValues.reduce((a,b)=>a+b,0)/progressValues.length)+'%':'—';
   const sorted=[...projects].filter(p=>p.status!=='done'&&p.deadline).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,5);
   $('#deadlineList').innerHTML=sorted.map(p=>{const d=new Date(p.deadline+'T12:00:00');return `<div class="deadline"><div class="datebox"><b>${String(d.getDate()).padStart(2,'0')}</b><span>${d.toLocaleString('pl-PL',{month:'short'}).replace('.','')}</span></div><div><h5>${esc(p.name)}</h5><p>${esc(p.owner)} · ${statusText[p.status]}</p></div></div>`}).join('')||'<div class="empty">Brak terminów.</div>';
-  $('#taskList').innerHTML=tasks.map((t,i)=>`<label class="task ${t.done?'done':''}"><input type="checkbox" data-task="${i}" ${t.done?'checked':''}><span>${esc(t.text)}</span></label>`).join('');
+  $('#taskList').innerHTML=tasks.map((t,i)=>`<label class="task ${t.done?'done':''}"><input type="checkbox" data-task="${i}" ${t.done?'checked':''}><span><small class="task-number">${esc(window.perekoTaskNumberLabel?.(t)||'')}</small>${esc(t.text)}</span></label>`).join('');
   $$('[data-task]').forEach(x=>x.onchange=()=>{tasks[+x.dataset.task].done=x.checked;save();render()});
 }
 $$('[data-filter]').forEach(b=>b.onclick=()=>{$$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
@@ -141,12 +180,5 @@ function refreshNewProjectOwners(){
   const names=[...new Set(team.map(p=>p&&p.name).filter(Boolean))];
   select.innerHTML='<option value="">Wybierz osobę</option>'+names.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');
 }
-$('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
-const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
-function findProject(q){q=norm(q);let p=projects.find(x=>norm(x.name)===q);if(p)return p;return projects.find(x=>norm(x.name).includes(q)||q.includes(norm(x.name)))||null}
-function parseDate(s){s=norm(s);let m=s.match(/(20\d{2})-(\d{1,2})-(\d{1,2})/);if(m)return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;m=s.match(/(\d{1,2})[.\/-](\d{1,2})[.\/-](20\d{2})/);if(m)return `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;const mo={stycznia:1,lutego:2,marca:3,kwietnia:4,maja:5,czerwca:6,lipca:7,sierpnia:8,wrzesnia:9,pazdziernika:10,listopada:11,grudnia:12};m=s.match(/(\d{1,2})\s+([a-z]+)\s+(20\d{2})/);return m&&mo[m[2]]?`${m[3]}-${String(mo[m[2]]).padStart(2,'0')}-${m[1].padStart(2,'0')}`:null}
-function msg(kind,text,state=''){const el=document.createElement('div');el.className=`assistant-msg ${kind} ${state}`;el.innerHTML=`<strong>${kind==='user'?'Ty':'Asystent'}</strong><span>${esc(text)}</span>`;$('#assistantMessages').appendChild(el);$('#assistantMessages').scrollTop=999999}
-async function commit(text){saveLocal();render();msg('bot',(await pushRemote(true))?text:'Zmiana lokalna zapisana, ale zapis centralny się nie udał.',cloudSyncEnabled?'success':'error')}
-async function runCommand(raw){const n=norm(raw);if(/^(pomoc|help|co potrafisz)/.test(n)){msg('bot','Komendy: „Dodaj zadanie: …”, „Zmień termin NAZWA na 20 października 2026”, „Ustaw NAZWA na 60%”, „Ustaw status NAZWA na w realizacji”, „Przypisz NAZWA do Wiktorii”, „Pokaż projekty”, „Pokaż zadania”, „Pokaż najbliższe terminy”, „Odśwież dane”.');return}if(n.includes('odswiez')){msg('bot',(await loadRemote())?'Pobrałem najnowsze dane.':'Nie udało się pobrać danych.');return}if(n.includes('pokaz projekty')){msg('bot',projects.map(p=>`${p.name} — ${p.progress||0}%`).join(' | '));return}if(n.includes('pokaz zadania')){msg('bot',tasks.map(t=>`${t.done?'✓':'○'} ${t.text}`).join(' | '));return}if(n.includes('najblizsze terminy')){msg('bot',[...projects].filter(p=>p.deadline).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,6).map(p=>`${p.deadline} — ${p.name}`).join(' | '));return}let m=raw.match(/^\s*dodaj\s+zadanie\s*:?\s*(.+)$/i);if(m){tasks.push({text:m[1].trim(),done:false});await commit(`Dodałem zadanie: ${m[1].trim()}`);return}m=norm(raw).match(/ustaw\s+(.+?)\s+na\s+(\d{1,3})\s*%/);if(m){const p=findProject(m[1]);if(!p){msg('bot','Nie znalazłem projektu.','error');return}p.progress=Math.max(0,Math.min(100,+m[2]));await commit(`Ustawiłem postęp „${p.name}” na ${p.progress}%.`);return}if(n.includes('termin')){const d=parseDate(raw),left=raw.split(/\s+na\s+/i)[0].replace(/^.*?termin\s+(projektu\s+)?/i,'').trim(),p=findProject(left);if(!d||!p){msg('bot','Nie rozpoznałem projektu lub daty.','error');return}p.deadline=d;await commit(`Termin „${p.name}” ustawiony na ${d}.`);return}m=norm(raw).match(/ustaw\s+status\s+(.+?)\s+na\s+(.+)/);if(m){const p=findProject(m[1]);if(!p){msg('bot','Nie znalazłem projektu.','error');return}const s=m[2];p.status=s.includes('realiz')?'work':s.includes('plan')?'plan':s.includes('zakon')?'done':p.status;await commit(`Status „${p.name}” zmieniony na ${statusText[p.status]}.`);return}m=raw.match(/^\s*przypisz\s+(.+?)\s+do\s+(.+)$/i);if(m){const p=findProject(m[1]);if(!p){msg('bot','Nie znalazłem projektu.','error');return}p.owner=m[2].trim();await commit(`Projekt „${p.name}” przypisałem do ${p.owner}.`);return}msg('bot','Nie rozpoznałem polecenia. Napisz „Pomoc”.','error')}
-$('#assistantFab').onclick=()=>{$('#assistantPanel').classList.toggle('open');if($('#assistantPanel').classList.contains('open'))$('#assistantInput').focus()};$('#assistantClose').onclick=()=>$('#assistantPanel').classList.remove('open');$$('[data-assistant-example]').forEach(b=>b.onclick=()=>{$('#assistantInput').value=b.dataset.assistantExample;$('#assistantInput').focus()});$('#assistantForm').onsubmit=async e=>{e.preventDefault();const i=$('#assistantInput'),v=i.value.trim();if(!v)return;msg('user',v);i.value='';await runCommand(v)};$('#assistantInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#assistantForm').requestSubmit()}});
+$('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),projectYear:currentNumberingYear(),createdAt:new Date().toISOString(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
 const now=new Date();$('#todayBox').innerHTML=`<strong>${now.toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'})}</strong><span>${now.getFullYear()}</span>`;render();loadRemote();
