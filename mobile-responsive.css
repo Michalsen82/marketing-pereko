@@ -740,3 +740,68 @@
     }
   }
 }
+
+
+/* FINAL MOBILE FOOTER: zwarte kontrolki synchronizacji + odstęp dla lupki */
+@media(max-width:640px){
+  .site-footer-inner{
+    width:calc(100% - 28px)!important;
+    gap:24px!important;
+    padding:28px 0 calc(82px + env(safe-area-inset-bottom))!important
+  }
+  .footer-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    gap:9px!important;
+    align-items:center!important
+  }
+  .footer-sync-btn,
+  .footer-status-btn{
+    width:100%!important;
+    min-width:0!important;
+    height:44px!important;
+    padding:0 10px!important;
+    border-radius:12px!important;
+    background:rgba(255,255,255,.055)!important;
+    border:1px solid rgba(255,255,255,.13)!important;
+    color:#fff!important;
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+    font:700 9.5px/1 'Montserrat',sans-serif!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important
+  }
+  .footer-sync-btn:hover{
+    background:rgba(255,255,255,.09)!important;
+    border-color:rgba(255,255,255,.22)!important
+  }
+  .footer-status-btn[data-state="ok"]{
+    background:rgba(82,184,90,.055)!important;
+    border-color:rgba(82,184,90,.28)!important;
+    color:rgba(255,255,255,.88)!important
+  }
+  .footer-status-btn[data-state="syncing"]{
+    background:rgba(255,221,0,.055)!important;
+    border-color:rgba(255,221,0,.26)!important;
+    color:rgba(255,255,255,.88)!important
+  }
+  .footer-status-btn[data-state="error"]{
+    background:rgba(227,93,83,.055)!important;
+    border-color:rgba(227,93,83,.28)!important
+  }
+  .footer-status-btn[data-state="local"]{
+    background:rgba(255,255,255,.04)!important;
+    border-color:rgba(255,255,255,.12)!important
+  }
+  .footer-status-dot{
+    width:7px!important;
+    height:7px!important;
+    flex:0 0 7px!important;
+    box-shadow:none!important
+  }
+  .footer-status-btn[data-state="ok"] .footer-status-dot{background:#52b85a!important}
+  .footer-status-btn[data-state="syncing"] .footer-status-dot{background:#ffdd00!important}
+  .footer-status-btn[data-state="error"] .footer-status-dot{background:#e35d53!important}
+  .footer-status-btn[data-state="local"] .footer-status-dot{background:#8f9a9f!important}
+}
