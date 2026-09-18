@@ -1,6 +1,15 @@
 (()=>{
   const SUPABASE_URL='https://gtzbjpgpxopccauicumz.supabase.co';
   const SUPABASE_KEY='sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
+  const AUTH_STORAGE_KEY='pereko-marketing-auth';
+  const LEGACY_AUTH_KEY='sb-gtzbjpgpxopccauicumz-auth-token';
+  try{
+    if(!localStorage.getItem(AUTH_STORAGE_KEY)){
+      const legacy=localStorage.getItem(LEGACY_AUTH_KEY);
+      if(legacy)localStorage.setItem(AUTH_STORAGE_KEY,legacy);
+    }
+  }catch{}
+
   const REMEMBERED_EMAIL_KEY='pereko_remembered_email';
   const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{
     auth:{
@@ -8,7 +17,7 @@
       autoRefreshToken:true,
       detectSessionInUrl:true,
       storage:window.localStorage,
-      storageKey:'pereko-marketing-auth'
+      storageKey:AUTH_STORAGE_KEY
     }
   });
   const form=document.querySelector('#loginForm');
