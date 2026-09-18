@@ -63,10 +63,28 @@ self.addEventListener('activate',event=>{
 
 self.addEventListener('fetch',event=>{
   const request=event.request;
+  const requestUrl=new URL(request.url);
+  const isFreshAsset=/\.(?:js|css|json|webmanifest)$/i.test(requestUrl.pathname);
   if(request.method!=='GET')return;
-  const url=new URL(request.url);
+  const url=requestUrl;
   if(url.origin!==self.location.origin)return;
   if(url.pathname.startsWith('/api/'))return;
+
+  if(isFreshAsset){
+    event.respondWith((async()=>{
+      try{
+        const response=await fetch(request,{cache:'no-store'});
+        if(response&&response.ok){
+          const cache=await caches.open(CACHE_NAME);
+          cache.put(request,response.clone()).catch(()=>{});
+        }
+        return response;
+      }catch{
+        return (await caches.match(request))||new Response('',{status:503,statusText:'Offline'});
+      }
+    })());
+    return;
+  }
 
   if(request.mode==='navigate'){
     event.respondWith((async()=>{
