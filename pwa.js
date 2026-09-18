@@ -357,7 +357,13 @@
   });
   window.addEventListener('online',refreshAll);
   window.addEventListener('offline',refreshAll);
-  document.addEventListener('visibilitychange',()=>{if(!document.hidden)refreshAll()});
+  document.addEventListener('visibilitychange',()=>{
+    if(!document.hidden){
+      refreshAll();
+      try{navigator.clearAppBadge?.()}catch{}
+    }
+  });
+  window.addEventListener('focus',()=>{try{navigator.clearAppBadge?.()}catch{}});
 
   registerSW();
   buildLoginPanel();
