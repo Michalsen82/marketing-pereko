@@ -1,3 +1,5 @@
+import {sendUserNotification,emailForPerson,displayNameForEmail} from '../_lib/push.js';
+
 const OWNER = 'Michalsen82';
 const REPO = 'marketing-pereko';
 const FILE_PATH = 'data/dashboard.json';
@@ -45,6 +47,125 @@ async function getCurrentFile(token) {
   return response.json();
 }
 
+const itemKey=item=>String(item?.id||[item?.taskYear||'',item?.taskNumber||'',item?.text||''].join('|'));
+const commentKey=item=>String(item?.id||[item?.createdAt||'',item?.author||'',item?.text||''].join('|'));
+const twoYear=year=>String(Number(year)||new Date().getFullYear()).slice(-2).padStart(2,'0');
+const taskLabel=t=>{
+  const n=Number(t?.taskNumber);
+  return Number.isInteger(n)&&n>0?`Z-${String(n).padStart(3,'0')}/${twoYear(t?.taskYear)}`:'zadanie';
+};
+const projectLabel=p=>{
+  const n=Number(p?.projectNumber);
+  return Number.isInteger(n)&&n>0?`P-${String(n).padStart(3,'0')}/${twoYear(p?.projectYear)}`:'projekt';
+};
+const unique=values=>[...new Set(values.filter(Boolean))];
+
+function projectRecipients(project,actorEmail){
+  const names=[project?.owner,...(Array.isArray(project?.members)?project.members:[])];
+  return unique(names.map(emailForPerson)).filter(email=>email&&email!==String(actorEmail||'').toLowerCase());
+}
+
+function buildPushEvents(previous,next,user){
+  const events=[];
+  const actorEmail=String(user?.email||'').toLowerCase();
+  const actorName=displayNameForEmail(actorEmail);
+
+  const previousGlobal=new Map((previous?.tasks||[]).map(t=>[itemKey(t),t]));
+  for(const task of next?.tasks||[]){
+    const old=previousGlobal.get(itemKey(task));
+    if((!old||old.assignee!==task.assignee)&&task.assignee){
+      const target=emailForPerson(task.assignee);
+      if(target&&target!==actorEmail){
+        events.push({
+          email:target,type:'assignment',
+          payload:{
+            title:'Nowe zadanie — PEREKO',
+            body:`${actorName} przypisał(a) Ci ${taskLabel(task)}: ${task.text||'Bez nazwy'}`,
+            icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+            tag:'assignment-'+itemKey(task),url:'/?search=1',badgeCount:1
+          }
+        });
+      }
+    }
+  }
+
+  const previousProjects=new Map((previous?.projects||[]).map(p=>[String(p.id),p]));
+  for(const project of next?.projects||[]){
+    const oldProject=previousProjects.get(String(project.id))||{projectTasks:[],comments:[]};
+    const oldTasks=new Map((oldProject.projectTasks||[]).map(t=>[itemKey(t),t]));
+    const recipients=projectRecipients(project,actorEmail);
+
+    for(const task of project.projectTasks||[]){
+      const old=oldTasks.get(itemKey(task));
+
+      if((!old||old.assignee!==task.assignee)&&task.assignee){
+        const target=emailForPerson(task.assignee);
+        if(target&&target!==actorEmail){
+          events.push({
+            email:target,type:'assignment',
+            payload:{
+              title:'Nowe zadanie w projekcie',
+              body:`${actorName} przypisał(a) Ci ${taskLabel(task)} w ${projectLabel(project)}: ${task.text||'Bez nazwy'}`,
+              icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+              tag:'assignment-'+itemKey(task),
+              url:`/?projectId=${encodeURIComponent(project.id)}&taskId=${encodeURIComponent(task.id||'')}`,
+              projectId:project.id,taskId:task.id||null,badgeCount:1
+            }
+          });
+        }
+      }
+
+      if(old&&!old.done&&task.done){
+        for(const email of recipients){
+          events.push({
+            email,type:'taskDone',
+            payload:{
+              title:'Zadanie zakończone',
+              body:`${actorName} zakończył(a) ${taskLabel(task)} w ${projectLabel(project)}: ${task.text||'Bez nazwy'}`,
+              icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+              tag:'done-'+itemKey(task),
+              url:`/?projectId=${encodeURIComponent(project.id)}&taskId=${encodeURIComponent(task.id||'')}`,
+              projectId:project.id,taskId:task.id||null,badgeCount:1
+            }
+          });
+        }
+      }
+    }
+
+    const oldComments=new Set((oldProject.comments||[]).map(commentKey));
+    const added=(project.comments||[]).filter(c=>!oldComments.has(commentKey(c)));
+    for(const comment of added){
+      for(const email of recipients){
+        events.push({
+          email,type:'comments',
+          payload:{
+            title:'Nowy komentarz w projekcie',
+            body:`${comment.author||actorName} dodał(a) komentarz w ${projectLabel(project)}: ${String(comment.text||'').slice(0,120)}`,
+            icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+            tag:'comment-'+commentKey(comment),
+            url:`/?projectId=${encodeURIComponent(project.id)}`,
+            projectId:project.id,badgeCount:1
+          }
+        });
+      }
+    }
+  }
+
+  const dedupe=new Map();
+  for(const event of events){
+    const key=[event.email,event.type,event.payload.tag].join('|');
+    dedupe.set(key,event);
+  }
+  return [...dedupe.values()];
+}
+
+async function dispatchPushEvents(context,events){
+  if(!events.length)return;
+  const job=Promise.allSettled(events.map(event=>sendUserNotification(context.env,event.email,event.payload,event.type)));
+  if(typeof context.waitUntil==='function')context.waitUntil(job);
+  else await job;
+}
+
 export async function onRequestGet(context) {
   try {
     const user = await requireUser(context.request);
@@ -72,6 +193,8 @@ export async function onRequestPut(context) {
     }
 
     const current = await getCurrentFile(token);
+    let previous={projects:[],tasks:[]};
+    try{previous=JSON.parse(decodeBase64Utf8(current.content))}catch{}
     const payload = {
       projects: body.projects,
       tasks: body.tasks,
@@ -94,6 +217,11 @@ export async function onRequestPut(context) {
       const details = await response.text();
       throw new Error(`GitHub PUT failed: ${response.status} ${details}`);
     }
+
+    try{
+      const events=buildPushEvents(previous,payload,user);
+      await dispatchPushEvents(context,events);
+    }catch{}
 
     return Response.json({ ok: true, ...payload }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
