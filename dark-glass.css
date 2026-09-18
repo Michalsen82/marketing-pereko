@@ -86,3 +86,195 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 @media(max-width:1100px){.dashboard-grid{grid-template-columns:1fr!important}.intro-row{align-items:flex-start!important}.intro-actions{width:100%!important}.date-box{max-width:none!important;flex:1!important}}
 @media(max-width:760px){.stats-grid{grid-template-columns:1fr 1fr!important}.intro-row{align-items:stretch!important}.intro-actions{flex-direction:column!important;align-items:stretch!important}.date-box{width:100%!important}.intro-add-project{width:100%!important}}
 @media(max-width:620px){.stats-grid{grid-template-columns:1fr!important}.project{grid-template-columns:1fr!important}.date-daynum{width:64px!important;height:64px!important}.date-box{grid-template-columns:64px 1fr!important}}
+
+
+/* =========================================================
+   Elegance pass — mleczne szkło, czystsze marginesy, mniej tabel
+   ========================================================= */
+
+/* bardziej eleganckie mleczne szkło */
+.stat-card,.module,.project,.pd-card,.assistant-panel,.modal-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;
+  border:1px solid rgba(255,255,255,.105)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 18px 48px rgba(0,0,0,.26)!important;
+  backdrop-filter:blur(22px) saturate(115%)!important;
+  -webkit-backdrop-filter:blur(22px) saturate(115%)!important
+}
+.stat-card:hover,.module:hover,.project:hover{
+  background:linear-gradient(145deg,rgba(255,255,255,.09),rgba(255,255,255,.045))!important;
+  border-color:rgba(255,255,255,.16)!important
+}
+
+/* przyciski: mleczne, transparentne zamiast pełnego koloru */
+.intro-add-project,.top-button,.btn.primary,.btn.secondary,.filter,.project-open-btn,.project-delete-btn,.task-glass-btn,.task-save-btn,.pd-accent-btn,.pd-glass-btn,.assistant-suggestions button,.assistant-input-row button,.footer-sync-btn,.footer-status-btn{
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.065))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 8px 20px rgba(0,0,0,.14)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important
+}
+.intro-add-project:hover,.top-button:hover,.btn.primary:hover,.btn.secondary:hover,.filter:hover,.project-open-btn:hover,.project-delete-btn:hover,.task-glass-btn:hover,.task-save-btn:hover,.pd-accent-btn:hover,.pd-glass-btn:hover,.assistant-suggestions button:hover,.assistant-input-row button:hover,.footer-sync-btn:hover,.footer-status-btn:hover{
+  background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.09))!important;
+  border-color:rgba(255,255,255,.25)!important;
+  color:#fff!important
+}
+.filter.active,.task-glass-btn.active{
+  background:linear-gradient(145deg,rgba(255,221,0,.19),rgba(255,221,0,.08))!important;
+  border-color:rgba(255,221,0,.34)!important;
+  color:#fff!important
+}
+.intro-add-project span{color:#ffdd00!important}
+
+/* projekty: wewnętrzny oddech, nic nie styka się z krawędzią modułu */
+.projects-module{overflow:hidden!important}
+.projects-module .module-head{padding:20px 22px 18px!important}
+.projects-module .project-list{
+  padding:18px!important;
+  gap:16px!important;
+  background:transparent!important
+}
+.projects-module .project{
+  margin:0!important;
+  border-radius:16px!important
+}
+
+/* Zadania — całkowicie ciemne, bez białej belki i bez tabelarycznego wyglądu */
+.task-calendar-module,.task-calendar-module .module-head,.task-calendar-module .tasks,.task-closed-wrap,.task-history-panel{
+  background:transparent!important
+}
+.task-date-nav{
+  background:rgba(255,255,255,.035)!important;
+  border-top:1px solid rgba(255,255,255,.05)!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important
+}
+.task-nav-arrow{
+  background:rgba(255,255,255,.07)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:none!important
+}
+.task-nav-arrow:hover{background:rgba(255,255,255,.13)!important;border-color:rgba(255,255,255,.20)!important}
+.task-date-main{color:#fff!important}
+.task-date-main span{color:#fff!important}
+.task-date-main small{color:rgba(255,255,255,.56)!important}
+.task-add-form{
+  background:rgba(255,255,255,.025)!important;
+  border-top:0!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+  box-shadow:none!important
+}
+.task-calendar-module .tasks{padding:12px 18px 10px!important}
+.task-calendar-item{
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.065)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  padding:12px 0!important
+}
+.task-calendar-item:last-child{border-bottom:0!important}
+.task-calendar-item strong{color:#fff!important}
+.task-calendar-item small{color:rgba(255,255,255,.58)!important}
+.task-day-empty{color:rgba(255,255,255,.55)!important}
+.task-closed-head{border-top:1px solid rgba(255,255,255,.07)!important}
+.task-closed-head span,.task-history-head span{color:rgba(255,255,255,.64)!important}
+.task-closed-head strong{background:rgba(255,255,255,.08)!important;color:#fff!important}
+.task-history-panel{border-top:1px solid rgba(255,255,255,.07)!important;box-shadow:none!important}
+.task-history-head{border-bottom:1px solid rgba(255,255,255,.07)!important}
+.task-history-head small{color:rgba(255,255,255,.52)!important}
+.task-history-event{
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.06)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important
+}
+.task-history-event strong{color:#fff!important}
+.task-history-event span{color:rgba(255,255,255,.68)!important}
+.task-history-event small{color:rgba(255,255,255,.48)!important}
+
+/* Najbliższe terminy — lista, nie tabela */
+.deadlines{padding:10px 18px 16px!important}
+.deadline{
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.065)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  padding:13px 0!important;
+  gap:14px!important
+}
+.deadline:last-child{border-bottom:0!important}
+.deadline h5{color:#fff!important;margin-top:0!important}
+.deadline p{color:rgba(255,255,255,.62)!important}
+.datebox{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:1px 0!important;
+  text-align:left!important
+}
+.datebox b{color:#fff!important;font-size:18px!important}
+.datebox span{color:rgba(255,255,255,.52)!important}
+
+/* Współpracownicy też jako lekka lista */
+.person{
+  background:transparent!important;
+  border:0!important;
+  border-bottom:1px solid rgba(255,255,255,.06)!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important
+}
+.person:last-child{border-bottom:0!important}
+.person strong{color:#fff!important}
+.person span{color:rgba(255,255,255,.58)!important}
+
+/* Górna data bez boxa — ma siedzieć naturalnie na czarnym tle */
+.date-box{
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  padding:0!important;
+  min-width:230px!important;
+  max-width:280px!important;
+  grid-template-columns:62px 1fr!important;
+  gap:14px!important
+}
+.date-daynum{
+  width:62px!important;
+  height:62px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  font-size:42px!important;
+  justify-items:start!important;
+  place-items:center start!important
+}
+.date-copy .date-weekday{color:rgba(255,255,255,.46)!important}
+.date-copy strong{color:#fff!important;font-size:16px!important}
+.date-copy span{color:rgba(255,255,255,.52)!important}
+
+/* czytelność ikon */
+.project-topic-icon{
+  background:rgba(255,255,255,.085)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important
+}
+
+/* bardziej miękkie separatory modułów */
+.module-head{border-bottom:1px solid rgba(255,255,255,.065)!important}
+.module-label,.section-kicker{color:rgba(255,255,255,.50)!important}
+
+@media(max-width:760px){
+  .projects-module .project-list{padding:12px!important}
+  .date-box{min-width:0!important;max-width:none!important;width:100%!important}
+}
