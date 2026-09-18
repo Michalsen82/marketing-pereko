@@ -210,8 +210,11 @@
     if(!p)return;
     ensureProjectData(p);
     fillDetail(p);
+    const detailCard=$('#projectDetailModal .project-detail-card');
+    if(detailCard)detailCard.scrollTop=0;
     $('#projectDetailModal').classList.add('open');
     document.body.classList.add('detail-open');
+    requestAnimationFrame(()=>{if(detailCard)detailCard.scrollTop=0});
     window.perekoProjectFilesOpen?.(p);
   }
 
