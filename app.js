@@ -52,7 +52,8 @@ function applyStatsVisibility(){
   const grid=$('.stats-grid'),btn=$('#toggleStats');if(!grid||!btn)return;
   const hidden=localStorage.getItem('pereko_stats_hidden')==='1';
   grid.classList.toggle('is-hidden',hidden);
-  btn.textContent=hidden?'Pokaż kafelki':'Ukryj kafelki';
+  const label=btn.querySelector('span');
+  if(label)label.textContent=hidden?'Pokaż kafelki':'Ukryj kafelki';
   btn.setAttribute('aria-expanded',hidden?'false':'true');
 }
 $('#toggleStats')?.addEventListener('click',()=>{
