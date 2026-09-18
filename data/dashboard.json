@@ -185,7 +185,28 @@
       ],
       "taskNumber": 6,
       "taskYear": 2026
+    },
+    {
+      "id": "c1baeb2b-2371-4444-8e01-cd80acfe1e3b",
+      "taskNumber": 11,
+      "taskYear": 2026,
+      "text": "Nowy tak z 18.09",
+      "assignee": "Michał Bukowski",
+      "done": false,
+      "createdAt": "2026-09-18T17:42:00.701Z",
+      "scheduledFor": "2026-09-19",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "ee033ddf-ee86-405d-9daf-96f2364d96b3",
+          "type": "created",
+          "text": "Utworzono task na 19.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-18T17:42:00.714Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-18T17:41:00.871Z"
+  "updatedAt": "2026-09-18T17:42:01.512Z"
 }
