@@ -163,11 +163,11 @@
       <form id="projectForm">
         <div class="form-grid">
           <div class="field full"><label>Nazwa projektu</label><input name="name" required placeholder="np. Kampania Q4" /></div>
-          <div class="field"><label>Osoba odpowiedzialna</label><input name="owner" required placeholder="np. Michał" /></div>
+          <div class="field full"><label>Opis</label><textarea name="desc" placeholder="Krótki opis celu i zakresu projektu"></textarea></div>
+          <div class="field"><label>Osoba odpowiedzialna</label><select name="owner" id="newProjectOwner" required><option value="">Wybierz osobę</option></select></div>
           <div class="field"><label>Status</label><select name="status"><option value="work">W realizacji</option><option value="plan">Planowany</option><option value="done">Zakończony</option></select></div>
           <div class="field"><label>Postęp</label><div class="new-project-progress-note">Postęp będzie liczony automatycznie z zadań projektu.</div></div>
           <div class="field"><label>Termin</label><input name="deadline" type="date" required /></div>
-          <div class="field full"><label>Opis</label><textarea name="desc" placeholder="Krótki opis celu i zakresu projektu"></textarea></div>
         </div>
         <div class="modal-actions"><button type="button" class="btn secondary" id="resetDemo">Przywróć projekty startowe</button><div class="spacer"></div><button type="button" class="btn secondary" id="cancelModal">Anuluj</button><button class="btn primary" type="submit">Dodaj projekt</button></div>
       </form>
