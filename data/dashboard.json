@@ -5,7 +5,7 @@
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
       "status": "work",
-      "progress": 67,
+      "progress": 33,
       "deadline": "2026-10-15",
       "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
       "members": [
@@ -19,7 +19,7 @@
           "text": "zadanie nr 3 - opis zadania szczegółowo!",
           "assignee": "Łukasz",
           "deadline": "2026-09-19",
-          "done": true
+          "done": false
         },
         {
           "id": "17d1f9ac-ecd9-4f73-b13e-70019407d7aa",
@@ -249,5 +249,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T06:19:23.836Z"
+  "updatedAt": "2026-09-18T06:19:24.789Z"
 }
