@@ -78,3 +78,10 @@
   .topbar-actions{grid-template-columns:112px minmax(0,1fr) 34px 34px 34px!important;column-gap:6px!important}
   .pwa-settings-btn,.password-change-btn,.logout-btn{width:34px!important;height:34px!important}
 }
+
+.pwa-deep-link-target{
+  outline:2px solid #ffdd00!important;
+  outline-offset:3px!important;
+  background:rgba(255,221,0,.08)!important;
+  transition:background .25s ease,outline-color .25s ease!important
+}
