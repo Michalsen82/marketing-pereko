@@ -9,6 +9,7 @@
   let editingTaskIndex=null;
   let editingCommentIndex=null;
   const normPerson=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+  const taskNumberLabel=t=>window.perekoTaskNumberLabel?.(t)||'Z-—';
   const isLoggedAssignee=assignee=>{
     const person=window.perekoLoggedPerson||{};
     const assigned=normPerson(assignee);
@@ -254,6 +255,7 @@
         <label title="${canClose?'':lockText}">
           <input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''} ${canClose?'':'disabled'}>
           <span>
+            <small class="pd-task-number">${esc(taskNumberLabel(t))}</small>
             <strong>${esc(t.text)}</strong>
             <small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small>
             ${canClose?'':`<em class="pd-task-lock">${lockText}</em>`}
@@ -334,7 +336,8 @@
     if(editingTaskIndex!==null&&p.projectTasks[editingTaskIndex]){
       p.projectTasks[editingTaskIndex]={...p.projectTasks[editingTaskIndex],...payload};
     }else{
-      p.projectTasks.unshift({id:crypto.randomUUID(),...payload,done:false});
+      const identity=window.perekoNextTaskIdentity?.()||{taskNumber:1,taskYear:new Date().getFullYear()};
+      p.projectTasks.unshift({id:crypto.randomUUID(),...identity,createdAt:new Date().toISOString(),...payload,done:false});
     }
     cancelTaskEdit();
     syncProjectProgress(p);
