@@ -1,0 +1,40 @@
+.pf-head-actions{display:flex;align-items:center;gap:7px}
+.pf-head-actions .pd-glass-btn.active{border-color:#c8b200!important;background:rgba(255,221,0,.10)!important}
+.pf-toolbar{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 16px;border-bottom:1px solid #edf0f1;background:#fbfcfc}
+.pf-search{position:relative;display:flex;align-items:center;flex:1;max-width:430px}
+.pf-search svg{position:absolute;left:11px;width:15px;height:15px;fill:#7c898e;pointer-events:none}
+.pf-search input{width:100%;height:36px;padding:0 10px 0 35px;border:1px solid #dbe1e3;border-radius:9px;background:#fff;color:#253036;font-size:10.5px;outline:none}
+.pf-search input:focus{border-color:#c8b200;box-shadow:0 0 0 3px rgba(255,221,0,.08)}
+.pf-summary{flex:0 0 auto;color:#7f8b90;font:700 9px/1 'Montserrat',sans-serif;white-space:nowrap}
+.pf-dropzone{margin:12px 16px 5px;padding:16px;border:1px dashed #cbd3d6;border-radius:12px;background:rgba(248,250,250,.82);text-align:center;transition:.16s ease}
+.pf-dropzone strong{display:block;color:#344146;font:700 10.5px/1.25 'Montserrat',sans-serif}
+.pf-dropzone span{display:block;margin-top:4px;color:#8a969b;font-size:9px;line-height:1.4}
+.pf-dropzone.dragover{border-color:#c7ae00;background:rgba(255,221,0,.08);transform:translateY(-1px)}
+.pf-upload-status{min-height:0;padding:0 16px;color:#76848a;font-size:9px;line-height:1.35}
+.pf-upload-status:not(:empty){padding-top:7px;padding-bottom:3px}
+.pf-upload-status.success{color:#4d8c56}.pf-upload-status.error{color:#b55249}
+.pf-list{padding:7px 16px 14px}
+.pf-item{display:grid;grid-template-columns:48px minmax(0,1fr) auto;align-items:center;gap:11px;padding:11px 0;border-bottom:1px solid #eef1f2}
+.pf-item:last-child{border-bottom:0}.pf-item.trashed{opacity:.72}
+.pf-file-type{width:46px;height:46px;display:grid;place-items:center;overflow:hidden;border:1px solid #dbe1e3;border-radius:11px;background:#f7f9f9;color:#59666b;font:800 8px/1 'Montserrat',sans-serif}
+.pf-file-type.image{padding:0}.pf-file-type img{width:100%;height:100%;object-fit:cover;display:block}
+.pf-file-copy{min-width:0}
+.pf-file-copy>strong{display:block;color:#263237;font:700 10.5px/1.3 'Montserrat',sans-serif;overflow-wrap:anywhere}
+.pf-file-copy>span{display:block;margin-top:3px;color:#829096;font-size:9px}
+.pf-file-copy>small{display:block;margin-top:2px;color:#9aa4a8;font-size:8.5px}
+.pf-file-actions{display:flex;align-items:center;justify-content:flex-end;gap:5px;flex-wrap:wrap}
+.pf-file-actions button,.pf-version-row button{min-height:28px;padding:0 8px;border:1px solid #d7dddf;border-radius:7px;background:#f7f9f9;color:#536167;font:700 8px/1 'Montserrat',sans-serif}
+.pf-file-actions button:hover,.pf-version-row button:hover{border-color:#c8b200;background:rgba(255,221,0,.10);color:#252d30}
+.pf-file-actions button.danger{border-color:rgba(194,72,61,.18);color:#a65a53;background:rgba(194,72,61,.04)}
+.pf-versions{margin-top:6px}.pf-versions summary{cursor:pointer;color:#7e8a8f;font:700 8.5px/1.3 'Montserrat',sans-serif}
+.pf-versions>div{margin-top:5px;border-top:1px solid #eef1f2}
+.pf-version-row{display:grid;grid-template-columns:28px minmax(0,1fr) auto;align-items:center;gap:8px;padding:7px 0;border-bottom:1px solid #f0f2f3}
+.pf-version-row>span{color:#7b898f;font:800 8px/1 'Montserrat',sans-serif}
+.pf-version-row strong{display:block;color:#58666b;font:600 9px/1.25 'Montserrat',sans-serif;overflow-wrap:anywhere}
+.pf-version-row small{display:block;margin-top:2px;color:#98a2a6;font-size:8px}
+.pf-error{padding:24px 16px;text-align:center}.pf-error strong{display:block;color:#8f5e25;font:700 10.5px/1.35 'Montserrat',sans-serif}.pf-error span{display:block;margin-top:5px;color:#8b979b;font-size:9px;line-height:1.4}
+@media(max-width:760px){
+  .pf-toolbar{display:grid;grid-template-columns:1fr;align-items:stretch}.pf-search{max-width:none}.pf-summary{white-space:normal}
+  .pf-item{grid-template-columns:44px minmax(0,1fr);align-items:start}.pf-file-actions{grid-column:1/-1;justify-content:flex-start;padding-left:55px}
+  .pf-file-type{width:42px;height:42px}.pf-head-actions{width:100%;justify-content:flex-start;flex-wrap:wrap}
+}
