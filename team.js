@@ -1,40 +1,42 @@
-(()=>{
+(async()=>{
+  try{if(window.perekoAuthReady)await window.perekoAuthReady}catch{return}
   const defaults=[
     {name:'Michał Bukowski',role:'Marketing Manager',email:'michal.bukowski@pereko.pl'},
     {name:'Wiktoria Adamczyk',role:'Marketing Specialist',email:'wiktoria.adamczyk@pereko.pl'},
     {name:'Łukasz Drozdowski',role:'Creative Content & Design Specialist',email:'lukasz.drozdowski@pereko.pl'},
-    {name:'Paweł Chaja',role:'AI Implementation Specialist',email:''},
-    {name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.chaja@pereko.pl'}
+    {name:'Paweł Chaja',role:'AI Implementation Specialist',email:'pawel.chaja@pereko.pl'},
+    {name:'Andrzej Guzera',role:'Kierownik Handlowy',email:'andrzej.guzera@pereko.pl'}
   ];
-  let team=JSON.parse(localStorage.getItem('pereko_team')||'null')||defaults;
-  // Migracja wcześniejszych zapisów lokalnych po korekcie nazwisk i przywróceniu Piotra Haja.
-  team=team.map(p=>{
-    const name=p.name==='Łukasz Drzodowski'?'Łukasz Drozdowski':p.name==='Paweł Haja'?'Paweł Chaja':p.name==='Piotr Haja'?'Piotr Chaja':p.name;
-    const knownEmails={
-      'Michał Bukowski':'michal.bukowski@pereko.pl',
-      'Wiktoria Adamczyk':'wiktoria.adamczyk@pereko.pl',
-      'Łukasz Drozdowski':'lukasz.drozdowski@pereko.pl',
-      'Piotr Chaja':'piotr.chaja@pereko.pl'
-    };
-    return {
-      ...p,
-      name,
-      role:(p.name==='Piotr Haja'||p.name==='Piotr Chaja')?'AI Transformation & Implementation Specialist':p.role,
-      email:(typeof p.email==='string'&&p.email.trim())?p.email.trim():(knownEmails[name]||'')
-    };
-  });
-  if(!team.some(p=>p.name==='Piotr Chaja')) team.push({name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.chaja@pereko.pl'});
-  localStorage.setItem('pereko_team',JSON.stringify(team));
-  const initials=name=>name.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
+  let team;
+  try{team=JSON.parse(localStorage.getItem('pereko_team')||'null')}catch{}
+  if(!Array.isArray(team))team=defaults;
+  const admin=String(window.perekoLoggedPerson?.email||'').trim().toLowerCase()==='michal.bukowski@pereko.pl';
+  const initials=name=>String(name||'').split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
   const escHtml=v=>String(v||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
   const grid=document.querySelector('.team-grid');
   if(!grid)return;
   const module=grid.closest('.module');
   const head=module?.querySelector('.module-head');
-
   let editingIndex=null;
-  function save(){localStorage.setItem('pereko_team',JSON.stringify(team))}
+  const save=()=>localStorage.setItem('pereko_team',JSON.stringify(team));
+
+  function render(){
+    grid.innerHTML=team.map((p,i)=>`
+      <div class="person team-person">
+        <div class="avatar">${initials(p.name)}</div>
+        <div class="team-person-copy"><strong>${escHtml(p.name)}</strong><span>${escHtml(p.role)}</span><small>${p.email?escHtml(p.email):'Brak adresu e-mail'}</small></div>
+        ${admin?`<div class="team-person-actions"><button class="team-edit" type="button" data-team-edit="${i}">Edytuj</button><button class="team-remove" type="button" data-team-remove="${i}" aria-label="Usuń współpracownika">×</button></div>`:''}
+      </div>`).join('');
+    if(!admin)return;
+    grid.querySelectorAll('[data-team-remove]').forEach(btn=>btn.onclick=()=>{
+      if(!confirm('Usunąć tego współpracownika z listy?'))return;
+      team.splice(+btn.dataset.teamRemove,1);save();render();
+    });
+    grid.querySelectorAll('[data-team-edit]').forEach(btn=>btn.onclick=()=>openTeamModal(+btn.dataset.teamEdit));
+  }
+
   function openTeamModal(index=null){
+    if(!admin)return;
     editingIndex=index;
     const modal=document.querySelector('#teamModal');
     const form=modal?.querySelector('#teamForm');
@@ -44,36 +46,26 @@
     const saveBtn=modal.querySelector('.team-save');
     if(index===null){
       form.reset();
-      if(kicker)kicker.textContent='NOWY WSPÓŁPRACOWNIK';
-      if(title)title.textContent='Dodaj osobę do zespołu';
-      if(saveBtn)saveBtn.textContent='Dodaj';
+      kicker.textContent='NOWY WSPÓŁPRACOWNIK';
+      title.textContent='Dodaj osobę do zespołu';
+      saveBtn.textContent='Dodaj';
     }else{
       const p=team[index];if(!p)return;
       form.elements.name.value=p.name||'';
       form.elements.role.value=p.role||'';
       form.elements.email.value=p.email||'';
-      if(kicker)kicker.textContent='EDYCJA WSPÓŁPRACOWNIKA';
-      if(title)title.textContent='Edytuj dane osoby';
-      if(saveBtn)saveBtn.textContent='Zapisz zmiany';
+      kicker.textContent='EDYCJA WSPÓŁPRACOWNIKA';
+      title.textContent='Edytuj dane osoby';
+      saveBtn.textContent='Zapisz zmiany';
     }
     modal.classList.add('open');
     setTimeout(()=>form.elements.name?.focus(),0);
   }
-  function render(){
-    grid.innerHTML=team.map((p,i)=>`
-      <div class="person team-person">
-        <div class="avatar">${initials(p.name)}</div>
-        <div class="team-person-copy"><strong>${p.name}</strong><span>${p.role}</span><small>${p.email?escHtml(p.email):'Brak adresu e-mail'}</small></div>
-        <div class="team-person-actions"><button class="team-edit" type="button" data-team-edit="${i}">Edytuj</button><button class="team-remove" type="button" data-team-remove="${i}" aria-label="Usuń współpracownika">×</button></div>
-      </div>`).join('');
-    grid.querySelectorAll('[data-team-remove]').forEach(btn=>btn.onclick=()=>{
-      if(!confirm('Usunąć tego współpracownika z listy?')) return;
-      team.splice(+btn.dataset.teamRemove,1);save();render();
-    });
-    grid.querySelectorAll('[data-team-edit]').forEach(btn=>btn.onclick=()=>openTeamModal(+btn.dataset.teamEdit));
-  }
 
-  if(head && !head.querySelector('.team-add-btn')){
+  render();
+  if(!admin)return;
+
+  if(head&&!head.querySelector('.team-add-btn')){
     const btn=document.createElement('button');
     btn.type='button';
     btn.className='team-add-btn';
@@ -110,9 +102,7 @@
     e.preventDefault();
     const f=new FormData(e.currentTarget);
     const person={name:String(f.get('name')).trim(),role:String(f.get('role')).trim(),email:String(f.get('email')).trim()};
-    if(editingIndex===null) team.push(person);
-    else team[editingIndex]={...team[editingIndex],...person};
+    if(editingIndex===null)team.push(person);else team[editingIndex]={...team[editingIndex],...person};
     save();render();e.currentTarget.reset();close();
   };
-  render();
 })();
