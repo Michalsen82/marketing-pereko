@@ -244,20 +244,52 @@
   async function testNotification(){
     ensureSettings();
     const msg=settingsModal.querySelector('#pwaMessage');
-    if(!hasNotifications()||Notification.permission!=='granted'){
-      msg.textContent='Najpierw włącz powiadomienia.';msg.className='pwa-message warn';return;
+    if(!hasNotifications()){
+      msg.textContent='Ta przeglądarka nie obsługuje powiadomień.';
+      msg.className='pwa-message error';
+      return;
     }
+
+    let permission=Notification.permission;
+    if(permission==='default'){
+      try{permission=await Notification.requestPermission()}catch{}
+    }
+    if(permission!=='granted'){
+      msg.textContent='Powiadomienia są zablokowane. Włącz je w ustawieniach aplikacji lub telefonu.';
+      msg.className='pwa-message error';
+      refreshAll();
+      return;
+    }
+
+    msg.textContent='Wysyłam lokalne powiadomienie testowe…';
+    msg.className='pwa-message';
+
     try{
+      if(!('serviceWorker' in navigator))throw new Error('Brak obsługi Service Workera');
+      if(!registration)await registerSW();
+      const ready=await navigator.serviceWorker.ready;
+      registration=ready;
+
+      await ready.showNotification('PEREKO — Centrum Marketingowe',{
+        body:'Powiadomienia działają poprawnie na tym urządzeniu.',
+        icon:'/icons/pereko-marketing-v3-192.png',
+        badge:'/icons/badge-96.png',
+        tag:'pereko-local-test-'+Date.now(),
+        renotify:true,
+        data:{url:'/'}
+      });
+
+      msg.textContent='Test lokalny wysłany. Powiadomienie powinno pojawić się w pasku systemowym.';
+      msg.className='pwa-message ok';
+
+      /* Prawdziwy Web Push sprawdzamy dodatkowo, ale jego brak nie blokuje testu lokalnego. */
       if(window.perekoAuthFetch){
-        const r=await window.perekoAuthFetch('/api/push-test',{method:'POST'});
-        if(r.ok){msg.textContent='Wysłano prawdziwy test Web Push. Powiadomienie powinno pojawić się za chwilę.';msg.className='pwa-message ok';return}
+        window.perekoAuthFetch('/api/push-test',{method:'POST'}).catch(()=>{});
       }
-    }catch{}
-    if(!registration)await registerSW();
-    if(registration){
-      await registration.showNotification('PEREKO — Centrum Marketingowe',{body:'Powiadomienia działają poprawnie na tym urządzeniu.',icon:'/icons/pereko-marketing-v3-192.png',badge:'/icons/badge-96.png',tag:'pereko-local-test',data:{url:'/'}});
-      msg.textContent='Pokazano lokalne powiadomienie testowe. Serwerowy Web Push zostanie aktywowany po konfiguracji Cloudflare.';
-      msg.className='pwa-message warn';
+    }catch(e){
+      console.error('PWA notification test:',e);
+      msg.textContent='Nie udało się wyświetlić testu: '+(e?.message||'nieznany błąd')+'. Sprawdź uprawnienia powiadomień aplikacji w Androidzie.';
+      msg.className='pwa-message error';
     }
   }
 
