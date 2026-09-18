@@ -1,0 +1,38 @@
+.user-zone{
+  min-height:48px!important;
+  padding:0 0 0 18px!important;
+  border-left:1px solid rgba(255,255,255,.18)!important;
+  display:flex!important;
+  flex-direction:row!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:12px!important
+}
+.user-zone-copy{display:flex;flex-direction:column;align-items:flex-end;justify-content:center;min-width:0}
+.user-zone-copy strong{font:700 14px/1.15 'Montserrat',sans-serif;color:#fff!important;letter-spacing:-.015em}
+.user-zone-copy span{margin-top:4px;font:500 9px/1.2 'Montserrat',sans-serif;color:rgba(255,255,255,.56)!important}
+.user-avatar-control{position:relative;width:46px;height:46px;display:block;flex:0 0 46px;cursor:pointer}
+.user-avatar-circle{
+  width:46px;height:46px;border-radius:50%;overflow:hidden;display:grid;place-items:center;
+  background:linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045));
+  border:1px solid rgba(255,255,255,.16);
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05),0 8px 20px rgba(0,0,0,.22);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)
+}
+.user-avatar-circle img{width:100%;height:100%;object-fit:cover;display:none}
+.user-avatar-placeholder{width:100%;height:100%;display:grid;place-items:center}
+.user-avatar-placeholder svg{width:20px;height:20px;fill:#fff;opacity:.86}
+.user-avatar-plus{
+  position:absolute;right:-2px;bottom:-2px;width:17px;height:17px;border-radius:50%;
+  display:grid;place-items:center;background:#ffdd00;color:#111;border:2px solid #070707;
+  font:800 12px/1 'Montserrat',sans-serif;box-shadow:0 4px 10px rgba(0,0,0,.28)
+}
+.user-avatar-control:hover .user-avatar-circle{border-color:rgba(255,255,255,.26);transform:translateY(-1px)}
+.user-avatar-control:active .user-avatar-circle{transform:translateY(0)}
+@media(max-width:760px){
+  .user-zone{padding-left:12px!important;gap:8px!important}
+  .user-zone-copy strong{font-size:12px}
+  .user-zone-copy span{display:none}
+  .user-avatar-control,.user-avatar-circle{width:40px;height:40px}
+  .user-avatar-control{flex-basis:40px}
+}
