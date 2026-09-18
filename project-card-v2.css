@@ -277,3 +277,36 @@ html body input[type="date"]::-webkit-calendar-picker-indicator{
   filter:none!important;
   cursor:pointer!important;
 }
+
+
+/* Widoczne liczniki dni do terminu */
+.deadline-countdown{
+  display:inline-flex!important;
+  align-items:center!important;
+  width:max-content!important;
+  margin-top:6px!important;
+  padding:5px 8px!important;
+  border-radius:8px!important;
+  background:rgba(255,255,255,.10)!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  color:#fff!important;
+  font:700 9px/1 'Montserrat',sans-serif!important;
+  white-space:nowrap!important
+}
+.deadline-countdown.soon{background:rgba(255,255,255,.15)!important;border-color:rgba(255,255,255,.22)!important}
+.deadline-countdown.today{background:rgba(255,255,255,.22)!important;border-color:rgba(255,255,255,.30)!important}
+.deadline-countdown.overdue{background:rgba(207,82,72,.16)!important;border-color:rgba(207,82,72,.32)!important;color:#ffd3cf!important}
+
+.project-preview-due{
+  display:inline-flex!important;
+  margin-left:7px!important;
+  padding:3px 6px!important;
+  border-radius:7px!important;
+  background:rgba(255,255,255,.09)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  color:rgba(255,255,255,.82)!important;
+  font:700 8px/1 'Montserrat',sans-serif!important;
+  font-style:normal!important;
+  white-space:nowrap!important
+}
+.project-preview-due.overdue{background:rgba(207,82,72,.14)!important;border-color:rgba(207,82,72,.28)!important;color:#ffd3cf!important}
