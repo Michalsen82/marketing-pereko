@@ -645,3 +645,24 @@ html,body{
 @media(max-width:620px){
   .login-minimal-wrap{width:100%!important}
 }
+
+
+/* FINAL: szerokość formularza do końca tekstu pod brandingiem */
+.login-minimal-wrap{
+  width:min(620px,100%)!important;
+}
+.login-panel-minimal{
+  width:min(520px,100%)!important;
+  max-width:520px!important;
+  justify-self:start!important;
+}
+.login-panel-minimal .login-card-head,
+.login-panel-minimal #loginForm{
+  width:100%!important;
+}
+@media(max-width:620px){
+  .login-panel-minimal{
+    width:100%!important;
+    max-width:none!important;
+  }
+}
