@@ -1,4 +1,4 @@
-const CACHE_NAME='pereko-marketing-pwa-v1';
+const CACHE_NAME='pereko-marketing-pwa-v2';
 const APP_SHELL=[
   '/',
   '/index.html',
@@ -6,10 +6,10 @@ const APP_SHELL=[
   '/offline.html',
   '/manifest.webmanifest',
   '/favicon.svg',
-  '/icons/pwa-192.png',
-  '/icons/pwa-512.png',
-  '/icons/pwa-maskable-512.png',
-  '/icons/apple-touch-icon.png',
+  '/icons/pereko-marketing-v2-192.png',
+  '/icons/pereko-marketing-v2-512.png',
+  '/icons/pereko-marketing-v2-512.png',
+  '/icons/pereko-marketing-v2-apple.png',
   '/styles.css',
   '/project-detail.css',
   '/task-calendar.css',
@@ -113,7 +113,7 @@ self.addEventListener('push',event=>{
     const title=data.title||'PEREKO — Centrum Marketingowe';
     const options={
       body:data.body||'Masz nową aktywność w Centrum Marketingowym.',
-      icon:data.icon||'/icons/pwa-192.png',
+      icon:data.icon||'/icons/pereko-marketing-v2-192.png',
       badge:data.badge||'/icons/badge-96.png',
       tag:data.tag||'pereko-marketing',
       renotify:data.renotify!==false,
@@ -165,7 +165,7 @@ self.addEventListener('message',event=>{
   if(data.type==='SHOW_TEST_NOTIFICATION'){
     event.waitUntil(self.registration.showNotification('PEREKO — Centrum Marketingowe',{
       body:'Powiadomienia działają poprawnie na tym urządzeniu.',
-      icon:'/icons/pwa-192.png',
+      icon:'/icons/pereko-marketing-v2-192.png',
       badge:'/icons/badge-96.png',
       tag:'pereko-test',
       data:{url:'/'}
