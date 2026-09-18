@@ -66,6 +66,9 @@
   function androidGuide(){
     return '<div class="pwa-guide"><strong>Instalacja na Androidzie:</strong><ol><li>Użyj przycisku „Zainstaluj aplikację”.</li><li>Jeśli systemowy przycisk nie pojawi się, otwórz menu przeglądarki.</li><li>Wybierz „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”.</li></ol></div>';
   }
+  function loginPlatformGuide(){
+    return '<div class="pwa-login-guide"><div><strong>iPhone / iOS</strong><span>Safari → Udostępnij → Dodaj do ekranu początkowego → Dodaj.</span></div><div><strong>Android</strong><span>„Zainstaluj aplikację” lub menu przeglądarki → Dodaj do ekranu głównego.</span></div></div>';
+  }
 
   async function installApp(){
     if(isStandalone())return true;
@@ -84,7 +87,7 @@
     const loginPanel=document.querySelector('#pwaLoginPanel');
     if(loginPanel&&!window.perekoLoggedPerson){
       const box=loginPanel.querySelector('.pwa-login-help');
-      if(box)box.innerHTML=isIOS()?iosGuide():androidGuide();
+      if(box)box.innerHTML=loginPlatformGuide();
       return;
     }
     ensureSettings();
@@ -108,7 +111,9 @@
     panel.querySelector('.install').onclick=installApp;
     panel.querySelector('.help').onclick=()=>{
       const box=panel.querySelector('.pwa-login-help');
-      box.innerHTML=isIOS()?iosGuide():androidGuide();
+      const open=box.dataset.open==='1';
+      box.innerHTML=open?'':loginPlatformGuide();
+      box.dataset.open=open?'0':'1';
     };
     if(isStandalone())panel.hidden=true;
   }
