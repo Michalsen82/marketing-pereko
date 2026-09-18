@@ -17,28 +17,36 @@
           "text": "3241235ger retwert34523",
           "assignee": "Łukasz Drozdowski",
           "deadline": "2026-10-02",
-          "done": false
+          "done": false,
+          "taskNumber": 7,
+          "taskYear": 2026
         },
         {
           "id": "cbb8c902-658a-41e3-9b9d-0a58a093a2a1",
           "text": "Centrum Partnera PEREKO | Centrum Partnera PEREKO",
           "assignee": "Michał Bukowski",
           "deadline": "2026-09-24",
-          "done": false
+          "done": false,
+          "taskNumber": 8,
+          "taskYear": 2026
         },
         {
           "id": "363e2cd4-1b88-4117-8a5b-3cd78c467765",
           "text": "werqerq",
           "assignee": "Michał Bukowski",
           "deadline": "2026-09-23",
-          "done": true
+          "done": true,
+          "taskNumber": 9,
+          "taskYear": 2026
         },
         {
           "id": "e978f0f0-f299-4b7a-9d9c-40e4888aa916",
           "text": "wqeerqwer",
           "assignee": "Wiktoria Adamczyk",
           "deadline": "2026-09-25",
-          "done": false
+          "done": false,
+          "taskNumber": 10,
+          "taskYear": 2026
         }
       ],
       "comments": [
@@ -55,7 +63,8 @@
           "createdAt": "2026-09-18T12:22:22.486Z"
         }
       ],
-      "projectNumber": 1
+      "projectNumber": 1,
+      "projectYear": 2026
     },
     {
       "id": "p2",
@@ -70,7 +79,8 @@
       ],
       "projectTasks": [],
       "comments": [],
-      "projectNumber": 2
+      "projectNumber": 2,
+      "projectYear": 2026
     },
     {
       "id": "p3",
@@ -85,7 +95,8 @@
       ],
       "projectTasks": [],
       "comments": [],
-      "projectNumber": 3
+      "projectNumber": 3,
+      "projectYear": 2026
     }
   ],
   "tasks": [
@@ -96,7 +107,9 @@
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
       "history": [],
-      "assignee": "Michał Bukowski"
+      "assignee": "Michał Bukowski",
+      "taskNumber": 1,
+      "taskYear": 2026
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
@@ -105,7 +118,9 @@
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
       "history": [],
-      "assignee": "Michał Bukowski"
+      "assignee": "Michał Bukowski",
+      "taskNumber": 2,
+      "taskYear": 2026
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
@@ -114,7 +129,9 @@
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
       "history": [],
-      "assignee": "Michał Bukowski"
+      "assignee": "Michał Bukowski",
+      "taskNumber": 3,
+      "taskYear": 2026
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
@@ -123,7 +140,9 @@
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-18",
       "history": [],
-      "assignee": "Michał Bukowski"
+      "assignee": "Michał Bukowski",
+      "taskNumber": 4,
+      "taskYear": 2026
     },
     {
       "id": "d2cc27ea-f6ec-4757-8d2a-00d6e0c76905",
@@ -142,7 +161,9 @@
           "date": "2026-09-18",
           "createdAt": "2026-09-18T12:07:00.202Z"
         }
-      ]
+      ],
+      "taskNumber": 5,
+      "taskYear": 2026
     },
     {
       "id": "8fa9be80-ca9f-4327-bdca-20761f03c2e8",
@@ -161,8 +182,10 @@
           "date": "2026-09-18",
           "createdAt": "2026-09-18T12:43:04.598Z"
         }
-      ]
+      ],
+      "taskNumber": 6,
+      "taskYear": 2026
     }
   ],
-  "updatedAt": "2026-09-18T16:43:57.022Z"
+  "updatedAt": "2026-09-18T16:51:36.822Z"
 }
