@@ -101,24 +101,48 @@
       "done": false,
       "id": "a6c2bd68-253c-468c-8519-2800fc6b4884",
       "createdAt": "2026-09-17T11:56:12.384Z",
-      "scheduledFor": "2026-09-17",
-      "history": []
+      "scheduledFor": "2026-09-18",
+      "history": [
+        {
+          "id": "baca53b9-b434-4372-889c-530d58ee387b",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 17.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-18T05:08:28.952Z"
+        }
+      ]
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
       "done": false,
       "id": "b434f23b-785d-423b-a109-7f9baf1a27f8",
       "createdAt": "2026-09-17T11:56:12.384Z",
-      "scheduledFor": "2026-09-17",
-      "history": []
+      "scheduledFor": "2026-09-18",
+      "history": [
+        {
+          "id": "319fbbf1-ac32-4b9f-beb6-e1b1c01ed641",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 17.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-18T05:08:28.953Z"
+        }
+      ]
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
       "done": false,
       "id": "ce5f26f7-5fb4-4bd5-aa25-98afe41780e4",
       "createdAt": "2026-09-17T11:56:12.384Z",
-      "scheduledFor": "2026-09-17",
-      "history": []
+      "scheduledFor": "2026-09-18",
+      "history": [
+        {
+          "id": "ef4ffb16-5fb7-4579-88af-b342f90abb7e",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 17.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-18T05:08:28.954Z"
+        }
+      ]
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
@@ -179,10 +203,17 @@
       "text": "dfasdf",
       "done": false,
       "createdAt": "2026-09-17T12:19:38.613Z",
-      "scheduledFor": "2026-09-17",
+      "scheduledFor": "2026-09-18",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "aff035cf-aa7a-4e5f-bb54-20fa4d5bdba2",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 17.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-18T05:08:28.954Z"
+        },
         {
           "id": "8e3ee239-01be-4982-b180-51936a827a7f",
           "type": "rollover",
@@ -218,5 +249,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-17T13:12:40.316Z"
+  "updatedAt": "2026-09-18T05:08:27.744Z"
 }
