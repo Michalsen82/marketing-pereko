@@ -11,23 +11,50 @@
       "members": [
         "Michał"
       ],
-      "projectTasks": [
-        {
-          "id": "b5881666-6a2a-4fe6-bf77-0cfc1c4a62eb",
-          "text": "wqeerqwer",
-          "assignee": "Wiktoria Adamczyk",
-          "deadline": "2026-09-17",
-          "done": false
-        }
+      "projectTasks": [],
+      "comments": []
+    },
+    {
+      "id": "p2",
+      "name": "Targi HVAC 2027",
+      "owner": "Michał",
+      "status": "plan",
+      "progress": 0,
+      "deadline": "2027-03-01",
+      "desc": "Plan targów, harmonogram, ekspozycja, materiały i komunikacja.",
+      "members": [
+        "Michał"
       ],
-      "comments": [
-        {
-          "id": "e980532d-95b8-424c-b9ed-b9b8efbd7248",
-          "text": "asdfasdf",
-          "author": "Michał Bukowski",
-          "createdAt": "2026-09-18T11:56:57.214Z"
-        }
-      ]
+      "projectTasks": [],
+      "comments": []
+    },
+    {
+      "id": "p3",
+      "name": "Upominki świąteczne",
+      "owner": "Wiktoria",
+      "status": "plan",
+      "progress": 0,
+      "deadline": "2026-11-20",
+      "desc": "Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.",
+      "members": [
+        "Wiktoria"
+      ],
+      "projectTasks": [],
+      "comments": []
+    },
+    {
+      "id": "p4",
+      "name": "Świat Kominków — Targi 2027",
+      "owner": "Michał",
+      "status": "plan",
+      "progress": 0,
+      "deadline": "2027-02-15",
+      "desc": "Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji.",
+      "members": [
+        "Michał"
+      ],
+      "projectTasks": [],
+      "comments": []
     },
     {
       "id": "p5",
@@ -48,35 +75,35 @@
     {
       "text": "Ustalić najbliższe terminy dla wszystkich projektów",
       "done": false,
-      "id": "af955ab2-6e43-454e-b5d7-1f9a3f7410f0",
-      "createdAt": "2026-09-18T11:52:59.159Z",
+      "id": "9c285ccf-303c-4288-ad82-7a1c6517f921",
+      "createdAt": "2026-09-18T11:57:12.156Z",
       "scheduledFor": "2026-09-18",
       "history": []
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
       "done": false,
-      "id": "ab812c0c-177b-4715-894c-438c101fc0f8",
-      "createdAt": "2026-09-18T11:52:59.159Z",
+      "id": "e13b70e0-5faa-4b56-9747-39ca40a0d173",
+      "createdAt": "2026-09-18T11:57:12.156Z",
       "scheduledFor": "2026-09-18",
       "history": []
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
       "done": false,
-      "id": "7d9f7996-fecd-4937-a6e3-dd0201b65814",
-      "createdAt": "2026-09-18T11:52:59.159Z",
+      "id": "7e32c450-d060-41e0-a42e-71ef02eae6be",
+      "createdAt": "2026-09-18T11:57:12.156Z",
       "scheduledFor": "2026-09-18",
       "history": []
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
       "done": false,
-      "id": "bda0c14e-2326-4c8e-95e0-8f4a9463d8af",
-      "createdAt": "2026-09-18T11:52:59.159Z",
+      "id": "fa288d45-7a81-4dda-b1a8-80c47c54e6ed",
+      "createdAt": "2026-09-18T11:57:12.156Z",
       "scheduledFor": "2026-09-18",
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T11:56:58.123Z"
+  "updatedAt": "2026-09-18T11:57:12.554Z"
 }
