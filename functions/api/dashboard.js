@@ -2,6 +2,21 @@ const OWNER = 'Michalsen82';
 const REPO = 'marketing-pereko';
 const FILE_PATH = 'data/dashboard.json';
 const BRANCH = 'main';
+const SUPABASE_URL = 'https://gtzbjpgpxopccauicumz.supabase.co';
+const SUPABASE_KEY = 'sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
+
+async function requireUser(request) {
+  const authorization = request.headers.get('Authorization') || '';
+  if (!authorization.startsWith('Bearer ')) return null;
+  const response = await fetch(`${SUPABASE_URL}/auth/v1/user`, {
+    headers: {
+      'Authorization': authorization,
+      'apikey': SUPABASE_KEY
+    }
+  });
+  if (!response.ok) return null;
+  return response.json();
+}
 
 const ghHeaders = token => ({
   'Authorization': `Bearer ${token}`,
@@ -32,6 +47,8 @@ async function getCurrentFile(token) {
 
 export async function onRequestGet(context) {
   try {
+    const user = await requireUser(context.request);
+    if (!user) return Response.json({ error: 'Brak autoryzacji' }, { status: 401 });
     const token = context.env.GITHUB_TOKEN;
     if (!token) return Response.json({ error: 'Brak sekretu GITHUB_TOKEN' }, { status: 500 });
     const file = await getCurrentFile(token);
@@ -44,6 +61,8 @@ export async function onRequestGet(context) {
 
 export async function onRequestPut(context) {
   try {
+    const user = await requireUser(context.request);
+    if (!user) return Response.json({ error: 'Brak autoryzacji' }, { status: 401 });
     const token = context.env.GITHUB_TOKEN;
     if (!token) return Response.json({ error: 'Brak sekretu GITHUB_TOKEN' }, { status: 500 });
 
