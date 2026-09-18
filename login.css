@@ -474,3 +474,43 @@ html,body{
 @media(max-width:620px){
   .topbar{width:calc(100% - 24px)!important}
 }
+
+
+/* Korekta proporcji strony logowania — obie strony szersze i bliżej środka */
+.login-page>.login-shell{
+  grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+  column-gap:28px!important;
+  align-items:center!important;
+}
+.login-page .login-visual{
+  padding:42px 14px 42px 0!important;
+}
+.login-left-content{
+  max-width:none!important;
+  width:100%!important;
+}
+.login-feature-grid{
+  width:100%!important;
+}
+.login-panel{
+  padding:42px 0 42px 14px!important;
+  place-items:center stretch!important;
+}
+.login-card{
+  width:100%!important;
+  max-width:none!important;
+}
+@media(max-width:1100px){
+  .login-page>.login-shell{
+    grid-template-columns:minmax(0,1.05fr) minmax(380px,.95fr)!important;
+    column-gap:22px!important;
+  }
+}
+@media(max-width:900px){
+  .login-page>.login-shell{
+    grid-template-columns:1fr!important;
+    column-gap:0!important;
+  }
+  .login-page .login-visual{padding-right:0!important}
+  .login-panel{padding-left:0!important}
+}
