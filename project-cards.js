@@ -1,5 +1,28 @@
 (()=>{
   const expanded=new Set();
+  const searchNorm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+  const projectNumberLabel=p=>{
+    const n=Number(p?.projectNumber);
+    return Number.isInteger(n)&&n>0?'P-'+String(n).padStart(3,'0'):'P-—';
+  };
+  const matchesProjectSearch=(p,raw)=>{
+    const q=searchNorm(raw);
+    if(!q)return true;
+    const name=searchNorm(p?.name);
+    const words=q.split(' ').filter(Boolean);
+    const titleMatch=name.includes(q)||(words.length>1&&words.every(word=>name.includes(word)));
+    const n=Number(p?.projectNumber);
+    const compact=String(raw||'').toLowerCase().replace(/\s+/g,'');
+    const digits=compact.replace(/^p[-#]?/,'').replace(/\D/g,'');
+    const numberMatch=Number.isInteger(n)&&n>0&&(
+      compact===String(n)||
+      compact===String(n).padStart(3,'0')||
+      compact===('p-'+String(n).padStart(3,'0'))||
+      compact===('p'+String(n).padStart(3,'0'))||
+      (digits!==''&&Number(digits)===n)
+    );
+    return titleMatch||numberMatch;
+  };
   const normPerson=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
   const taskForLoggedUser=t=>{
     const person=window.perekoLoggedPerson;
@@ -86,8 +109,14 @@
 
   const decorate=()=>{
     const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
+    const searchValue=document.querySelector('#projectSearch')?.value||'';
+    let matchedCount=0;
     document.querySelectorAll('.project').forEach((card,i)=>{
       const p=visible[i]; if(!p)return;
+      const searchMatch=matchesProjectSearch(p,searchValue);
+      card.classList.toggle('project-search-hidden',!searchMatch);
+      if(searchMatch)matchedCount+=1;
+      card.dataset.projectNumber=String(p.projectNumber||'');
       card.dataset.projectId=p.id;
       const myTasks=myOpenTasks(p);
       card.classList.toggle('has-my-tasks',myTasks.length>0);
@@ -110,6 +139,13 @@
         if(desc)copy.appendChild(desc);
       }
       const titleCopy=main?.querySelector('.project-title-copy');
+      let number=titleCopy?.querySelector('.project-number');
+      if(titleCopy&&!number){
+        number=document.createElement('span');
+        number.className='project-number';
+        titleCopy.insertBefore(number,titleCopy.firstChild);
+      }
+      if(number)number.textContent=projectNumberLabel(p);
       let mine=titleCopy?.querySelector('.project-my-task-badge');
       if(myTasks.length){
         if(!mine){
@@ -174,6 +210,24 @@
       const oldActions=card.querySelector('.project-actions');
       if(oldActions)oldActions.remove();
     });
+
+    const count=document.querySelector('#projectSearchCount');
+    const hasQuery=searchValue.trim().length>0;
+    if(count)count.textContent=hasQuery?matchedCount+' z '+visible.length+' projektów':visible.length+' projektów';
+    const clear=document.querySelector('#projectSearchClear');
+    if(clear)clear.classList.toggle('visible',hasQuery);
+    const list=document.querySelector('#projectList');
+    let empty=list?.querySelector('.project-search-empty');
+    if(hasQuery&&visible.length&&matchedCount===0){
+      if(!empty){
+        empty=document.createElement('div');
+        empty.className='project-search-empty';
+        empty.textContent='Nie znaleziono projektu o takim numerze lub nazwie.';
+        list?.appendChild(empty);
+      }
+    }else if(empty){
+      empty.remove();
+    }
   };
 
   const previousRender=render;
@@ -184,6 +238,15 @@
   };
 
   document.addEventListener('pereko:user-ready',()=>decorate());
+  const projectSearch=document.querySelector('#projectSearch');
+  const projectSearchClear=document.querySelector('#projectSearchClear');
+  projectSearch?.addEventListener('input',decorate);
+  projectSearchClear?.addEventListener('click',()=>{
+    if(!projectSearch)return;
+    projectSearch.value='';
+    projectSearch.focus();
+    decorate();
+  });
   formatToday();
   decorate();
 })();
