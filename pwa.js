@@ -81,6 +81,12 @@
     return false;
   }
   function showInstallHelp(){
+    const loginPanel=document.querySelector('#pwaLoginPanel');
+    if(loginPanel&&!window.perekoLoggedPerson){
+      const box=loginPanel.querySelector('.pwa-login-help');
+      if(box)box.innerHTML=isIOS()?iosGuide():androidGuide();
+      return;
+    }
     ensureSettings();
     settingsModal.classList.add('open');
     const guide=settingsModal.querySelector('#pwaInstallGuide');
