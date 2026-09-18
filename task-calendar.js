@@ -169,7 +169,7 @@
   const baseRender=render;
   render=function(){baseRender();renderTaskCalendar()};
   const baseLoadRemote=loadRemote;
-  loadRemote=async function(){const out=await baseLoadRemote();normalizeTasks();renderTaskCalendar();return out};
+  loadRemote=async function(...args){const out=await baseLoadRemote(...args);if(out){normalizeTasks();renderTaskCalendar()}return out};
   selectedTaskDate=isoToday();
   normalizeTasks();
   renderTaskCalendar();
