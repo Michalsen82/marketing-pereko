@@ -63,20 +63,6 @@
       ],
       "projectTasks": [],
       "comments": []
-    },
-    {
-      "id": "p5",
-      "name": "Świat Kominków — materiały do gazety",
-      "owner": "Michał",
-      "status": "work",
-      "progress": 0,
-      "deadline": "2026-10-05",
-      "desc": "Artykuły, reklamy, materiały produktowe i terminy publikacji.",
-      "members": [
-        "Michał"
-      ],
-      "projectTasks": [],
-      "comments": []
     }
   ],
   "tasks": [
@@ -113,5 +99,5 @@
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T12:01:26.537Z"
+  "updatedAt": "2026-09-18T12:03:48.329Z"
 }
