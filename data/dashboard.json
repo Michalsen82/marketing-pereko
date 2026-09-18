@@ -54,7 +54,8 @@
           "author": "Wiktoria Adamczyk",
           "createdAt": "2026-09-18T12:22:22.486Z"
         }
-      ]
+      ],
+      "projectNumber": 1
     },
     {
       "id": "p2",
@@ -68,7 +69,8 @@
         "Michał"
       ],
       "projectTasks": [],
-      "comments": []
+      "comments": [],
+      "projectNumber": 2
     },
     {
       "id": "p3",
@@ -82,7 +84,8 @@
         "Wiktoria"
       ],
       "projectTasks": [],
-      "comments": []
+      "comments": [],
+      "projectNumber": 3
     }
   ],
   "tasks": [
@@ -161,5 +164,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T15:38:52.719Z"
+  "updatedAt": "2026-09-18T16:43:57.022Z"
 }
