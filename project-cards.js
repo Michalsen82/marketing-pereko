@@ -103,6 +103,17 @@
         mine.remove();
       }
 
+      const ownerText=String(p.owner||'Brak właściciela').trim();
+      let ownerBadge=card.querySelector('.project-owner-badge');
+      if(!ownerBadge){
+        ownerBadge=document.createElement('div');
+        ownerBadge.className='project-owner-badge';
+        card.appendChild(ownerBadge);
+      }
+      ownerBadge.innerHTML='<span>Właściciel projektu</span><strong>'+esc(ownerText)+'</strong>';
+      const oldOwner=main?.querySelector('.project-owner');
+      if(oldOwner) oldOwner.style.display='none';
+
       let controls=card.querySelector('.project-card-controls');
       if(!controls){
         controls=document.createElement('div');
