@@ -348,3 +348,91 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
   pointer-events:none!important;
   z-index:1!important
 }
+
+
+/* Infografika dni do zamknięcia projektu */
+.project-card-controls{
+  justify-content:space-between!important;
+  align-items:center!important;
+  gap:14px!important
+}
+.project-card-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin-left:auto!important
+}
+.project-close-info{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  min-width:0!important
+}
+.project-close-badge{
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  border-radius:12px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(255,255,255,.98)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.16)!important;
+  color:#3b4145!important
+}
+.project-close-badge strong{
+  font:800 15px/1 'Montserrat',sans-serif!important;
+  color:#3b4145!important
+}
+.project-close-badge span{
+  margin-top:3px!important;
+  font:700 7.5px/1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important;
+  color:#5f666b!important
+}
+.project-close-copy{
+  max-width:260px!important;
+  color:#fff!important;
+  font:600 10.5px/1.35 'Montserrat',sans-serif!important
+}
+.project-close-info.overdue .project-close-badge{
+  background:#cf5148!important;
+  border-color:#df7169!important
+}
+.project-close-info.overdue .project-close-badge strong,
+.project-close-info.overdue .project-close-badge span{
+  color:#fff!important
+}
+.project-close-info.overdue .project-close-copy{
+  color:#ffbdb8!important
+}
+.project-close-info.today .project-close-badge{
+  background:rgba(255,255,255,1)!important
+}
+.project-close-info.none .project-close-badge{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.14)!important
+}
+.project-close-info.none .project-close-badge strong,
+.project-close-info.none .project-close-badge span{
+  color:rgba(255,255,255,.58)!important
+}
+.project-close-info.none .project-close-copy{
+  color:rgba(255,255,255,.52)!important
+}
+
+@media(max-width:760px){
+  .project-card-controls{
+    align-items:flex-start!important;
+    flex-direction:column!important
+  }
+  .project-card-actions{
+    margin-left:0!important;
+    width:100%!important
+  }
+  .project-close-copy{
+    max-width:none!important
+  }
+}
