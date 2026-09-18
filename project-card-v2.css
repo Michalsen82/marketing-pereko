@@ -670,3 +670,81 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
 .project-preview-deadline-text.none{
   color:rgba(255,255,255,.50)!important
 }
+
+
+/* FINAL: wyrównanie prawego bloku intro do prawej krawędzi dashboardu */
+.intro-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.55fr) minmax(320px,.72fr)!important;
+  column-gap:18px!important;
+  align-items:start!important;
+}
+.intro-actions{
+  width:100%!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  column-gap:12px!important;
+  align-items:start!important;
+  justify-self:stretch!important;
+  justify-content:stretch!important;
+  min-width:0!important;
+}
+.intro-actions .date-box{
+  margin:0!important;
+  transform:none!important;
+  justify-self:start!important;
+}
+.intro-project-actions{
+  margin:0!important;
+  padding:10px 0 0 0!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  justify-content:flex-start!important;
+  gap:7px!important;
+}
+.intro-add-project{
+  margin:0!important;
+  align-self:flex-end!important;
+}
+.stats-toggle-btn{
+  align-self:flex-end!important;
+  width:auto!important;
+  min-width:0!important;
+  height:27px!important;
+  min-height:27px!important;
+  padding:0 9px!important;
+  border-radius:8px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:6px!important;
+  background:rgba(255,255,255,.055)!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+  color:rgba(255,255,255,.66)!important;
+  font:700 8.5px/1 'Montserrat',sans-serif!important;
+  box-shadow:none!important;
+  white-space:nowrap!important
+}
+.stats-toggle-btn svg{
+  width:11px!important;
+  height:11px!important;
+  fill:currentColor!important;
+  flex:0 0 11px!important
+}
+.stats-toggle-btn:hover{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.18)!important;
+  color:#fff!important
+}
+.stats-grid.is-hidden{display:none!important}
+
+@media(max-width:1100px){
+  .intro-row{grid-template-columns:1fr!important}
+  .intro-actions{grid-template-columns:minmax(0,1fr) auto!important}
+}
+@media(max-width:760px){
+  .intro-actions{grid-template-columns:1fr!important;row-gap:12px!important}
+  .intro-project-actions{padding-top:0!important;align-items:flex-start!important}
+  .intro-add-project,.stats-toggle-btn{align-self:flex-start!important}
+}
