@@ -10,7 +10,7 @@
   });
   form?.addEventListener('submit',e=>{
     e.preventDefault();
-    message.textContent='Bezpieczne uwierzytelnianie podłączymy w następnym kroku.';
+    window.location.href='index.html';
   });
   document.querySelector('#forgotPassword')?.addEventListener('click',()=>{
     message.textContent='Reset hasła zostanie uruchomiony razem z systemem logowania.';
