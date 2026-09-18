@@ -36,6 +36,7 @@
     const remaining=Math.max(0,list.length-5);
     const projectDue=closeInfo(p.deadline);
     return `<div class="project-preview">
+      <div class="project-preview-deadline-text ${projectDue.state}">${projectDue.text}</div>
       <div class="project-preview-grid">
         <div class="project-preview-block">
           <span class="project-preview-label">ZADANIA</span>
