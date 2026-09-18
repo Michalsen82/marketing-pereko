@@ -1,5 +1,10 @@
 (()=>{
-  const TEAM=['Michał Bukowski','Wiktoria','Łukasz','Andrzej Guzera'];
+  const TEAM=['Michał Bukowski','Wiktoria Adamczyk','Łukasz Drozdowski','Paweł Chaja','Andrzej Guzera','Randomowy User'];
+  const getTeamNames=()=>{
+    let local=[];
+    try{local=JSON.parse(localStorage.getItem('pereko_team')||'[]')}catch{}
+    return [...new Set([...TEAM,...local.map(p=>p?.name),window.perekoLoggedPerson?.name].filter(Boolean))];
+  };
   let currentProjectId=null;
 
   const ensureProjectData=p=>{
@@ -188,7 +193,7 @@
 
     const memberSelect=$('#pdMemberSelect');
     const assigneeSelect=$('#pdTaskAssignee');
-    const choices=[...new Set([...TEAM,...p.members,p.owner].filter(Boolean))];
+    const choices=[...new Set([...getTeamNames(),...p.members,p.owner].filter(Boolean))];
     memberSelect.innerHTML='<option value="">Wybierz osobę</option>'+choices.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
     assigneeSelect.innerHTML='<option value="">Bez przypisania</option>'+choices.map(x=>`<option value="${esc(x)}">${esc(x)}</option>`).join('');
     renderMembers(p);
@@ -245,13 +250,13 @@
   }
 
   function renderComments(p){
-    $('#pdComments').innerHTML=p.comments.length?p.comments.map(c=>`<div class="pd-comment"><div class="pd-comment-avatar">MB</div><div><div class="pd-comment-meta"><strong>${esc(c.author||'Michał')}</strong><span>${esc(formatDateTime(c.createdAt))}</span></div><p>${esc(c.text)}</p></div></div>`).join(''):'<div class="pd-empty">Brak komentarzy i notatek.</div>';
+    $('#pdComments').innerHTML=p.comments.length?p.comments.map(c=>{const author=c.author||'Użytkownik';const initials=author.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();return `<div class="pd-comment"><div class="pd-comment-avatar">${esc(initials)}</div><div><div class="pd-comment-meta"><strong>${esc(author)}</strong><span>${esc(formatDateTime(c.createdAt))}</span></div><p>${esc(c.text)}</p></div></div>`}).join(''):'<div class="pd-empty">Brak komentarzy i notatek.</div>';
   }
 
   function addProjectComment(){
     const p=getCurrent();if(!p)return;
     const text=$('#pdCommentText').value.trim();if(!text)return;
-    p.comments.unshift({id:crypto.randomUUID(),text,author:'Michał',createdAt:new Date().toISOString()});
+    p.comments.unshift({id:crypto.randomUUID(),text,author:window.perekoLoggedPerson?.name||'Użytkownik',createdAt:new Date().toISOString()});
     $('#pdCommentText').value='';
     save();renderComments(p);
   }
