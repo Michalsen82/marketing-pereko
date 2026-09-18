@@ -799,3 +799,11 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     margin:0!important;
   }
 }
+
+
+/* FINAL: podniesienie daty do osi Marketing PEREKO / Nowy projekt */
+@media(min-width:1101px){
+  .intro-actions .date-box{
+    transform:translateY(-16px)!important;
+  }
+}
