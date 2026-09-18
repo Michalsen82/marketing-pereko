@@ -348,3 +348,59 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
   pointer-events:none!important;
   z-index:1!important
 }
+
+
+/* Informacja o czasie do zamknięcia projektu — po lewej, na wysokości akcji */
+.project-card-controls{
+  justify-content:space-between!important;
+}
+.project-card-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  margin-left:auto!important
+}
+.project-days-left{
+  min-height:36px!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  padding:0 12px!important;
+  border-radius:10px!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.92),rgba(255,255,255,.74))!important;
+  color:#17191a!important;
+  box-shadow:0 8px 18px rgba(0,0,0,.16),inset 0 1px 0 rgba(255,255,255,.85)!important;
+  font:700 10.5px/1 'Montserrat',sans-serif!important;
+  white-space:nowrap!important
+}
+.project-days-left.today{
+  background:#fff!important;
+}
+.project-days-left.soon{
+  background:linear-gradient(145deg,rgba(255,255,255,.97),rgba(244,244,244,.80))!important;
+}
+.project-days-left.overdue{
+  background:linear-gradient(145deg,rgba(255,226,223,.96),rgba(255,205,200,.82))!important;
+  color:#7a251f!important;
+  border-color:rgba(255,180,170,.9)!important
+}
+.project-days-left.none{
+  background:rgba(255,255,255,.10)!important;
+  color:rgba(255,255,255,.68)!important;
+  border-color:rgba(255,255,255,.14)!important;
+  box-shadow:none!important
+}
+
+@media(max-width:640px){
+  .project-card-controls{
+    flex-direction:column!important;
+    align-items:stretch!important
+  }
+  .project-days-left{
+    width:max-content!important;
+    max-width:100%!important
+  }
+  .project-card-actions{
+    width:100%!important
+  }
+}
