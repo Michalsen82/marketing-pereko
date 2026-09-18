@@ -102,13 +102,13 @@
               <div class="pd-task-list" id="pdTaskList"></div>
             </div>
 
-            <div class="pd-card pd-comments-card">
-              <div class="pd-card-head"><div><span>KOMENTARZE</span><h3>Komentarze projektu</h3></div></div>
+            <div class="pd-card">
+              <div class="pd-card-head"><div><span>KOMENTARZE</span><h3>Notatki i ustalenia</h3></div></div>
               <div class="pd-comment-form">
-                <textarea id="pdCommentText" rows="3" placeholder="Dodaj komentarz do projektu..."></textarea>
+                <textarea id="pdCommentText" rows="3" placeholder="Dodaj komentarz, ustalenie lub notatkę do projektu..."></textarea>
                 <button class="pd-accent-btn" id="pdCommentSave" type="button">Dodaj komentarz</button>
               </div>
-              <div class="pd-comment-list" id="pdComments"></div>
+              <div class="pd-comments" id="pdComments"></div>
             </div>
           </section>
 
@@ -290,21 +290,7 @@
   }
 
   function renderComments(p){
-    const list=$('#pdComments');
-    list.innerHTML=p.comments.length?p.comments.map(c=>{
-      const author=c.author||'Użytkownik';
-      const initials=author.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
-      return `<div class="pd-comment-row">
-        <div class="pd-comment-avatar">${esc(initials)}</div>
-        <div class="pd-comment-content">
-          <div class="pd-comment-meta">
-            <strong>${esc(author)}</strong>
-            <span>${esc(formatDateTime(c.createdAt))}</span>
-          </div>
-          <p>${esc(c.text)}</p>
-        </div>
-      </div>`;
-    }).join(''):'<div class="pd-empty">Brak zapisanych komentarzy w tym projekcie.</div>';
+    $('#pdComments').innerHTML=p.comments.length?p.comments.map(c=>{const author=c.author||'Użytkownik';const initials=author.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();return `<div class="pd-comment"><div class="pd-comment-avatar">${esc(initials)}</div><div><div class="pd-comment-meta"><strong>${esc(author)}</strong><span>${esc(formatDateTime(c.createdAt))}</span></div><p>${esc(c.text)}</p></div></div>`}).join(''):'<div class="pd-empty">Brak komentarzy i notatek.</div>';
   }
 
   function addProjectComment(){
