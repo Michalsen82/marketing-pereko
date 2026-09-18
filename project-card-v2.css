@@ -1163,3 +1163,119 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     align-items:flex-start!important;
   }
 }
+
+
+/* =========================================================
+   Numeracja i dynamiczne wyszukiwanie projektów
+   ========================================================= */
+.project-search-row{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  padding:13px 18px!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+  background:rgba(255,255,255,.018)!important
+}
+.project-search-box{
+  position:relative!important;
+  width:min(520px,100%)!important;
+  min-width:0!important;
+  display:flex!important;
+  align-items:center!important
+}
+.project-search-box>svg{
+  position:absolute!important;
+  left:13px!important;
+  width:16px!important;
+  height:16px!important;
+  fill:rgba(255,255,255,.62)!important;
+  pointer-events:none!important
+}
+.project-search-box input{
+  width:100%!important;
+  height:42px!important;
+  padding:0 42px 0 40px!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  border-radius:11px!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  outline:none!important;
+  font:600 11px/1 'Montserrat',sans-serif!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.035)!important
+}
+.project-search-box input::placeholder{
+  color:rgba(255,255,255,.42)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.42)!important
+}
+.project-search-box input:focus{
+  border-color:rgba(255,255,255,.26)!important;
+  background:rgba(255,255,255,.075)!important;
+  box-shadow:0 0 0 3px rgba(255,255,255,.045)!important
+}
+.project-search-box input::-webkit-search-cancel-button{
+  display:none!important
+}
+.project-search-clear{
+  position:absolute!important;
+  right:8px!important;
+  width:28px!important;
+  height:28px!important;
+  display:none!important;
+  place-items:center!important;
+  padding:0!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  color:rgba(255,255,255,.62)!important;
+  font:500 20px/1 'Montserrat',sans-serif!important
+}
+.project-search-clear.visible{display:grid!important}
+.project-search-clear:hover{
+  background:rgba(255,255,255,.08)!important;
+  color:#fff!important
+}
+.project-search-count{
+  flex:0 0 auto!important;
+  color:rgba(255,255,255,.46)!important;
+  font:700 9px/1 'Montserrat',sans-serif!important;
+  white-space:nowrap!important
+}
+.project-number{
+  display:block!important;
+  margin-bottom:1px!important;
+  color:rgba(255,255,255,.54)!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important
+}
+.project-search-hidden{
+  display:none!important
+}
+.project-search-empty{
+  padding:30px 18px!important;
+  text-align:center!important;
+  color:rgba(255,255,255,.50)!important;
+  font:600 11px/1.45 'Montserrat',sans-serif!important
+}
+
+@media(max-width:760px){
+  .project-search-row{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+    padding:12px 16px!important
+  }
+  .project-search-box{
+    width:100%!important
+  }
+  .project-search-box input{
+    height:46px!important;
+    font-size:12px!important
+  }
+  .project-search-count{
+    justify-self:start!important;
+    padding-left:1px!important
+  }
+}
