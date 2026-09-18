@@ -592,3 +592,18 @@
   .topbar-actions .password-change-btn{margin-right:43px!important}
   .user-zone-copy{margin-right:86px!important}
 }
+
+
+/* Mobile: finalne wyrównanie nazwy użytkownika do prawej krawędzi górnego bloku tekstowego */
+@media(max-width:760px){
+  .topbar-actions .user-zone-copy{
+    margin-right:18px!important;
+    align-items:flex-end!important;
+    text-align:right!important;
+  }
+}
+@media(max-width:420px){
+  .topbar-actions .user-zone-copy{
+    margin-right:14px!important;
+  }
+}
