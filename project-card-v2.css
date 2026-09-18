@@ -277,3 +277,28 @@ html body input[type="date"]::-webkit-calendar-picker-indicator{
   filter:none!important;
   cursor:pointer!important;
 }
+
+
+/* FINAL: widoczna wartość daty we wszystkich polach */
+html body input[type="date"]{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+  font-family:'Montserrat',sans-serif!important;
+}
+html body input[type="date"]::-webkit-datetime-edit,
+html body input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+html body input[type="date"]::-webkit-datetime-edit-text,
+html body input[type="date"]::-webkit-datetime-edit-day-field,
+html body input[type="date"]::-webkit-datetime-edit-month-field,
+html body input[type="date"]::-webkit-datetime-edit-year-field{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  opacity:1!important;
+}
+.project-deadline-status input[type="date"],
+.deadline-edit input[type="date"]{
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  font-weight:700!important;
+}
