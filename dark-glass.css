@@ -330,11 +330,7 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
 input[type="date"]{
   color-scheme:dark!important
 }
-input[type="date"]::-webkit-calendar-picker-indicator{
-  filter:invert(1) brightness(2)!important;
-  opacity:.95!important;
-  cursor:pointer!important
-}
+
 input[type="date"]::-webkit-datetime-edit,
 input[type="date"]::-webkit-datetime-edit-fields-wrapper,
 input[type="date"]::-webkit-datetime-edit-text,
@@ -525,12 +521,7 @@ html body input[type="date"]{
   -webkit-appearance:auto!important;
   appearance:auto!important
 }
-html body input[type="date"]::-webkit-calendar-picker-indicator{
-  filter:invert(1) brightness(2.2) contrast(1.15)!important;
-  opacity:1!important;
-  cursor:pointer!important;
-  background-color:transparent!important
-}
+html body 
 html body input[type="date"]::-webkit-inner-spin-button,
 html body input[type="date"]::-webkit-clear-button{
   filter:invert(1)!important
@@ -540,10 +531,7 @@ html body input[type="date"]::-webkit-clear-button{
 .deadline-edit input[type="date"]::-webkit-calendar-picker-indicator,
 .field input[type="date"]::-webkit-calendar-picker-indicator,
 .pd-field input[type="date"]::-webkit-calendar-picker-indicator,
-.pd-task-form input[type="date"]::-webkit-calendar-picker-indicator{
-  filter:invert(1) brightness(2.2) contrast(1.15)!important;
-  opacity:1!important
-}
+.pd-task-form 
 
 /* 2. Data główna: 18 bardziej w prawo, większa i optycznie spięta z Piątek / wrzesień / 2026 */
 .date-box{
