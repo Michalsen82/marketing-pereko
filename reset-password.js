@@ -1,7 +1,16 @@
 (()=>{
   const SUPABASE_URL='https://gtzbjpgpxopccauicumz.supabase.co';
   const SUPABASE_KEY='sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
-  const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}});
+  const AUTH_STORAGE_KEY='pereko-marketing-auth';
+  const LEGACY_AUTH_KEY='sb-gtzbjpgpxopccauicumz-auth-token';
+  try{
+    if(!localStorage.getItem(AUTH_STORAGE_KEY)){
+      const legacy=localStorage.getItem(LEGACY_AUTH_KEY);
+      if(legacy)localStorage.setItem(AUTH_STORAGE_KEY,legacy);
+    }
+  }catch{}
+
+  const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true,storage:window.localStorage,storageKey:AUTH_STORAGE_KEY}});
   const form=document.querySelector('#resetForm'),p1=document.querySelector('#resetPassword'),p2=document.querySelector('#resetPassword2'),msg=document.querySelector('#resetMessage'),btn=form.querySelector('.login-submit');
   let recoveryReady=false;
   client.auth.onAuthStateChange((event,session)=>{
