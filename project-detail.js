@@ -501,6 +501,17 @@
     return true;
   }
 
+  window.addEventListener('pereko:data-refreshed',()=>{
+    if(!currentProjectId)return;
+    const modal=document.querySelector('#projectDetailModal');
+    if(!modal?.classList.contains('open'))return;
+    const p=getCurrent();
+    if(!p){closeProjectDetail();return}
+    editingTaskIndex=null;
+    editingCommentIndex=null;
+    fillDetail(p);
+  });
+
   window.openProjectDetail=openProjectDetail;
   window.perekoOpenDeepLink=openDeepLink;
   render();
