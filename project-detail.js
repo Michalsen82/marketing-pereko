@@ -197,8 +197,8 @@
       <label><input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''}><span><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></span></label>
       <button type="button" data-pd-task-remove="${i}" aria-label="Usuń">×</button>
     </div>`).join(''):'<div class="pd-empty">Nie ma jeszcze tasków w tym projekcie.</div>';
-    $('[data-pd-task-done]').forEach(el=>el.onchange=()=>{p.projectTasks[+el.dataset.pdTaskDone].done=el.checked;syncProjectProgress(p);save();render();fillDetail(p)});
-    $('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
+    $$('[data-pd-task-done]').forEach(el=>el.onchange=()=>{p.projectTasks[+el.dataset.pdTaskDone].done=el.checked;syncProjectProgress(p);save();render();fillDetail(p)});
+    $$('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
   }
 
   function addProjectTask(){
