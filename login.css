@@ -514,3 +514,107 @@ html,body{
   .login-page .login-visual{padding-right:0!important}
   .login-panel{padding-left:0!important}
 }
+
+
+/* Minimalistyczny wariant strony logowania */
+.login-minimal-page{
+  min-height:100vh!important;
+  background:#050505!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:40px 24px!important;
+}
+.login-minimal-wrap{
+  width:min(560px,100%)!important;
+  display:grid!important;
+  justify-items:center!important;
+  gap:34px!important;
+}
+.login-brand-center{
+  width:100%!important;
+  display:flex!important;
+  justify-content:center!important;
+}
+.login-brand-center .brand-zone{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:16px!important;
+  color:#fff!important;
+}
+.login-brand-center .brand-badge{
+  width:156px!important;
+  height:38px!important;
+  flex:0 0 156px!important;
+  border:0!important;
+  background-color:transparent!important;
+  background-image:url('https://cp-b2b.pages.dev/assets/logo-pereko.png')!important;
+  background-repeat:no-repeat!important;
+  background-size:148px auto!important;
+  background-position:left center!important;
+  color:transparent!important;
+  font-size:0!important;
+}
+.login-brand-center .brand-copy{
+  min-height:39px!important;
+  padding-left:17px!important;
+  border-left:1px solid rgba(255,255,255,.24)!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-start!important;
+  justify-content:center!important;
+  white-space:nowrap!important;
+}
+.login-brand-center .brand-copy strong{font-size:0!important}
+.login-brand-center .brand-copy strong::after{
+  content:'Centrum Projektów Marketingowych'!important;
+  display:block!important;
+  color:#fff!important;
+  font:700 15px/1.15 'Montserrat',sans-serif!important;
+  letter-spacing:-.015em!important;
+}
+.login-brand-center .brand-copy span{font-size:0!important}
+.login-brand-center .brand-copy span::after{
+  content:'Planowanie, realizacja i kontrola działań marketingowych PEREKO'!important;
+  display:block!important;
+  margin-top:4px!important;
+  color:#b9c2c6!important;
+  font:500 10px/1.25 'Montserrat',sans-serif!important;
+}
+.login-panel-minimal{
+  width:min(460px,100%)!important;
+  background:transparent!important;
+  border:0!important;
+  box-shadow:none!important;
+  padding:0!important;
+}
+.login-panel-minimal .login-card-head{
+  text-align:left!important;
+}
+.login-panel-minimal #loginForm{
+  margin-top:26px!important;
+}
+.login-panel-minimal .login-submit{
+  background:linear-gradient(145deg,rgba(255,255,255,.16),rgba(255,255,255,.075))!important;
+}
+.login-panel-minimal .login-security{
+  display:none!important;
+}
+
+/* schowaj poprzedni layout, jeśli cache złapie stare elementy */
+.topbar-shell,.login-page,.login-shell,.login-visual,.login-panel,.login-card{
+  background:transparent;
+}
+
+@media(max-width:620px){
+  .login-minimal-page{padding:28px 16px!important}
+  .login-minimal-wrap{gap:28px!important}
+  .login-brand-center .brand-zone{gap:12px!important}
+  .login-brand-center .brand-badge{
+    width:132px!important;
+    flex-basis:132px!important;
+    background-size:126px auto!important
+  }
+  .login-brand-center .brand-copy strong::after{font-size:13px!important}
+  .login-brand-center .brand-copy span::after{font-size:8.5px!important}
+}
