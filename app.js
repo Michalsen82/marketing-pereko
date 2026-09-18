@@ -2,6 +2,32 @@ const defaultProjects=[{id:'p1',name:'Centrum Partnera PEREKO',owner:'Michał',s
 const defaultTasks=[{text:'Ustalić najbliższe terminy dla wszystkich projektów',done:false},{text:'Rozpisać kolejne etapy Centrum Partnera PEREKO',done:false},{text:'Przygotować założenia do upominków świątecznych',done:false},{text:'Ustalić zakres materiałów do Świata Kominków',done:false}];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 let projects=JSON.parse(localStorage.getItem('pereko_projects')||'null')||structuredClone(defaultProjects),tasks=JSON.parse(localStorage.getItem('pereko_tasks')||'null')||structuredClone(defaultTasks),activeFilter='all',cloudSyncEnabled=true,remoteReady=false,syncTimer=null;
+const ensureProjectNumbers=()=>{
+  let changed=false;
+  const used=new Set();
+  let max=projects.reduce((m,p)=>{
+    const n=Number(p?.projectNumber);
+    return Number.isInteger(n)&&n>0?Math.max(m,n):m;
+  },0);
+  projects.forEach(p=>{
+    let n=Number(p?.projectNumber);
+    if(Number.isInteger(n)&&n>0&&!used.has(n)){
+      p.projectNumber=n;
+      used.add(n);
+      return;
+    }
+    do{max+=1}while(used.has(max));
+    p.projectNumber=max;
+    used.add(max);
+    changed=true;
+  });
+  return changed;
+};
+const nextProjectNumber=()=>projects.reduce((m,p)=>{
+  const n=Number(p?.projectNumber);
+  return Number.isInteger(n)&&n>0?Math.max(m,n):m;
+},0)+1;
+ensureProjectNumbers();
 const statusText={work:'W realizacji',plan:'Planowany',done:'Zakończony'};
 const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const setSyncStatus=(state,title,text)=>{const c=$('#syncCard');if(!c)return;c.dataset.state=state;$('#syncTitle').textContent=title;$('#syncText').textContent=text};
@@ -38,6 +64,7 @@ async function loadRemote(){
       p=await r.json();
     if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);
     if(Array.isArray(p.projects))projects=p.projects;
+    const projectNumbersAdded=ensureProjectNumbers();
     if(Array.isArray(p.tasks))tasks=p.tasks;
     remoteReady=true;
     window.perekoRemoteReady=true;
@@ -45,6 +72,7 @@ async function loadRemote(){
     saveLocal();
     render();
     setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');
+    if(projectNumbersAdded)setTimeout(()=>pushRemote(),120);
     return true
   }catch(e){
     remoteReady=false;
@@ -113,7 +141,7 @@ function refreshNewProjectOwners(){
   const names=[...new Set(team.map(p=>p&&p.name).filter(Boolean))];
   select.innerHTML='<option value="">Wybierz osobę</option>'+names.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');
 }
-$('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
+$('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
 const norm=s=>String(s||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
 function findProject(q){q=norm(q);let p=projects.find(x=>norm(x.name)===q);if(p)return p;return projects.find(x=>norm(x.name).includes(q)||q.includes(norm(x.name)))||null}
 function parseDate(s){s=norm(s);let m=s.match(/(20\d{2})-(\d{1,2})-(\d{1,2})/);if(m)return `${m[1]}-${m[2].padStart(2,'0')}-${m[3].padStart(2,'0')}`;m=s.match(/(\d{1,2})[.\/-](\d{1,2})[.\/-](20\d{2})/);if(m)return `${m[3]}-${m[2].padStart(2,'0')}-${m[1].padStart(2,'0')}`;const mo={stycznia:1,lutego:2,marca:3,kwietnia:4,maja:5,czerwca:6,lipca:7,sierpnia:8,wrzesnia:9,pazdziernika:10,listopada:11,grudnia:12};m=s.match(/(\d{1,2})\s+([a-z]+)\s+(20\d{2})/);return m&&mo[m[2]]?`${m[3]}-${String(mo[m[2]]).padStart(2,'0')}-${m[1].padStart(2,'0')}`:null}
