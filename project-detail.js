@@ -105,6 +105,30 @@
               <div class="pd-task-list" id="pdTaskList"></div>
             </div>
 
+            <div class="pd-card pd-files-card" id="pdFilesCard">
+              <div class="pd-card-head">
+                <div><span>PLIKI I MATERIAŁY</span><h3>Materiały projektu</h3></div>
+                <div class="pf-head-actions">
+                  <button class="pd-glass-btn" id="pdFilesTrashToggle" type="button">Kosz</button>
+                  <button class="pd-accent-btn" id="pdFilesAdd" type="button">+ Dodaj pliki</button>
+                </div>
+              </div>
+              <input id="pdFilesInput" type="file" multiple hidden>
+              <div class="pf-toolbar">
+                <label class="pf-search">
+                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+                  <input id="pdFilesSearch" type="search" autocomplete="off" placeholder="Szukaj pliku po nazwie lub osobie…">
+                </label>
+                <div class="pf-summary" id="pdFilesSummary">0 plików · 0 B</div>
+              </div>
+              <div class="pf-dropzone" id="pdFilesDropzone">
+                <strong>Przeciągnij pliki tutaj</strong>
+                <span>lub użyj przycisku „Dodaj pliki”. Duże pliki są wysyłane w częściach.</span>
+              </div>
+              <div class="pf-upload-status" id="pdFilesUploadStatus" aria-live="polite"></div>
+              <div class="pf-list" id="pdFilesList"><div class="pd-empty">Ładowanie materiałów…</div></div>
+            </div>
+
             <div class="pd-card">
               <div class="pd-card-head"><div><span>KOMENTARZE</span><h3>Notatki i ustalenia</h3></div></div>
               <div class="pd-comment-form">
@@ -188,6 +212,7 @@
     fillDetail(p);
     $('#projectDetailModal').classList.add('open');
     document.body.classList.add('detail-open');
+    window.perekoProjectFilesOpen?.(p);
   }
 
   function closeProjectDetail(){
