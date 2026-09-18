@@ -81,7 +81,7 @@ function buildPushEvents(previous,next,user){
           payload:{
             title:'Nowe zadanie — PEREKO',
             body:`${actorName} przypisał(a) Ci ${taskLabel(task)}: ${task.text||'Bez nazwy'}`,
-            icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+            icon:'/icons/pereko-marketing-v2-192.png',badge:'/icons/badge-96.png',
             tag:'assignment-'+itemKey(task),url:'/?search=1',badgeCount:1
           }
         });
@@ -106,7 +106,7 @@ function buildPushEvents(previous,next,user){
             payload:{
               title:'Nowe zadanie w projekcie',
               body:`${actorName} przypisał(a) Ci ${taskLabel(task)} w ${projectLabel(project)}: ${task.text||'Bez nazwy'}`,
-              icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+              icon:'/icons/pereko-marketing-v2-192.png',badge:'/icons/badge-96.png',
               tag:'assignment-'+itemKey(task),
               url:`/?projectId=${encodeURIComponent(project.id)}&taskId=${encodeURIComponent(task.id||'')}`,
               projectId:project.id,taskId:task.id||null,badgeCount:1
@@ -122,7 +122,7 @@ function buildPushEvents(previous,next,user){
             payload:{
               title:'Zadanie zakończone',
               body:`${actorName} zakończył(a) ${taskLabel(task)} w ${projectLabel(project)}: ${task.text||'Bez nazwy'}`,
-              icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+              icon:'/icons/pereko-marketing-v2-192.png',badge:'/icons/badge-96.png',
               tag:'done-'+itemKey(task),
               url:`/?projectId=${encodeURIComponent(project.id)}&taskId=${encodeURIComponent(task.id||'')}`,
               projectId:project.id,taskId:task.id||null,badgeCount:1
@@ -141,7 +141,7 @@ function buildPushEvents(previous,next,user){
           payload:{
             title:'Nowy komentarz w projekcie',
             body:`${comment.author||actorName} dodał(a) komentarz w ${projectLabel(project)}: ${String(comment.text||'').slice(0,120)}`,
-            icon:'/icons/pwa-192.png',badge:'/icons/badge-96.png',
+            icon:'/icons/pereko-marketing-v2-192.png',badge:'/icons/badge-96.png',
             tag:'comment-'+commentKey(comment),
             url:`/?projectId=${encodeURIComponent(project.id)}`,
             projectId:project.id,badgeCount:1
