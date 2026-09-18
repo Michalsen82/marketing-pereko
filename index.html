@@ -6,7 +6,6 @@
   <meta name="theme-color" content="#050505" />
   <title>PEREKO — Centrum Projektów Marketingowych</title>
   <link rel="stylesheet" href="styles.css" />
-  <link rel="stylesheet" href="voice.css" />
   <link rel="stylesheet" href="project-detail.css" />
   <link rel="stylesheet" href="task-calendar.css" />
   <link rel="stylesheet" href="readability.css" />
@@ -19,6 +18,7 @@
   <link rel="stylesheet" href="project-card-v2.css" />
   <link rel="stylesheet" href="gantt.css" />
   <link rel="stylesheet" href="account-security.css" />
+  <link rel="stylesheet" href="global-search.css" />
   <link rel="stylesheet" href="mobile-responsive.css" />
 </head>
 <body style="visibility:hidden">
@@ -110,14 +110,6 @@
               </div>
             </div>
           </div>
-          <div class="project-search-row">
-            <label class="project-search-box" for="projectSearch">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
-              <input id="projectSearch" type="search" autocomplete="off" placeholder="Szukaj po numerze lub nazwie projektu…" aria-label="Szukaj projektu po numerze lub nazwie">
-              <button id="projectSearchClear" class="project-search-clear" type="button" aria-label="Wyczyść wyszukiwanie">×</button>
-            </label>
-            <span class="project-search-count" id="projectSearchCount" aria-live="polite"></span>
-          </div>
           <div class="project-list" id="projectList"></div>
         </section>
       </div>
@@ -166,25 +158,20 @@
     </div>
   </footer>
 
-  <button class="assistant-fab" id="assistantFab" aria-label="Otwórz AI Asystenta"><span class="assistant-fab-icon">AI</span><span>Asystent</span></button>
-  <section class="assistant-panel" id="assistantPanel" aria-hidden="true">
-    <div class="assistant-head">
-      <div><span class="assistant-eyebrow">DARMOWY ASYSTENT KOMEND</span><h3>AI Asystent</h3><p>Pracuje na aktualnych danych dashboardu i zapisuje zmiany centralnie.</p></div>
-      <button class="assistant-close" id="assistantClose" type="button">×</button>
+  <button class="global-search-fab" id="globalSearchFab" type="button" aria-label="Wyszukaj projekty i zadania" title="Wyszukaj">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+  </button>
+  <section class="global-search-panel" id="globalSearchPanel" aria-hidden="true">
+    <div class="global-search-head">
+      <div><span>WYSZUKIWARKA</span><h3>Projekty i zadania</h3></div>
+      <button class="global-search-close" id="globalSearchClose" type="button" aria-label="Zamknij">×</button>
     </div>
-    <div class="assistant-messages" id="assistantMessages">
-      <div class="assistant-msg bot"><strong>Asystent</strong><span>Możesz napisać np. „Zmień termin Centrum Partnera na 20 października 2026”, „Ustaw Targi HVAC 2027 na 60%” albo „Dodaj zadanie: przygotować mailing”.</span></div>
-    </div>
-    <div class="assistant-suggestions">
-      <button data-assistant-example="Pokaż projekty">Pokaż projekty</button>
-      <button data-assistant-example="Pokaż najbliższe terminy">Najbliższe terminy</button>
-      <button data-assistant-example="Pomoc">Pomoc</button>
-    </div>
-    <form class="assistant-input-row" id="assistantForm">
-      <textarea id="assistantInput" rows="2" placeholder="Wpisz lub podyktuj polecenie"></textarea>
-      <button type="submit">Wykonaj</button>
-    </form>
-    <div class="assistant-note">Bez OpenAI API — bez dodatkowych opłat. Asystent rozpoznaje obsługiwane komendy i działa na wspólnych danych GitHub.</div>
+    <label class="global-search-input-wrap" for="globalSearchInput">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+      <input id="globalSearchInput" type="search" autocomplete="off" placeholder="Numer lub fraza, np. P-001/26, Z-004/26, Partner…" />
+      <button id="globalSearchClear" type="button" aria-label="Wyczyść">×</button>
+    </label>
+    <div class="global-search-results" id="globalSearchResults"></div>
   </section>
 
   <div class="modal" id="modal">
@@ -208,8 +195,7 @@
   <script src="project-detail.js"></script>
   <script src="task-calendar.js"></script>
   <script src="project-cards.js"></script>
-  <script src="assistant-plus.js"></script>
-  <script src="voice.js"></script>
+  <script src="global-search.js"></script>
   <script src="footer.js"></script>
   <script src="team.js"></script>
   <script src="user-avatar.js"></script>
