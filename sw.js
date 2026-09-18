@@ -28,7 +28,21 @@ const APP_SHELL=[
   '/mobile-responsive.css',
   '/pwa.css',
   '/sharp-corners.css',
-  '/pwa.js'
+  '/pwa.js',
+  '/auth-guard.js',
+  '/app.js',
+  '/project-detail.js',
+  '/task-calendar.js',
+  '/project-cards.js',
+  '/global-search.js',
+  '/project-files.js',
+  '/footer.js',
+  '/team.js',
+  '/user-avatar.js',
+  '/gantt.js',
+  '/account-security.js',
+  '/login.js',
+  '/reset-password.js'
 ];
 
 self.addEventListener('install',event=>{
