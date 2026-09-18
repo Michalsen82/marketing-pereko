@@ -259,7 +259,7 @@
       </div>`;
     }).join(''):'<div class="pd-empty">Nie ma jeszcze zadań w tym projekcie.</div>';
 
-    $('[data-pd-task-done]').forEach(el=>el.onchange=()=>{
+    $$('[data-pd-task-done]').forEach(el=>el.onchange=()=>{
       const task=p.projectTasks[+el.dataset.pdTaskDone];
       if(!task||!isLoggedAssignee(task.assignee)){
         el.checked=!!task?.done;
@@ -278,7 +278,7 @@
       render();
       fillDetail(p);
     });
-    $('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
+    $$('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
   }
 
   function addProjectTask(){
