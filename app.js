@@ -9,6 +9,19 @@ const saveLocal=()=>{localStorage.setItem('pereko_projects',JSON.stringify(proje
 async function pushRemote(manual=false){if(!cloudSyncEnabled&&!manual)return false;setSyncStatus('syncing','Zapisywanie…','Synchronizacja zmian');try{const r=await fetch('/api/dashboard',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects,tasks})}),p=await r.json().catch(()=>({}));if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);cloudSyncEnabled=true;localStorage.setItem('pereko_cloud_sync','1');setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
 function save(){saveLocal();if(cloudSyncEnabled){clearTimeout(syncTimer);syncTimer=setTimeout(()=>pushRemote(),600)}}
 async function loadRemote(){if(!cloudSyncEnabled){setSyncStatus('local','Dane lokalne','Kliknij „Synchronizuj dane”');return false}try{const r=await fetch('/api/dashboard',{cache:'no-store'}),p=await r.json();if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);if(Array.isArray(p.projects))projects=p.projects;if(Array.isArray(p.tasks))tasks=p.tasks;saveLocal();render();setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
+const daysUntil=date=>{
+  if(!date)return null;
+  const now=new Date();now.setHours(0,0,0,0);
+  const target=new Date(date+'T00:00:00');target.setHours(0,0,0,0);
+  return Math.round((target-now)/86400000);
+};
+const deadlineBadge=date=>{
+  const d=daysUntil(date);
+  if(d===null)return '';
+  const cls=d<0?'overdue':d===0?'today':d<=7?'soon':'normal';
+  const text=d<0?'Po terminie: '+Math.abs(d)+' dni':d===0?'Termin dzisiaj':d===1?'1 dzień do terminu':d+' dni do terminu';
+  return '<span class="deadline-countdown '+cls+'">'+text+'</span>';
+};
 const projectProgressInfo=p=>{
   const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
   if(!list.length)return {progress:0,done:0,total:0,hasTasks:false};
@@ -27,7 +40,7 @@ function render(){
         <div class="project-owner">${esc(p.owner||'')}</div>
       </div>
       <div class="project-deadline-status">
-        <div class="deadline-edit"><label>Termin</label><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}"></div>
+        <div class="deadline-edit"><label>Termin</label><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}">${deadlineBadge(p.deadline)}</div>
         <span class="status ${p.status}">${statusText[p.status]}</span>
       </div>
       <div class="progress-wrap ${pi.hasTasks?'':'no-tasks'}">
