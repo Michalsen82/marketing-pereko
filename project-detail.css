@@ -229,3 +229,19 @@ body.detail-open{overflow:hidden}
   color:#9ba5a9!important;
   text-decoration:none!important
 }
+
+
+/* Numer projektu w nagłówku szczegółów */
+.project-detail-meta{
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  flex-wrap:wrap!important
+}
+.pd-project-number{
+  display:block!important;
+  color:rgba(255,255,255,.54)!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important
+}
