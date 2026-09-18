@@ -34,7 +34,9 @@
   })();
 
   window.perekoAuthFetch=async(url,options={})=>{
-    const session=await window.perekoAuthReady;
+    await window.perekoAuthReady;
+    const {data:{session},error}=await client.auth.getSession();
+    if(error||!session)throw error||new Error('Brak aktywnej sesji');
     const headers=new Headers(options.headers||{});
     headers.set('Authorization',`Bearer ${session.access_token}`);
     return fetch(url,{...options,headers});
@@ -44,9 +46,11 @@
     const btn=e.target.closest('#logoutBtn');
     if(!btn)return;
     e.preventDefault();
+    btn.style.pointerEvents='none';
+    try{
+      if(typeof window.perekoFlushSync==='function')await window.perekoFlushSync();
+    }catch{}
     await client.auth.signOut();
-    localStorage.removeItem('pereko_projects');
-    localStorage.removeItem('pereko_tasks');
     window.location.replace('login.html');
   });
 })();
