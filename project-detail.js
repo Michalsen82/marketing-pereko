@@ -277,7 +277,7 @@
   const baseRender=render;
   render=function(){
     baseRender();
-    const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
+    const visible=window.getVisibleProjects?window.getVisibleProjects():(activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter));
     $$('.project').forEach((el,i)=>{
       const p=visible[i];if(!p)return;
       ensureProjectData(p);
