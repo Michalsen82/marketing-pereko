@@ -38,7 +38,7 @@
                 <label class="pd-field"><span>Status</span><select id="pdStatus"><option value="plan">Planowany</option><option value="work">W realizacji</option><option value="done">Zakończony</option></select></label>
                 <label class="pd-field"><span>Termin</span><input id="pdDeadline" type="date"></label>
                 <label class="pd-field"><span>Osoba odpowiedzialna</span><input id="pdOwner" type="text" placeholder="np. Michał"></label>
-                <label class="pd-field"><span>Postęp</span><div class="pd-progress-control"><input id="pdProgress" type="range" min="0" max="100" step="1"><strong id="pdProgressValue">0%</strong></div></label>
+                <label class="pd-field"><span>Postęp</span><div class="pd-progress-control pd-progress-readonly"><div class="pd-progress-bar"><span id="pdProgressBar"></span></div><strong id="pdProgressValue">0%</strong></div><small id="pdProgressHint" class="pd-progress-hint"></small></label>
                 <label class="pd-field pd-full"><span>Opis projektu</span><textarea id="pdDesc" rows="4" placeholder="Zakres, cel, najważniejsze informacje..."></textarea></label>
               </div>
             </div>
@@ -83,6 +83,7 @@
               <div class="pd-summary-row"><span>Termin</span><strong id="pdSummaryDeadline">—</strong></div>
               <div class="pd-summary-row"><span>Taski</span><strong id="pdSummaryTasks">0</strong></div>
               <div class="pd-summary-row"><span>Zespół</span><strong id="pdSummaryMembers">0</strong></div>
+              <div class="pd-danger-zone"><button type="button" id="pdDeleteProject">Usuń projekt</button></div>
             </div>
           </aside>
         </div>
@@ -97,11 +98,31 @@
     $('#pdMemberAdd').onclick=addMember;
 
     ['#pdStatus','#pdDeadline','#pdOwner','#pdDesc'].forEach(sel=>$(sel).addEventListener('change',persistOverview));
-    $('#pdProgress').addEventListener('input',()=>{$('#pdProgressValue').textContent=$('#pdProgress').value+'%'});
-    $('#pdProgress').addEventListener('change',persistOverview);
+    $('#pdDeleteProject').onclick=deleteCurrentProject;
   }
 
   function getCurrent(){return projects.find(p=>p.id===currentProjectId)||null}
+
+  function syncProjectProgress(p){
+    ensureProjectData(p);
+    const total=p.projectTasks.length;
+    const done=p.projectTasks.filter(t=>t.done).length;
+    p.progress=total?Math.round(done/total*100):0;
+    if(total&&done===total)p.status='done';
+    else if(total&&p.status==='done')p.status='work';
+    return {total,done,progress:p.progress};
+  }
+
+  function deleteCurrentProject(){
+    const p=getCurrent();if(!p)return;
+    if(!confirm(`Usunąć projekt „${p.name}”? Tej operacji nie można cofnąć.`))return;
+    projects=projects.filter(x=>x.id!==p.id);
+    currentProjectId=null;
+    save();
+    render();
+    closeProjectDetail();
+    if(typeof pushRemote==='function'&&cloudSyncEnabled)pushRemote(true);
+  }
 
   function openProjectDetail(id){
     buildModal();
@@ -124,8 +145,10 @@
     $('#pdStatus').value=p.status||'plan';
     $('#pdDeadline').value=p.deadline||'';
     $('#pdOwner').value=p.owner||'';
-    $('#pdProgress').value=Number(p.progress)||0;
-    $('#pdProgressValue').textContent=(Number(p.progress)||0)+'%';
+    const prog=syncProjectProgress(p);
+    $('#pdProgressValue').textContent=prog.total?prog.progress+'%':'—';
+    $('#pdProgressBar').style.width=prog.total?prog.progress+'%':'0%';
+    $('#pdProgressHint').textContent=prog.total?`${prog.done}/${prog.total} zadań zakończonych`:'Podłącz zadania, aby liczyć postęp';
     $('#pdDesc').value=p.desc||'';
 
     const memberSelect=$('#pdMemberSelect');
@@ -144,8 +167,8 @@
     p.status=$('#pdStatus').value;
     p.deadline=$('#pdDeadline').value;
     p.owner=$('#pdOwner').value.trim();
-    p.progress=Number($('#pdProgress').value)||0;
     p.desc=$('#pdDesc').value.trim();
+    syncProjectProgress(p);
     if(p.owner&&!p.members.includes(p.owner))p.members.unshift(p.owner);
     save();
     render();
@@ -174,8 +197,8 @@
       <label><input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''}><span><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></span></label>
       <button type="button" data-pd-task-remove="${i}" aria-label="Usuń">×</button>
     </div>`).join(''):'<div class="pd-empty">Nie ma jeszcze tasków w tym projekcie.</div>';
-    $$('[data-pd-task-done]').forEach(el=>el.onchange=()=>{p.projectTasks[+el.dataset.pdTaskDone].done=el.checked;save();renderProjectTasks(p);renderSummary(p)});
-    $$('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);save();renderProjectTasks(p);renderSummary(p)});
+    $('[data-pd-task-done]').forEach(el=>el.onchange=()=>{p.projectTasks[+el.dataset.pdTaskDone].done=el.checked;syncProjectProgress(p);save();render();fillDetail(p)});
+    $('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
   }
 
   function addProjectTask(){
@@ -183,7 +206,7 @@
     const text=$('#pdTaskText').value.trim();if(!text)return;
     p.projectTasks.unshift({id:crypto.randomUUID(),text,assignee:$('#pdTaskAssignee').value,deadline:$('#pdTaskDeadline').value,done:false});
     $('#pdTaskText').value='';$('#pdTaskDeadline').value='';$('#pdTaskAssignee').value='';
-    save();renderProjectTasks(p);renderSummary(p);
+    syncProjectProgress(p);save();render();fillDetail(p);
   }
 
   function renderComments(p){
@@ -199,6 +222,7 @@
   }
 
   function renderSummary(p){
+    syncProjectProgress(p);
     $('#pdSummaryStatus').textContent=statusText[p.status]||'—';
     $('#pdSummaryDeadline').textContent=p.deadline||'Brak';
     $('#pdSummaryTasks').textContent=`${p.projectTasks.filter(t=>t.done).length}/${p.projectTasks.length}`;
