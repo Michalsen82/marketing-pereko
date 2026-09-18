@@ -4,7 +4,7 @@
     {name:'Wiktoria Adamczyk',role:'Marketing Specialist',email:'wiktoria.adamczyk@pereko.pl'},
     {name:'Łukasz Drozdowski',role:'Creative Content & Design Specialist',email:'lukasz.drozdowski@pereko.pl'},
     {name:'Paweł Chaja',role:'AI Implementation Specialist',email:''},
-    {name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.haja@pereko.pl'}
+    {name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.chaja@pereko.pl'}
   ];
   let team=JSON.parse(localStorage.getItem('pereko_team')||'null')||defaults;
   // Migracja wcześniejszych zapisów lokalnych po korekcie nazwisk i przywróceniu Piotra Haja.
@@ -14,7 +14,7 @@
       'Michał Bukowski':'michal.bukowski@pereko.pl',
       'Wiktoria Adamczyk':'wiktoria.adamczyk@pereko.pl',
       'Łukasz Drozdowski':'lukasz.drozdowski@pereko.pl',
-      'Piotr Chaja':'piotr.haja@pereko.pl'
+      'Piotr Chaja':'piotr.chaja@pereko.pl'
     };
     return {
       ...p,
@@ -23,7 +23,7 @@
       email:(typeof p.email==='string'&&p.email.trim())?p.email.trim():(knownEmails[name]||'')
     };
   });
-  if(!team.some(p=>p.name==='Piotr Chaja')) team.push({name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.haja@pereko.pl'});
+  if(!team.some(p=>p.name==='Piotr Chaja')) team.push({name:'Piotr Chaja',role:'AI Transformation & Implementation Specialist',email:'piotr.chaja@pereko.pl'});
   localStorage.setItem('pereko_team',JSON.stringify(team));
   const initials=name=>name.split(/\s+/).map(x=>x[0]).join('').slice(0,2).toUpperCase();
   const escHtml=v=>String(v||'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
