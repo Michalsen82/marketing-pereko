@@ -29,6 +29,12 @@
       ],
       "comments": [
         {
+          "id": "612e77e8-e279-4551-ae3f-4c79d7d9aeb0",
+          "text": "test 3",
+          "author": "Michał Bukowski",
+          "createdAt": "2026-09-18T12:23:05.168Z"
+        },
+        {
           "id": "99bce9a6-1492-4a06-a000-ef51219672f0",
           "text": "test 2",
           "author": "Wiktoria Adamczyk",
@@ -122,5 +128,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T12:22:48.122Z"
+  "updatedAt": "2026-09-18T12:23:05.881Z"
 }
