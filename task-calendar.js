@@ -13,16 +13,6 @@
   const niceDate=iso=>new Date(iso+'T12:00:00').toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'});
   const shortDate=iso=>new Date(iso+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'});
   const nowISO=()=>new Date().toISOString();
-  const taskCloseInfo=deadline=>{
-    if(!deadline)return {days:'—',label:'dni',text:'Brak terminu',state:'none'};
-    const today=new Date(isoToday()+'T00:00:00');
-    const end=new Date(deadline+'T00:00:00');
-    const diff=Math.round((end-today)/86400000);
-    if(diff<0)return {days:String(Math.abs(diff)),label:'dni',text:'Po terminie',state:'overdue'};
-    if(diff===0)return {days:'0',label:'dni',text:'Termin dzisiaj',state:'today'};
-    if(diff===1)return {days:'1',label:'dzień',text:'1 dzień do terminu',state:'soon'};
-    return {days:String(diff),label:'dni',text:diff+' dni do terminu',state:diff<=3?'soon':'normal'};
-  };
   const addHistory=(task,type,text,date=isoToday())=>{
     if(!Array.isArray(task.history))task.history=[];
     task.history.unshift({id:crypto.randomUUID(),type,text,date,createdAt:nowISO()});
@@ -120,7 +110,7 @@
     if(hint)hint.textContent=selectedTaskDate===today?'Dzisiaj':selectedTaskDate<today?'Archiwum dnia':'Zaplanowane';
     const list=document.querySelector('#taskList');if(!list)return;
     const open=visibleOpenTasks();
-    list.innerHTML=open.length?open.map(t=>{const due=taskCloseInfo(t.scheduledFor);return `<label class="task task-calendar-item"><input type="checkbox" data-calendar-task="${t.id}"><span class="task-deadline-mini ${due.state}"><strong>${due.days}</strong><small>${due.label}</small></span><span class="task-calendar-copy"><strong>${esc(t.text)}</strong><small>${t.scheduledFor===today?'Na dziś':`Zaplanowane: ${esc(shortDate(t.scheduledFor))}`}</small><em>${due.text}</em></span></label>`}).join(''):`<div class="task-day-empty">${selectedTaskDate<today?'Brak otwartych zadań — niezakończone zostały przeniesione dalej.':selectedTaskDate===today?'Brak otwartych zadań na dziś.':'Brak zaplanowanych zadań na ten dzień.'}</div>`;
+    list.innerHTML=open.length?open.map(t=>`<label class="task task-calendar-item"><input type="checkbox" data-calendar-task="${t.id}"><span><strong>${esc(t.text)}</strong><small>${t.scheduledFor===today?'Na dziś':`Zaplanowane: ${esc(shortDate(t.scheduledFor))}`}</small></span></label>`).join(''):`<div class="task-day-empty">${selectedTaskDate<today?'Brak otwartych zadań — niezakończone zostały przeniesione dalej.':selectedTaskDate===today?'Brak otwartych zadań na dziś.':'Brak zaplanowanych zadań na ten dzień.'}</div>`;
     document.querySelectorAll('[data-calendar-task]').forEach(el=>el.onchange=()=>toggleTaskDone(el.dataset.calendarTask,el.checked));
     const closed=visibleClosedTasks(),wrap=document.querySelector('#taskClosedWrap');
     if(wrap)wrap.innerHTML=closed.length?`<div class="task-closed-head"><span>ZAMKNIĘTE</span><strong>${closed.length}</strong></div>${closed.map(t=>`<label class="task task-calendar-item done archived"><input type="checkbox" data-calendar-closed="${t.id}" checked><span><strong>${esc(t.text)}</strong><small>Zamknięte ${new Date(t.completedAt||nowISO()).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}</small></span></label>`).join('')}`:'';
