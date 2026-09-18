@@ -11,10 +11,25 @@
       window.location.replace('login.html');
       throw error||new Error('Brak aktywnej sesji');
     }
-    document.body.style.visibility='visible';
     window.perekoCurrentUser=session.user;
+    const email=String(session.user?.email||'').trim().toLowerCase();
+    let localTeam=[];
+    try{localTeam=JSON.parse(localStorage.getItem('pereko_team')||'[]')}catch{}
+    const known={
+      'michal.bukowski@pereko.pl':'Michał Bukowski',
+      'wiktoria.adamczyk@pereko.pl':'Wiktoria Adamczyk',
+      'lukasz.drozdowski@pereko.pl':'Łukasz Drozdowski',
+      'pawel.chaja@pereko.pl':'Paweł Chaja',
+      'andrzej.guzera@pereko.pl':'Andrzej Guzera',
+      'bukowski82@gmail.com':'Randomowy User'
+    };
+    const localPerson=localTeam.find(p=>String(p?.email||'').trim().toLowerCase()===email);
+    const displayName=localPerson?.name||known[email]||session.user?.user_metadata?.full_name||email.split('@')[0]||'Użytkownik';
+    window.perekoLoggedPerson={email,name:displayName};
     const nameEl=document.querySelector('#loggedUserName');
-    if(nameEl&&session.user?.email==='michal.bukowski@pereko.pl') nameEl.textContent='Michał Bukowski';
+    if(nameEl) nameEl.textContent=displayName;
+    document.body.style.visibility='visible';
+    document.dispatchEvent(new CustomEvent('pereko:user-ready',{detail:window.perekoLoggedPerson}));
     return session;
   })();
 
