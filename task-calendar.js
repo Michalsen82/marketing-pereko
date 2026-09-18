@@ -20,6 +20,7 @@
   const niceDate=iso=>new Date(iso+'T12:00:00').toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'});
   const shortDate=iso=>new Date(iso+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'});
   const nowISO=()=>new Date().toISOString();
+  const taskNumberLabel=t=>window.perekoTaskNumberLabel?.(t)||'Z-—';
   const addHistory=(task,type,text,date=isoToday())=>{
     if(!Array.isArray(task.history))task.history=[];
     task.history.unshift({id:crypto.randomUUID(),type,text,date,createdAt:nowISO()});
@@ -91,7 +92,8 @@
     const text=document.querySelector('#taskNewText').value.trim();if(!text)return;
     const date=document.querySelector('#taskNewDate').value||isoToday();
     const who=currentPerson().name||currentPerson().email||legacyOwner;
-    const t={id:crypto.randomUUID(),text,assignee:who,done:false,createdAt:nowISO(),scheduledFor:date,completedAt:null,completedOn:null,history:[]};
+    const identity=window.perekoNextTaskIdentity?.()||{taskNumber:1,taskYear:new Date().getFullYear()};
+    const t={id:crypto.randomUUID(),...identity,text,assignee:who,done:false,createdAt:nowISO(),scheduledFor:date,completedAt:null,completedOn:null,history:[]};
     addHistory(t,'created',`Utworzono task na ${shortDate(date)}`,date);
     tasks.push(t);
     document.querySelector('#taskNewText').value='';
@@ -145,10 +147,10 @@
     if(hint)hint.textContent=selectedTaskDate===today?'Dzisiaj':selectedTaskDate<today?'Archiwum dnia':'Zaplanowane';
     const list=document.querySelector('#taskList');if(!list)return;
     const open=visibleOpenTasks();
-    list.innerHTML=open.length?open.map(t=>`<label class="task task-calendar-item"><input type="checkbox" data-calendar-task="${t.id}" data-task-source="${t._source||'global'}" data-project-id="${t._projectId||''}"><span><strong>${esc(t.text)}</strong><small>${t._source==='project'?`Projekt: ${esc(t._projectName||'')}`:(t.scheduledFor===today?'Na dziś':`Zaplanowane: ${esc(shortDate(t.scheduledFor))}`)}</small></span></label>`).join(''):`<div class="task-day-empty">${selectedTaskDate<today?'Brak otwartych tasków — niezakończone zostały przeniesione dalej.':selectedTaskDate===today?'Brak Twoich otwartych tasków na dziś.':'Brak Twoich tasków zaplanowanych na ten dzień.'}</div>`;
+    list.innerHTML=open.length?open.map(t=>`<label class="task task-calendar-item"><input type="checkbox" data-calendar-task="${t.id}" data-task-source="${t._source||'global'}" data-project-id="${t._projectId||''}"><span><b class="task-number">${esc(taskNumberLabel(t))}</b><strong>${esc(t.text)}</strong><small>${t._source==='project'?`Projekt: ${esc(t._projectName||'')}`:(t.scheduledFor===today?'Na dziś':`Zaplanowane: ${esc(shortDate(t.scheduledFor))}`)}</small></span></label>`).join(''):`<div class="task-day-empty">${selectedTaskDate<today?'Brak otwartych tasków — niezakończone zostały przeniesione dalej.':selectedTaskDate===today?'Brak Twoich otwartych tasków na dziś.':'Brak Twoich tasków zaplanowanych na ten dzień.'}</div>`;
     document.querySelectorAll('[data-calendar-task]').forEach(el=>el.onchange=()=>toggleTaskDone(el.dataset.calendarTask,el.checked,el.dataset.taskSource,el.dataset.projectId));
     const closed=visibleClosedTasks(),wrap=document.querySelector('#taskClosedWrap');
-    if(wrap)wrap.innerHTML=closed.length?`<div class="task-closed-head"><span>ZAMKNIĘTE</span><strong>${closed.length}</strong></div>${closed.map(t=>`<label class="task task-calendar-item done archived"><input type="checkbox" data-calendar-closed="${t.id}" data-task-source="${t._source||'global'}" data-project-id="${t._projectId||''}" checked><span><strong>${esc(t.text)}</strong><small>${t._source==='project'?`Projekt: ${esc(t._projectName||'')}`:`Zamknięte ${new Date(t.completedAt||nowISO()).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}`}</small></span></label>`).join('')}`:''; 
+    if(wrap)wrap.innerHTML=closed.length?`<div class="task-closed-head"><span>ZAMKNIĘTE</span><strong>${closed.length}</strong></div>${closed.map(t=>`<label class="task task-calendar-item done archived"><input type="checkbox" data-calendar-closed="${t.id}" data-task-source="${t._source||'global'}" data-project-id="${t._projectId||''}" checked><span><b class="task-number">${esc(taskNumberLabel(t))}</b><strong>${esc(t.text)}</strong><small>${t._source==='project'?`Projekt: ${esc(t._projectName||'')}`:`Zamknięte ${new Date(t.completedAt||nowISO()).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}`}</small></span></label>`).join('')}`:''; 
     document.querySelectorAll('[data-calendar-closed]').forEach(el=>el.onchange=()=>toggleTaskDone(el.dataset.calendarClosed,el.checked,el.dataset.taskSource,el.dataset.projectId));
     const dateInput=document.querySelector('#taskNewDate');if(dateInput&&!dateInput.value)dateInput.value=selectedTaskDate<today?today:selectedTaskDate;
     renderTaskHistory();
