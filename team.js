@@ -32,7 +32,33 @@
   const module=grid.closest('.module');
   const head=module?.querySelector('.module-head');
 
+  let editingIndex=null;
   function save(){localStorage.setItem('pereko_team',JSON.stringify(team))}
+  function openTeamModal(index=null){
+    editingIndex=index;
+    const modal=document.querySelector('#teamModal');
+    const form=modal?.querySelector('#teamForm');
+    if(!modal||!form)return;
+    const kicker=modal.querySelector('.team-modal-head span');
+    const title=modal.querySelector('.team-modal-head h3');
+    const saveBtn=modal.querySelector('.team-save');
+    if(index===null){
+      form.reset();
+      if(kicker)kicker.textContent='NOWY WSPÓŁPRACOWNIK';
+      if(title)title.textContent='Dodaj osobę do zespołu';
+      if(saveBtn)saveBtn.textContent='Dodaj';
+    }else{
+      const p=team[index];if(!p)return;
+      form.elements.name.value=p.name||'';
+      form.elements.role.value=p.role||'';
+      form.elements.email.value=p.email||'';
+      if(kicker)kicker.textContent='EDYCJA WSPÓŁPRACOWNIKA';
+      if(title)title.textContent='Edytuj dane osoby';
+      if(saveBtn)saveBtn.textContent='Zapisz zmiany';
+    }
+    modal.classList.add('open');
+    setTimeout(()=>form.elements.name?.focus(),0);
+  }
   function render(){
     grid.innerHTML=team.map((p,i)=>`
       <div class="person team-person">
@@ -44,20 +70,7 @@
       if(!confirm('Usunąć tego współpracownika z listy?')) return;
       team.splice(+btn.dataset.teamRemove,1);save();render();
     });
-    grid.querySelectorAll('[data-team-edit]').forEach(btn=>btn.onclick=()=>{
-      const i=+btn.dataset.teamEdit;
-      const p=team[i];
-      const name=prompt('Imię i nazwisko:',p.name);
-      if(name===null)return;
-      const role=prompt('Stanowisko:',p.role);
-      if(role===null)return;
-      const email=prompt('Adres e-mail:',p.email||'');
-      if(email===null)return;
-      p.name=name.trim();
-      p.role=role.trim();
-      p.email=email.trim();
-      save();render();
-    });
+    grid.querySelectorAll('[data-team-edit]').forEach(btn=>btn.onclick=()=>openTeamModal(+btn.dataset.teamEdit));
   }
 
   if(head && !head.querySelector('.team-add-btn')){
@@ -65,7 +78,7 @@
     btn.type='button';
     btn.className='team-add-btn';
     btn.innerHTML='<span>+</span> Dodaj współpracownika';
-    btn.onclick=()=>document.querySelector('#teamModal')?.classList.add('open');
+    btn.onclick=()=>openTeamModal(null);
     head.appendChild(btn);
   }
 
@@ -89,14 +102,16 @@
       </form>
     </div>`;
   document.body.appendChild(modal);
-  const close=()=>modal.classList.remove('open');
+  const close=()=>{editingIndex=null;modal.classList.remove('open')};
   modal.querySelector('.team-modal-close').onclick=close;
   modal.querySelector('.team-cancel').onclick=close;
   modal.onclick=e=>{if(e.target===modal)close()};
   modal.querySelector('#teamForm').onsubmit=e=>{
     e.preventDefault();
     const f=new FormData(e.currentTarget);
-    team.push({name:String(f.get('name')).trim(),role:String(f.get('role')).trim(),email:String(f.get('email')).trim()});
+    const person={name:String(f.get('name')).trim(),role:String(f.get('role')).trim(),email:String(f.get('email')).trim()};
+    if(editingIndex===null) team.push(person);
+    else team[editingIndex]={...team[editingIndex],...person};
     save();render();e.currentTarget.reset();close();
   };
   render();
