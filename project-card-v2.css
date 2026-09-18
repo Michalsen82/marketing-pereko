@@ -95,3 +95,41 @@
   .project-open-btn{flex:1!important}
   .project-owner{margin-left:53px!important}
 }
+
+
+/* Globalny biały selektor daty — niezależny od natywnego koloru przeglądarki */
+html body input[type="date"]{
+  color-scheme:dark!important;
+  padding-right:38px!important;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='white' d='M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z'/%3E%3C/svg%3E")!important;
+  background-repeat:no-repeat!important;
+  background-position:right 12px center!important;
+  background-size:15px 15px!important
+}
+html body input[type="date"]::-webkit-calendar-picker-indicator{
+  opacity:0!important;
+  width:20px!important;
+  height:20px!important;
+  cursor:pointer!important
+}
+
+/* Mniejszy przycisk rozwijania, stylistycznie jak ikona projektu */
+.project-expand-btn{
+  width:34px!important;
+  min-width:34px!important;
+  height:34px!important;
+  padding:0!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.085)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+  color:#fff!important
+}
+.project-expand-btn span{
+  font-size:16px!important;
+  line-height:1!important
+}
+.project-expand-btn:hover{
+  background:rgba(255,255,255,.13)!important;
+  border-color:rgba(255,255,255,.20)!important
+}
