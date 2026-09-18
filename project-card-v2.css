@@ -956,3 +956,114 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     flex:1!important;
   }
 }
+
+
+/* FINAL: uproszczony nagłówek karty projektu */
+.project{
+  grid-template-columns:1fr!important;
+  grid-template-areas:
+    "main"
+    "progress"
+    "controls"
+    "preview"!important;
+}
+.project-main{
+  grid-area:main!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  padding-right:0!important;
+}
+.project-title-row{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  align-items:flex-start!important;
+}
+.project-top-meta{
+  flex:0 0 auto!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:8px!important;
+}
+.project-owner-badge,
+.project-status-badge{
+  position:static!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0 10px!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(255,255,255,.98)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.16)!important;
+  white-space:nowrap!important;
+}
+.project-owner-badge span,
+.project-status-badge span{
+  color:#777f84!important;
+  font:700 7px/1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important;
+  letter-spacing:.08em!important;
+}
+.project-owner-badge strong,
+.project-status-badge strong{
+  color:#202426!important;
+  font:800 10px/1 'Montserrat',sans-serif!important;
+}
+.project-status-badge.work{
+  background:#fff!important;
+}
+.project-status-badge.plan{
+  background:#fff!important;
+}
+.project-status-badge.done{
+  background:#fff!important;
+}
+.project-deadline-status{
+  display:none!important;
+}
+.project-close-copy{
+  display:flex!important;
+  flex-direction:column!important;
+  gap:4px!important;
+  max-width:320px!important;
+}
+.project-close-text{
+  color:#fff!important;
+  font:700 10.5px/1.25 'Montserrat',sans-serif!important;
+}
+.project-close-copy small{
+  display:block!important;
+  color:rgba(255,255,255,.48)!important;
+  font:600 9px/1.2 'Montserrat',sans-serif!important;
+}
+.project-close-info.overdue .project-close-text{
+  color:#ffbdb8!important;
+}
+.project-close-info.overdue .project-close-copy small{
+  color:rgba(255,189,184,.72)!important;
+}
+.project .progress-wrap{
+  margin-left:57px!important;
+}
+.project-card-controls{
+  margin-left:0!important;
+}
+
+@media(max-width:900px){
+  .project-main{
+    flex-direction:column!important;
+  }
+  .project-top-meta{
+    margin-left:57px!important;
+    flex-wrap:wrap!important;
+  }
+}
+@media(max-width:640px){
+  .project-top-meta{
+    margin-left:0!important;
+  }
+}
