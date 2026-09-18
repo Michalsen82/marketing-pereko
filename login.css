@@ -618,3 +618,30 @@ html,body{
   .login-brand-center .brand-copy strong::after{font-size:13px!important}
   .login-brand-center .brand-copy span::after{font-size:8.5px!important}
 }
+
+
+/* FINAL: wspólne marginesy brandingu i formularza logowania */
+.login-minimal-wrap{
+  width:min(620px,100%)!important;
+  justify-items:stretch!important;
+}
+.login-brand-center{
+  width:100%!important;
+  justify-content:stretch!important;
+}
+.login-brand-center .brand-zone{
+  width:100%!important;
+  max-width:none!important;
+  justify-content:flex-start!important;
+}
+.login-panel-minimal{
+  width:100%!important;
+  max-width:none!important;
+}
+.login-panel-minimal .login-card-head,
+.login-panel-minimal #loginForm{
+  width:100%!important;
+}
+@media(max-width:620px){
+  .login-minimal-wrap{width:100%!important}
+}
