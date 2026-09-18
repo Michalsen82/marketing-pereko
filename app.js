@@ -1,7 +1,7 @@
 const defaultProjects=[{id:'p1',name:'Centrum Partnera PEREKO',owner:'Michał',status:'work',progress:55,deadline:'2026-10-15',desc:'Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.'},{id:'p2',name:'Targi HVAC 2027',owner:'Michał',status:'plan',progress:15,deadline:'2027-03-01',desc:'Plan targów, harmonogram, ekspozycja, materiały i komunikacja.'},{id:'p3',name:'Upominki świąteczne',owner:'Wiktoria',status:'plan',progress:10,deadline:'2026-11-20',desc:'Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.'},{id:'p4',name:'Świat Kominków — Targi 2027',owner:'Michał',status:'plan',progress:8,deadline:'2027-02-15',desc:'Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji.'},{id:'p5',name:'Świat Kominków — materiały do gazety',owner:'Michał',status:'work',progress:25,deadline:'2026-10-05',desc:'Artykuły, reklamy, materiały produktowe i terminy publikacji.'}];
 const defaultTasks=[{text:'Ustalić najbliższe terminy dla wszystkich projektów',done:false},{text:'Rozpisać kolejne etapy Centrum Partnera PEREKO',done:false},{text:'Przygotować założenia do upominków świątecznych',done:false},{text:'Ustalić zakres materiałów do Świata Kominków',done:false}];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-let projects=JSON.parse(localStorage.getItem('pereko_projects')||'null')||structuredClone(defaultProjects),tasks=JSON.parse(localStorage.getItem('pereko_tasks')||'null')||structuredClone(defaultTasks),activeFilter='all',projectScope=localStorage.getItem('pereko_project_scope')||'all',cloudSyncEnabled=localStorage.getItem('pereko_cloud_sync')==='1',syncTimer=null;
+let projects=JSON.parse(localStorage.getItem('pereko_projects')||'null')||structuredClone(defaultProjects),tasks=JSON.parse(localStorage.getItem('pereko_tasks')||'null')||structuredClone(defaultTasks),activeFilter='all',cloudSyncEnabled=localStorage.getItem('pereko_cloud_sync')==='1',syncTimer=null;
 const statusText={work:'W realizacji',plan:'Planowany',done:'Zakończony'};
 const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const setSyncStatus=(state,title,text)=>{const c=$('#syncCard');if(!c)return;c.dataset.state=state;$('#syncTitle').textContent=title;$('#syncText').textContent=text};
@@ -9,24 +9,6 @@ const saveLocal=()=>{localStorage.setItem('pereko_projects',JSON.stringify(proje
 async function pushRemote(manual=false){if(!cloudSyncEnabled&&!manual)return false;setSyncStatus('syncing','Zapisywanie…','Synchronizacja zmian');try{const r=await window.perekoAuthFetch('/api/dashboard',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects,tasks})}),p=await r.json().catch(()=>({}));if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);cloudSyncEnabled=true;localStorage.setItem('pereko_cloud_sync','1');setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
 function save(){saveLocal();if(cloudSyncEnabled){clearTimeout(syncTimer);syncTimer=setTimeout(()=>pushRemote(),600)}}
 async function loadRemote(){if(!cloudSyncEnabled){setSyncStatus('local','Dane lokalne','Kliknij „Synchronizuj dane”');return false}try{const r=await window.perekoAuthFetch('/api/dashboard',{cache:'no-store'}),p=await r.json();if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);if(Array.isArray(p.projects))projects=p.projects;if(Array.isArray(p.tasks))tasks=p.tasks;saveLocal();render();setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
-const normPerson=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
-const taskAssignedToLoggedUser=t=>{
-  const person=window.perekoLoggedPerson;
-  if(!person||!t||t.done)return false;
-  const assignee=normPerson(t.assignee);
-  if(!assignee)return false;
-  const full=normPerson(person.name);
-  const email=normPerson(person.email);
-  const first=full.split(' ')[0];
-  return assignee===full||assignee===email||(first&&assignee===first);
-};
-const projectHasMyTasks=p=>(Array.isArray(p.projectTasks)?p.projectTasks:[]).some(taskAssignedToLoggedUser);
-function getVisibleProjects(){
-  let visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
-  if(projectScope==='mine') visible=visible.filter(projectHasMyTasks);
-  return visible;
-}
-window.getVisibleProjects=getVisibleProjects;
 const projectProgressInfo=p=>{
   const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
   if(!list.length)return {progress:0,done:0,total:0,hasTasks:false};
@@ -34,7 +16,7 @@ const projectProgressInfo=p=>{
   return {progress:Math.round(done/list.length*100),done,total:list.length,hasTasks:true};
 };
 function render(){
-  const visible=getVisibleProjects();
+  const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
   $('#projectList').innerHTML=visible.length?visible.map(p=>{
     const pi=projectProgressInfo(p);
     p.progress=pi.progress;
@@ -65,17 +47,7 @@ function render(){
   $$('[data-task]').forEach(x=>x.onchange=()=>{tasks[+x.dataset.task].done=x.checked;save();render()});
   $$('[data-deadline]').forEach(x=>x.onchange=()=>{const p=projects.find(y=>y.id===x.dataset.deadline);if(p){p.deadline=x.value;save();render()}})
 }
-$('[data-filter]').forEach(b=>b.onclick=()=>{$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
-$('[data-project-scope]').forEach(b=>{
-  b.classList.toggle('active',b.dataset.projectScope===projectScope);
-  b.onclick=()=>{
-    projectScope=b.dataset.projectScope;
-    localStorage.setItem('pereko_project_scope',projectScope);
-    $('[data-project-scope]').forEach(x=>x.classList.toggle('active',x===b));
-    render();
-  };
-});
-document.addEventListener('pereko:user-ready',()=>render());
+$$('[data-filter]').forEach(b=>b.onclick=()=>{$$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
 function applyStatsVisibility(){
   const grid=$('.stats-grid'),btn=$('#toggleStats');if(!grid||!btn)return;
   const hidden=localStorage.getItem('pereko_stats_hidden')==='1';
