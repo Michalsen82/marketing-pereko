@@ -680,3 +680,32 @@ html body input[type="date"]::-webkit-clear-button{
   border-radius:12px!important;
   box-sizing:border-box!important;
 }
+
+
+/* Nowy projekt — czytelny dark glass i lista współpracowników */
+#modal .modal-head h3{
+  color:#fff!important;
+}
+#modal .field select,
+#modal .field input,
+#modal .field textarea{
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+}
+#modal .field select{
+  color-scheme:dark!important;
+}
+#modal .field select option{
+  background:#171a1c!important;
+  color:#fff!important;
+}
+#modal .field select:focus,
+#modal .field input:focus,
+#modal .field textarea:focus{
+  border-color:rgba(255,255,255,.28)!important;
+  outline:none!important;
+}
+#modal .field textarea{
+  min-height:92px!important;
+}
