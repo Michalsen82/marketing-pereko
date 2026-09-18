@@ -18,7 +18,7 @@
   <link rel="stylesheet" href="user-avatar.css" />
   <link rel="stylesheet" href="project-card-v2.css" />
 </head>
-<body>
+<body style="visibility:hidden">
   <header class="topbar-shell">
     <div class="topbar">
       <div class="brand-zone">
@@ -34,7 +34,7 @@
           <div><strong id="syncTitle">Dane lokalne</strong><span id="syncText">Synchronizacja nieaktywna</span></div>
         </div>
         <button class="top-button secondary-top" id="syncNow">Synchronizuj dane</button>
-        <a class="logout-btn" href="login.html" title="Wyloguj" aria-label="Wyloguj">
+        <a class="logout-btn" id="logoutBtn" href="login.html" title="Wyloguj" aria-label="Wyloguj">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-8v-2h8V5h-8V3Zm1.4 5.4L10 7l-5 5 5 5 1.4-1.4L8.8 13H16v-2H8.8l2.6-2.6Z"/></svg>
         </a>
         <div class="user-zone" aria-label="Zalogowany użytkownik">
@@ -184,7 +184,7 @@
     </div>
   </div>
 
-  <script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>\n  <script src="auth-guard.js"></script>\n  <script src="app.js"></script>
   <script src="project-detail.js"></script>
   <script src="task-calendar.js"></script>
   <script src="project-cards.js"></script>
