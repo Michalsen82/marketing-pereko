@@ -670,3 +670,30 @@
     column-gap:7px!important;
   }
 }
+
+
+/* Mobile: dokładne wyrównanie nazwiska z tekstem „Centrum Projektów Marketingowych” */
+@media(max-width:760px){
+  .topbar-actions{
+    grid-template-columns:128px minmax(0,1fr) 38px 38px!important;
+    column-gap:12px!important;
+  }
+  .topbar-actions .user-zone{
+    padding-left:12px!important;
+  }
+  .topbar-actions .user-zone-copy{
+    padding:0!important;
+    margin:0!important;
+    align-items:flex-start!important;
+    text-align:left!important;
+  }
+}
+@media(max-width:420px){
+  .topbar-actions{
+    grid-template-columns:112px minmax(0,1fr) 36px 36px!important;
+    column-gap:9px!important;
+  }
+  .topbar-actions .user-zone{
+    padding-left:9px!important;
+  }
+}
