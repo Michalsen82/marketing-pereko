@@ -807,3 +807,27 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     transform:translateY(-16px)!important;
   }
 }
+
+
+/* Zadania przypisane do aktualnie zalogowanego użytkownika */
+.project-my-task-badge{
+  display:inline-flex!important;
+  align-items:center!important;
+  width:max-content!important;
+  max-width:100%!important;
+  margin-top:7px!important;
+  padding:6px 9px!important;
+  border-radius:9px!important;
+  background:rgba(255,214,0,.13)!important;
+  border:1px solid rgba(255,214,0,.55)!important;
+  color:#ffd600!important;
+  font:800 9px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.01em!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.05)!important
+}
+.project.has-my-tasks{
+  border-color:rgba(255,214,0,.22)!important
+}
+.project.has-my-tasks .project-topic-icon{
+  box-shadow:0 0 0 1px rgba(255,214,0,.18),0 8px 20px rgba(0,0,0,.16)!important
+}
