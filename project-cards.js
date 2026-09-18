@@ -19,9 +19,9 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm2 2v3h3V6H6Zm7-2h7v7h-7V4Zm2 2v3h3V6h-3ZM4 13h7v7H4v-7Zm2 2v3h3v-3H6Zm7-2h7v7h-7v-7Zm2 2v3h3v-3h-3Z"/></svg>';
   };
 
-  const previewHtml=p=>{
+  const daysUntil=iso=>{\n    if(!iso)return null;\n    const now=new Date();now.setHours(0,0,0,0);\n    const target=new Date(iso+'T00:00:00');target.setHours(0,0,0,0);\n    return Math.round((target-now)/86400000);\n  };\n  const miniDue=iso=>{\n    const d=daysUntil(iso);\n    if(d===null)return '';\n    const cls=d<0?'overdue':d===0?'today':d<=3?'soon':'normal';\n    const text=d<0?'Po terminie: '+Math.abs(d)+' dni':d===0?'Termin dzisiaj':d===1?'1 dzień':d+' dni';\n    return '<em class=\"project-preview-due '+cls+'\">'+text+'</em>';\n  };\n\n  const previewHtml=p=>{
     const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
-    const tasks=list.slice(0,5).map(t=>`<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></div></div>`).join('');
+    const tasks=list.slice(0,5).map(t=>`<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}${t.deadline?miniDue(t.deadline):''}</small></div></div>`).join('');
     const remaining=Math.max(0,list.length-5);
     return `<div class="project-preview">
       <div class="project-preview-grid">
@@ -31,7 +31,7 @@
         </div>
         <div class="project-preview-block">
           <span class="project-preview-label">PODSUMOWANIE</span>
-          <div class="project-preview-fact"><span>Termin</span><strong>${esc(p.deadline||'Brak')}</strong></div>
+          <div class="project-preview-fact"><span>Termin</span><strong>${esc(p.deadline||'Brak')}${p.deadline?miniDue(p.deadline):''}</strong></div>
           <div class="project-preview-fact"><span>Odpowiedzialny</span><strong>${esc(p.owner||'—')}</strong></div>
           <div class="project-preview-fact"><span>Status</span><strong>${esc(statusText[p.status]||'—')}</strong></div>
           <div class="project-preview-fact"><span>Taski</span><strong>${list.filter(t=>t.done).length}/${list.length}</strong></div>
