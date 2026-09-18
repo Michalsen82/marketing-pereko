@@ -39,3 +39,35 @@
   font-size:11px!important;
   box-sizing:border-box!important
 }
+
+
+/* E-mail i edycja współpracownika */
+.team-person-copy small{
+  display:block!important;
+  margin-top:4px!important;
+  color:rgba(255,255,255,.42)!important;
+  font-size:9px!important;
+  line-height:1.2!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important
+}
+.team-person-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:6px!important
+}
+.team-edit{
+  height:28px!important;
+  padding:0 9px!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:rgba(255,255,255,.66)!important;
+  font:700 8.5px/1 'Montserrat',sans-serif!important
+}
+.team-edit:hover{
+  background:rgba(255,255,255,.10)!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.18)!important
+}
