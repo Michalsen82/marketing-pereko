@@ -15,20 +15,6 @@
       "comments": []
     },
     {
-      "id": "p3",
-      "name": "Upominki świąteczne",
-      "owner": "Wiktoria",
-      "status": "plan",
-      "progress": 0,
-      "deadline": "2026-11-20",
-      "desc": "Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.",
-      "members": [
-        "Wiktoria"
-      ],
-      "projectTasks": [],
-      "comments": []
-    },
-    {
       "id": "p4",
       "name": "Świat Kominków — Targi 2027",
       "owner": "Michał",
@@ -91,5 +77,5 @@
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T11:56:15.979Z"
+  "updatedAt": "2026-09-18T11:56:22.567Z"
 }
