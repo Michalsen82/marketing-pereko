@@ -27,7 +27,24 @@
     const displayName=localPerson?.name||known[email]||session.user?.user_metadata?.full_name||email.split('@')[0]||'Użytkownik';
     window.perekoLoggedPerson={email,name:displayName};
     const nameEl=document.querySelector('#loggedUserName');
-    if(nameEl) nameEl.textContent=displayName;
+    if(nameEl){
+      const parts=String(displayName||'Użytkownik').trim().split(/\s+/).filter(Boolean);
+      const first=parts.shift()||'Użytkownik';
+      const last=parts.join(' ');
+      const firstEl=document.createElement('span');
+      firstEl.className='user-name-part user-first-name';
+      firstEl.textContent=first;
+      nameEl.replaceChildren(firstEl);
+      if(last){
+        nameEl.append(document.createTextNode(' '));
+        const lastEl=document.createElement('span');
+        lastEl.className='user-name-part user-last-name';
+        lastEl.textContent=last;
+        nameEl.append(lastEl);
+      }
+      nameEl.setAttribute('aria-label',displayName);
+      nameEl.title=displayName;
+    }
     document.body.style.visibility='visible';
     document.dispatchEvent(new CustomEvent('pereko:user-ready',{detail:window.perekoLoggedPerson}));
     return session;
