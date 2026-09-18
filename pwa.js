@@ -255,7 +255,7 @@
     }catch{}
     if(!registration)await registerSW();
     if(registration){
-      await registration.showNotification('PEREKO — Centrum Marketingowe',{body:'Powiadomienia działają poprawnie na tym urządzeniu.',icon:'/icons/pereko-marketing-v2-192.png',badge:'/icons/badge-96.png',tag:'pereko-local-test',data:{url:'/'}});
+      await registration.showNotification('PEREKO — Centrum Marketingowe',{body:'Powiadomienia działają poprawnie na tym urządzeniu.',icon:'/icons/pereko-marketing-v3-192.png',badge:'/icons/badge-96.png',tag:'pereko-local-test',data:{url:'/'}});
       msg.textContent='Pokazano lokalne powiadomienie testowe. Serwerowy Web Push zostanie aktywowany po konfiguracji Cloudflare.';
       msg.className='pwa-message warn';
     }
