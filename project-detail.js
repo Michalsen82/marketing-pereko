@@ -6,6 +6,16 @@
     return [...new Set([...TEAM,...local.map(p=>p?.name),window.perekoLoggedPerson?.name].filter(Boolean))];
   };
   let currentProjectId=null;
+  const normPerson=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
+  const isLoggedAssignee=assignee=>{
+    const person=window.perekoLoggedPerson||{};
+    const assigned=normPerson(assignee);
+    if(!assigned)return false;
+    const full=normPerson(person.name);
+    const email=normPerson(person.email);
+    const first=full.split(' ')[0];
+    return assigned===full||assigned===email||(first&&assigned===first);
+  };
 
   const ensureProjectData=p=>{
     if(!Array.isArray(p.members)) p.members=p.owner?[p.owner]:[];
@@ -80,8 +90,8 @@
 
             <div class="pd-card">
               <div class="pd-card-head">
-                <div><span>TASKI</span><h3>Zadania projektu</h3></div>
-                <button class="pd-glass-btn" id="pdAddTask" type="button">+ Dodaj task</button>
+                <div><span>ZADANIA</span><h3>Zadania projektu</h3></div>
+                <button class="pd-glass-btn" id="pdAddTask" type="button">+ Dodaj zadanie</button>
               </div>
               <div class="pd-task-form" id="pdTaskForm">
                 <input id="pdTaskText" type="text" placeholder="Nazwa zadania">
@@ -118,8 +128,8 @@
               <div class="pd-summary-row"><span>Termin</span><strong id="pdSummaryDeadline">—</strong></div>
               <div class="pd-summary-row"><span>Do końca</span><strong id="pdSummaryRemaining">—</strong></div>
               <div class="pd-summary-row"><span>Postęp</span><strong id="pdSummaryProgress">—</strong></div>
-              <div class="pd-summary-row"><span>Taski</span><strong id="pdSummaryTasks">0</strong></div>
-              <div class="pd-summary-row"><span>Otwarte taski</span><strong id="pdSummaryOpenTasks">0</strong></div>
+              <div class="pd-summary-row"><span>Zadania</span><strong id="pdSummaryTasks">0</strong></div>
+              <div class="pd-summary-row"><span>Otwarte zadania</span><strong id="pdSummaryOpenTasks">0</strong></div>
               <div class="pd-summary-row"><span>Zespół</span><strong id="pdSummaryMembers">0</strong></div>
               <div class="pd-danger-zone"><button type="button" id="pdDeleteProject">Usuń projekt</button></div>
             </div>
@@ -233,12 +243,42 @@
 
   function renderProjectTasks(p){
     const list=$('#pdTaskList');
-    list.innerHTML=p.projectTasks.length?p.projectTasks.map((t,i)=>`<div class="pd-task ${t.done?'done':''}">
-      <label><input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''}><span><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></span></label>
-      <button type="button" data-pd-task-remove="${i}" aria-label="Usuń">×</button>
-    </div>`).join(''):'<div class="pd-empty">Nie ma jeszcze tasków w tym projekcie.</div>';
-    $$('[data-pd-task-done]').forEach(el=>el.onchange=()=>{p.projectTasks[+el.dataset.pdTaskDone].done=el.checked;syncProjectProgress(p);save();render();fillDetail(p)});
-    $$('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
+    list.innerHTML=p.projectTasks.length?p.projectTasks.map((t,i)=>{
+      const canClose=isLoggedAssignee(t.assignee);
+      const lockText=!t.assignee?'Najpierw przypisz zadanie do osoby':`Tylko ${esc(t.assignee)} może zmienić status tego zadania`;
+      return `<div class="pd-task ${t.done?'done':''} ${canClose?'':'locked'}">
+        <label title="${canClose?'':lockText}">
+          <input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''} ${canClose?'':'disabled'}>
+          <span>
+            <strong>${esc(t.text)}</strong>
+            <small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small>
+            ${canClose?'':`<em class="pd-task-lock">${lockText}</em>`}
+          </span>
+        </label>
+        <button type="button" data-pd-task-remove="${i}" aria-label="Usuń">×</button>
+      </div>`;
+    }).join(''):'<div class="pd-empty">Nie ma jeszcze zadań w tym projekcie.</div>';
+
+    $('[data-pd-task-done]').forEach(el=>el.onchange=()=>{
+      const task=p.projectTasks[+el.dataset.pdTaskDone];
+      if(!task||!isLoggedAssignee(task.assignee)){
+        el.checked=!!task?.done;
+        return;
+      }
+      task.done=el.checked;
+      if(el.checked){
+        task.completedAt=new Date().toISOString();
+        task.completedOn=new Date().toISOString().slice(0,10);
+      }else{
+        task.completedAt=null;
+        task.completedOn=null;
+      }
+      syncProjectProgress(p);
+      save();
+      render();
+      fillDetail(p);
+    });
+    $('[data-pd-task-remove]').forEach(el=>el.onclick=()=>{p.projectTasks.splice(+el.dataset.pdTaskRemove,1);syncProjectProgress(p);save();render();fillDetail(p)});
   }
 
   function addProjectTask(){
