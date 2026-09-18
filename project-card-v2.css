@@ -1,0 +1,97 @@
+/* Karty projektów v2 — czytelny układ, podgląd rozwijany, postęp z tasków */
+.projects-module .project-list{display:grid!important;gap:14px!important;padding:18px!important}
+.project{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) 210px!important;
+  grid-template-areas:
+    "main meta"
+    "progress progress"
+    "controls controls"
+    "preview preview"!important;
+  gap:14px 18px!important;
+  padding:20px!important;
+  overflow:hidden!important
+}
+.project-main{grid-area:main!important;min-width:0!important}
+.project-deadline-status{grid-area:meta!important;display:flex!important;align-items:center!important;justify-content:flex-end!important;gap:10px!important;min-width:0!important}
+.project .progress-wrap{grid-area:progress!important;margin:2px 0 0!important}
+.project-card-controls{grid-area:controls!important;display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important}
+.project-preview{grid-area:preview!important;border-top:1px solid rgba(255,255,255,.07)!important;padding-top:16px!important}
+
+.project-title-row{display:flex!important;align-items:flex-start!important;gap:13px!important;margin:0!important}
+.project-title-copy{min-width:0!important;display:grid!important;gap:5px!important;padding-top:1px!important}
+.project-title-copy h4{margin:0!important;color:#fff!important}
+.project-title-copy .project-desc{margin:0!important;color:rgba(255,255,255,.62)!important;font-size:13.5px!important;line-height:1.45!important}
+.project-owner{margin:9px 0 0 57px!important;color:rgba(255,255,255,.46)!important;font:600 10px/1.2 'Montserrat',sans-serif!important}
+.project-topic-icon{margin-top:0!important}
+
+.project-deadline-status .deadline-edit{display:grid!important;gap:5px!important;min-width:132px!important}
+.project-deadline-status .deadline-edit label{color:rgba(255,255,255,.48)!important}
+.project-deadline-status .deadline-edit input{height:38px!important}
+.project-deadline-status .status{align-self:end!important;margin-bottom:1px!important;white-space:nowrap!important}
+
+.project .progress{height:9px!important;border-radius:999px!important;overflow:hidden!important}
+.project .progress>span{height:100%!important;border-radius:999px!important}
+.project-progress-caption{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:10px!important;margin-top:7px!important}
+.project-progress-caption strong{font:800 11px/1 'Montserrat',sans-serif!important;color:#fff!important}
+.project-progress-caption span{font-size:10.5px!important;color:rgba(255,255,255,.52)!important}
+.progress-wrap.no-tasks .progress>span{width:0!important}
+.progress-wrap.no-tasks .project-progress-caption span{color:rgba(255,255,255,.48)!important}
+
+.project-expand-btn,.project-open-btn{
+  height:36px!important;
+  border-radius:10px!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.11),rgba(255,255,255,.05))!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important;
+  backdrop-filter:blur(12px)!important;
+  -webkit-backdrop-filter:blur(12px)!important
+}
+.project-expand-btn{width:40px!important;padding:0!important;font:700 19px/1 'Montserrat',sans-serif!important}
+.project-expand-btn span{display:block!important;transition:transform .18s ease!important;transform:translateY(-1px)!important}
+.project-expand-btn.open span{transform:rotate(180deg) translateY(1px)!important}
+.project-open-btn{padding:0 12px!important;font:700 10.5px/1 'Montserrat',sans-serif!important}
+.project-expand-btn:hover,.project-open-btn:hover{background:rgba(255,255,255,.14)!important;border-color:rgba(255,255,255,.22)!important}
+
+.project-preview-grid{display:grid!important;grid-template-columns:minmax(0,1.35fr) minmax(220px,.65fr)!important;gap:18px!important}
+.project-preview-block{min-width:0!important}
+.project-preview-label{display:block!important;margin-bottom:9px!important;color:rgba(255,255,255,.42)!important;font:800 9px/1 'Montserrat',sans-serif!important;letter-spacing:.12em!important}
+.project-preview-task{display:grid!important;grid-template-columns:22px 1fr!important;gap:9px!important;align-items:flex-start!important;padding:8px 0!important;border-bottom:1px solid rgba(255,255,255,.055)!important}
+.project-preview-task:last-child{border-bottom:0!important}
+.project-preview-check{width:20px!important;height:20px!important;border-radius:7px!important;border:1px solid rgba(255,255,255,.15)!important;background:rgba(255,255,255,.05)!important;display:grid!important;place-items:center!important;color:#111!important;font:800 11px/1 'Montserrat',sans-serif!important}
+.project-preview-task.done .project-preview-check{background:#ffdd00!important;border-color:#ffdd00!important}
+.project-preview-task strong{display:block!important;color:#fff!important;font:700 11.5px/1.3 'Montserrat',sans-serif!important}
+.project-preview-task small{display:block!important;margin-top:3px!important;color:rgba(255,255,255,.50)!important;font-size:9.5px!important}
+.project-preview-task.done strong{text-decoration:line-through!important;color:rgba(255,255,255,.48)!important}
+.project-preview-empty,.project-preview-more{padding:8px 0!important;color:rgba(255,255,255,.48)!important;font-size:10.5px!important}
+.project-preview-fact{display:flex!important;justify-content:space-between!important;gap:12px!important;padding:9px 0!important;border-bottom:1px solid rgba(255,255,255,.055)!important}
+.project-preview-fact:last-child{border-bottom:0!important}
+.project-preview-fact span{color:rgba(255,255,255,.48)!important;font-size:10.5px!important}
+.project-preview-fact strong{color:#fff!important;font:700 10.5px/1.3 'Montserrat',sans-serif!important;text-align:right!important}
+
+/* wnętrze projektu — postęp tylko do odczytu */
+.pd-progress-readonly{display:grid!important;grid-template-columns:1fr auto!important;gap:10px!important;align-items:center!important}
+.pd-progress-bar{height:9px!important;border-radius:999px!important;background:rgba(255,255,255,.10)!important;overflow:hidden!important}
+.pd-progress-bar span{display:block!important;height:100%!important;width:0;border-radius:999px!important;background:#ffdd00!important;transition:width .2s ease!important}
+.pd-progress-hint{display:block!important;margin-top:6px!important;color:rgba(255,255,255,.50)!important;font-size:10px!important}
+.pd-danger-zone{padding:14px!important;border-top:1px solid rgba(255,255,255,.065)!important}
+.pd-danger-zone button{width:100%!important;height:36px!important;border-radius:9px!important;border:1px solid rgba(225,105,95,.24)!important;background:rgba(225,105,95,.08)!important;color:#ffb0aa!important;font:700 10px/1 'Montserrat',sans-serif!important}
+.pd-danger-zone button:hover{background:rgba(225,105,95,.14)!important;border-color:rgba(225,105,95,.38)!important}
+
+.new-project-progress-note{min-height:42px!important;display:flex!important;align-items:center!important;padding:0 11px!important;border:1px solid rgba(255,255,255,.12)!important;border-radius:10px!important;background:rgba(255,255,255,.045)!important;color:rgba(255,255,255,.55)!important;font-size:11.5px!important}
+
+@media(max-width:980px){
+  .project{grid-template-columns:1fr!important;grid-template-areas:"main" "meta" "progress" "controls" "preview"!important}
+  .project-deadline-status{justify-content:flex-start!important}
+  .project-preview-grid{grid-template-columns:1fr!important}
+}
+@media(max-width:640px){
+  .projects-module .project-list{padding:12px!important}
+  .project{padding:16px!important}
+  .project-deadline-status{align-items:flex-end!important;flex-wrap:wrap!important}
+  .project-card-controls{align-items:stretch!important}
+  .project-open-btn{flex:1!important}
+  .project-owner{margin-left:53px!important}
+}
