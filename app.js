@@ -1,14 +1,63 @@
 const defaultProjects=[{id:'p1',name:'Centrum Partnera PEREKO',owner:'Michał',status:'work',progress:55,deadline:'2026-10-15',desc:'Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.'},{id:'p2',name:'Targi HVAC 2027',owner:'Michał',status:'plan',progress:15,deadline:'2027-03-01',desc:'Plan targów, harmonogram, ekspozycja, materiały i komunikacja.'},{id:'p3',name:'Upominki świąteczne',owner:'Wiktoria',status:'plan',progress:10,deadline:'2026-11-20',desc:'Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.'},{id:'p4',name:'Świat Kominków — Targi 2027',owner:'Michał',status:'plan',progress:8,deadline:'2027-02-15',desc:'Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji.'},{id:'p5',name:'Świat Kominków — materiały do gazety',owner:'Michał',status:'work',progress:25,deadline:'2026-10-05',desc:'Artykuły, reklamy, materiały produktowe i terminy publikacji.'}];
 const defaultTasks=[{text:'Ustalić najbliższe terminy dla wszystkich projektów',done:false},{text:'Rozpisać kolejne etapy Centrum Partnera PEREKO',done:false},{text:'Przygotować założenia do upominków świątecznych',done:false},{text:'Ustalić zakres materiałów do Świata Kominków',done:false}];
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
-let projects=JSON.parse(localStorage.getItem('pereko_projects')||'null')||structuredClone(defaultProjects),tasks=JSON.parse(localStorage.getItem('pereko_tasks')||'null')||structuredClone(defaultTasks),activeFilter='all',cloudSyncEnabled=localStorage.getItem('pereko_cloud_sync')==='1',syncTimer=null;
+let projects=JSON.parse(localStorage.getItem('pereko_projects')||'null')||structuredClone(defaultProjects),tasks=JSON.parse(localStorage.getItem('pereko_tasks')||'null')||structuredClone(defaultTasks),activeFilter='all',cloudSyncEnabled=true,remoteReady=false,syncTimer=null;
 const statusText={work:'W realizacji',plan:'Planowany',done:'Zakończony'};
 const esc=v=>String(v||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const setSyncStatus=(state,title,text)=>{const c=$('#syncCard');if(!c)return;c.dataset.state=state;$('#syncTitle').textContent=title;$('#syncText').textContent=text};
 const saveLocal=()=>{localStorage.setItem('pereko_projects',JSON.stringify(projects));localStorage.setItem('pereko_tasks',JSON.stringify(tasks));localStorage.setItem('pereko_dashboard_version','4')};
-async function pushRemote(manual=false){if(!cloudSyncEnabled&&!manual)return false;setSyncStatus('syncing','Zapisywanie…','Synchronizacja zmian');try{const r=await window.perekoAuthFetch('/api/dashboard',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects,tasks})}),p=await r.json().catch(()=>({}));if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);cloudSyncEnabled=true;localStorage.setItem('pereko_cloud_sync','1');setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
-function save(){saveLocal();if(cloudSyncEnabled){clearTimeout(syncTimer);syncTimer=setTimeout(()=>pushRemote(),600)}}
-async function loadRemote(){if(!cloudSyncEnabled){setSyncStatus('local','Dane lokalne','Kliknij „Synchronizuj dane”');return false}try{const r=await window.perekoAuthFetch('/api/dashboard',{cache:'no-store'}),p=await r.json();if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);if(Array.isArray(p.projects))projects=p.projects;if(Array.isArray(p.tasks))tasks=p.tasks;saveLocal();render();setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');return true}catch(e){setSyncStatus('error','Błąd synchronizacji',e.message);return false}}
+async function pushRemote(manual=false){
+  if(!remoteReady){
+    if(manual)setSyncStatus('syncing','Ładowanie danych…','Poczekaj na dane centralne');
+    return false;
+  }
+  setSyncStatus('syncing','Zapisywanie…','Synchronizacja zmian');
+  try{
+    const r=await window.perekoAuthFetch('/api/dashboard',{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({projects,tasks})}),
+      p=await r.json().catch(()=>({}));
+    if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);
+    localStorage.setItem('pereko_cloud_sync','1');
+    setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');
+    return true
+  }catch(e){
+    setSyncStatus('error','Błąd synchronizacji',e.message);
+    return false
+  }
+}
+function save(){
+  saveLocal();
+  if(remoteReady){
+    clearTimeout(syncTimer);
+    syncTimer=setTimeout(()=>pushRemote(),350);
+  }
+}
+async function loadRemote(){
+  setSyncStatus('syncing','Ładowanie…','Pobieranie danych centralnych');
+  try{
+    const r=await window.perekoAuthFetch('/api/dashboard',{cache:'no-store'}),
+      p=await r.json();
+    if(!r.ok)throw new Error(p.error||`HTTP ${r.status}`);
+    if(Array.isArray(p.projects))projects=p.projects;
+    if(Array.isArray(p.tasks))tasks=p.tasks;
+    remoteReady=true;
+    window.perekoRemoteReady=true;
+    localStorage.setItem('pereko_cloud_sync','1');
+    saveLocal();
+    render();
+    setSyncStatus('ok','Synchronizacja aktywna','Dane wspólne są aktualne');
+    return true
+  }catch(e){
+    remoteReady=false;
+    window.perekoRemoteReady=false;
+    setSyncStatus('error','Błąd synchronizacji',e.message);
+    return false
+  }
+}
+window.perekoFlushSync=async()=>{
+  if(!remoteReady)return false;
+  clearTimeout(syncTimer);
+  return pushRemote(true);
+};
 const projectProgressInfo=p=>{
   const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
   if(!list.length)return {progress:0,done:0,total:0,hasTasks:false};
@@ -77,4 +126,4 @@ function msg(kind,text,state=''){const el=document.createElement('div');el.class
 async function commit(text){saveLocal();render();msg('bot',(await pushRemote(true))?text:'Zmiana lokalna zapisana, ale zapis centralny się nie udał.',cloudSyncEnabled?'success':'error')}
 async function runCommand(raw){const n=norm(raw);if(/^(pomoc|help|co potrafisz)/.test(n)){msg('bot','Komendy: „Dodaj zadanie: …”, „Zmień termin NAZWA na 20 października 2026”, „Ustaw NAZWA na 60%”, „Ustaw status NAZWA na w realizacji”, „Przypisz NAZWA do Wiktorii”, „Pokaż projekty”, „Pokaż zadania”, „Pokaż najbliższe terminy”, „Odśwież dane”.');return}if(n.includes('odswiez')){msg('bot',(await loadRemote())?'Pobrałem najnowsze dane.':'Nie udało się pobrać danych.');return}if(n.includes('pokaz projekty')){msg('bot',projects.map(p=>`${p.name} — ${p.progress||0}%`).join(' | '));return}if(n.includes('pokaz zadania')){msg('bot',tasks.map(t=>`${t.done?'✓':'○'} ${t.text}`).join(' | '));return}if(n.includes('najblizsze terminy')){msg('bot',[...projects].filter(p=>p.deadline).sort((a,b)=>a.deadline.localeCompare(b.deadline)).slice(0,6).map(p=>`${p.deadline} — ${p.name}`).join(' | '));return}let m=raw.match(/^\s*dodaj\s+zadanie\s*:?\s*(.+)$/i);if(m){tasks.push({text:m[1].trim(),done:false});await commit(`Dodałem zadanie: ${m[1].trim()}`);return}m=norm(raw).match(/ustaw\s+(.+?)\s+na\s+(\d{1,3})\s*%/);if(m){const p=findProject(m[1]);if(!p){msg('bot','Nie znalazłem projektu.','error');return}p.progress=Math.max(0,Math.min(100,+m[2]));await commit(`Ustawiłem postęp „${p.name}” na ${p.progress}%.`);return}if(n.includes('termin')){const d=parseDate(raw),left=raw.split(/\s+na\s+/i)[0].replace(/^.*?termin\s+(projektu\s+)?/i,'').trim(),p=findProject(left);if(!d||!p){msg('bot','Nie rozpoznałem projektu lub daty.','error');return}p.deadline=d;await commit(`Termin „${p.name}” ustawiony na ${d}.`);return}m=norm(raw).match(/ustaw\s+status\s+(.+?)\s+na\s+(.+)/);if(m){const p=findProject(m[1]);if(!p){msg('bot','Nie znalazłem projektu.','error');return}const s=m[2];p.status=s.includes('realiz')?'work':s.includes('plan')?'plan':s.includes('zakon')?'done':p.status;await commit(`Status „${p.name}” zmieniony na ${statusText[p.status]}.`);return}m=raw.match(/^\s*przypisz\s+(.+?)\s+do\s+(.+)$/i);if(m){const p=findProject(m[1]);if(!p){msg('bot','Nie znalazłem projektu.','error');return}p.owner=m[2].trim();await commit(`Projekt „${p.name}” przypisałem do ${p.owner}.`);return}msg('bot','Nie rozpoznałem polecenia. Napisz „Pomoc”.','error')}
 $('#assistantFab').onclick=()=>{$('#assistantPanel').classList.toggle('open');if($('#assistantPanel').classList.contains('open'))$('#assistantInput').focus()};$('#assistantClose').onclick=()=>$('#assistantPanel').classList.remove('open');$$('[data-assistant-example]').forEach(b=>b.onclick=()=>{$('#assistantInput').value=b.dataset.assistantExample;$('#assistantInput').focus()});$('#assistantForm').onsubmit=async e=>{e.preventDefault();const i=$('#assistantInput'),v=i.value.trim();if(!v)return;msg('user',v);i.value='';await runCommand(v)};$('#assistantInput').addEventListener('keydown',e=>{if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();$('#assistantForm').requestSubmit()}});
-const now=new Date();$('#todayBox').innerHTML=`<strong>${now.toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'})}</strong><span>${now.getFullYear()}</span>`;saveLocal();render();loadRemote();
+const now=new Date();$('#todayBox').innerHTML=`<strong>${now.toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'})}</strong><span>${now.getFullYear()}</span>`;render();loadRemote();
