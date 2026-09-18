@@ -1,0 +1,80 @@
+/* PWA / instalacja / powiadomienia — Centrum Marketingowe PEREKO */
+.pwa-settings-btn{width:36px;height:36px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.055);color:rgba(255,255,255,.74);display:grid;place-items:center;cursor:pointer}
+.pwa-settings-btn:hover{background:rgba(255,255,255,.10);color:#fff}
+.pwa-settings-btn svg{width:17px;height:17px;fill:currentColor}
+.pwa-settings-btn .pwa-mini-dot{position:absolute;width:6px;height:6px;background:#ffdd00;transform:translate(11px,-11px);border-radius:50%!important;display:none}
+.pwa-settings-btn.has-attention .pwa-mini-dot{display:block}
+
+.pwa-modal{position:fixed;inset:0;z-index:2300;display:none;align-items:center;justify-content:center;padding:22px;background:rgba(0,0,0,.76);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.pwa-modal.open{display:flex}
+.pwa-card{width:min(820px,100%);max-height:min(860px,calc(100dvh - 44px));overflow:auto;border:1px solid rgba(255,255,255,.13);background:linear-gradient(180deg,#171a1c,#0e1011);box-shadow:0 32px 110px rgba(0,0,0,.48);color:#fff}
+.pwa-head{display:flex;align-items:flex-start;justify-content:space-between;gap:18px;padding:22px 22px 18px;border-bottom:1px solid rgba(255,255,255,.08);position:sticky;top:0;z-index:2;background:rgba(13,15,16,.96);backdrop-filter:blur(15px)}
+.pwa-kicker{display:block;color:#ffdd00;font:800 8px/1 'Montserrat',sans-serif;letter-spacing:.15em}
+.pwa-head h3{margin:7px 0 5px;font:800 22px/1.1 'Montserrat',sans-serif}
+.pwa-head p{margin:0;color:rgba(255,255,255,.55);font-size:10.5px}
+.pwa-close{width:32px;height:32px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.05);color:#fff;font-size:20px}
+.pwa-content{padding:18px 22px 24px;display:grid;gap:16px}
+.pwa-status-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pwa-status-card{padding:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035)}
+.pwa-status-card span{display:block;color:rgba(255,255,255,.48);font:700 8px/1 'Montserrat',sans-serif;letter-spacing:.08em;text-transform:uppercase}
+.pwa-status-card strong{display:block;margin-top:7px;font:700 12px/1.25 'Montserrat',sans-serif;color:#fff}
+.pwa-status-card small{display:block;margin-top:4px;color:rgba(255,255,255,.48);font-size:9px;line-height:1.45}
+.pwa-section{border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025);padding:16px}
+.pwa-section-head{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;margin-bottom:12px}
+.pwa-section-head span{display:block;color:#ffdd00;font:800 7.5px/1 'Montserrat',sans-serif;letter-spacing:.12em}
+.pwa-section-head h4{margin:5px 0 0;font:700 14px/1.2 'Montserrat',sans-serif}
+.pwa-section p{margin:0;color:rgba(255,255,255,.58);font-size:10px;line-height:1.55}
+.pwa-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:13px}
+.pwa-primary,.pwa-secondary{min-height:36px;padding:0 12px;font:700 9px/1 'Montserrat',sans-serif;cursor:pointer}
+.pwa-primary{border:1px solid #e0c500;background:#ffdd00;color:#151819}
+.pwa-secondary{border:1px solid rgba(255,255,255,.14);background:rgba(255,255,255,.055);color:#fff}
+.pwa-primary:disabled,.pwa-secondary:disabled{opacity:.45;cursor:not-allowed}
+.pwa-guide{margin-top:12px;padding:12px;border-left:2px solid #ffdd00;background:rgba(255,221,0,.045);color:rgba(255,255,255,.68);font-size:10px;line-height:1.6}
+.pwa-guide strong{color:#fff}
+.pwa-guide ol{margin:7px 0 0;padding-left:17px}
+.pwa-prefs{display:grid;gap:7px;margin-top:12px}
+.pwa-pref{display:flex;align-items:flex-start;gap:9px;padding:10px;border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.025)}
+.pwa-pref input{margin-top:1px;accent-color:#ffdd00}
+.pwa-pref strong{display:block;font:700 9.5px/1.25 'Montserrat',sans-serif}
+.pwa-pref span{display:block;margin-top:3px;color:rgba(255,255,255,.48);font-size:8.5px;line-height:1.35}
+.pwa-qr-wrap{display:grid;grid-template-columns:118px 1fr;gap:14px;align-items:center;margin-top:12px}
+.pwa-qr-wrap img{width:118px;height:118px;background:#fff;padding:6px;border-radius:6px!important}
+.pwa-message{min-height:16px;margin-top:10px;color:rgba(255,255,255,.56);font-size:9px;line-height:1.45}
+.pwa-message.ok{color:#8ed59a}.pwa-message.error{color:#ffaaa4}.pwa-message.warn{color:#ffe57d}
+
+.pwa-login-panel{width:100%;margin-top:12px;padding:14px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.025);color:#fff}
+.pwa-login-panel strong{display:block;font:700 10.5px/1.3 'Montserrat',sans-serif}
+.pwa-login-panel p{margin:5px 0 0;color:rgba(255,255,255,.50);font-size:9px;line-height:1.45}
+.pwa-login-actions{display:flex;gap:7px;margin-top:10px;flex-wrap:wrap}
+.pwa-login-actions button{height:32px;padding:0 10px;font:700 8.5px/1 'Montserrat',sans-serif}
+.pwa-login-actions .install{background:#ffdd00;border:1px solid #e0c500;color:#111}
+.pwa-login-actions .help{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff}
+
+.pwa-onboarding{position:fixed;inset:0;z-index:2400;display:none;align-items:flex-end;justify-content:center;padding:18px;background:rgba(0,0,0,.65);backdrop-filter:blur(10px)}
+.pwa-onboarding.open{display:flex}
+.pwa-onboarding-card{width:min(520px,100%);padding:20px;border:1px solid rgba(255,255,255,.13);background:linear-gradient(180deg,#171a1c,#0f1112);box-shadow:0 28px 90px rgba(0,0,0,.46);color:#fff}
+.pwa-onboarding-card .mark{width:38px;height:38px;display:grid;place-items:center;background:#ffdd00;color:#111;font:900 19px/1 'Montserrat',sans-serif;margin-bottom:14px}
+.pwa-onboarding-card span{display:block;color:#ffdd00;font:800 8px/1 'Montserrat',sans-serif;letter-spacing:.13em}
+.pwa-onboarding-card h3{margin:7px 0 6px;font:800 20px/1.12 'Montserrat',sans-serif}
+.pwa-onboarding-card p{margin:0;color:rgba(255,255,255,.58);font-size:10.5px;line-height:1.55}
+.pwa-onboarding-actions{display:flex;gap:8px;margin-top:15px}
+.pwa-onboarding-actions button{height:36px;padding:0 12px;font:700 9px/1 'Montserrat',sans-serif}
+.pwa-onboarding-actions .primary{background:#ffdd00;border:1px solid #e0c500;color:#111}
+.pwa-onboarding-actions .later{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.12);color:#fff}
+
+@media(max-width:760px){
+  .topbar-actions{grid-template-columns:128px minmax(0,1fr) 36px 36px 36px!important;column-gap:8px!important}
+  .topbar-actions .pwa-settings-btn{grid-column:3!important;grid-row:1!important;justify-self:end!important;margin:0!important}
+  .topbar-actions .password-change-btn{grid-column:4!important;grid-row:1!important;margin:0!important}
+  .topbar-actions .logout-btn{grid-column:5!important;grid-row:1!important;margin:0!important}
+  .pwa-modal{padding:0;align-items:stretch}
+  .pwa-card{width:100%;max-height:100dvh;height:100dvh;border-left:0;border-right:0}
+  .pwa-head{padding:18px 16px}
+  .pwa-content{padding:14px 14px calc(24px + env(safe-area-inset-bottom))}
+  .pwa-status-grid{grid-template-columns:1fr}
+  .pwa-qr-wrap{display:none}
+}
+@media(max-width:420px){
+  .topbar-actions{grid-template-columns:112px minmax(0,1fr) 34px 34px 34px!important;column-gap:6px!important}
+  .pwa-settings-btn,.password-change-btn,.logout-btn{width:34px!important;height:34px!important}
+}
