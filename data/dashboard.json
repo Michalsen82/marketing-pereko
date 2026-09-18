@@ -20,7 +20,14 @@
           "done": false
         }
       ],
-      "comments": []
+      "comments": [
+        {
+          "id": "e980532d-95b8-424c-b9ed-b9b8efbd7248",
+          "text": "asdfasdf",
+          "author": "Michał Bukowski",
+          "createdAt": "2026-09-18T11:56:57.214Z"
+        }
+      ]
     },
     {
       "id": "p5",
@@ -71,5 +78,5 @@
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T11:56:51.619Z"
+  "updatedAt": "2026-09-18T11:56:58.123Z"
 }
