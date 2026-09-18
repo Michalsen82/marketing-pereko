@@ -445,3 +445,93 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
 @media(max-width:640px){
   .project-close-info{margin-left:0!important}
 }
+
+
+/* Liczniki dni w rozwiniętym podglądzie projektu */
+.project-preview-summary{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  margin-bottom:14px!important;
+  color:#fff!important;
+  font:600 10.5px/1.3 'Montserrat',sans-serif!important
+}
+.project-preview-summary-badge{
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  border-radius:10px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(255,255,255,.98)!important;
+  color:#3b4145!important
+}
+.project-preview-summary-badge strong{
+  color:#3b4145!important;
+  font:800 12px/1 'Montserrat',sans-serif!important
+}
+.project-preview-summary-badge small{
+  margin-top:2px!important;
+  color:#60676b!important;
+  font:700 6.5px/1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important
+}
+.project-preview-summary.overdue .project-preview-summary-badge{
+  background:#cf5148!important;
+  border-color:#df7169!important
+}
+.project-preview-summary.overdue .project-preview-summary-badge strong,
+.project-preview-summary.overdue .project-preview-summary-badge small{
+  color:#fff!important
+}
+.project-preview-task{
+  grid-template-columns:22px 34px minmax(0,1fr)!important
+}
+.project-preview-days{
+  width:34px!important;
+  height:34px!important;
+  border-radius:9px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(255,255,255,.98)!important;
+  color:#3b4145!important
+}
+.project-preview-days strong{
+  color:#3b4145!important;
+  font:800 11px/1 'Montserrat',sans-serif!important
+}
+.project-preview-days small{
+  margin-top:2px!important;
+  color:#60676b!important;
+  font:700 6px/1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important
+}
+.project-preview-days.overdue{
+  background:#cf5148!important;
+  border-color:#df7169!important
+}
+.project-preview-days.overdue strong,
+.project-preview-days.overdue small{
+  color:#fff!important
+}
+.project-preview-days.none{
+  background:rgba(255,255,255,.09)!important;
+  border-color:rgba(255,255,255,.13)!important
+}
+.project-preview-days.none strong,
+.project-preview-days.none small{
+  color:rgba(255,255,255,.58)!important
+}
+.project-preview-task em{
+  display:block!important;
+  margin-top:3px!important;
+  color:rgba(255,255,255,.48)!important;
+  font:600 8px/1.2 'Montserrat',sans-serif!important;
+  font-style:normal!important
+}
