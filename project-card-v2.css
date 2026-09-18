@@ -436,3 +436,12 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     max-width:none!important
   }
 }
+
+
+/* Wyrównanie infografiki terminu do osi treści projektu / zadań */
+.project-close-info{
+  margin-left:57px!important;
+}
+@media(max-width:640px){
+  .project-close-info{margin-left:0!important}
+}
