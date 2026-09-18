@@ -114,3 +114,23 @@ body.detail-open{overflow:hidden}
   .pd-comment-form{grid-template-columns:1fr!important}
   #pdCommentSave{justify-self:start!important}
 }
+
+
+/* Uprawnienia do zamykania zadań projektu */
+.pd-task.locked input[type="checkbox"]{
+  cursor:not-allowed!important;
+  opacity:.42!important;
+}
+.pd-task.locked label{
+  cursor:default!important;
+}
+.pd-task-lock{
+  display:block!important;
+  margin-top:5px!important;
+  color:#9a7f00!important;
+  font:700 8px/1.3 'Montserrat',sans-serif!important;
+  font-style:normal!important;
+}
+.pd-task:not(.locked) input[type="checkbox"]{
+  cursor:pointer!important;
+}
