@@ -1,63 +1,134 @@
 /*
-  Eksperymentalny system 90° — Centrum Projektów Marketingowych PEREKO
-  Jedna warstwa nadpisująca wszystkie zaokrąglenia UI.
-  Punkt powrotu: backup/rounded-ui-before-square-experiment
+  Hybrydowy system narożników — Centrum Projektów Marketingowych PEREKO
+  Kierunek: techniczny / profesjonalny, ale wygodniejszy w codziennej pracy.
+  Punkt powrotu do wersji przed eksperymentem:
+  backup/rounded-ui-before-square-experiment
 */
 
-html body :is(#pereko-square-ui-a#pereko-square-ui-b#pereko-square-ui-c, *),
-html body :is(#pereko-square-ui-a#pereko-square-ui-b#pereko-square-ui-c, *)::before,
-html body :is(#pereko-square-ui-a#pereko-square-ui-b#pereko-square-ui-c, *)::after{
-  border-radius:0!important
+:root{
+  --pereko-radius-card:8px;
+  --pereko-radius-control:5px;
+  --pereko-radius-small:4px;
+  --pereko-radius-progress:3px;
 }
 
-/* Elementy natywne i kontrolki */
-html body button,
-html body input,
-html body select,
-html body textarea,
-html body progress,
-html body meter,
-html body fieldset,
-html body img,
-html body video,
-html body canvas{
-  border-radius:0!important
+/* Domyślnie: subtelne narożniki zamiast dużych zaobleń */
+html body *{
+  border-radius:var(--pereko-radius-control)!important;
 }
 
-/* Scrollbary również bez zaobleń */
+/* Duże powierzchnie i kontenery */
+html body :is(
+  .module,
+  .stat-card,
+  .project,
+  .modal-card,
+  .project-detail-card,
+  .pd-card,
+  .task-history-panel,
+  .assistant-panel,
+  .global-search-panel,
+  .password-card,
+  .login-panel-minimal,
+  .team-panel,
+  .gantt-panel,
+  .date-box,
+  .site-footer,
+  .pf-dropzone
+){
+  border-radius:var(--pereko-radius-card)!important;
+}
+
+/* Przyciski, formularze i interaktywne kontrolki */
+html body :is(
+  button,
+  input,
+  select,
+  textarea,
+  fieldset,
+  .filter,
+  .btn,
+  .top-button,
+  .project-open-btn,
+  .project-delete-btn,
+  .pd-glass-btn,
+  .pd-accent-btn,
+  .task-glass-btn,
+  .footer-sync-btn,
+  .footer-status-btn,
+  .global-search-result,
+  .global-search-input-wrap,
+  .pf-file-actions button,
+  .pf-version-row button
+){
+  border-radius:var(--pereko-radius-control)!important;
+}
+
+/* Mniejsze elementy informacyjne — bez efektu "pigułki" */
+html body :is(
+  .project-owner-badge,
+  .project-status-badge,
+  .project-my-task-badge,
+  .project-number,
+  .pd-project-number,
+  .task-number,
+  .project-preview-task-number,
+  .project-search-count,
+  .global-search-number,
+  .global-search-group-head b,
+  .project-close-badge
+){
+  border-radius:var(--pereko-radius-small)!important;
+}
+
+/* Avatary i ikony: lekko techniczne, ale nie brutalnie kwadratowe */
+html body :is(
+  .user-avatar-circle,
+  .user-avatar-plus,
+  .avatar,
+  .pd-avatar,
+  .pd-comment-avatar,
+  .project-topic-icon,
+  .date-daynum,
+  .pf-file-type,
+  .global-search-fab,
+  .pd-icon-btn,
+  .icon-close
+){
+  border-radius:6px!important;
+}
+
+/* Paski postępu — subtelne zaokrąglenie, bez kapsuły */
+html body :is(
+  .progress,
+  .progress>span,
+  .pd-progress-bar,
+  .pd-progress-bar>span,
+  .project .progress,
+  .project .progress>span
+){
+  border-radius:var(--pereko-radius-progress)!important;
+}
+
+/* Tylko wskaźniki statusu pozostają okrągłe — to nie są kontenery UI */
+html body :is(
+  .sync-dot,
+  .footer-status-dot
+){
+  border-radius:50%!important;
+}
+
+/* Miniatury plików i media przejmują geometrię komponentu */
+html body :is(img,video,canvas){
+  border-radius:inherit!important;
+}
+
+/* Scrollbary: prostsza, techniczna geometria */
 html::-webkit-scrollbar-thumb,
 body::-webkit-scrollbar-thumb,
 *::-webkit-scrollbar-thumb,
 html::-webkit-scrollbar-track,
 body::-webkit-scrollbar-track,
 *::-webkit-scrollbar-track{
-  border-radius:0!important
-}
-
-/* Kształty interfejsowe budowane z pełnego promienia */
-.sync-dot,
-.footer-status-dot,
-.user-avatar-circle,
-.user-avatar-plus,
-.avatar,
-.pd-avatar,
-.pd-comment-avatar,
-.project-topic-icon,
-.project-close-badge,
-.date-daynum,
-.global-search-fab,
-.project-search-count,
-.task-check,
-.project-preview-check{
-  border-radius:0!important
-}
-
-/* Kwadratowe zakończenia pasków postępu */
-.progress,
-.progress>span,
-.pd-progress-bar,
-.pd-progress-bar>span,
-.project .progress,
-.project .progress>span{
-  border-radius:0!important
+  border-radius:2px!important;
 }
