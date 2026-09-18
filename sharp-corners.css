@@ -1,0 +1,63 @@
+/*
+  Eksperymentalny system 90° — Centrum Projektów Marketingowych PEREKO
+  Jedna warstwa nadpisująca wszystkie zaokrąglenia UI.
+  Punkt powrotu: backup/rounded-ui-before-square-experiment
+*/
+
+html body :is(#pereko-square-ui-a#pereko-square-ui-b#pereko-square-ui-c, *),
+html body :is(#pereko-square-ui-a#pereko-square-ui-b#pereko-square-ui-c, *)::before,
+html body :is(#pereko-square-ui-a#pereko-square-ui-b#pereko-square-ui-c, *)::after{
+  border-radius:0!important
+}
+
+/* Elementy natywne i kontrolki */
+html body button,
+html body input,
+html body select,
+html body textarea,
+html body progress,
+html body meter,
+html body fieldset,
+html body img,
+html body video,
+html body canvas{
+  border-radius:0!important
+}
+
+/* Scrollbary również bez zaobleń */
+html::-webkit-scrollbar-thumb,
+body::-webkit-scrollbar-thumb,
+*::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-track,
+body::-webkit-scrollbar-track,
+*::-webkit-scrollbar-track{
+  border-radius:0!important
+}
+
+/* Kształty interfejsowe budowane z pełnego promienia */
+.sync-dot,
+.footer-status-dot,
+.user-avatar-circle,
+.user-avatar-plus,
+.avatar,
+.pd-avatar,
+.pd-comment-avatar,
+.project-topic-icon,
+.project-close-badge,
+.date-daynum,
+.global-search-fab,
+.project-search-count,
+.task-check,
+.project-preview-check{
+  border-radius:0!important
+}
+
+/* Kwadratowe zakończenia pasków postępu */
+.progress,
+.progress>span,
+.pd-progress-bar,
+.pd-progress-bar>span,
+.project .progress,
+.project .progress>span{
+  border-radius:0!important
+}
