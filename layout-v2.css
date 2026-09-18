@@ -30,3 +30,39 @@
   .date-box{width:100%}
   .intro-add-project{width:100%}
 }
+
+
+/* Korekta prawego marginesu i sterowanie widocznością kafelków KPI */
+.intro-add-project{margin-right:12px!important}
+.stats-toggle-btn{
+  height:34px;
+  min-height:34px;
+  padding:0 11px;
+  border-radius:9px;
+  border:1px solid rgba(255,255,255,.13);
+  background:linear-gradient(145deg,rgba(255,255,255,.10),rgba(255,255,255,.045));
+  color:rgba(255,255,255,.78);
+  font:700 9.5px/1 'Montserrat',sans-serif;
+  white-space:nowrap;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px)
+}
+.stats-toggle-btn:hover{
+  background:linear-gradient(145deg,rgba(255,255,255,.17),rgba(255,255,255,.075));
+  border-color:rgba(255,255,255,.22);
+  color:#fff
+}
+.stats-grid.is-hidden{
+  display:none!important
+}
+@media(max-width:980px){
+  .intro-add-project{margin-right:0!important}
+  .stats-toggle-btn{width:100%}
+}
+@media(max-width:760px){
+  .stats-toggle-btn{width:auto}
+}
+@media(max-width:560px){
+  .stats-toggle-btn{width:100%}
+}
