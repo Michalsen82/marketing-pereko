@@ -19,6 +19,17 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm2 2v3h3V6H6Zm7-2h7v7h-7V4Zm2 2v3h3V6h-3ZM4 13h7v7H4v-7Zm2 2v3h3v-3H6Zm7-2h7v7h-7v-7Zm2 2v3h3v-3h-3Z"/></svg>';
   };
 
+  const daysToClose=deadline=>{
+    if(!deadline)return {text:'Brak terminu',state:'none'};
+    const today=new Date();today.setHours(0,0,0,0);
+    const end=new Date(deadline+'T00:00:00');end.setHours(0,0,0,0);
+    const days=Math.round((end-today)/86400000);
+    if(days<0)return {text:'Po terminie: '+Math.abs(days)+' dni',state:'overdue'};
+    if(days===0)return {text:'Termin dzisiaj',state:'today'};
+    if(days===1)return {text:'1 dzień do zamknięcia projektu',state:'soon'};
+    return {text:days+' dni do zamknięcia projektu',state:days<=7?'soon':'normal'};
+  };
+
   const previewHtml=p=>{
     const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
     const tasks=list.slice(0,5).map(t=>`<div class="project-preview-task ${t.done?'done':''}"><span class="project-preview-check">${t.done?'✓':''}</span><div><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></div></div>`).join('');
@@ -68,10 +79,14 @@
       if(!controls){
         controls=document.createElement('div');
         controls.className='project-card-controls';
-        controls.innerHTML='<button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button>';
+        const due=daysToClose(p.deadline);
+        controls.innerHTML='<div class="project-days-left '+due.state+'">'+due.text+'</div><div class="project-card-actions"><button type="button" class="project-open-btn">Otwórz projekt <span>→</span></button><button type="button" class="project-expand-btn" aria-label="Rozwiń podgląd projektu"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6.7 9.3 5.3 5.3 5.3-5.3 1.4 1.4-6.7 6.7-6.7-6.7 1.4-1.4Z"/></svg></span></button></div>';
         card.appendChild(controls);
       }
 
+      const dueNow=daysToClose(p.deadline);
+      const dueBox=controls.querySelector('.project-days-left');
+      if(dueBox){dueBox.className='project-days-left '+dueNow.state;dueBox.textContent=dueNow.text}
       controls.querySelector('.project-open-btn').onclick=()=>window.openProjectDetail?.(p.id);
       const expand=controls.querySelector('.project-expand-btn');
       expand.classList.toggle('open',expanded.has(p.id));
