@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="pl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#050505" />
+  <title>Logowanie — Centrum Projektów Marketingowych PEREKO</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <main class="login-shell">
+    <section class="login-visual" aria-label="Centrum Projektów Marketingowych">
+      <div class="login-brand">
+        <div class="login-logo" aria-label="PEREKO"></div>
+        <div class="login-brand-copy">
+          <span>CENTRUM PROJEKTÓW MARKETINGOWYCH</span>
+          <h1>Marketing PEREKO</h1>
+          <p>Planowanie, realizacja i kontrola działań marketingowych w jednym miejscu.</p>
+        </div>
+      </div>
+      <div class="login-visual-bottom">
+        <span>PROJEKTY • ZADANIA • TERMINY • ZESPÓŁ</span>
+        <small>Zaprojektował i wykonał Michał Bukowski</small>
+      </div>
+    </section>
+
+    <section class="login-panel">
+      <div class="login-card">
+        <div class="login-card-head">
+          <span>BEZPIECZNY DOSTĘP</span>
+          <h2>Zaloguj się</h2>
+          <p>Użyj firmowego adresu e-mail i hasła.</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <label>
+            <span>Adres e-mail</span>
+            <input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="imie.nazwisko@pereko.pl" required />
+          </label>
+          <label>
+            <span>Hasło</span>
+            <div class="password-field">
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Wpisz hasło" required />
+              <button id="togglePassword" type="button" aria-label="Pokaż lub ukryj hasło">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c5.5 0 9.5 5.1 9.5 7s-4 7-9.5 7S2.5 13.9 2.5 12 6.5 5 12 5Zm0 2C8.2 7 5 10.4 4.6 12 5 13.6 8.2 17 12 17s7-3.4 7.4-5C19 10.4 15.8 7 12 7Zm0 2.5A2.5 2.5 0 1 1 12 14.5 2.5 2.5 0 0 1 12 9.5Z"/></svg>
+              </button>
+            </div>
+          </label>
+
+          <button class="login-submit" type="submit">Zaloguj się</button>
+          <button class="login-forgot" type="button" id="forgotPassword">Nie pamiętam hasła</button>
+          <div class="login-message" id="loginMessage" role="status" aria-live="polite"></div>
+        </form>
+
+        <div class="login-security">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5.2 3.4 9.5 8 11 4.6-1.5 8-5.8 8-11V5l-8-3Zm0 2.2L18 6.4V11c0 4.1-2.5 7.6-6 8.9-3.5-1.3-6-4.8-6-8.9V6.4l6-2.2Zm-1 4.3h2v3h3v2h-3v3h-2v-3H8v-2h3v-3Z"/></svg>
+          <span>Hasła nie będą przechowywane w kodzie strony ani w GitHubie.</span>
+        </div>
+      </div>
+    </section>
+  </main>
+  <script src="login.js"></script>
+</body>
+</html>
