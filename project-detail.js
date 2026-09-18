@@ -13,6 +13,36 @@
   const formatDateTime=value=>{
     try{return new Date(value).toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch{return value||''}
   };
+  const formatDate=value=>{
+    if(!value)return 'Brak';
+    try{return new Date(value+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'})}catch{return value}
+  };
+  const deadlineInfo=(value,status)=>{
+    if(!value)return {text:'Brak terminu',state:'none'};
+    if(status==='done')return {text:'Projekt zakończony',state:'done'};
+    const today=new Date();today.setHours(0,0,0,0);
+    const end=new Date(value+'T00:00:00');end.setHours(0,0,0,0);
+    const diff=Math.round((end-today)/86400000);
+    if(diff<0)return {text:Math.abs(diff)+' dni po terminie',state:'overdue'};
+    if(diff===0)return {text:'Dzisiaj',state:'today'};
+    if(diff===1)return {text:'1 dzień',state:'soon'};
+    return {text:diff+' dni',state:diff<=7?'soon':'normal'};
+  };
+  const enableDatePicker=input=>{
+    if(!input||input.dataset.pickerReady==='1')return;
+    input.dataset.pickerReady='1';
+    input.addEventListener('click',()=>{
+      if(typeof input.showPicker==='function'){
+        try{input.showPicker()}catch{}
+      }
+    });
+    input.addEventListener('keydown',e=>{
+      if((e.key==='Enter'||e.key===' ')&&typeof input.showPicker==='function'){
+        e.preventDefault();
+        try{input.showPicker()}catch{}
+      }
+    });
+  };
 
   function buildModal(){
     if(document.querySelector('#projectDetailModal'))return;
@@ -81,7 +111,10 @@
               <div class="pd-card-head"><div><span>PODSUMOWANIE</span><h3>Stan projektu</h3></div></div>
               <div class="pd-summary-row"><span>Status</span><strong id="pdSummaryStatus">—</strong></div>
               <div class="pd-summary-row"><span>Termin</span><strong id="pdSummaryDeadline">—</strong></div>
+              <div class="pd-summary-row"><span>Do końca</span><strong id="pdSummaryRemaining">—</strong></div>
+              <div class="pd-summary-row"><span>Postęp</span><strong id="pdSummaryProgress">—</strong></div>
               <div class="pd-summary-row"><span>Taski</span><strong id="pdSummaryTasks">0</strong></div>
+              <div class="pd-summary-row"><span>Otwarte taski</span><strong id="pdSummaryOpenTasks">0</strong></div>
               <div class="pd-summary-row"><span>Zespół</span><strong id="pdSummaryMembers">0</strong></div>
               <div class="pd-danger-zone"><button type="button" id="pdDeleteProject">Usuń projekt</button></div>
             </div>
@@ -98,6 +131,8 @@
     $('#pdMemberAdd').onclick=addMember;
 
     ['#pdStatus','#pdDeadline','#pdOwner','#pdDesc'].forEach(sel=>$(sel).addEventListener('change',persistOverview));
+    enableDatePicker($('#pdDeadline'));
+    enableDatePicker($('#pdTaskDeadline'));
     $('#pdDeleteProject').onclick=deleteCurrentProject;
   }
 
@@ -222,10 +257,15 @@
   }
 
   function renderSummary(p){
-    syncProjectProgress(p);
+    const prog=syncProjectProgress(p);
+    const dInfo=deadlineInfo(p.deadline,p.status);
     $('#pdSummaryStatus').textContent=statusText[p.status]||'—';
-    $('#pdSummaryDeadline').textContent=p.deadline||'Brak';
-    $('#pdSummaryTasks').textContent=`${p.projectTasks.filter(t=>t.done).length}/${p.projectTasks.length}`;
+    $('#pdSummaryDeadline').textContent=formatDate(p.deadline);
+    $('#pdSummaryRemaining').textContent=dInfo.text;
+    $('#pdSummaryRemaining').dataset.state=dInfo.state;
+    $('#pdSummaryProgress').textContent=prog.total?prog.progress+'%':'—';
+    $('#pdSummaryTasks').textContent=prog.done+'/'+prog.total;
+    $('#pdSummaryOpenTasks').textContent=String(Math.max(0,prog.total-prog.done));
     $('#pdSummaryMembers').textContent=p.members.length;
   }
 
