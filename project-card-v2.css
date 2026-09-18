@@ -748,3 +748,18 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
   .intro-project-actions{padding-top:0!important;align-items:flex-start!important}
   .intro-add-project,.stats-toggle-btn{align-self:flex-start!important}
 }
+
+
+/* FINAL: data i akcje na wysokości nagłówka „Marketing PEREKO” */
+@media(min-width:1101px){
+  .intro-row{
+    align-items:start!important;
+  }
+  .intro-actions{
+    padding-top:28px!important;
+    align-items:start!important;
+  }
+  .intro-project-actions{
+    padding-top:0!important;
+  }
+}
