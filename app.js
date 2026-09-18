@@ -75,10 +75,6 @@ function render(){
         <p class="project-desc">${esc(p.desc||'')}</p>
         <div class="project-owner">${esc(p.owner||'')}</div>
       </div>
-      <div class="project-deadline-status">
-        <div class="deadline-edit"><label>Termin</label><div class="deadline-date-shell"><span class="deadline-date-value">${p.deadline?new Date(p.deadline+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'Brak daty'}</span><input type="date" data-deadline="${p.id}" value="${esc(p.deadline)}"></div></div>
-        <span class="status ${p.status}">${statusText[p.status]}</span>
-      </div>
       <div class="progress-wrap ${pi.hasTasks?'':'no-tasks'}">
         <div class="progress"><span style="width:${pi.progress}%"></span></div>
         <div class="project-progress-caption">${pi.hasTasks?`<strong>${pi.progress}%</strong><span>${pi.done}/${pi.total} zadań zakończonych</span>`:'<strong>—</strong><span>Podłącz zadania, aby liczyć postęp</span>'}</div>
@@ -94,7 +90,6 @@ function render(){
   $('#deadlineList').innerHTML=sorted.map(p=>{const d=new Date(p.deadline+'T12:00:00');return `<div class="deadline"><div class="datebox"><b>${String(d.getDate()).padStart(2,'0')}</b><span>${d.toLocaleString('pl-PL',{month:'short'}).replace('.','')}</span></div><div><h5>${esc(p.name)}</h5><p>${esc(p.owner)} · ${statusText[p.status]}</p></div></div>`}).join('')||'<div class="empty">Brak terminów.</div>';
   $('#taskList').innerHTML=tasks.map((t,i)=>`<label class="task ${t.done?'done':''}"><input type="checkbox" data-task="${i}" ${t.done?'checked':''}><span>${esc(t.text)}</span></label>`).join('');
   $$('[data-task]').forEach(x=>x.onchange=()=>{tasks[+x.dataset.task].done=x.checked;save();render()});
-  $$('[data-deadline]').forEach(x=>x.onchange=()=>{const p=projects.find(y=>y.id===x.dataset.deadline);if(p){p.deadline=x.value;save();render()}})
 }
 $$('[data-filter]').forEach(b=>b.onclick=()=>{$$('[data-filter]').forEach(x=>x.classList.remove('active'));b.classList.add('active');activeFilter=b.dataset.filter;render()});
 function applyStatsVisibility(){
