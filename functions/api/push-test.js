@@ -14,7 +14,7 @@ export async function onRequestPost(context){
   const result=await sendUserNotification(context.env,user.email,{
     title:'PEREKO — Centrum Marketingowe',
     body:'Test Web Push działa poprawnie na tym urządzeniu.',
-    icon:'/icons/pereko-marketing-v2-192.png',
+    icon:'/icons/pereko-marketing-v3-192.png',
     badge:'/icons/badge-96.png',
     tag:'pereko-server-test',
     url:'/',
