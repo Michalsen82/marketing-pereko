@@ -91,11 +91,17 @@
               <span class="module-label">PROJEKTY</span>
               <h2>Projekty marketingowe</h2>
             </div>
-            <div class="filters">
-              <button class="filter active" data-filter="all">Wszystkie</button>
-              <button class="filter" data-filter="work">W realizacji</button>
-              <button class="filter" data-filter="plan">Planowane</button>
-              <button class="filter" data-filter="done">Zakończone</button>
+            <div class="project-head-controls">
+              <div class="project-view-switch" aria-label="Widok projektów">
+                <button class="project-view-btn active" type="button" data-project-scope="all">Wszystkie projekty</button>
+                <button class="project-view-btn" type="button" data-project-scope="mine">Z moimi zadaniami</button>
+              </div>
+              <div class="filters">
+                <button class="filter active" data-filter="all">Wszystkie</button>
+                <button class="filter" data-filter="work">W realizacji</button>
+                <button class="filter" data-filter="plan">Planowane</button>
+                <button class="filter" data-filter="done">Zakończone</button>
+              </div>
             </div>
           </div>
           <div class="project-list" id="projectList"></div>
