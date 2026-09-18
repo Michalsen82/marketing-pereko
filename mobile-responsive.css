@@ -607,3 +607,66 @@
     margin-right:14px!important;
   }
 }
+
+
+/* Mobile: nazwa użytkownika wyrównana lewą krawędzią do napisu „Centrum Projektów Marketingowych” */
+@media(max-width:760px){
+  .topbar-actions{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    display:grid!important;
+    grid-template-columns:128px minmax(0,1fr) 38px 38px!important;
+    column-gap:8px!important;
+    align-items:center!important;
+    justify-self:stretch!important;
+  }
+  .topbar-actions .user-zone{
+    grid-column:2!important;
+    grid-row:1!important;
+    justify-self:stretch!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:0!important;
+    border-left:0!important;
+    justify-content:flex-start!important;
+  }
+  .topbar-actions .user-zone-copy{
+    width:100%!important;
+    max-width:none!important;
+    margin:0!important;
+    padding:0!important;
+    align-items:flex-start!important;
+    text-align:left!important;
+  }
+  .topbar-actions .user-zone-copy strong{
+    width:100%!important;
+    max-width:100%!important;
+    margin:0!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .topbar-actions .password-change-btn{
+    grid-column:3!important;
+    grid-row:1!important;
+    justify-self:end!important;
+    margin:0!important;
+  }
+  .topbar-actions .logout-btn{
+    grid-column:4!important;
+    grid-row:1!important;
+    justify-self:end!important;
+    margin:0!important;
+  }
+  .topbar-actions .user-avatar-control{
+    display:none!important;
+  }
+}
+@media(max-width:420px){
+  .topbar-actions{
+    grid-template-columns:112px minmax(0,1fr) 36px 36px!important;
+    column-gap:7px!important;
+  }
+}
