@@ -126,6 +126,9 @@ self.addEventListener('notificationclick',event=>{
   const data=event.notification.data||{};
   const target=data.url||'/';
   event.waitUntil((async()=>{
+    try{
+      if(self.navigator&&'clearAppBadge' in self.navigator)await self.navigator.clearAppBadge();
+    }catch{}
     const windows=await self.clients.matchAll({type:'window',includeUncontrolled:true});
     for(const client of windows){
       try{
