@@ -110,6 +110,14 @@
               </div>
             </div>
           </div>
+          <div class="project-search-row">
+            <label class="project-search-box" for="projectSearch">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+              <input id="projectSearch" type="search" autocomplete="off" placeholder="Szukaj po numerze lub nazwie projektu…" aria-label="Szukaj projektu po numerze lub nazwie">
+              <button id="projectSearchClear" class="project-search-clear" type="button" aria-label="Wyczyść wyszukiwanie">×</button>
+            </label>
+            <span class="project-search-count" id="projectSearchCount" aria-live="polite"></span>
+          </div>
           <div class="project-list" id="projectList"></div>
         </section>
       </div>
