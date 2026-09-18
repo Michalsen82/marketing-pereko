@@ -34,3 +34,18 @@
   display:block!important;
   margin-top:3px!important;
 }
+
+
+/* Numeracja roczna zadań */
+.task-calendar-item .task-number{
+  display:block!important;
+  margin:0 0 3px!important;
+  color:#76848a!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.07em!important;
+  text-decoration:none!important
+}
+.task-calendar-item.done .task-number{
+  color:#98a2a6!important;
+  text-decoration:none!important
+}
