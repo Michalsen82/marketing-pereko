@@ -19,6 +19,7 @@
   <link rel="stylesheet" href="gantt.css" />
   <link rel="stylesheet" href="account-security.css" />
   <link rel="stylesheet" href="global-search.css" />
+  <link rel="stylesheet" href="project-files.css" />
   <link rel="stylesheet" href="mobile-responsive.css" />
 </head>
 <body style="visibility:hidden">
@@ -158,17 +159,17 @@
     </div>
   </footer>
 
-  <button class="global-search-fab" id="globalSearchFab" type="button" aria-label="Wyszukaj projekty i zadania" title="Wyszukaj">
+  <button class="global-search-fab" id="globalSearchFab" type="button" aria-label="Wyszukaj projekty, zadania i pliki" title="Wyszukaj">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
   </button>
   <section class="global-search-panel" id="globalSearchPanel" aria-hidden="true">
     <div class="global-search-head">
-      <div><span>WYSZUKIWARKA</span><h3>Projekty i zadania</h3></div>
+      <div><span>WYSZUKIWARKA</span><h3>Projekty, zadania i pliki</h3></div>
       <button class="global-search-close" id="globalSearchClose" type="button" aria-label="Zamknij">×</button>
     </div>
     <label class="global-search-input-wrap" for="globalSearchInput">
       <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
-      <input id="globalSearchInput" type="search" autocomplete="off" placeholder="Numer lub fraza, np. P-001/26, Z-004/26, Partner…" />
+      <input id="globalSearchInput" type="search" autocomplete="off" placeholder="Numer lub fraza, np. P-001/26, Z-004/26, Partner, katalog…" />
       <button id="globalSearchClear" type="button" aria-label="Wyczyść">×</button>
     </label>
     <div class="global-search-results" id="globalSearchResults"></div>
@@ -196,6 +197,7 @@
   <script src="task-calendar.js"></script>
   <script src="project-cards.js"></script>
   <script src="global-search.js"></script>
+  <script src="project-files.js"></script>
   <script src="footer.js"></script>
   <script src="team.js"></script>
   <script src="user-avatar.js"></script>
