@@ -10,7 +10,7 @@
     return p;
   };
 
-  const daysUntil=iso=>{\n    if(!iso)return null;\n    const now=new Date();now.setHours(0,0,0,0);\n    const target=new Date(iso+'T00:00:00');target.setHours(0,0,0,0);\n    return Math.round((target-now)/86400000);\n  };\n  const dueText=iso=>{\n    const d=daysUntil(iso);\n    if(d===null)return '';\n    return d<0?'Po terminie: '+Math.abs(d)+' dni':d===0?'Termin dzisiaj':d===1?'1 dzień do terminu':d+' dni do terminu';\n  };\n\n  const formatDateTime=value=>{
+  const formatDateTime=value=>{
     try{return new Date(value).toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch{return value||''}
   };
 
@@ -194,7 +194,7 @@
   function renderProjectTasks(p){
     const list=$('#pdTaskList');
     list.innerHTML=p.projectTasks.length?p.projectTasks.map((t,i)=>`<div class="pd-task ${t.done?'done':''}">
-      <label><input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''}><span><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}${t.deadline?' · '+esc(dueText(t.deadline)):''}</small></span></label>
+      <label><input type="checkbox" data-pd-task-done="${i}" ${t.done?'checked':''}><span><strong>${esc(t.text)}</strong><small>${esc(t.assignee||'Bez przypisania')}${t.deadline?' · '+esc(t.deadline):''}</small></span></label>
       <button type="button" data-pd-task-remove="${i}" aria-label="Usuń">×</button>
     </div>`).join(''):'<div class="pd-empty">Nie ma jeszcze tasków w tym projekcie.</div>';
     $$('[data-pd-task-done]').forEach(el=>el.onchange=()=>{p.projectTasks[+el.dataset.pdTaskDone].done=el.checked;syncProjectProgress(p);save();render();fillDetail(p)});
@@ -224,7 +224,7 @@
   function renderSummary(p){
     syncProjectProgress(p);
     $('#pdSummaryStatus').textContent=statusText[p.status]||'—';
-    $('#pdSummaryDeadline').textContent=p.deadline?(p.deadline+' · '+dueText(p.deadline)):'Brak';
+    $('#pdSummaryDeadline').textContent=p.deadline||'Brak';
     $('#pdSummaryTasks').textContent=`${p.projectTasks.filter(t=>t.done).length}/${p.projectTasks.length}`;
     $('#pdSummaryMembers').textContent=p.members.length;
   }
