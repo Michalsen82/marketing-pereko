@@ -1279,3 +1279,23 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     padding-left:1px!important
   }
 }
+
+
+/* FINAL: numer zadania identyczny wizualnie jak numer projektu */
+.pd-task-number,
+.task-calendar-item .task-number,
+.project-preview-task-number{
+  display:block!important;
+  margin:0 0 1px!important;
+  color:rgba(255,255,255,.54)!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase!important;
+  text-decoration:none!important
+}
+.pd-task.done .pd-task-number,
+.task-calendar-item.done .task-number,
+.project-preview-task.done .project-preview-task-number{
+  color:rgba(255,255,255,.54)!important;
+  text-decoration:none!important
+}
