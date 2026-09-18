@@ -11,15 +11,7 @@
       "members": [
         "Michał"
       ],
-      "projectTasks": [
-        {
-          "id": "7868d085-e29e-4253-9262-18c63f93b99b",
-          "text": "wqeerqwer",
-          "assignee": "Wiktoria Adamczyk",
-          "deadline": "2026-09-25",
-          "done": false
-        }
-      ],
+      "projectTasks": [],
       "comments": []
     },
     {
@@ -83,35 +75,35 @@
     {
       "text": "Ustalić najbliższe terminy dla wszystkich projektów",
       "done": false,
-      "id": "3a419cfa-a677-4912-b05d-6b489a08f8ac",
-      "createdAt": "2026-09-18T11:47:23.853Z",
+      "id": "af955ab2-6e43-454e-b5d7-1f9a3f7410f0",
+      "createdAt": "2026-09-18T11:52:59.159Z",
       "scheduledFor": "2026-09-18",
       "history": []
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
       "done": false,
-      "id": "923ad3e1-5784-48dc-b351-e3dc75adc75c",
-      "createdAt": "2026-09-18T11:47:23.853Z",
+      "id": "ab812c0c-177b-4715-894c-438c101fc0f8",
+      "createdAt": "2026-09-18T11:52:59.159Z",
       "scheduledFor": "2026-09-18",
       "history": []
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
       "done": false,
-      "id": "1fc0fd85-c265-4449-a0d2-fe07ab44ebf4",
-      "createdAt": "2026-09-18T11:47:23.853Z",
+      "id": "7d9f7996-fecd-4937-a6e3-dd0201b65814",
+      "createdAt": "2026-09-18T11:52:59.159Z",
       "scheduledFor": "2026-09-18",
       "history": []
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
       "done": false,
-      "id": "1a48a2bc-96e7-4d9a-ae5e-501b9d7f5515",
-      "createdAt": "2026-09-18T11:47:23.853Z",
+      "id": "bda0c14e-2326-4c8e-95e0-8f4a9463d8af",
+      "createdAt": "2026-09-18T11:52:59.159Z",
       "scheduledFor": "2026-09-18",
       "history": []
     }
   ],
-  "updatedAt": "2026-09-18T11:52:40.897Z"
+  "updatedAt": "2026-09-18T11:52:59.497Z"
 }
