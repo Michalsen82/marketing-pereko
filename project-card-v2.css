@@ -831,3 +831,73 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
 .project.has-my-tasks .project-topic-icon{
   box-shadow:0 0 0 1px rgba(255,214,0,.18),0 8px 20px rgba(0,0,0,.16)!important
 }
+
+
+/* FINAL: stała pozycja ikony + wyraźny właściciel projektu */
+.project{
+  position:relative!important;
+}
+.project-title-row{
+  align-items:flex-start!important;
+}
+.project-topic-icon{
+  flex:0 0 auto!important;
+  align-self:flex-start!important;
+  margin-top:0!important;
+  transform:none!important;
+}
+.project-title-copy{
+  align-self:flex-start!important;
+}
+
+/* Właściciel projektu — zawsze w prawym górnym rogu karty */
+.project-owner-badge{
+  position:absolute!important;
+  top:16px!important;
+  right:18px!important;
+  z-index:4!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:8px!important;
+  min-height:30px!important;
+  padding:5px 9px 5px 10px!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.94)!important;
+  border:1px solid rgba(255,255,255,.98)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.18)!important;
+  white-space:nowrap!important;
+}
+.project-owner-badge span{
+  color:#777f84!important;
+  font:700 7px/1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important;
+  letter-spacing:.08em!important;
+}
+.project-owner-badge strong{
+  color:#202426!important;
+  font:800 10px/1 'Montserrat',sans-serif!important;
+}
+.project-deadline-status{
+  padding-top:34px!important;
+}
+.project-main{
+  padding-right:18px!important;
+}
+
+@media(max-width:980px){
+  .project-owner-badge{
+    position:static!important;
+    width:max-content!important;
+    margin-left:auto!important;
+    margin-bottom:2px!important;
+  }
+  .project-deadline-status{
+    padding-top:0!important;
+  }
+}
+@media(max-width:640px){
+  .project-owner-badge{
+    margin-left:0!important;
+    white-space:normal!important;
+  }
+}
