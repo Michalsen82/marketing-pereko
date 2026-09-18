@@ -656,3 +656,17 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
     gap:20px!important
   }
 }
+
+
+/* Tekst terminu projektu w rozwiniętym podglądzie — bez dodatkowej infografiki */
+.project-preview-deadline-text{
+  margin:0 0 14px!important;
+  color:#fff!important;
+  font:700 10.5px/1.3 'Montserrat',sans-serif!important
+}
+.project-preview-deadline-text.overdue{
+  color:#ffbdb8!important
+}
+.project-preview-deadline-text.none{
+  color:rgba(255,255,255,.50)!important
+}
