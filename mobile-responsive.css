@@ -697,3 +697,46 @@
     padding-left:9px!important;
   }
 }
+
+
+/* FINAL MOBILE FIX: szczegóły projektu zawsze od pełnej górnej krawędzi widocznego ekranu */
+@media(max-width:760px){
+  .project-detail-modal{
+    inset:0!important;
+    width:100%!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+    max-height:100dvh!important;
+    padding:0!important;
+    align-items:flex-start!important;
+    justify-content:flex-start!important;
+    overflow:hidden!important
+  }
+  .project-detail-card{
+    width:100%!important;
+    height:100dvh!important;
+    min-height:100dvh!important;
+    max-height:100dvh!important;
+    margin:0!important;
+    border-radius:0!important;
+    overflow-y:auto!important;
+    overflow-x:hidden!important;
+    overscroll-behavior:contain!important;
+    -webkit-overflow-scrolling:touch!important;
+    scroll-padding-top:0!important
+  }
+  .project-detail-top{
+    top:0!important;
+    padding-top:max(18px,env(safe-area-inset-top))!important;
+  }
+}
+@supports not (height:100dvh){
+  @media(max-width:760px){
+    .project-detail-modal,
+    .project-detail-card{
+      height:100svh!important;
+      min-height:100svh!important;
+      max-height:100svh!important
+    }
+  }
+}
