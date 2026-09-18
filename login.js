@@ -1,8 +1,15 @@
 (()=>{
   const SUPABASE_URL='https://gtzbjpgpxopccauicumz.supabase.co';
   const SUPABASE_KEY='sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
+  const REMEMBERED_EMAIL_KEY='pereko_remembered_email';
   const client=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY,{
-    auth:{persistSession:true,autoRefreshToken:true,detectSessionInUrl:true}
+    auth:{
+      persistSession:true,
+      autoRefreshToken:true,
+      detectSessionInUrl:true,
+      storage:window.localStorage,
+      storageKey:'pereko-marketing-auth'
+    }
   });
   const form=document.querySelector('#loginForm');
   const email=document.querySelector('#loginEmail');
@@ -11,9 +18,21 @@
   const message=document.querySelector('#loginMessage');
   const submit=form?.querySelector('.login-submit');
 
-  client.auth.getSession().then(({data:{session}})=>{
-    if(session) window.location.replace('index.html');
-  });
+  const rememberedEmail=localStorage.getItem(REMEMBERED_EMAIL_KEY)||'';
+  if(email&&rememberedEmail&&!email.value)email.value=rememberedEmail;
+
+  (async()=>{
+    let session=null;
+    try{
+      const current=await client.auth.getSession();
+      session=current.data?.session||null;
+      if(!session){
+        const refreshed=await client.auth.refreshSession().catch(()=>null);
+        session=refreshed?.data?.session||null;
+      }
+    }catch{}
+    if(session)window.location.replace('index.html');
+  })();
 
   toggle?.addEventListener('click',()=>{
     const show=password.type==='password';
@@ -39,6 +58,13 @@
       submit.textContent='Zaloguj się';
       return;
     }
+    localStorage.setItem(REMEMBERED_EMAIL_KEY,mail);
+    try{
+      if('PasswordCredential' in window&&navigator.credentials?.store){
+        const credential=new PasswordCredential({id:mail,password:pass,name:mail});
+        await navigator.credentials.store(credential);
+      }
+    }catch{}
     window.location.replace('index.html');
   });
 
