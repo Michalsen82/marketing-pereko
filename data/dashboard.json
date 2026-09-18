@@ -133,7 +133,26 @@
           "createdAt": "2026-09-18T12:07:00.202Z"
         }
       ]
+    },
+    {
+      "id": "8fa9be80-ca9f-4327-bdca-20761f03c2e8",
+      "text": "Perwszt testowy TASK - stworzony przez Michała",
+      "assignee": "Łukasz Drozdowski",
+      "done": false,
+      "createdAt": "2026-09-18T12:43:04.598Z",
+      "scheduledFor": "2026-09-18",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "67328978-422d-4b34-8bce-de99c03168af",
+          "type": "created",
+          "text": "Utworzono task na 18.09",
+          "date": "2026-09-18",
+          "createdAt": "2026-09-18T12:43:04.598Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-18T12:42:28.867Z"
+  "updatedAt": "2026-09-18T12:43:05.391Z"
 }
