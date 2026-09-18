@@ -1,69 +1,24 @@
 {
   "projects": [
     {
-      "id": "8012987e-7d52-4090-973b-7a1482e4fa8b",
-      "name": "TESTOWY PROJEKT",
-      "owner": "Michał Bukowski",
-      "status": "plan",
+      "id": "p1",
+      "name": "Centrum Partnera PEREKO",
+      "owner": "Michał",
+      "status": "work",
       "progress": 0,
-      "deadline": "2026-09-24",
-      "desc": "Projekt utworzony po zmianach",
+      "deadline": "2026-10-15",
+      "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
       "members": [
-        "Michał Bukowski"
+        "Michał"
       ],
       "projectTasks": [],
       "comments": []
     },
     {
-      "id": "p1",
-      "name": "Centrum Partnera PEREKO",
-      "owner": "Michał",
-      "status": "work",
-      "progress": 33,
-      "deadline": "2026-10-01",
-      "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
-      "members": [
-        "Michał",
-        "Wiktoria",
-        "Łukasz"
-      ],
-      "projectTasks": [
-        {
-          "id": "5ca73bc0-566d-42c2-86f9-a74803d461c9",
-          "text": "zadanie nr 3 - opis zadania szczegółowo!",
-          "assignee": "Łukasz",
-          "deadline": "2026-09-19",
-          "done": false
-        },
-        {
-          "id": "17d1f9ac-ecd9-4f73-b13e-70019407d7aa",
-          "text": "zadanie nr 2 - opis zadania szczegółowo!",
-          "assignee": "Wiktoria",
-          "deadline": "2026-09-18",
-          "done": true
-        },
-        {
-          "id": "07fa904f-a8fc-4e78-8f42-a751c818a663",
-          "text": "zadanie nr 1 - opis zadania szczegółowo!",
-          "assignee": "Michał Bukowski",
-          "deadline": "2026-09-18",
-          "done": false
-        }
-      ],
-      "comments": [
-        {
-          "id": "3bdf193b-6b11-4922-aec1-fef9cd736f39",
-          "text": "ok -notatka",
-          "author": "Michał",
-          "createdAt": "2026-09-18T07:58:15.560Z"
-        }
-      ]
-    },
-    {
       "id": "p2",
       "name": "Targi HVAC 2027",
       "owner": "Michał",
-      "status": "done",
+      "status": "plan",
       "progress": 0,
       "deadline": "2027-03-01",
       "desc": "Plan targów, harmonogram, ekspozycja, materiały i komunikacja.",
@@ -77,7 +32,7 @@
       "id": "p3",
       "name": "Upominki świąteczne",
       "owner": "Wiktoria",
-      "status": "done",
+      "status": "plan",
       "progress": 0,
       "deadline": "2026-11-20",
       "desc": "Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.",
@@ -93,7 +48,7 @@
       "owner": "Michał",
       "status": "plan",
       "progress": 0,
-      "deadline": "2027-05-03",
+      "deadline": "2027-02-15",
       "desc": "Przygotowanie obecności targowej, materiałów, komunikacji i ekspozycji.",
       "members": [
         "Michał"
@@ -120,155 +75,35 @@
     {
       "text": "Ustalić najbliższe terminy dla wszystkich projektów",
       "done": false,
-      "id": "a6c2bd68-253c-468c-8519-2800fc6b4884",
-      "createdAt": "2026-09-17T11:56:12.384Z",
+      "id": "9282e3d7-8c0a-4e2d-8130-b45d6b1d05d3",
+      "createdAt": "2026-09-18T11:36:18.599Z",
       "scheduledFor": "2026-09-18",
-      "history": [
-        {
-          "id": "baca53b9-b434-4372-889c-530d58ee387b",
-          "type": "rollover",
-          "text": "Przeniesiono automatycznie z 17.09",
-          "date": "2026-09-18",
-          "createdAt": "2026-09-18T05:08:28.952Z"
-        }
-      ]
+      "history": []
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
       "done": false,
-      "id": "b434f23b-785d-423b-a109-7f9baf1a27f8",
-      "createdAt": "2026-09-17T11:56:12.384Z",
+      "id": "14197d2c-4952-41aa-ac86-2b0de92ae999",
+      "createdAt": "2026-09-18T11:36:18.599Z",
       "scheduledFor": "2026-09-18",
-      "history": [
-        {
-          "id": "319fbbf1-ac32-4b9f-beb6-e1b1c01ed641",
-          "type": "rollover",
-          "text": "Przeniesiono automatycznie z 17.09",
-          "date": "2026-09-18",
-          "createdAt": "2026-09-18T05:08:28.953Z"
-        }
-      ]
+      "history": []
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
       "done": false,
-      "id": "ce5f26f7-5fb4-4bd5-aa25-98afe41780e4",
-      "createdAt": "2026-09-17T11:56:12.384Z",
+      "id": "ed8bee48-7c4b-4ae4-8ce1-d115c7fe8438",
+      "createdAt": "2026-09-18T11:36:18.599Z",
       "scheduledFor": "2026-09-18",
-      "history": [
-        {
-          "id": "ef4ffb16-5fb7-4579-88af-b342f90abb7e",
-          "type": "rollover",
-          "text": "Przeniesiono automatycznie z 17.09",
-          "date": "2026-09-18",
-          "createdAt": "2026-09-18T05:08:28.954Z"
-        }
-      ]
+      "history": []
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
-      "done": true,
-      "id": "5c8e5418-5f77-4dd5-989b-da62d43f965a",
-      "createdAt": "2026-09-17T11:56:12.385Z",
-      "scheduledFor": "2026-09-17",
-      "history": [
-        {
-          "id": "c47b8b0f-36bc-43c6-a311-451e84e8ba62",
-          "type": "done",
-          "text": "Zadanie oznaczono jako wykonane",
-          "date": "2026-09-17",
-          "createdAt": "2026-09-17T11:56:20.618Z"
-        }
-      ],
-      "completedAt": "2026-09-17T11:56:20.618Z",
-      "completedOn": "2026-09-17"
-    },
-    {
-      "text": "dodawanie produktów na listę z nim",
-      "done": true,
-      "id": "65f48055-9263-4d0b-8826-c4b5d4baef1c",
-      "createdAt": "2026-09-17T11:56:12.385Z",
-      "scheduledFor": "2026-09-17",
-      "history": [
-        {
-          "id": "30a53128-528b-4d4c-8aac-a9b7e97d95c0",
-          "type": "done",
-          "text": "Zadanie oznaczono jako wykonane",
-          "date": "2026-09-17",
-          "createdAt": "2026-09-17T11:56:19.234Z"
-        }
-      ],
-      "completedAt": "2026-09-17T11:56:19.234Z",
-      "completedOn": "2026-09-17"
-    },
-    {
-      "text": "przeniesione na jutro",
-      "done": true,
-      "id": "4c1cc809-c17a-40e1-b478-b48511c93193",
-      "createdAt": "2026-09-17T11:56:12.385Z",
-      "scheduledFor": "2026-09-17",
-      "history": [
-        {
-          "id": "a81df77a-c5bd-435b-a031-f588b41ca577",
-          "type": "done",
-          "text": "Zadanie oznaczono jako wykonane",
-          "date": "2026-09-17",
-          "createdAt": "2026-09-17T11:56:22.226Z"
-        }
-      ],
-      "completedAt": "2026-09-17T11:56:22.226Z",
-      "completedOn": "2026-09-17"
-    },
-    {
-      "id": "896ad480-7737-422b-875c-64f9f1edd4be",
-      "text": "dfasdf",
       "done": false,
-      "createdAt": "2026-09-17T12:19:38.613Z",
+      "id": "3ea387a8-d099-4cd3-bea6-c4455dfeaf05",
+      "createdAt": "2026-09-18T11:36:18.600Z",
       "scheduledFor": "2026-09-18",
-      "completedAt": null,
-      "completedOn": null,
-      "history": [
-        {
-          "id": "aff035cf-aa7a-4e5f-bb54-20fa4d5bdba2",
-          "type": "rollover",
-          "text": "Przeniesiono automatycznie z 17.09",
-          "date": "2026-09-18",
-          "createdAt": "2026-09-18T05:08:28.954Z"
-        },
-        {
-          "id": "8e3ee239-01be-4982-b180-51936a827a7f",
-          "type": "rollover",
-          "text": "Przeniesiono automatycznie z 16.09",
-          "date": "2026-09-17",
-          "createdAt": "2026-09-17T12:19:38.613Z"
-        },
-        {
-          "id": "7dd13f57-9666-403f-8740-a25c0ab6b109",
-          "type": "created",
-          "text": "Utworzono zadanie na 16.09",
-          "date": "2026-09-16",
-          "createdAt": "2026-09-17T12:19:38.613Z"
-        }
-      ]
-    },
-    {
-      "id": "b97de975-2f68-4002-901c-a013367b9759",
-      "text": "adsfasd",
-      "done": false,
-      "createdAt": "2026-09-17T12:19:59.333Z",
-      "scheduledFor": "2026-09-18",
-      "completedAt": null,
-      "completedOn": null,
-      "history": [
-        {
-          "id": "d4e41b44-802c-4fd6-a8fe-8d077b2c4b88",
-          "type": "created",
-          "text": "Utworzono zadanie na 18.09",
-          "date": "2026-09-18",
-          "createdAt": "2026-09-17T12:19:59.333Z"
-        }
-      ]
+      "history": []
     }
   ],
-  "updatedAt": "2026-09-18T08:25:50.938Z"
+  "updatedAt": "2026-09-18T11:36:18.927Z"
 }
