@@ -71,7 +71,10 @@
       <div class="project-detail-card">
         <div class="project-detail-top">
           <div>
-            <span class="project-detail-kicker">PROJEKT MARKETINGOWY</span>
+            <div class="project-detail-meta">
+              <span class="project-detail-kicker">PROJEKT MARKETINGOWY</span>
+              <span class="pd-project-number" id="pdProjectNumber">P-—</span>
+            </div>
             <h2 id="pdTitle">Projekt</h2>
             <p id="pdSubtitle">Szczegóły, zespół, zadania i komentarze w jednym miejscu.</p>
           </div>
@@ -224,6 +227,7 @@
   }
 
   function fillDetail(p){
+    $('#pdProjectNumber').textContent=window.perekoProjectNumberLabel?.(p)||'P-—';
     $('#pdTitle').textContent=p.name;
     $('#pdStatus').value=p.status||'plan';
     $('#pdDeadline').value=p.deadline||'';
