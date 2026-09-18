@@ -278,3 +278,238 @@ body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;bac
   .projects-module .project-list{padding:12px!important}
   .date-box{min-width:0!important;max-width:none!important;width:100%!important}
 }
+
+
+/* =========================================================
+   Korekty 18.09 + biały kalendarz + ciemne wnętrze projektu
+   ========================================================= */
+
+/* Górna data — większa 18, bliżej bloku tekstowego i równe odstępy */
+.date-box{
+  grid-template-columns:72px 1fr!important;
+  gap:8px!important;
+  min-width:220px!important;
+  max-width:250px!important;
+  align-items:center!important
+}
+.date-daynum{
+  width:72px!important;
+  height:64px!important;
+  font-size:50px!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  padding:0!important
+}
+.date-copy{
+  display:grid!important;
+  grid-template-rows:auto auto auto!important;
+  row-gap:4px!important;
+  align-content:center!important
+}
+.date-copy .date-weekday,
+.date-copy strong,
+.date-copy span{
+  margin:0!important;
+  line-height:1.08!important
+}
+.date-copy .date-weekday{
+  font-size:10px!important
+}
+.date-copy strong{
+  font-size:16px!important
+}
+.date-copy span{
+  transform:translateY(-1px)!important;
+  font-size:12px!important
+}
+
+/* Biała ikona kalendarza w polach daty */
+input[type="date"]{
+  color-scheme:dark!important
+}
+input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:invert(1) brightness(2)!important;
+  opacity:.95!important;
+  cursor:pointer!important
+}
+input[type="date"]::-webkit-datetime-edit,
+input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+input[type="date"]::-webkit-datetime-edit-text,
+input[type="date"]::-webkit-datetime-edit-month-field,
+input[type="date"]::-webkit-datetime-edit-day-field,
+input[type="date"]::-webkit-datetime-edit-year-field{
+  color:#fff!important
+}
+
+/* WNĘTRZE PROJEKTU — pełny dark glass zgodny ze stroną główną */
+.project-detail-modal{
+  background:rgba(0,0,0,.74)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important
+}
+.project-detail-card{
+  background:linear-gradient(180deg,#08090a 0%,#0d0f10 100%)!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+  box-shadow:0 38px 120px rgba(0,0,0,.58)!important;
+  color:#fff!important
+}
+.project-detail-top{
+  background:rgba(3,3,3,.94)!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important
+}
+.project-detail-kicker{
+  color:rgba(255,255,255,.50)!important
+}
+.project-detail-top h2{
+  color:#fff!important
+}
+.project-detail-top p{
+  color:rgba(255,255,255,.60)!important
+}
+.pd-icon-btn{
+  background:rgba(255,255,255,.065)!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  color:#fff!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04)!important
+}
+.pd-icon-btn:hover{
+  background:rgba(255,255,255,.13)!important;
+  border-color:rgba(255,255,255,.24)!important
+}
+.project-detail-grid{
+  background:transparent!important
+}
+.pd-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 18px 42px rgba(0,0,0,.22)!important;
+  backdrop-filter:blur(20px)!important;
+  -webkit-backdrop-filter:blur(20px)!important;
+  color:#fff!important
+}
+.pd-card-head{
+  border-bottom:1px solid rgba(255,255,255,.07)!important
+}
+.pd-card-head span{
+  color:rgba(255,255,255,.50)!important
+}
+.pd-card-head h3{
+  color:#fff!important
+}
+.pd-form-grid,.pd-task-list,.pd-comments,.pd-members,.pd-summary{
+  background:transparent!important
+}
+.pd-field>span{
+  color:rgba(255,255,255,.68)!important
+}
+.pd-field input,
+.pd-field select,
+.pd-field textarea,
+.pd-task-form input,
+.pd-task-form select,
+.pd-comment-form textarea,
+.pd-member-add select{
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important
+}
+.pd-field input:focus,
+.pd-field select:focus,
+.pd-field textarea:focus,
+.pd-task-form input:focus,
+.pd-task-form select:focus,
+.pd-comment-form textarea:focus,
+.pd-member-add select:focus{
+  border-color:rgba(255,255,255,.25)!important;
+  outline:none!important
+}
+.pd-progress-control strong{
+  color:#fff!important
+}
+.pd-task-form,
+.pd-comment-form,
+.pd-member-add{
+  background:rgba(255,255,255,.025)!important;
+  border-color:rgba(255,255,255,.07)!important
+}
+.pd-task{
+  border-bottom:1px solid rgba(255,255,255,.065)!important
+}
+.pd-task strong{
+  color:#fff!important
+}
+.pd-task small{
+  color:rgba(255,255,255,.56)!important
+}
+.pd-task.done strong{
+  color:rgba(255,255,255,.42)!important
+}
+.pd-task input{
+  accent-color:#ffdd00!important
+}
+.pd-task>button,.pd-member>button{
+  color:rgba(255,255,255,.48)!important
+}
+.pd-task>button:hover,.pd-member>button:hover{
+  color:#fff!important
+}
+.pd-comment{
+  border-bottom:1px solid rgba(255,255,255,.065)!important
+}
+.pd-comment-avatar,.pd-avatar{
+  background:rgba(255,255,255,.08)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.11)!important
+}
+.pd-comment-meta strong{
+  color:#fff!important
+}
+.pd-comment-meta span{
+  color:rgba(255,255,255,.46)!important
+}
+.pd-comment p{
+  color:rgba(255,255,255,.72)!important
+}
+.pd-member{
+  border-bottom:1px solid rgba(255,255,255,.065)!important
+}
+.pd-member strong{
+  color:#fff!important
+}
+.pd-member span{
+  color:rgba(255,255,255,.54)!important
+}
+.pd-summary-row{
+  border-bottom:1px solid rgba(255,255,255,.065)!important
+}
+.pd-summary-row span{
+  color:rgba(255,255,255,.58)!important
+}
+.pd-summary-row strong{
+  color:#fff!important
+}
+.pd-empty{
+  color:rgba(255,255,255,.50)!important
+}
+.pd-glass-btn,.pd-accent-btn{
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.06))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 8px 18px rgba(0,0,0,.14)!important;
+  backdrop-filter:blur(14px)!important;
+  -webkit-backdrop-filter:blur(14px)!important
+}
+.pd-glass-btn:hover,.pd-accent-btn:hover{
+  background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.09))!important;
+  border-color:rgba(255,255,255,.25)!important;
+  color:#fff!important
+}
+.pd-progress-control input[type="range"]{
+  accent-color:#ffdd00!important
+}
