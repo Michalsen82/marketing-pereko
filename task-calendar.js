@@ -34,7 +34,7 @@
         changed=true;
       }
     });
-    if(changed){saveLocal();if(cloudSyncEnabled)queueMicrotask(()=>pushRemote())}
+    if(changed)save();
   };
 
   function buildTaskUI(){
