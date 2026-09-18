@@ -36,7 +36,6 @@
     const remaining=Math.max(0,list.length-5);
     const projectDue=closeInfo(p.deadline);
     return `<div class="project-preview">
-      <div class="project-preview-deadline-text ${projectDue.state}">${projectDue.text}</div>
       <div class="project-preview-grid">
         <div class="project-preview-block">
           <span class="project-preview-label">ZADANIA</span>
@@ -47,6 +46,7 @@
           <div class="project-preview-fact"><span>Termin</span><strong>${esc(p.deadline||'Brak')}</strong></div>
           <div class="project-preview-fact"><span>Odpowiedzialny</span><strong>${esc(p.owner||'—')}</strong></div>
           <div class="project-preview-fact"><span>Status</span><strong>${esc(statusText[p.status]||'—')}</strong></div>
+          <div class="project-preview-fact"><span>Koniec projektu</span><strong>${projectDue.state==='none'?'Brak terminu':projectDue.days+' '+(projectDue.days==='1'?'dzień':'dni')}</strong></div>
           <div class="project-preview-fact"><span>Taski</span><strong>${list.filter(t=>t.done).length}/${list.length}</strong></div>
         </div>
       </div>
