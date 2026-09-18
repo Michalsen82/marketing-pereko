@@ -513,3 +513,115 @@ input[type="date"]::-webkit-datetime-edit-year-field{
 .pd-progress-control input[type="range"]{
   accent-color:#ffdd00!important
 }
+
+
+/* =========================================================
+   Precyzyjne korekty: selektor dat, data główna, boxy terminów
+   ========================================================= */
+
+/* 1. GLOBALNIE: każdy natywny selektor daty ma biały symbol kalendarza */
+html body input[type="date"]{
+  color-scheme:dark!important;
+  -webkit-appearance:auto!important;
+  appearance:auto!important
+}
+html body input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:invert(1) brightness(2.2) contrast(1.15)!important;
+  opacity:1!important;
+  cursor:pointer!important;
+  background-color:transparent!important
+}
+html body input[type="date"]::-webkit-inner-spin-button,
+html body input[type="date"]::-webkit-clear-button{
+  filter:invert(1)!important
+}
+/* także w formularzu projektu, zadaniach i wnętrzu projektu */
+.task-add-form input[type="date"]::-webkit-calendar-picker-indicator,
+.deadline-edit input[type="date"]::-webkit-calendar-picker-indicator,
+.field input[type="date"]::-webkit-calendar-picker-indicator,
+.pd-field input[type="date"]::-webkit-calendar-picker-indicator,
+.pd-task-form input[type="date"]::-webkit-calendar-picker-indicator{
+  filter:invert(1) brightness(2.2) contrast(1.15)!important;
+  opacity:1!important
+}
+
+/* 2. Data główna: 18 bardziej w prawo, większa i optycznie spięta z Piątek / wrzesień / 2026 */
+.date-box{
+  grid-template-columns:78px 1fr!important;
+  column-gap:3px!important;
+  min-width:214px!important;
+  max-width:236px!important;
+  overflow:visible!important
+}
+.date-daynum{
+  width:78px!important;
+  height:68px!important;
+  font-size:54px!important;
+  line-height:.92!important;
+  letter-spacing:-.06em!important;
+  padding-left:14px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  transform:translateY(1px)!important
+}
+.date-copy{
+  row-gap:3px!important;
+  align-content:center!important;
+  justify-items:start!important
+}
+.date-copy .date-weekday{
+  line-height:1!important
+}
+.date-copy strong{
+  line-height:1.05!important
+}
+.date-copy span{
+  line-height:1!important;
+  transform:none!important;
+  margin-top:0!important
+}
+
+/* 3. Najbliższe terminy: jasny box daty, ciemnoszary tekst */
+.deadline{
+  grid-template-columns:58px 1fr!important;
+  align-items:center!important;
+  gap:14px!important
+}
+.deadline .datebox{
+  width:54px!important;
+  min-width:54px!important;
+  height:54px!important;
+  padding:7px 5px!important;
+  border-radius:12px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:center!important;
+  justify-content:center!important;
+  background:rgba(255,255,255,.92)!important;
+  border:1px solid rgba(255,255,255,.98)!important;
+  box-shadow:0 8px 20px rgba(0,0,0,.16)!important;
+  text-align:center!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important
+}
+.deadline .datebox b{
+  color:#3b4145!important;
+  font-size:18px!important;
+  line-height:1!important;
+  margin:0!important
+}
+.deadline .datebox span{
+  color:#5f666b!important;
+  font:700 9px/1.1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important;
+  margin-top:4px!important
+}
+.deadline h5{color:#fff!important}
+.deadline p{color:rgba(255,255,255,.62)!important}
+
+@media(max-width:760px){
+  .date-daynum{padding-left:8px!important;font-size:48px!important}
+  .date-box{grid-template-columns:70px 1fr!important;max-width:none!important}
+}
