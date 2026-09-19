@@ -210,11 +210,11 @@
 }
 
 
-/* Desktop login — panel PWA bezpośrednio pod formularzem */
+/* Desktop login — panel PWA wyrównany do szerokości brandingu */
 @media(min-width:621px){
   .login-panel-minimal>.pwa-login-panel{
     width:100%!important;
-    max-width:520px!important;
+    max-width:620px!important;
     box-sizing:border-box!important;
     margin-top:2px!important;
   }
