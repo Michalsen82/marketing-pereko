@@ -25,10 +25,10 @@ async function forwardToExisting(context){
   return fetch(forwarded);
 }
 
-async function listAll(bucket,prefix,max=50000){
+async function listAll(bucket,prefix,max=50000,include=[]){
   const objects=[];let cursor;
   do{
-    const page=await bucket.list({prefix,limit:1000,cursor});
+    const page=await bucket.list({prefix,limit:1000,cursor,include});
     objects.push(...page.objects);
     if(objects.length>=max)return {objects:objects.slice(0,max),truncated:true};
     cursor=page.truncated?page.cursor:undefined;
@@ -42,7 +42,7 @@ export async function onRequest(context){
     const action=url.searchParams.get('action')||'list';
     const bucket=context.env.PROJECT_FILES;
 
-    if(action==='usage'||action==='purge'){
+    if(action==='usage'||action==='purge'||action==='global-trash'){
       if(!bucket)return json({error:'Magazyn plików R2 nie jest jeszcze podłączony. Wymagany binding PROJECT_FILES.'},503);
       if(!(await requireExistingAuth(context)))return json({error:'Brak autoryzacji'},401);
     }
@@ -60,6 +60,57 @@ export async function onRequest(context){
         objectCount:listed.objects.length,
         truncated:listed.truncated
       });
+    }
+
+    if(action==='global-trash'){
+      const [trash,files]=await Promise.all([
+        listAll(bucket,TRASH_PREFIX,50000),
+        listAll(bucket,PROJECT_PREFIX,50000,['customMetadata','httpMetadata'])
+      ]);
+      const trashed=new Map();
+      for(const marker of trash.objects){
+        const parts=String(marker.key||'').split('/');
+        const projectId=cleanId(parts[1]),assetId=cleanId((parts[2]||'').replace(/\.json$/,''));
+        if(projectId&&assetId)trashed.set(projectId+':'+assetId,{projectId,assetId,trashedAt:marker.uploaded?new Date(marker.uploaded).toISOString():''});
+      }
+      const grouped=new Map();
+      for(const obj of files.objects){
+        const parts=String(obj.key||'').split('/');
+        const projectId=cleanId(parts[1]),assetId=cleanId(parts[2]);
+        const groupKey=projectId+':'+assetId;
+        if(!trashed.has(groupKey))continue;
+        const meta=obj.customMetadata||{};
+        if(!grouped.has(groupKey))grouped.set(groupKey,{
+          projectId,assetId,
+          projectNumber:meta.projectNumber||'',
+          projectName:meta.projectName||'',
+          originalName:meta.originalName||parts[parts.length-1]||'plik',
+          uploaderName:meta.uploaderName||meta.uploaderEmail||'Użytkownik',
+          uploadedAt:meta.uploadedAt||(obj.uploaded?new Date(obj.uploaded).toISOString():''),
+          latestSize:Number(obj.size)||0,
+          totalBytes:0,
+          versions:0,
+          latestUploaded:obj.uploaded?new Date(obj.uploaded).getTime():0,
+          trashedAt:trashed.get(groupKey).trashedAt
+        });
+        const item=grouped.get(groupKey);
+        item.totalBytes+=Number(obj.size)||0;
+        item.versions++;
+        const uploadedMs=obj.uploaded?new Date(obj.uploaded).getTime():0;
+        if(uploadedMs>=item.latestUploaded){
+          item.latestUploaded=uploadedMs;
+          item.originalName=meta.originalName||item.originalName;
+          item.projectNumber=meta.projectNumber||item.projectNumber;
+          item.projectName=meta.projectName||item.projectName;
+          item.uploaderName=meta.uploaderName||meta.uploaderEmail||item.uploaderName;
+          item.uploadedAt=meta.uploadedAt||item.uploadedAt;
+          item.latestSize=Number(obj.size)||item.latestSize;
+        }
+      }
+      const items=[...grouped.values()]
+        .map(({latestUploaded,...item})=>item)
+        .sort((a,b)=>String(b.trashedAt||b.uploadedAt).localeCompare(String(a.trashedAt||a.uploadedAt)));
+      return json({items,truncated:trash.truncated||files.truncated});
     }
 
     if(action==='purge'){
