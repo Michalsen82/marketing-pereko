@@ -109,6 +109,16 @@
       ],
       "projectTasks": [
         {
+          "id": "816f6f6b-ff96-4eb0-8383-3733d70bfc15",
+          "taskNumber": 18,
+          "taskYear": 2026,
+          "createdAt": "2026-09-19T20:24:19.886Z",
+          "text": "test web push v5",
+          "assignee": "Michał Bukowski",
+          "deadline": "2026-10-02",
+          "done": false
+        },
+        {
           "id": "735745ae-4962-46ee-a577-b1fe47fdb8d6",
           "taskNumber": 17,
           "taskYear": 2026,
@@ -315,5 +325,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-19T20:22:37.368Z"
+  "updatedAt": "2026-09-19T20:24:18.238Z"
 }
