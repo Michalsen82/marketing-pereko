@@ -4,17 +4,12 @@
 .top-action-icon,
 .team-top-btn{
   position:relative;
-  width:36px;
-  height:36px;
-  flex:0 0 36px;
-  display:grid;
-  place-items:center;
-  padding:0;
+  width:36px;height:36px;flex:0 0 36px;
+  display:grid;place-items:center;padding:0;
   border:1px solid rgba(255,255,255,.12);
   background:rgba(255,255,255,.055);
   color:rgba(255,255,255,.74);
-  text-decoration:none;
-  cursor:pointer;
+  text-decoration:none;cursor:pointer;
   box-shadow:inset 0 1px 0 rgba(255,255,255,.025);
   transition:background .16s ease,border-color .16s ease,color .16s ease;
 }
@@ -27,512 +22,199 @@
   border-color:rgba(255,255,255,.20);
   color:#fff;
 }
-.top-action-icon svg,
-.team-top-btn svg{
-  width:17px;
-  height:17px;
-  fill:currentColor;
-}
-.team-top-btn.active{
-  border-color:rgba(255,221,0,.34);
-  background:rgba(255,221,0,.09);
-}
+.top-action-icon svg,.team-top-btn svg{width:17px;height:17px;fill:currentColor}
+.team-top-btn.active{border-color:rgba(255,221,0,.34);background:rgba(255,221,0,.09)}
 
 @media(hover:hover) and (pointer:fine){
   .top-action-icon[data-tooltip]::after{
     content:attr(data-tooltip);
-    position:absolute;
-    left:50%;
-    top:calc(100% + 10px);
-    transform:translate(-50%,-4px);
-    z-index:4000;
+    position:absolute;left:50%;top:calc(100% + 10px);
+    transform:translate(-50%,-4px);z-index:4000;
     padding:8px 10px;
     border:1px solid rgba(255,255,255,.12);
     background:linear-gradient(145deg,rgba(31,33,35,.98),rgba(13,14,15,.98));
     color:#fff;
     box-shadow:0 14px 36px rgba(0,0,0,.38),inset 0 1px 0 rgba(255,255,255,.04);
-    backdrop-filter:blur(14px);
-    -webkit-backdrop-filter:blur(14px);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
     font:700 10px/1 'Montserrat',sans-serif;
-    letter-spacing:0;
-    white-space:nowrap;
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
+    white-space:nowrap;opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity .14s ease,transform .14s ease,visibility .14s ease;
   }
   .top-action-icon[data-tooltip]::before{
-    content:"";
-    position:absolute;
-    left:50%;
-    top:calc(100% + 5px);
-    transform:translateX(-50%);
-    z-index:4001;
-    width:8px;
-    height:8px;
+    content:"";position:absolute;left:50%;top:calc(100% + 5px);
+    transform:translateX(-50%);z-index:4001;width:8px;height:8px;
     border-left:1px solid rgba(255,255,255,.12);
     border-top:1px solid rgba(255,255,255,.12);
-    background:#1a1c1e;
-    rotate:45deg;
-    opacity:0;
-    visibility:hidden;
-    pointer-events:none;
+    background:#1a1c1e;rotate:45deg;
+    opacity:0;visibility:hidden;pointer-events:none;
     transition:opacity .14s ease,visibility .14s ease;
   }
   .top-action-icon[data-tooltip]:hover::after,
   .top-action-icon[data-tooltip]:focus-visible::after{
-    opacity:1;
-    visibility:visible;
-    transform:translate(-50%,0);
+    opacity:1;visibility:visible;transform:translate(-50%,0);
   }
   .top-action-icon[data-tooltip]:hover::before,
-  .top-action-icon[data-tooltip]:focus-visible::before{
-    opacity:1;
-    visibility:visible;
-  }
+  .top-action-icon[data-tooltip]:focus-visible::before{opacity:1;visibility:visible}
 }
 
 /* =========================================================
-   Panel zespołu
+   Zespół — ten sam shell co „Dodaj nowy projekt”
    ========================================================= */
-.team-manager-modal{
-  position:fixed;
-  inset:0;
-  z-index:2250;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:22px;
-  background:rgba(0,0,0,.74);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
+.team-manager-modal,.team-modal{z-index:2250}
+.team-modal{z-index:2350}
+.team-manager-card,.team-modal-card{
+  width:min(650px,100%)!important;
+  color:#fff;
 }
-.team-manager-modal.open{display:flex}
 .team-manager-card{
-  width:min(820px,100%);
-  max-height:min(820px,calc(100dvh - 44px));
+  max-height:min(760px,calc(100dvh - 40px));
   display:flex;
   flex-direction:column;
   overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  background:linear-gradient(145deg,rgba(27,29,31,.98),rgba(11,12,13,.98));
-  color:#fff;
-  box-shadow:0 34px 110px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.035);
 }
-.team-manager-head{
-  display:flex;
-  align-items:flex-start;
-  justify-content:space-between;
-  gap:18px;
-  padding:22px 22px 18px;
-  border-bottom:1px solid rgba(255,255,255,.08);
+.team-manager-head,.team-modal-head{
+  margin-bottom:18px!important;
 }
-.team-manager-head>div>span{
+.team-manager-head>div>span,
+.team-modal-head>div>span{
   display:block;
-  color:#ffdd00;
-  font:800 9px/1 'Montserrat',sans-serif;
-  letter-spacing:.14em;
 }
-.team-manager-head h3{
-  margin:7px 0 5px;
-  color:#fff;
-  font:800 24px/1.1 'Montserrat',sans-serif;
-  letter-spacing:-.025em;
-}
+.team-manager-head h3,.team-modal-head h3{color:#fff!important}
 .team-manager-head p{
-  margin:0;
-  color:rgba(255,255,255,.54);
+  margin:6px 0 0;
+  color:rgba(255,255,255,.55);
   font-size:12px;
   line-height:1.45;
 }
-.team-manager-close{
-  width:34px;
-  height:34px;
-  flex:0 0 34px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.05);
-  color:#fff;
-  font-size:21px;
-}
-.team-manager-close:hover{
-  background:rgba(255,255,255,.11);
-  border-color:rgba(255,255,255,.21);
-}
 .team-manager-toolbar{
   display:flex;
-  align-items:center;
+  align-items:end;
   justify-content:space-between;
-  gap:14px;
-  padding:14px 22px;
-  border-bottom:1px solid rgba(255,255,255,.07);
-  background:rgba(255,255,255,.022);
+  gap:12px;
+  padding-bottom:14px;
+  border-bottom:1px solid rgba(255,255,255,.08);
 }
 .team-manager-search{
   position:relative;
   flex:1;
-  max-width:430px;
+  max-width:390px;
 }
 .team-manager-search svg{
-  position:absolute;
-  left:12px;
-  top:50%;
-  width:15px;
-  height:15px;
-  transform:translateY(-50%);
-  fill:rgba(255,255,255,.46);
+  position:absolute;left:11px;bottom:11px;
+  width:16px;height:16px;
+  fill:rgba(255,255,255,.48);
   pointer-events:none;
 }
 .team-manager-search input{
   width:100%;
   height:40px;
-  padding:0 12px 0 37px;
-  border:1px solid rgba(255,255,255,.13);
-  background:rgba(255,255,255,.05);
-  color:#fff;
-  font-size:12px;
-  outline:none;
-}
-.team-manager-search input::placeholder{color:rgba(255,255,255,.36)}
-.team-manager-search input:focus{
-  border-color:rgba(255,221,0,.36);
-  box-shadow:0 0 0 3px rgba(255,221,0,.055);
+  padding-left:36px!important;
 }
 .team-manager-toolbar-right{
   display:flex;
   align-items:center;
   justify-content:flex-end;
-  gap:10px;
+  gap:8px;
 }
 .team-manager-count{
-  color:rgba(255,255,255,.48);
-  font:700 10px/1 'Montserrat',sans-serif;
+  color:rgba(255,255,255,.50);
+  font:700 9.5px/1 'Montserrat',sans-serif;
   white-space:nowrap;
 }
 .team-manager-add{
-  min-height:38px;
-  padding:0 12px;
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  border:1px solid rgba(255,255,255,.16);
-  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.065));
-  color:#fff;
-  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 8px 18px rgba(0,0,0,.14);
-  font:700 10px/1 'Montserrat',sans-serif;
+  min-height:38px!important;
 }
 .team-manager-add span{
   color:#ffdd00;
-  font-size:17px;
+  font-size:16px;
   line-height:1;
 }
-.team-manager-add:hover{
-  background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.09));
-  border-color:rgba(255,255,255,.24);
-}
 .team-manager-list{
-  min-height:230px;
+  min-height:220px;
   overflow:auto;
-  padding:7px 22px 16px;
+  padding-top:6px;
 }
 .team-manager-person{
   display:grid;
-  grid-template-columns:48px minmax(0,1fr) auto;
+  grid-template-columns:44px minmax(0,1fr) auto;
+  gap:12px;
   align-items:center;
-  gap:13px;
-  padding:13px 0;
-  border-bottom:1px solid rgba(255,255,255,.065);
+  padding:12px 0;
+  border-bottom:1px solid rgba(255,255,255,.07);
 }
 .team-manager-person:last-child{border-bottom:0}
 .team-manager-avatar{
-  width:46px;
-  height:46px;
-  display:grid;
-  place-items:center;
+  width:44px;height:44px;
+  display:grid;place-items:center;
   border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.07);
+  background:rgba(255,255,255,.075);
   color:#fff;
-  font:800 11px/1 'Montserrat',sans-serif;
+  font:800 10px/1 'Montserrat',sans-serif;
 }
 .team-manager-copy{min-width:0}
 .team-manager-copy strong{
   display:block;
   color:#fff;
-  font:700 13px/1.3 'Montserrat',sans-serif;
+  font:700 11.5px/1.3 'Montserrat',sans-serif;
 }
 .team-manager-copy span{
   display:block;
   margin-top:3px;
   color:rgba(255,255,255,.62);
-  font-size:11px;
+  font-size:10.5px;
 }
 .team-manager-copy small{
   display:block;
-  margin-top:4px;
-  color:rgba(255,255,255,.40);
-  font-size:10px;
+  margin-top:3px;
+  color:rgba(255,255,255,.42);
+  font-size:9.5px;
+  white-space:nowrap;
   overflow:hidden;
   text-overflow:ellipsis;
-  white-space:nowrap;
 }
 .team-manager-actions{
   display:flex;
-  align-items:center;
   justify-content:flex-end;
   gap:6px;
 }
-.team-manager-actions button{
-  min-height:31px;
-  padding:0 9px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.045);
-  color:rgba(255,255,255,.72);
-  font:700 9px/1 'Montserrat',sans-serif;
+.team-manager-actions .btn{
+  min-height:32px!important;
+  padding:0 10px!important;
+  font-size:9px!important;
 }
-.team-manager-actions button:hover{
-  background:rgba(255,255,255,.10);
-  border-color:rgba(255,255,255,.21);
-  color:#fff;
-}
-.team-manager-actions button.danger{
-  border-color:rgba(230,104,94,.22);
-  background:rgba(194,72,61,.07);
-  color:#ffaaa4;
+.team-manager-actions .danger{
+  color:#ffaaa4!important;
+  border-color:rgba(230,104,94,.22)!important;
+  background:rgba(194,72,61,.07)!important;
 }
 .team-manager-empty{
-  padding:36px 10px;
+  padding:34px 10px;
   text-align:center;
-  color:rgba(255,255,255,.46);
+  color:rgba(255,255,255,.48);
   font-size:11px;
 }
 
-/* =========================================================
-   Edycja / dodawanie współpracownika
-   ========================================================= */
-.team-modal{
-  position:fixed;
-  inset:0;
-  z-index:2350;
-  display:none;
-  align-items:center;
-  justify-content:center;
-  padding:20px;
-  background:rgba(0,0,0,.72);
-  backdrop-filter:blur(14px);
-  -webkit-backdrop-filter:blur(14px);
-}
-.team-modal.open{display:flex}
-.team-modal-card{
-  width:min(470px,100%);
-  overflow:hidden;
-  border:1px solid rgba(255,255,255,.12);
-  background:linear-gradient(145deg,rgba(28,29,31,.98),rgba(12,13,14,.98));
-  box-shadow:0 30px 90px rgba(0,0,0,.55);
-  color:#fff;
-}
-.team-modal-head{
-  display:flex;
-  justify-content:space-between;
-  gap:14px;
-  padding:19px 20px 17px;
-  border-bottom:1px solid rgba(255,255,255,.08);
-}
-.team-modal-head span{
-  display:block;
-  color:#ffdd00;
-  font:800 9px/1 'Montserrat',sans-serif;
-  letter-spacing:.12em;
-}
-.team-modal-head h3{
-  margin:7px 0 0;
-  color:#fff;
-  font:700 20px/1.2 'Montserrat',sans-serif;
-}
-.team-modal-close{
-  width:32px;
-  height:32px;
-  border:1px solid rgba(255,255,255,.12);
-  background:rgba(255,255,255,.05);
-  color:#fff;
-  font-size:20px;
-}
-#teamForm{
-  display:grid;
-  gap:14px;
-  padding:18px 20px 20px;
-}
-#teamForm label{
-  display:grid;
-  gap:7px;
-  color:rgba(255,255,255,.66);
-  font:700 10px/1 'Montserrat',sans-serif;
-}
-#teamForm input{
-  height:42px;
-  padding:0 11px;
-  border:1px solid rgba(255,255,255,.13);
-  background:rgba(255,255,255,.055);
-  color:#fff;
-  font-size:13px;
-  outline:none;
-}
-#teamForm input:focus{border-color:rgba(255,221,0,.38)}
-.team-modal-actions{
-  display:flex;
-  justify-content:flex-end;
-  gap:8px;
-  margin-top:4px;
-}
-.team-cancel,.team-save{
-  height:38px;
-  padding:0 13px;
-  border:1px solid rgba(255,255,255,.14);
-  background:rgba(255,255,255,.06);
-  color:#fff;
-  font:700 10px/1 'Montserrat',sans-serif;
-}
-.team-save{
-  background:linear-gradient(145deg,rgba(255,255,255,.14),rgba(255,255,255,.07));
-}
-.team-save:hover,.team-cancel:hover{
-  background:rgba(255,255,255,.15);
-  border-color:rgba(255,255,255,.22);
-}
+/* Dodawanie / edycja współpracownika — dokładnie formularz systemowy */
+#teamForm .form-grid{grid-template-columns:1fr}
+#teamForm .field.full{grid-column:auto}
+.team-modal-actions{margin-top:18px!important}
 
 @media(max-width:760px){
-  .team-manager-modal{padding:10px}
-  .team-manager-card{max-height:calc(100dvh - 20px)}
-  .team-manager-head{padding:18px 16px 15px}
+  .team-manager-modal,.team-modal{padding:14px!important}
+  .team-manager-card{max-height:calc(100dvh - 28px)}
   .team-manager-toolbar{
-    padding:12px 16px;
-    flex-direction:column;
     align-items:stretch;
+    flex-direction:column;
   }
   .team-manager-search{max-width:none}
   .team-manager-toolbar-right{justify-content:space-between}
-  .team-manager-list{padding:5px 16px 14px}
   .team-manager-person{
-    grid-template-columns:46px minmax(0,1fr);
+    grid-template-columns:44px minmax(0,1fr);
     align-items:start;
   }
   .team-manager-actions{
     grid-column:1/-1;
     justify-content:flex-start;
-    padding-left:59px;
+    padding-left:56px;
   }
 }
-
-/* FINAL — typografia zespołu zgodna z dashboardem */
-.team-manager-card,
-.team-modal-card{
-  border-radius:18px!important;
-  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;
-  backdrop-filter:blur(22px) saturate(115%)!important;
-  -webkit-backdrop-filter:blur(22px) saturate(115%)!important;
-}
-.team-manager-head{
-  padding:22px 24px 19px!important;
-}
-.team-manager-head>div>span{
-  font-size:10px!important;
-  line-height:1.2!important;
-}
-.team-manager-head h3{
-  font-size:26px!important;
-  line-height:1.15!important;
-}
-.team-manager-head p{
-  font-size:13.5px!important;
-  line-height:1.5!important;
-}
-.team-manager-toolbar{
-  padding:15px 24px!important;
-}
-.team-manager-search input{
-  height:42px!important;
-  font-size:13px!important;
-}
-.team-manager-count{
-  font-size:11.5px!important;
-}
-.team-manager-add{
-  min-height:40px!important;
-  padding:0 14px!important;
-  font-size:11px!important;
-}
-.team-manager-list{
-  padding:8px 24px 18px!important;
-}
-.team-manager-person{
-  grid-template-columns:50px minmax(0,1fr) auto!important;
-  gap:14px!important;
-  padding:15px 0!important;
-}
-.team-manager-avatar{
-  width:48px!important;
-  height:48px!important;
-  font-size:12px!important;
-}
-.team-manager-copy strong{
-  font-size:14px!important;
-  line-height:1.35!important;
-}
-.team-manager-copy span{
-  margin-top:4px!important;
-  font-size:12.5px!important;
-  line-height:1.4!important;
-}
-.team-manager-copy small{
-  margin-top:5px!important;
-  font-size:11.5px!important;
-  line-height:1.4!important;
-}
-.team-manager-actions button{
-  min-height:34px!important;
-  padding:0 11px!important;
-  font-size:10.5px!important;
-}
-.team-manager-empty{
-  font-size:12px!important;
-}
-
-.team-modal-head{
-  padding:21px 22px 18px!important;
-}
-.team-modal-head span{
-  font-size:10px!important;
-  line-height:1.2!important;
-}
-.team-modal-head h3{
-  font-size:22px!important;
-  line-height:1.2!important;
-}
-#teamForm{
-  gap:15px!important;
-  padding:20px 22px 22px!important;
-}
-#teamForm label{
-  gap:8px!important;
-  font-size:11.5px!important;
-  line-height:1.2!important;
-}
-#teamForm input{
-  height:44px!important;
-  padding:0 12px!important;
-  font-size:13px!important;
-}
-.team-cancel,.team-save{
-  height:40px!important;
-  padding:0 14px!important;
-  font-size:11px!important;
-}
-
-@media(max-width:760px){
-  .team-manager-head{padding:18px 16px 16px!important}
-  .team-manager-head h3{font-size:23px!important}
-  .team-manager-head p{font-size:12.5px!important}
-  .team-manager-toolbar{padding:12px 16px!important}
-  .team-manager-list{padding:6px 16px 15px!important}
-  .team-manager-person{grid-template-columns:48px minmax(0,1fr)!important}
-  .team-manager-actions{padding-left:62px!important}
-}
-
