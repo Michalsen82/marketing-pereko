@@ -38,3 +38,97 @@
   .pf-item{grid-template-columns:44px minmax(0,1fr);align-items:start}.pf-file-actions{grid-column:1/-1;justify-content:flex-start;padding-left:55px}
   .pf-file-type{width:42px;height:42px}.pf-head-actions{width:100%;justify-content:flex-start;flex-wrap:wrap}
 }
+
+/* R2 — limit pliku i monitoring bezpłatnego progu */
+.pf-storage{
+  margin:12px 16px 0;
+  padding:12px 14px;
+  border:1px solid #e1e6e8;
+  border-radius:11px;
+  background:#fbfcfc;
+  color:#4f5d62;
+}
+.pf-storage-top,.pf-storage-bottom{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+}
+.pf-storage-label{
+  color:#7d898e;
+  font:800 8.5px/1 'Montserrat',sans-serif;
+  letter-spacing:.09em;
+}
+.pf-storage-top strong{
+  color:#344146;
+  font:700 10.5px/1.2 'Montserrat',sans-serif;
+}
+.pf-storage-bar{
+  height:6px;
+  margin:9px 0 8px;
+  overflow:hidden;
+  border-radius:99px;
+  background:#e9edef;
+}
+.pf-storage-bar i{
+  display:block;
+  height:100%;
+  border-radius:inherit;
+  background:#96a2a7;
+  transition:width .25s ease;
+}
+.pf-storage-bottom span{
+  color:#6f7c81;
+  font-size:9px;
+  line-height:1.35;
+}
+.pf-storage-bottom small{
+  color:#8c979b;
+  font-size:8.5px;
+  white-space:nowrap;
+}
+.pf-storage.warning{
+  border-color:#e5cf72;
+  background:#fffdf3;
+}
+.pf-storage.warning .pf-storage-bar i{background:#c9a514}
+.pf-storage.high{
+  border-color:#e5b06d;
+  background:#fff9f1;
+}
+.pf-storage.high .pf-storage-bar i{background:#d7862e}
+.pf-storage.critical{
+  border-color:#dfa39d;
+  background:#fff6f5;
+}
+.pf-storage.critical .pf-storage-bar i{background:#c75b51}
+.r2-storage-warning{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  z-index:2200;
+  max-width:min(420px,calc(100vw - 32px));
+  padding:12px 14px;
+  border:1px solid #e5cf72;
+  border-radius:10px;
+  background:#fffdf3;
+  box-shadow:0 14px 40px rgba(20,30,34,.16);
+  color:#5e531e;
+  font:700 10.5px/1.45 'Montserrat',sans-serif;
+}
+.r2-storage-warning.high{
+  border-color:#e5b06d;
+  background:#fff9f1;
+  color:#7a4a19;
+}
+.r2-storage-warning.critical{
+  border-color:#dfa39d;
+  background:#fff6f5;
+  color:#8a3f39;
+}
+@media(max-width:760px){
+  .pf-storage-top,.pf-storage-bottom{align-items:flex-start;flex-direction:column;gap:5px}
+  .pf-storage-bottom small{white-space:normal}
+  .r2-storage-warning{right:12px;bottom:12px}
+}
+
