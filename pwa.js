@@ -283,6 +283,30 @@
     };
     settingsModal.querySelector('#pwaEnableNotifications').onclick=enableNotifications;
     settingsModal.querySelector('#pwaTestNotification').onclick=testNotification;
+
+    const isAdmin=String(window.perekoLoggedPerson?.email||'').trim().toLowerCase()==='michal.bukowski@pereko.pl';
+    if(isAdmin){
+      const adminSection=document.createElement('section');
+      adminSection.className='pwa-section pwa-admin-sync';
+      adminSection.innerHTML='<div class="pwa-section-head"><div><span>ADMINISTRACJA</span><h4>Synchronizacja danych</h4></div></div><p>Dane zapisują się automatycznie. Ten przycisk służy wyłącznie do ręcznego wymuszenia zapisu centralnego przez administratora.</p><div class="pwa-actions"><button class="pwa-secondary" id="pwaAdminSyncBtn" type="button">Synchronizuj teraz</button></div><div class="pwa-message" id="pwaAdminSyncMessage"></div>';
+      settingsModal.querySelector('.pwa-content')?.appendChild(adminSection);
+      adminSection.querySelector('#pwaAdminSyncBtn').onclick=async()=>{
+        const btn=adminSection.querySelector('#pwaAdminSyncBtn');
+        const msg=adminSection.querySelector('#pwaAdminSyncMessage');
+        btn.disabled=true;btn.textContent='Synchronizowanie…';
+        msg.textContent='Wymuszam zapis danych centralnych…';msg.className='pwa-message';
+        try{
+          const ok=typeof window.perekoFlushSync==='function'&&await window.perekoFlushSync();
+          msg.textContent=ok?'Dane zostały zsynchronizowane centralnie.':'Synchronizacja nie jest jeszcze gotowa. Spróbuj za chwilę.';
+          msg.className='pwa-message '+(ok?'ok':'warn');
+        }catch(e){
+          msg.textContent='Nie udało się zsynchronizować danych: '+(e?.message||'nieznany błąd')+'.';
+          msg.className='pwa-message error';
+        }finally{
+          btn.disabled=false;btn.textContent='Synchronizuj teraz';
+        }
+      };
+    }
     renderPrefs();
   }
   function closeSettings(){settingsModal?.classList.remove('open')}
