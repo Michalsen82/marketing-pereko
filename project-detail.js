@@ -1,9 +1,14 @@
 (()=>{
-  const TEAM=['Michał Bukowski','Wiktoria Adamczyk','Łukasz Drozdowski','Paweł Chaja','Andrzej Guzera','Randomowy User'];
+  const TEAM_DEFAULTS=['Michał Bukowski','Wiktoria Adamczyk','Łukasz Drozdowski','Paweł Chaja','Andrzej Guzera'];
   const getTeamNames=()=>{
-    let local=[];
-    try{local=JSON.parse(localStorage.getItem('pereko_team')||'[]')}catch{}
-    return [...new Set([...TEAM,...local.map(p=>p?.name),window.perekoLoggedPerson?.name].filter(Boolean))];
+    let local=null;
+    try{local=JSON.parse(localStorage.getItem('pereko_team')||'null')}catch{}
+    const names=Array.isArray(window.perekoTeam)
+      ?window.perekoTeam.map(p=>p?.name)
+      :Array.isArray(local)
+        ?local.map(p=>p?.name)
+        :TEAM_DEFAULTS;
+    return [...new Set([...names,window.perekoLoggedPerson?.name].filter(Boolean))];
   };
   let currentProjectId=null;
   let editingTaskIndex=null;
