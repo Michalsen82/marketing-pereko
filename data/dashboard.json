@@ -187,8 +187,15 @@
       "done": false,
       "id": "481b1465-ed29-48e8-8e9d-cf48e11f1019",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "history": [
+        {
+          "id": "4f370d63-892d-4112-b9bc-9eef77be62a1",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.838Z"
+        },
         {
           "id": "a435260a-2fda-4bf8-bb89-6f688508183e",
           "type": "rollover",
@@ -206,8 +213,15 @@
       "done": false,
       "id": "611b9a4b-593e-4740-940b-fdd59316e60b",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "history": [
+        {
+          "id": "cc781843-25c0-4b00-a2a7-6ef8a5cf136a",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.838Z"
+        },
         {
           "id": "17260035-9692-49bc-8039-05d5f3793292",
           "type": "rollover",
@@ -225,8 +239,15 @@
       "done": false,
       "id": "f9b21f06-9c74-418c-b6f5-2c4d52506009",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "history": [
+        {
+          "id": "293d3e0b-c446-4ebc-9933-e41dc4576b4e",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.839Z"
+        },
         {
           "id": "f0984843-ff48-430b-856e-cfcaeda9ffe8",
           "type": "rollover",
@@ -244,8 +265,15 @@
       "done": false,
       "id": "de10a715-5f38-4a07-858d-d4e2f1b622ff",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "history": [
+        {
+          "id": "222d1549-caff-489a-a87e-73b441f4cb6c",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.839Z"
+        },
         {
           "id": "394bb824-cb26-4714-a381-184c60fe1ab9",
           "type": "rollover",
@@ -264,10 +292,17 @@
       "assignee": "Wiktoria Adamczyk",
       "done": false,
       "createdAt": "2026-09-18T12:07:00.202Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "563dc692-95e5-423a-b6fd-ad34666139ab",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.839Z"
+        },
         {
           "id": "6260b429-dba3-4258-823f-f54e64ff6ad7",
           "type": "rollover",
@@ -292,10 +327,17 @@
       "assignee": "Łukasz Drozdowski",
       "done": false,
       "createdAt": "2026-09-18T12:43:04.598Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "1ad76bae-c9ea-450b-b521-f2786fbf96de",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.839Z"
+        },
         {
           "id": "282fdc0b-732e-4588-a2c2-c3e50ce0b395",
           "type": "rollover",
@@ -322,10 +364,17 @@
       "assignee": "Michał Bukowski",
       "done": false,
       "createdAt": "2026-09-18T17:42:00.701Z",
-      "scheduledFor": "2026-09-19",
+      "scheduledFor": "2026-09-20",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "5058481b-f5ef-4fa1-bf95-8aba9ec1215b",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 19.09",
+          "date": "2026-09-20",
+          "createdAt": "2026-09-19T23:32:44.839Z"
+        },
         {
           "id": "ee033ddf-ee86-405d-9daf-96f2364d96b3",
           "type": "created",
@@ -336,5 +385,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-19T21:46:54.056Z"
+  "updatedAt": "2026-09-19T23:32:45.573Z"
 }
