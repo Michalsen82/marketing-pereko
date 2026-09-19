@@ -233,17 +233,19 @@
   <button class="global-search-fab" id="globalSearchFab" type="button" aria-label="Wyszukaj projekty, zadania i pliki" title="Wyszukaj">
     <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
   </button>
-  <section class="global-search-panel" id="globalSearchPanel" aria-hidden="true">
-    <div class="global-search-head">
-      <div><span>WYSZUKIWARKA</span><h3>Projekty, zadania i pliki</h3></div>
-      <button class="global-search-close" id="globalSearchClose" type="button" aria-label="Zamknij">×</button>
+  <section class="modal global-search-modal" id="globalSearchPanel" aria-hidden="true">
+    <div class="modal-card global-search-card">
+      <div class="modal-head global-search-head">
+        <div><span class="module-label">WYSZUKIWARKA</span><h3>Projekty, zadania i pliki</h3></div>
+        <button class="icon-close global-search-close" id="globalSearchClose" type="button" aria-label="Zamknij">×</button>
+      </div>
+      <label class="global-search-input-wrap field full" for="globalSearchInput">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+        <input id="globalSearchInput" type="search" autocomplete="off" placeholder="Numer lub fraza, np. P-001/26, Z-004/26, Partner, katalog…" />
+        <button id="globalSearchClear" type="button" aria-label="Wyczyść">×</button>
+      </label>
+      <div class="global-search-results" id="globalSearchResults"></div>
     </div>
-    <label class="global-search-input-wrap" for="globalSearchInput">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
-      <input id="globalSearchInput" type="search" autocomplete="off" placeholder="Numer lub fraza, np. P-001/26, Z-004/26, Partner, katalog…" />
-      <button id="globalSearchClear" type="button" aria-label="Wyczyść">×</button>
-    </label>
-    <div class="global-search-results" id="globalSearchResults"></div>
   </section>
 
   <div class="modal" id="modal">
