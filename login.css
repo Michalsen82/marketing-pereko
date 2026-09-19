@@ -647,13 +647,13 @@ html,body{
 }
 
 
-/* FINAL: szerokość formularza do końca tekstu pod brandingiem */
+/* FINAL: formularz wyrównany do prawego marginesu brandingu */
 .login-minimal-wrap{
   width:min(620px,100%)!important;
 }
 .login-panel-minimal{
-  width:min(520px,100%)!important;
-  max-width:520px!important;
+  width:min(620px,100%)!important;
+  max-width:620px!important;
   justify-self:start!important;
 }
 .login-panel-minimal .login-card-head,
