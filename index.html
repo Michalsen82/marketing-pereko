@@ -41,8 +41,51 @@
   <link rel="stylesheet" href="mobile-responsive.css" />
   <link rel="stylesheet" href="pwa.css" />
   <link rel="stylesheet" href="sharp-corners.css" />
+  <link rel="stylesheet" href="blue-ui-v2.css" />
 </head>
 <body style="visibility:hidden">
+  <aside class="blue-sidebar" aria-label="Nawigacja PEREKO Blue UI">
+    <div class="blue-sidebar-brand">
+      <strong>PEREKO</strong>
+      <span>Centrum Projektów<br>Marketingowych</span>
+    </div>
+    <nav class="blue-sidebar-nav">
+      <button class="blue-nav-btn active" type="button" data-blue-target="dashboardTop">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3 2.5 10.5l1.3 1.5L5 11v9h5v-6h4v6h5v-9l1.2 1 1.3-1.5L12 3Z"/></svg>
+        <span>Strona główna</span>
+      </button>
+      <button class="blue-nav-btn" type="button" data-blue-target="projectsSection">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 5h7l2 2h9v12H3V5Zm2 4v8h14V9H5Z"/></svg>
+        <span>Projekty</span>
+      </button>
+      <button class="blue-nav-btn" type="button" data-blue-target="tasksSection">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 4h14v16H5V4Zm3 4h8V6H8v2Zm0 4h8v-2H8v2Zm0 4h5v-2H8v2Z"/></svg>
+        <span>Zadania</span>
+      </button>
+      <button class="blue-nav-btn" type="button" data-blue-target="deadlinesSection">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2Zm11 8H6v10h12V10Z"/></svg>
+        <span>Terminy</span>
+      </button>
+      <button class="blue-nav-btn" type="button" data-blue-target="r2GlobalModule">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h10l4 4v14H5V3Zm9 2v4h4l-4-4Z"/></svg>
+        <span>Pliki</span>
+      </button>
+      <button class="blue-nav-btn" type="button" data-blue-action="team">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 20c0-4 2.8-7 6.5-7S15 16 15 20v1H2v-1Zm13.2-6.7A6.8 6.8 0 0 1 17 18v3h5v-1.2c0-3.1-2.4-5.5-5.5-5.5-.5 0-.9 0-1.3.1Z"/></svg>
+        <span>Zespół</span>
+      </button>
+      <button class="blue-nav-btn" type="button" data-blue-action="search">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+        <span>Wyszukiwarka</span>
+      </button>
+    </nav>
+    <div class="blue-sidebar-foot">
+      <span>PEREKO BLUE UI · WERSJA TESTOWA</span>
+      <strong>Marketing tworzy możliwości.</strong>
+      <i aria-hidden="true"></i>
+    </div>
+  </aside>
+
   <header class="topbar-shell">
     <div class="topbar">
       <div class="brand-zone">
@@ -52,6 +95,10 @@
           <span>Centrum Projektów Marketingowych</span>
         </div>
       </div>
+      <button class="blue-top-search" id="blueTopSearch" type="button">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+        <span>Szukaj projektów, zadań, osób i plików…</span>
+      </button>
       <div class="topbar-actions">
         <div class="sync-card sync-technical-source" id="syncCard" aria-hidden="true">
           <span class="sync-dot" id="syncDot"></span>
@@ -87,12 +134,12 @@
     </div>
   </header>
 
-  <main class="page-shell">
+  <main class="page-shell" id="dashboardTop">
     <section class="intro-row">
       <div>
-        <div class="section-kicker">PANEL ROBOCZY</div>
-        <h1>Marketing PEREKO</h1>
-        <p>Zarządzaj projektami, zadaniami, terminami i współpracą zespołu w jednym miejscu.</p>
+        <div class="section-kicker">WSPÓLNE POMYSŁY. WIĘKSZE MOŻLIWOŚCI.</div>
+        <h1>Centrum Projektów Marketingowych PEREKO</h1>
+        <p>Planujemy. Realizujemy. Mierzymy efekty. Wszystkie projekty marketingowe w jednym miejscu.</p>
       </div>
       <div class="intro-actions">
         <div class="date-box" id="todayBox"></div>
@@ -115,7 +162,7 @@
 
     <section class="dashboard-grid">
       <div class="main-column">
-        <section class="module projects-module">
+        <section class="module projects-module" id="projectsSection">
           <div class="module-head">
             <div>
               <span class="module-label">PROJEKTY</span>
@@ -139,12 +186,12 @@
       </div>
 
       <aside class="side-column">
-        <section class="module">
+        <section class="module" id="tasksSection">
           <div class="module-head compact"><div><span class="module-label">DZIŚ</span><h2>TASKI NA DZIŚ</h2></div></div>
           <div class="tasks" id="taskList"></div>
         </section>
 
-        <section class="module">
+        <section class="module" id="deadlinesSection">
           <div class="module-head compact"><div><span class="module-label">TERMINY</span><h2>Najbliższe terminy</h2></div></div>
           <div class="deadlines" id="deadlineList"></div>
         </section>
@@ -279,5 +326,6 @@
   <script src="gantt.js"></script>
   <script src="account-security.js"></script>
   <script src="pwa.js"></script>
+  <script src="blue-ui-v2.js"></script>
 </body>
 </html>
