@@ -1,3 +1,4 @@
+// Redeploy marker: Web Push Cloudflare bindings active
 const SUPABASE_URL='https://gtzbjpgpxopccauicumz.supabase.co';
 const SUPABASE_KEY='sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
 
