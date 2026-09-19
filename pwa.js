@@ -10,6 +10,7 @@
   let registration=null;
   let settingsModal=null;
   let onboarding=null;
+  const pageOpenedAt=Date.now();
 
   const isIOS=()=>/iphone|ipad|ipod/i.test(navigator.userAgent);
   const isAndroid=()=>/android/i.test(navigator.userAgent);
@@ -129,9 +130,63 @@
       }
     }
 
+    if(!isIOS()&&!isAndroid()){
+      showDesktopInstallWaiting();
+      return false;
+    }
     showInstallHelp(true);
     return false;
   }
+
+  async function desktopInstallChecks(){
+    const checks={https:location.protocol==='https:',manifest:false,icons:false,serviceWorker:false};
+    try{
+      const link=document.querySelector('link[rel="manifest"]');
+      if(link){
+        const response=await fetch(link.href,{cache:'no-store'});
+        const manifest=response.ok?await response.json():null;
+        checks.manifest=!!(manifest&&(manifest.name||manifest.short_name)&&manifest.start_url&&(manifest.display||manifest.display_override));
+        const sizes=(manifest?.icons||[]).map(icon=>String(icon.sizes||''));
+        checks.icons=sizes.some(x=>x.includes('192x192'))&&sizes.some(x=>x.includes('512x512'));
+      }
+    }catch{}
+    try{
+      const reg=await navigator.serviceWorker?.getRegistration('/');
+      checks.serviceWorker=!!reg;
+    }catch{}
+    return checks;
+  }
+
+  async function showDesktopInstallWaiting(){
+    const loginPanel=document.querySelector('#pwaLoginPanel');
+    const elapsed=Math.max(0,Math.round((Date.now()-pageOpenedAt)/1000));
+    const checks=await desktopInstallChecks();
+    const allTechnical=checks.https&&checks.manifest&&checks.icons&&checks.serviceWorker;
+    const technical='<span class="pwa-install-checks">'+
+      'HTTPS: <b>'+(checks.https?'OK':'BŁĄD')+'</b> · '+
+      'manifest: <b>'+(checks.manifest?'OK':'BŁĄD')+'</b> · '+
+      'ikony: <b>'+(checks.icons?'OK':'BŁĄD')+'</b> · '+
+      'Service Worker: <b>'+(checks.serviceWorker?'OK':'BŁĄD')+'</b></span>';
+    const text=allTechnical
+      ?'<strong>Chrome jeszcze nie udostępnił instalatora.</strong><p>Od strony technicznej PWA jest gotowa. Chrome może uruchomić instalację dopiero po spełnieniu własnych warunków aktywności użytkownika. Pozostaw tę kartę otwartą przez około 30 sekund, wykonaj co najmniej jedno kliknięcie na stronie i kliknij „Zainstaluj aplikację” ponownie. Gdy Chrome udostępni instalator, pojawi się natywne okno instalacji.</p>'
+      :'<strong>Przeglądarka nie uznała jeszcze strony za gotową do instalacji.</strong><p>Sprawdzam podstawowe elementy PWA poniżej. Jeśli któryś ma status BŁĄD, instalator Chrome nie zostanie udostępniony.</p>';
+    if(loginPanel&&!window.perekoLoggedPerson){
+      const box=loginPanel.querySelector('.pwa-login-help');
+      if(box){
+        box.innerHTML='<div class="pwa-guide pwa-install-wait">'+text+technical+'<small>Czas od otwarcia tej strony: '+elapsed+' s. Przycisk instalacji nie powinien już otwierać instrukcji iOS/Android.</small></div>';
+        box.dataset.open='1';
+      }
+      return;
+    }
+    ensureSettings();
+    settingsModal.classList.add('open');
+    const guide=settingsModal.querySelector('#pwaInstallGuide');
+    if(guide){
+      guide.innerHTML='<div class="pwa-guide pwa-install-wait">'+text+technical+'<small>Czas od otwarcia tej strony: '+elapsed+' s.</small></div>';
+      guide.hidden=false;
+    }
+  }
+
   function showInstallHelp(fromInstallButton=false){
     const loginPanel=document.querySelector('#pwaLoginPanel');
     if(loginPanel&&!window.perekoLoggedPerson){
@@ -397,7 +452,24 @@
     const needsNotify=isStandalone()&&hasNotifications()&&Notification.permission!=='granted';
     btn.classList.toggle('has-attention',needsInstall||needsNotify);
   }
-  function refreshAll(){refreshSettings();refreshAttention();const login=document.querySelector('#pwaLoginPanel');if(login&&isStandalone())login.hidden=true}
+  function refreshInstallUi(){
+    const ready=!!installPromptEvent();
+    document.querySelectorAll('#pwaLoginPanel .install,#pwaInstallBtn').forEach(btn=>{
+      if(isStandalone()){
+        btn.textContent='Aplikacja zainstalowana';
+        btn.disabled=true;
+        btn.dataset.installReady='1';
+        return;
+      }
+      btn.disabled=false;
+      btn.dataset.installReady=ready?'1':'0';
+      if(!isIOS()&&!isAndroid()){
+        btn.textContent=ready?'Zainstaluj aplikację':'Zainstaluj aplikację';
+        btn.title=ready?'Kliknij, aby otworzyć instalator aplikacji':'Chrome/Edge udostępni instalator, gdy aplikacja spełni warunki instalacji';
+      }
+    });
+  }
+  function refreshAll(){refreshSettings();refreshAttention();refreshInstallUi();const login=document.querySelector('#pwaLoginPanel');if(login&&isStandalone())login.hidden=true}
 
   function ensureOnboarding(){
     if(onboarding)return;
