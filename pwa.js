@@ -27,9 +27,9 @@
   const platformName=()=>isIOS()?'iPhone / iOS':isAndroid()?'Android':'Komputer';
 
   function installMeta(){
-    return isStandalone()
-      ?{title:'Zainstalowana',detail:'Uruchamiasz Centrum Marketingowe jak aplikację.'}
-      :{title:'Niezainstalowana',detail:isIOS()?'Dodaj stronę do ekranu początkowego w Safari.':'Możesz zainstalować aplikację z tej przeglądarki.'};
+    if(isStandalone())return {title:'Zainstalowana',detail:'Uruchamiasz Centrum Marketingowe jak aplikację.'};
+    if(!isIOS()&&!isAndroid())return {title:'Wersja przeglądarkowa',detail:'Na komputerze korzystaj z Centrum Marketingowego bezpośrednio w przeglądarce.'};
+    return {title:'Niezainstalowana',detail:isIOS()?'Dodaj stronę do ekranu początkowego w Safari.':'Możesz zainstalować aplikację na tym urządzeniu.'};
   }
   function notificationMeta(){
     if(!hasNotifications())return {title:'Niedostępne',detail:'Ta przeglądarka nie obsługuje powiadomień webowych.'};
@@ -74,7 +74,7 @@
     return '<div class="pwa-guide"><strong>Android — 3 kroki po instalacji</strong><ol><li><b>Uruchom aplikację z ikony PEREKO.</b> Jeśli dopiero ją instalujesz: użyj „Zainstaluj aplikację”; gdy przycisku nie ma, otwórz menu przeglądarki i wybierz „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”.</li><li><b>Zaloguj się na swoje konto PEREKO.</b> Powiadomienia są przypisywane do zalogowanego użytkownika i konkretnego urządzenia.</li><li><b>Aktywuj Web Push.</b> Wejdź w „Aplikacja i powiadomienia” → kliknij „Włącz powiadomienia” lub „Połącz powiadomienia” → zaakceptuj zgodę systemową. Dopiero wtedy powiadomienia będą przychodziły także przy zamkniętej aplikacji.</li></ol><small>Ważne: te kroki trzeba wykonać osobno na każdym nowym telefonie lub komputerze, na którym chcesz odbierać powiadomienia.</small></div>';
   }
   function desktopGuide(){
-    return '<div class="pwa-guide"><strong>Instalacja na komputerze — Chrome / Edge</strong><ol><li><b>Najpierw użyj przycisku „Zainstaluj aplikację”.</b> Gdy przeglądarka udostępni instalator PWA, otworzy się systemowe okno instalacji.</li><li><b>Jeśli okno się nie pojawi,</b> kliknij ikonę instalacji po prawej stronie paska adresu albo otwórz menu Chrome/Edge i wybierz „Zainstaluj PEREKO — Centrum Marketingowe”.</li><li><b>Po instalacji</b> uruchom aplikację z menu Start lub skrótu, zaloguj się i połącz powiadomienia w „Aplikacja i powiadomienia”.</li></ol><small>Jeżeli Chrome nie pokazuje żadnej opcji instalacji, odśwież stronę po zakończeniu wdrożenia i spróbuj ponownie. Instalacja desktopowa wymaga Chrome lub Edge obsługującego PWA.</small></div>';
+    return '<div class="pwa-guide"><strong>Aplikacja mobilna PEREKO</strong><p>Instalację aplikacji przewidujemy na smartfonach i tabletach z systemem <b>Android</b> lub <b>iOS/iPadOS</b>. Na komputerze nie musisz nic instalować — Centrum Marketingowe działa normalnie bezpośrednio w przeglądarce.</p><small>Aby zainstalować aplikację na telefonie lub tablecie, otwórz tę stronę na urządzeniu mobilnym i skorzystaj z instrukcji dla iOS lub Androida.</small></div>';
   }
 
   function installPromptEvent(){
@@ -108,6 +108,10 @@
 
   async function installApp(){
     if(isStandalone())return true;
+    if(!isIOS()&&!isAndroid()){
+      showInstallHelp(true);
+      return false;
+    }
 
     if(!installPromptEvent()&&!isIOS()){
       await registerSW();
@@ -130,10 +134,6 @@
       }
     }
 
-    if(!isIOS()&&!isAndroid()){
-      showDesktopInstallWaiting();
-      return false;
-    }
     showInstallHelp(true);
     return false;
   }
@@ -213,9 +213,10 @@
     const panel=document.createElement('section');
     panel.className='pwa-login-panel';
     panel.id='pwaLoginPanel';
-    panel.innerHTML='<strong>Centrum Marketingowe także jako aplikacja</strong><p>Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się i połącz powiadomienia systemowe. Szczegóły dla iOS i Androida znajdziesz poniżej.</p><div class="pwa-login-actions"><button class="install" type="button">Zainstaluj aplikację</button><button class="help" type="button">Jak to działa?</button></div><div class="pwa-login-help"></div>';
+    const desktop=!isIOS()&&!isAndroid();
+    panel.innerHTML='<strong>Centrum Marketingowe także jako aplikacja</strong><p>'+(desktop?'Aplikację instalujemy na smartfonach i tabletach z Androidem lub iOS/iPadOS. Na komputerze korzystaj z Centrum Marketingowego bezpośrednio w przeglądarce.':'Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się i połącz powiadomienia systemowe. Szczegóły dla iOS i Androida znajdziesz poniżej.')+'</p><div class="pwa-login-actions"><button class="install" type="button">'+(desktop?'Android / iOS':'Zainstaluj aplikację')+'</button><button class="help" type="button">Jak to działa?</button></div><div class="pwa-login-help"></div>';
     wrap.appendChild(panel);
-    panel.querySelector('.install').onclick=installApp;
+    panel.querySelector('.install').onclick=desktop?()=>showInstallHelp(true):installApp;
     panel.querySelector('.help').onclick=()=>{
       const box=panel.querySelector('.pwa-login-help');
       const open=box.dataset.open==='1';
@@ -244,7 +245,7 @@
     settingsModal=document.createElement('div');
     settingsModal.className='pwa-modal';
     settingsModal.id='pwaSettingsModal';
-    settingsModal.innerHTML='<div class="pwa-card"><div class="pwa-head"><div><span class="pwa-kicker">APLIKACJA PEREKO</span><h3>Aplikacja i powiadomienia</h3><p>Instalacja, status urządzenia i preferencje powiadomień.</p></div><button class="pwa-close" type="button" aria-label="Zamknij">×</button></div><div class="pwa-content"><div class="pwa-status-grid"><div class="pwa-status-card"><span>APLIKACJA</span><strong id="pwaInstallStatus">—</strong><small id="pwaInstallDetail">—</small></div><div class="pwa-status-card"><span>POWIADOMIENIA</span><strong id="pwaNotifyStatus">—</strong><small id="pwaNotifyDetail">—</small></div></div><section class="pwa-section"><div class="pwa-section-head"><div><span>INSTALACJA</span><h4>Centrum Marketingowe na urządzeniu</h4></div></div><p>Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się, a następnie włącz/połącz powiadomienia systemowe. Bez ostatniego kroku Web Push nie będzie działał przy zamkniętej aplikacji.</p><div class="pwa-actions"><button class="pwa-primary" id="pwaInstallBtn" type="button">Zainstaluj aplikację</button><button class="pwa-secondary" id="pwaInstallHelpBtn" type="button">Instrukcja iOS / Android</button></div><div id="pwaInstallGuide" hidden></div><div class="pwa-qr-wrap" id="pwaQrWrap"><img src="/icons/install-qr.png" alt="Kod QR do Centrum Marketingowego"><div><strong>Otwórz na telefonie</strong><p>Zeskanuj kod aparatem, zaloguj się i dodaj aplikację do ekranu głównego.</p></div></div></section><section class="pwa-section"><div class="pwa-section-head"><div><span>POWIADOMIENIA</span><h4>Co ma trafiać na telefon</h4></div></div><p>Powiadomienia są wysyłane tylko dla zdarzeń związanych z Twoją pracą. Preferencje są zapisywane osobno dla tego urządzenia.</p><div class="pwa-actions"><button class="pwa-primary" id="pwaEnableNotifications" type="button">Włącz powiadomienia</button><button class="pwa-secondary" id="pwaTestNotification" type="button">Test powiadomienia</button></div><div class="pwa-prefs" id="pwaPrefs"></div><div class="pwa-message" id="pwaMessage"></div></section><section class="pwa-section"><div class="pwa-section-head"><div><span>URZĄDZENIE</span><h4 id="pwaDeviceTitle">To urządzenie</h4></div></div><p id="pwaDeviceInfo"></p></section></div></div>';
+    settingsModal.innerHTML='<div class="pwa-card"><div class="pwa-head"><div><span class="pwa-kicker">APLIKACJA PEREKO</span><h3>Aplikacja i powiadomienia</h3><p>Instalacja, status urządzenia i preferencje powiadomień.</p></div><button class="pwa-close" type="button" aria-label="Zamknij">×</button></div><div class="pwa-content"><div class="pwa-status-grid"><div class="pwa-status-card"><span>APLIKACJA</span><strong id="pwaInstallStatus">—</strong><small id="pwaInstallDetail">—</small></div><div class="pwa-status-card"><span>POWIADOMIENIA</span><strong id="pwaNotifyStatus">—</strong><small id="pwaNotifyDetail">—</small></div></div><section class="pwa-section"><div class="pwa-section-head"><div><span>INSTALACJA</span><h4>Centrum Marketingowe na urządzeniu</h4></div></div><p id="pwaInstallIntro">Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się, a następnie włącz/połącz powiadomienia systemowe. Bez ostatniego kroku Web Push nie będzie działał przy zamkniętej aplikacji.</p><div class="pwa-actions"><button class="pwa-primary" id="pwaInstallBtn" type="button">Zainstaluj aplikację</button><button class="pwa-secondary" id="pwaInstallHelpBtn" type="button">Instrukcja iOS / Android</button></div><div id="pwaInstallGuide" hidden></div><div class="pwa-qr-wrap" id="pwaQrWrap"><img src="/icons/install-qr.png" alt="Kod QR do Centrum Marketingowego"><div><strong>Otwórz na telefonie</strong><p>Zeskanuj kod aparatem, zaloguj się i dodaj aplikację do ekranu głównego.</p></div></div></section><section class="pwa-section"><div class="pwa-section-head"><div><span>POWIADOMIENIA</span><h4>Co ma trafiać na telefon</h4></div></div><p>Powiadomienia są wysyłane tylko dla zdarzeń związanych z Twoją pracą. Preferencje są zapisywane osobno dla tego urządzenia.</p><div class="pwa-actions"><button class="pwa-primary" id="pwaEnableNotifications" type="button">Włącz powiadomienia</button><button class="pwa-secondary" id="pwaTestNotification" type="button">Test powiadomienia</button></div><div class="pwa-prefs" id="pwaPrefs"></div><div class="pwa-message" id="pwaMessage"></div></section><section class="pwa-section"><div class="pwa-section-head"><div><span>URZĄDZENIE</span><h4 id="pwaDeviceTitle">To urządzenie</h4></div></div><p id="pwaDeviceInfo"></p></section></div></div>';
     document.body.appendChild(settingsModal);
     settingsModal.querySelector('.pwa-close').onclick=closeSettings;
     settingsModal.onclick=e=>{if(e.target===settingsModal)closeSettings()};
@@ -437,8 +438,12 @@
     settingsModal.querySelector('#pwaInstallDetail').textContent=inst.detail;
     settingsModal.querySelector('#pwaNotifyStatus').textContent=note.title;
     settingsModal.querySelector('#pwaNotifyDetail').textContent=note.detail;
+    const desktop=!isIOS()&&!isAndroid();
     settingsModal.querySelector('#pwaInstallBtn').disabled=isStandalone();
-    settingsModal.querySelector('#pwaInstallBtn').textContent=isStandalone()?'Aplikacja zainstalowana':'Zainstaluj aplikację';
+    settingsModal.querySelector('#pwaInstallBtn').textContent=isStandalone()?'Aplikacja zainstalowana':desktop?'Android / iOS':'Zainstaluj aplikację';
+    settingsModal.querySelector('#pwaInstallIntro').textContent=desktop
+      ?'Aplikację instalujemy na smartfonach i tabletach z Androidem lub iOS/iPadOS. Na komputerze korzystaj z Centrum Marketingowego bezpośrednio w przeglądarce — instalacja nie jest potrzebna.'
+      :'Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się, a następnie włącz/połącz powiadomienia systemowe. Bez ostatniego kroku Web Push nie będzie działał przy zamkniętej aplikacji.';
     settingsModal.querySelector('#pwaEnableNotifications').disabled=!hasNotifications();
     settingsModal.querySelector('#pwaEnableNotifications').textContent=hasNotifications()&&Notification.permission==='granted'?'Połącz powiadomienia':'Włącz powiadomienia';
     settingsModal.querySelector('#pwaDeviceTitle').textContent=platformName();
@@ -464,8 +469,8 @@
       btn.disabled=false;
       btn.dataset.installReady=ready?'1':'0';
       if(!isIOS()&&!isAndroid()){
-        btn.textContent=ready?'Zainstaluj aplikację':'Zainstaluj aplikację';
-        btn.title=ready?'Kliknij, aby otworzyć instalator aplikacji':'Chrome/Edge udostępni instalator, gdy aplikacja spełni warunki instalacji';
+        btn.textContent='Android / iOS';
+        btn.title='Aplikację instalujemy na smartfonach i tabletach. Na komputerze korzystaj z wersji przeglądarkowej.';
       }
     });
   }
