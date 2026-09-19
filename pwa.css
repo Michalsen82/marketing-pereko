@@ -219,3 +219,96 @@
     box-sizing:border-box!important;
   }
 }
+
+
+/* SPLIT LOGIN EXPERIMENT — panel PWA w lewej kolumnie */
+.login-split-experiment .login-pwa-host>.pwa-login-panel{
+  width:100%!important;
+  max-width:none!important;
+  margin:0!important;
+  padding:16px 18px!important;
+  box-sizing:border-box!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:8px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.06),rgba(255,255,255,.025))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.login-split-experiment .login-pwa-host>.pwa-login-panel>strong{
+  color:#fff!important;
+  font:700 13px/1.25 'Montserrat',sans-serif!important;
+}
+.login-split-experiment .login-pwa-host>.pwa-login-panel>p{
+  margin-top:6px!important;
+  max-width:660px!important;
+  color:rgba(255,255,255,.52)!important;
+  font-size:10px!important;
+  line-height:1.5!important;
+}
+.login-split-experiment .pwa-login-actions{
+  gap:8px!important;
+  margin-top:13px!important;
+}
+.login-split-experiment .pwa-login-actions button{
+  height:36px!important;
+  min-width:132px!important;
+  padding:0 13px!important;
+  border-radius:5px!important;
+  font:800 8.5px/1 'Montserrat',sans-serif!important;
+}
+.login-split-experiment .pwa-login-actions .install{
+  border-color:#e0c500!important;
+  background:#ffdd00!important;
+  color:#141719!important;
+}
+.login-split-experiment .pwa-login-actions .help{
+  border:1px solid rgba(255,255,255,.13)!important;
+  background:rgba(255,255,255,.045)!important;
+  color:#fff!important;
+}
+.login-split-experiment .pwa-login-help{
+  margin-top:0!important;
+}
+.login-split-experiment .pwa-login-guide{
+  grid-template-columns:1fr 1fr!important;
+  gap:8px!important;
+  margin-top:12px!important;
+}
+.login-split-experiment .pwa-login-guide>div{
+  padding:11px!important;
+  border-radius:8px!important;
+  border:1px solid rgba(255,255,255,.08)!important;
+  background:rgba(0,0,0,.16)!important;
+}
+.login-split-experiment .pwa-login-guide strong{
+  color:#fff!important;
+  font:700 9px/1.2 'Montserrat',sans-serif!important;
+}
+.login-split-experiment .pwa-login-guide ol{
+  margin:7px 0 0!important;
+  padding-left:15px!important;
+  color:rgba(255,255,255,.54)!important;
+  font-size:8.2px!important;
+  line-height:1.48!important;
+}
+.login-split-experiment .pwa-login-guide-note{
+  border-radius:4px!important;
+  background:rgba(255,221,0,.045)!important;
+}
+@media(max-width:820px){
+  .login-split-experiment .login-pwa-host>.pwa-login-panel{
+    padding:14px!important;
+  }
+}
+@media(max-width:560px){
+  .login-split-experiment .pwa-login-guide{
+    grid-template-columns:1fr!important;
+  }
+  .login-split-experiment .pwa-login-actions{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+  }
+  .login-split-experiment .pwa-login-actions button{
+    width:100%!important;
+    min-width:0!important;
+  }
+}
