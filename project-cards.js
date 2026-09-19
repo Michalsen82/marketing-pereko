@@ -52,6 +52,42 @@
     return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 4h7v7H4V4Zm2 2v3h3V6H6Zm7-2h7v7h-7V4Zm2 2v3h3V6h-3ZM4 13h7v7H4v-7Zm2 2v3h3v-3H6Zm7-2h7v7h-7v-7Zm2 2v3h3v-3h-3Z"/></svg>';
   };
 
+  const projectVisualFor=p=>{
+    const name=searchNorm(p?.name);
+    const heat1='https://images.unsplash.com/photo-1776860155275-eee24bfb1dee?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=72&w=900';
+    const heat2='https://images.unsplash.com/photo-1776860150272-653efc74193c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=72&w=900';
+    if(name.includes('partner')||name.includes('b2b')||name.includes('centrum')){
+      return {url:heat1,label:'CIEPŁO\nW DOBRYM\nKIERUNKU',tags:['Platforma B2B','Materiały sprzedażowe','Partnerzy']};
+    }
+    if(name.includes('targ')||name.includes('expo')||name.includes('heating')){
+      return {url:heat2,label:'PEREKO\nNA TARGACH',tags:['Wydarzenia','Targi','PR']};
+    }
+    if(name.includes('kampani')||name.includes('wizerunk')){
+      return {url:heat2,label:'MARKA, KTÓRA\nINSPIRUJE',tags:['Wizerunek','Kampania 360°','Digital']};
+    }
+    return {url:heat1,label:'PEREKO\nMARKETING',tags:['Marketing','PEREKO','Projekt']};
+  };
+
+  const ensureProjectVisual=(main,p)=>{
+    if(!main)return;
+    const visual=projectVisualFor(p);
+    let media=main.querySelector('.project-visual-thumb');
+    if(!media){
+      media=document.createElement('div');
+      media.className='project-visual-thumb';
+      main.insertBefore(media,main.firstChild);
+    }
+    media.style.backgroundImage='linear-gradient(180deg,rgba(7,31,61,.02),rgba(5,27,52,.55)),url("'+visual.url+'")';
+    media.innerHTML='<span>'+visual.label.split('\n').map(esc).join('<br>')+'</span>';
+    let tags=main.querySelector('.project-tag-row');
+    if(!tags){
+      tags=document.createElement('div');
+      tags.className='project-tag-row';
+      main.appendChild(tags);
+    }
+    tags.innerHTML=visual.tags.map(tag=>'<span>'+esc(tag)+'</span>').join('')+'<span>+1</span>';
+  };
+
   const closeInfo=deadline=>{
     if(!deadline)return {days:'—',label:'dni',text:'Brak terminu zamknięcia projektu',state:'none'};
     const today=new Date();today.setHours(0,0,0,0);
@@ -120,6 +156,7 @@
       card.classList.toggle('has-my-tasks',myTasks.length>0);
 
       const main=card.querySelector('.project-main')||card.firstElementChild;
+      ensureProjectVisual(main,p);
       const h4=main?.querySelector('h4');
       if(main&&h4&&!main.querySelector('.project-title-row')){
         const row=document.createElement('div');
