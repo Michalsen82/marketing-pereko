@@ -71,7 +71,7 @@
     return '<div class="pwa-guide"><strong>iPhone / iOS — 3 kroki po instalacji</strong><ol><li><b>Uruchom aplikację z ikony PEREKO.</b> Jeśli dopiero ją instalujesz: Safari → Udostępnij → „Dodaj do ekranu początkowego” → „Dodaj”.</li><li><b>Zaloguj się na swoje konto PEREKO.</b> Powiadomienia są przypisywane do zalogowanego użytkownika i konkretnego urządzenia.</li><li><b>Aktywuj Web Push.</b> Wejdź w „Aplikacja i powiadomienia” → kliknij „Włącz powiadomienia” lub „Połącz powiadomienia” → zaakceptuj zgodę systemową. Dopiero wtedy powiadomienia będą przychodziły także przy zamkniętej aplikacji.</li></ol><small>Ważne: te kroki trzeba wykonać osobno na każdym nowym telefonie lub komputerze, na którym chcesz odbierać powiadomienia.</small></div>';
   }
   function androidGuide(){
-    return '<div class="pwa-guide"><strong>Android — 3 kroki po instalacji</strong><ol><li><b>Uruchom aplikację z ikony PEREKO.</b> Jeśli dopiero ją instalujesz: użyj „Zainstaluj aplikację”; gdy przycisku nie ma, otwórz menu przeglądarki i wybierz „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”.</li><li><b>Zaloguj się na swoje konto PEREKO.</b> Powiadomienia są przypisywane do zalogowanego użytkownika i konkretnego urządzenia.</li><li><b>Aktywuj Web Push.</b> Wejdź w „Aplikacja i powiadomienia” → kliknij „Włącz powiadomienia” lub „Połącz powiadomienia” → zaakceptuj zgodę systemową. Dopiero wtedy powiadomienia będą przychodziły także przy zamkniętej aplikacji.</li></ol><small>Ważne: te kroki trzeba wykonać osobno na każdym nowym telefonie lub komputerze, na którym chcesz odbierać powiadomienia.</small></div>';
+    return '<div class="pwa-guide"><strong>Instalacja na Androidzie</strong><ol><li><b>Otwórz tę stronę w Chrome na Androidzie.</b> Jeżeli link otworzył się wewnątrz innej aplikacji, wybierz „Otwórz w Chrome”.</li><li><b>Jeżeli pojawi się przycisk „Zainstaluj aplikację”, użyj go.</b> Gdy Chrome nie udostępnia automatycznego instalatora, otwórz menu ⋮ i wybierz „Zainstaluj aplikację” albo „Dodaj do ekranu głównego”, a następnie potwierdź instalację.</li><li><b>Uruchom PEREKO z nowej ikony, zaloguj się i połącz powiadomienia.</b> Wejdź w „Aplikacja i powiadomienia” → „Włącz/Połącz powiadomienia” → zaakceptuj zgodę systemową.</li></ol><small>Przycisk na stronie może otworzyć natywne okno instalacji tylko wtedy, gdy Android/Chrome udostępni zdarzenie instalacyjne PWA. W przeciwnym razie instalację wykonuje się z menu Chrome.</small></div>';
   }
   function desktopGuide(){
     return '<div class="pwa-guide"><strong>Aplikacja mobilna PEREKO</strong><p>Instalację aplikacji przewidujemy na smartfonach i tabletach z systemem <b>Android</b> lub <b>iOS/iPadOS</b>. Na komputerze nie musisz nic instalować — Centrum Marketingowe działa normalnie bezpośrednio w przeglądarce.</p><small>Aby zainstalować aplikację na telefonie lub tablecie, otwórz tę stronę na urządzeniu mobilnym i skorzystaj z instrukcji dla iOS lub Androida.</small></div>';
@@ -192,7 +192,9 @@
     if(loginPanel&&!window.perekoLoggedPerson){
       const box=loginPanel.querySelector('.pwa-login-help');
       if(box){
-        box.innerHTML=fromInstallButton&&!isIOS()&&!isAndroid()?desktopGuide():loginPlatformGuide();
+        box.innerHTML=fromInstallButton
+          ?(isIOS()?iosGuide():isAndroid()?androidGuide():desktopGuide())
+          :loginPlatformGuide();
         box.dataset.open='1';
       }
       return;
@@ -440,7 +442,11 @@
     settingsModal.querySelector('#pwaNotifyDetail').textContent=note.detail;
     const desktop=!isIOS()&&!isAndroid();
     settingsModal.querySelector('#pwaInstallBtn').disabled=isStandalone();
-    settingsModal.querySelector('#pwaInstallBtn').textContent=isStandalone()?'Aplikacja zainstalowana':desktop?'Android / iOS':'Zainstaluj aplikację';
+    settingsModal.querySelector('#pwaInstallBtn').textContent=isStandalone()
+      ?'Aplikacja zainstalowana'
+      :desktop?'Android / iOS'
+      :isIOS()?'Instrukcja instalacji'
+      :installPromptEvent()?'Zainstaluj aplikację':'Jak zainstalować na Androidzie';
     settingsModal.querySelector('#pwaInstallIntro').textContent=desktop
       ?'Aplikację instalujemy na smartfonach i tabletach z Androidem lub iOS/iPadOS. Na komputerze korzystaj z Centrum Marketingowego bezpośrednio w przeglądarce — instalacja nie jest potrzebna.'
       :'Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się, a następnie włącz/połącz powiadomienia systemowe. Bez ostatniego kroku Web Push nie będzie działał przy zamkniętej aplikacji.';
@@ -468,7 +474,13 @@
       }
       btn.disabled=false;
       btn.dataset.installReady=ready?'1':'0';
-      if(!isIOS()&&!isAndroid()){
+      if(isAndroid()){
+        btn.textContent=ready?'Zainstaluj aplikację':'Jak zainstalować na Androidzie';
+        btn.title=ready?'Otwórz instalator aplikacji PEREKO':'Chrome nie udostępnił automatycznego instalatora — pokaż instrukcję instalacji z menu przeglądarki.';
+      }else if(isIOS()){
+        btn.textContent='Instrukcja instalacji';
+        btn.title='Na iOS aplikację dodaje się przez Safari → Udostępnij → Dodaj do ekranu początkowego.';
+      }else{
         btn.textContent='Android / iOS';
         btn.title='Aplikację instalujemy na smartfonach i tabletach. Na komputerze korzystaj z wersji przeglądarkowej.';
       }
