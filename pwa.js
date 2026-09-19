@@ -192,16 +192,32 @@
     document.body.classList.toggle('login-pwa-expanded',!!open);
   }
 
+  function closeLoginHelp(box){
+    if(!box)return;
+    box.innerHTML='';
+    box.dataset.open='0';
+    setLoginHelpExpanded(false);
+  }
+
+  function openLoginHelp(box,html){
+    if(!box)return;
+    box.innerHTML='<div class="pwa-login-help-content">'+html+'<div class="pwa-login-help-close-row"><button class="pwa-login-help-close" type="button">Zapoznałem się</button></div></div>';
+    box.dataset.open='1';
+    setLoginHelpExpanded(true);
+    box.querySelector('.pwa-login-help-close')?.addEventListener('click',()=>closeLoginHelp(box));
+  }
+
   function showInstallHelp(fromInstallButton=false){
     const loginPanel=document.querySelector('#pwaLoginPanel');
     if(loginPanel&&!window.perekoLoggedPerson){
       const box=loginPanel.querySelector('.pwa-login-help');
       if(box){
-        box.innerHTML=fromInstallButton
-          ?(isIOS()?iosGuide():isAndroid()?androidGuide():desktopGuide())
-          :loginPlatformGuide();
-        box.dataset.open='1';
-        setLoginHelpExpanded(true);
+        openLoginHelp(
+          box,
+          fromInstallButton
+            ?(isIOS()?iosGuide():isAndroid()?androidGuide():desktopGuide())
+            :loginPlatformGuide()
+        );
       }
       return;
     }
@@ -230,9 +246,8 @@
     panel.querySelector('.help').onclick=()=>{
       const box=panel.querySelector('.pwa-login-help');
       const open=box.dataset.open==='1';
-      box.innerHTML=open?'':loginPlatformGuide();
-      box.dataset.open=open?'0':'1';
-      setLoginHelpExpanded(!open);
+      if(open)closeLoginHelp(box);
+      else openLoginHelp(box,loginPlatformGuide());
     };
     if(isStandalone())panel.hidden=true;
   }
