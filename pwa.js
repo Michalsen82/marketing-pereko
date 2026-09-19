@@ -255,14 +255,15 @@
   function addSettingsButton(){
     if(!document.querySelector('.topbar-actions')||document.querySelector('#pwaSettingsBtn'))return;
     const btn=document.createElement('button');
-    btn.className='pwa-settings-btn';
+    btn.className='pwa-settings-btn top-action-icon';
     btn.id='pwaSettingsBtn';
     btn.type='button';
-    btn.title='Aplikacja i powiadomienia';
+    btn.dataset.tooltip='Aplikacja i powiadomienia';
     btn.setAttribute('aria-label','Aplikacja i powiadomienia');
     btn.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17 8a5 5 0 0 0-10 0c0 5-2 5.5-2 7h14c0-1.5-2-2-2-7Zm-7 9h4a2 2 0 0 1-4 0ZM12 1a7 7 0 0 1 7 7c0 3.58 1.12 4.64 1.67 5.17.45.42.83.79.83 1.83v2H2.5v-2c0-1.04.38-1.41.83-1.83C3.88 12.64 5 11.58 5 8a7 7 0 0 1 7-7Z"/></svg><span class="pwa-mini-dot"></span>';
+    const team=document.querySelector('#teamTopBtn');
     const password=document.querySelector('#changePasswordBtn');
-    password?.before(btn);
+    (team||password)?.before(btn);
     btn.onclick=()=>openSettings();
   }
 
