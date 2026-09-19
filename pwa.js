@@ -137,7 +137,7 @@
     if(loginPanel&&!window.perekoLoggedPerson){
       const box=loginPanel.querySelector('.pwa-login-help');
       if(box){
-        box.innerHTML=fromInstallButton&&!isMobile()?desktopGuide():loginPlatformGuide();
+        box.innerHTML=fromInstallButton&&!isIOS()&&!isAndroid()?desktopGuide():loginPlatformGuide();
         box.dataset.open='1';
       }
       return;
@@ -196,7 +196,7 @@
     settingsModal.querySelector('#pwaInstallBtn').onclick=installApp;
     settingsModal.querySelector('#pwaInstallHelpBtn').onclick=()=>{
       const g=settingsModal.querySelector('#pwaInstallGuide');
-      g.innerHTML=isIOS()?iosGuide():isAndroid()?androidGuide():(iosGuide()+androidGuide());g.hidden=!g.hidden;
+      g.innerHTML=isIOS()?iosGuide():isAndroid()?androidGuide():desktopGuide();g.hidden=!g.hidden;
     };
     settingsModal.querySelector('#pwaEnableNotifications').onclick=enableNotifications;
     settingsModal.querySelector('#pwaTestNotification').onclick=testNotification;
