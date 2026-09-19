@@ -164,7 +164,18 @@
       "members": [
         "Wiktoria"
       ],
-      "projectTasks": [],
+      "projectTasks": [
+        {
+          "id": "08edabd3-ad95-4e24-9bf2-db24f1a6aa75",
+          "taskNumber": 19,
+          "taskYear": 2026,
+          "createdAt": "2026-09-19T20:26:00.434Z",
+          "text": "6",
+          "assignee": "Michał Bukowski",
+          "deadline": "2026-09-24",
+          "done": false
+        }
+      ],
       "comments": [],
       "projectNumber": 3,
       "projectYear": 2026
@@ -325,5 +336,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-19T20:25:29.104Z"
+  "updatedAt": "2026-09-19T20:25:58.773Z"
 }
