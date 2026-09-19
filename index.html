@@ -157,6 +157,64 @@
         </section>
       </aside>
     </section>
+
+    <section class="module r2-global-module" id="r2GlobalModule">
+      <div class="module-head r2-global-head">
+        <div>
+          <span class="module-label">MAGAZYN PLIKÓW</span>
+          <h2>Cloudflare R2</h2>
+          <p>Globalna kontrola przestrzeni dla wszystkich materiałów projektowych.</p>
+        </div>
+        <button class="r2-global-trash-btn" id="r2GlobalTrashToggle" type="button" aria-expanded="false">
+          <span>Kosz globalny</span>
+          <b id="r2GlobalTrashCount">0</b>
+        </button>
+      </div>
+
+      <div class="r2-global-body">
+        <div class="r2-global-metrics">
+          <article class="r2-metric">
+            <span>ZAJĘTE</span>
+            <strong id="r2GlobalUsed">—</strong>
+            <small>łączny rozmiar plików w R2</small>
+          </article>
+          <article class="r2-metric">
+            <span>WOLNE</span>
+            <strong id="r2GlobalFree">—</strong>
+            <small>do bezpłatnego progu 10 GB</small>
+          </article>
+          <article class="r2-metric">
+            <span>WYKORZYSTANIE</span>
+            <strong id="r2GlobalPercent">—</strong>
+            <small id="r2GlobalLevel">oczekiwanie na dane</small>
+          </article>
+        </div>
+
+        <div class="r2-global-progress-wrap">
+          <div class="r2-global-progress"><span id="r2GlobalProgressBar"></span></div>
+          <div class="r2-global-progress-copy">
+            <span id="r2GlobalStatus">Magazyn R2 nie jest jeszcze podłączony.</span>
+            <small>Maksymalny rozmiar pojedynczego pliku: 5 MB</small>
+          </div>
+        </div>
+
+        <div class="r2-global-trash-panel" id="r2GlobalTrashPanel" hidden>
+          <div class="r2-global-trash-toolbar">
+            <div>
+              <span>KOSZ GLOBALNY</span>
+              <strong>Usunięte pliki ze wszystkich projektów</strong>
+            </div>
+            <label class="r2-global-trash-search">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
+              <input id="r2GlobalTrashSearch" type="search" autocomplete="off" placeholder="Szukaj po nazwie pliku lub projekcie…">
+            </label>
+          </div>
+          <div class="r2-global-trash-list" id="r2GlobalTrashList">
+            <div class="r2-global-empty">Kosz jest pusty.</div>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <footer class="site-footer">
