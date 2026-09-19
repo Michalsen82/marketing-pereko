@@ -310,3 +310,74 @@
   border-color:rgba(255,255,255,.22);
 }
 
+/* FINAL TOPBAR ICONS — 4 spójne akcje + układ mobilny */
+.topbar-actions .top-action-icon{
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  min-height:36px!important;
+  flex:0 0 36px!important;
+  margin:0!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:0!important;
+  background:rgba(255,255,255,.055)!important;
+  color:rgba(255,255,255,.74)!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+  transform:none!important;
+}
+.topbar-actions .top-action-icon:hover,
+.topbar-actions .top-action-icon:focus-visible,
+.topbar-actions .top-action-icon.active{
+  background:rgba(255,255,255,.10)!important;
+  color:#fff!important;
+  border-color:rgba(255,255,255,.20)!important;
+  transform:none!important;
+}
+.topbar-actions .top-action-icon svg{
+  width:17px!important;
+  height:17px!important;
+  fill:currentColor!important;
+}
+@media(max-width:760px){
+  .topbar-actions{
+    grid-template-columns:minmax(0,1fr) 36px 36px 36px 36px!important;
+    column-gap:7px!important;
+    row-gap:0!important;
+  }
+  .topbar-actions .user-zone{
+    grid-column:1!important;
+    grid-row:1!important;
+  }
+  .topbar-actions .pwa-settings-btn{
+    grid-column:2!important;
+    grid-row:1!important;
+  }
+  .topbar-actions .team-top-btn{
+    grid-column:3!important;
+    grid-row:1!important;
+  }
+  .topbar-actions .password-change-btn{
+    grid-column:4!important;
+    grid-row:1!important;
+  }
+  .topbar-actions .logout-btn{
+    grid-column:5!important;
+    grid-row:1!important;
+  }
+}
+@media(max-width:420px){
+  .topbar-actions{
+    grid-template-columns:minmax(0,1fr) 34px 34px 34px 34px!important;
+    column-gap:6px!important;
+  }
+  .topbar-actions .top-action-icon{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+    flex-basis:34px!important;
+  }
+}
+
