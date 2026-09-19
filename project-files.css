@@ -132,3 +132,363 @@
   .r2-storage-warning{right:12px;bottom:12px}
 }
 
+/* =========================================================
+   Materiały projektu — spójne z ciemnym wnętrzem projektu
+   ========================================================= */
+.project-detail-modal .pd-files-card .pf-toolbar{
+  margin:14px 16px 0;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.project-detail-modal .pd-files-card .pf-search{
+  max-width:none;
+}
+.project-detail-modal .pd-files-card .pf-search input{
+  height:42px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.045);
+  color:#fff;
+  font-size:12.5px;
+}
+.project-detail-modal .pd-files-card .pf-search input::placeholder{
+  color:rgba(255,255,255,.38);
+}
+.project-detail-modal .pd-files-card .pf-search svg{
+  fill:rgba(255,255,255,.46);
+}
+.project-detail-modal .pd-files-card .pf-summary{
+  color:rgba(255,255,255,.55);
+  font-size:10.5px;
+}
+.project-detail-modal .pd-files-card .pf-dropzone{
+  margin:12px 16px 5px;
+  padding:19px 16px;
+  border:1px dashed rgba(255,255,255,.16);
+  background:rgba(255,255,255,.028);
+}
+.project-detail-modal .pd-files-card .pf-dropzone strong{
+  color:#fff;
+  font-size:12.5px;
+}
+.project-detail-modal .pd-files-card .pf-dropzone span{
+  color:rgba(255,255,255,.48);
+  font-size:10.5px;
+}
+.project-detail-modal .pd-files-card .pf-dropzone.dragover{
+  border-color:rgba(255,221,0,.62);
+  background:rgba(255,221,0,.07);
+}
+.project-detail-modal .pd-files-card .pf-upload-status{
+  color:rgba(255,255,255,.58);
+  font-size:10.5px;
+}
+.project-detail-modal .pd-files-card .pf-list{
+  padding:8px 16px 14px;
+}
+.project-detail-modal .pd-files-card .pf-item{
+  border-bottom-color:rgba(255,255,255,.08);
+}
+.project-detail-modal .pd-files-card .pf-file-type{
+  border-color:rgba(255,255,255,.11);
+  background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.72);
+}
+.project-detail-modal .pd-files-card .pf-file-copy>strong{
+  color:#fff;
+  font-size:12.5px;
+}
+.project-detail-modal .pd-files-card .pf-file-copy>span,
+.project-detail-modal .pd-files-card .pf-file-copy>small,
+.project-detail-modal .pd-files-card .pf-versions summary{
+  color:rgba(255,255,255,.48);
+  font-size:10.5px;
+}
+.project-detail-modal .pd-files-card .pf-file-actions button,
+.project-detail-modal .pd-files-card .pf-version-row button{
+  min-height:32px;
+  border-color:rgba(255,255,255,.12);
+  background:rgba(255,255,255,.045);
+  color:rgba(255,255,255,.78);
+  font-size:9.5px;
+}
+.project-detail-modal .pd-files-card .pf-file-actions button:hover,
+.project-detail-modal .pd-files-card .pf-version-row button:hover{
+  border-color:rgba(255,221,0,.45);
+  background:rgba(255,221,0,.09);
+  color:#fff;
+}
+.project-detail-modal .pd-files-card .pf-file-actions button.danger{
+  border-color:rgba(230,104,94,.24);
+  background:rgba(194,72,61,.08);
+  color:#ffaaa4;
+}
+.project-detail-modal .pd-files-card .pf-error{
+  margin:10px 16px 16px;
+  padding:18px;
+  border:1px solid rgba(255,255,255,.09);
+  background:rgba(255,255,255,.025);
+}
+.project-detail-modal .pd-files-card .pf-error strong{
+  color:#ffe57d;
+  font-size:12px;
+}
+.project-detail-modal .pd-files-card .pf-error span{
+  color:rgba(255,255,255,.52);
+  font-size:10.5px;
+}
+#pdFilesStorage{display:none!important}
+
+/* =========================================================
+   Globalny magazyn R2 — dół dashboardu
+   ========================================================= */
+.r2-global-module{
+  margin-top:18px;
+}
+.r2-global-head{
+  align-items:center;
+}
+.r2-global-head p{
+  margin:6px 0 0;
+  color:#758288;
+  font-size:12px;
+}
+.r2-global-trash-btn{
+  min-height:38px;
+  padding:0 13px;
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  border:1px solid #d9dfe1;
+  background:#f8f9f9;
+  color:#344146;
+  font:700 10.5px/1 'Montserrat',sans-serif;
+}
+.r2-global-trash-btn:hover,
+.r2-global-trash-btn.active{
+  border-color:#c8b200;
+  background:rgba(255,221,0,.10);
+  color:#202a2f;
+}
+.r2-global-trash-btn b{
+  min-width:22px;
+  height:22px;
+  padding:0 6px;
+  display:grid;
+  place-items:center;
+  background:#1d272b;
+  color:#fff;
+  font:800 9px/1 'Montserrat',sans-serif;
+}
+.r2-global-body{
+  padding:16px 18px 18px;
+}
+.r2-global-metrics{
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:10px;
+}
+.r2-metric{
+  position:relative;
+  overflow:hidden;
+  padding:14px 15px;
+  border:1px solid #e1e5e7;
+  background:#fafbfb;
+}
+.r2-metric::before{
+  content:"";
+  position:absolute;
+  left:0;top:0;bottom:0;
+  width:3px;
+  background:#ffdd00;
+}
+.r2-metric span{
+  display:block;
+  color:#8a969b;
+  font:800 8.5px/1 'Montserrat',sans-serif;
+  letter-spacing:.10em;
+}
+.r2-metric strong{
+  display:block;
+  margin-top:7px;
+  color:#1c272c;
+  font:800 22px/1 'Montserrat',sans-serif;
+}
+.r2-metric small{
+  display:block;
+  margin-top:5px;
+  color:#879398;
+  font-size:10px;
+}
+.r2-global-progress-wrap{
+  margin-top:12px;
+  padding:13px 14px;
+  border:1px solid #e3e7e8;
+  background:#fff;
+}
+.r2-global-progress{
+  height:8px;
+  overflow:hidden;
+  background:#e9edef;
+}
+.r2-global-progress>span{
+  display:block;
+  width:0;
+  height:100%;
+  background:#849197;
+  transition:width .25s ease,background .2s ease;
+}
+.r2-global-progress-copy{
+  display:flex;
+  justify-content:space-between;
+  gap:16px;
+  margin-top:9px;
+}
+.r2-global-progress-copy span{
+  color:#55636a;
+  font-size:11.5px;
+}
+.r2-global-progress-copy small{
+  color:#8a969b;
+  font-size:10px;
+  white-space:nowrap;
+}
+.r2-global-module[data-state="warning"] .r2-global-progress>span{background:#c9a514}
+.r2-global-module[data-state="high"] .r2-global-progress>span{background:#d7862e}
+.r2-global-module[data-state="critical"] .r2-global-progress>span{background:#c75b51}
+.r2-global-module[data-state="offline"] .r2-global-progress>span{background:#aab3b7}
+
+.r2-global-trash-panel{
+  margin-top:14px;
+  border:1px solid #e1e5e7;
+  background:#fafbfb;
+}
+.r2-global-trash-toolbar{
+  padding:13px 14px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  border-bottom:1px solid #e7ebec;
+}
+.r2-global-trash-toolbar>div>span{
+  display:block;
+  color:#9b8500;
+  font:800 8px/1 'Montserrat',sans-serif;
+  letter-spacing:.12em;
+}
+.r2-global-trash-toolbar>div>strong{
+  display:block;
+  margin-top:5px;
+  color:#263237;
+  font:700 12px/1.2 'Montserrat',sans-serif;
+}
+.r2-global-trash-search{
+  position:relative;
+  width:min(360px,100%);
+}
+.r2-global-trash-search svg{
+  position:absolute;
+  left:11px;
+  top:50%;
+  transform:translateY(-50%);
+  width:15px;height:15px;
+  fill:#819096;
+}
+.r2-global-trash-search input{
+  width:100%;
+  height:36px;
+  padding:0 11px 0 35px;
+  border:1px solid #dbe1e3;
+  background:#fff;
+  color:#263237;
+  font-size:11px;
+}
+.r2-global-trash-list{
+  padding:4px 14px 10px;
+}
+.r2-trash-item{
+  display:grid;
+  grid-template-columns:42px minmax(0,1fr) auto;
+  gap:11px;
+  align-items:center;
+  padding:11px 0;
+  border-bottom:1px solid #e9edee;
+}
+.r2-trash-item:last-child{border-bottom:0}
+.r2-trash-icon{
+  width:40px;height:40px;
+  display:grid;
+  place-items:center;
+  border:1px solid #dbe1e3;
+  background:#fff;
+  color:#6d7b81;
+  font:800 8.5px/1 'Montserrat',sans-serif;
+}
+.r2-trash-copy{min-width:0}
+.r2-trash-copy strong{
+  display:block;
+  color:#263237;
+  font:700 11.5px/1.3 'Montserrat',sans-serif;
+  overflow-wrap:anywhere;
+}
+.r2-trash-copy span{
+  display:block;
+  margin-top:3px;
+  color:#6f7d82;
+  font-size:10.5px;
+}
+.r2-trash-copy small{
+  display:block;
+  margin-top:2px;
+  color:#929da1;
+  font-size:9.5px;
+}
+.r2-trash-actions{
+  display:flex;
+  gap:6px;
+  justify-content:flex-end;
+  flex-wrap:wrap;
+}
+.r2-trash-actions button{
+  min-height:31px;
+  padding:0 9px;
+  border:1px solid #d7dddf;
+  background:#fff;
+  color:#536167;
+  font:700 9px/1 'Montserrat',sans-serif;
+}
+.r2-trash-actions button:hover{
+  border-color:#c8b200;
+  background:rgba(255,221,0,.10);
+  color:#252d30;
+}
+.r2-trash-actions button.danger{
+  border-color:rgba(194,72,61,.20);
+  background:rgba(194,72,61,.045);
+  color:#a65a53;
+}
+.r2-global-empty,
+.r2-global-error{
+  padding:18px 4px;
+  color:#88959a;
+  font-size:11px;
+  text-align:center;
+}
+.r2-global-error{
+  color:#a65a53;
+  text-align:left;
+}
+@media(max-width:760px){
+  .r2-global-metrics{grid-template-columns:1fr}
+  .r2-global-head,.r2-global-trash-toolbar,.r2-global-progress-copy{
+    align-items:stretch;
+    flex-direction:column;
+  }
+  .r2-global-trash-btn{width:100%;justify-content:space-between}
+  .r2-global-trash-search{width:100%}
+  .r2-trash-item{grid-template-columns:40px minmax(0,1fr)}
+  .r2-trash-actions{grid-column:1/-1;justify-content:flex-start;padding-left:51px}
+  .r2-global-progress-copy small{white-space:normal}
+}
+
