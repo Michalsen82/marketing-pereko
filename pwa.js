@@ -211,13 +211,14 @@
   function buildLoginPanel(){
     if(!document.querySelector('#loginForm')||document.querySelector('#pwaLoginPanel'))return;
     const wrap=document.querySelector('.login-minimal-wrap');
-    if(!wrap)return;
+    const loginPanel=document.querySelector('.login-panel-minimal');
+    if(!wrap||!loginPanel)return;
     const panel=document.createElement('section');
     panel.className='pwa-login-panel';
     panel.id='pwaLoginPanel';
     const desktop=!isIOS()&&!isAndroid();
     panel.innerHTML='<strong>Centrum Marketingowe także jako aplikacja</strong><p>'+(desktop?'Aplikację instalujemy na smartfonach i tabletach. Android: otwórz stronę w Google Chrome. iPhone/iPad: otwórz stronę w Safari. Na komputerze korzystaj bezpośrednio z wersji przeglądarkowej.':isAndroid()?'Na Androidzie otwórz Centrum Marketingowe w Google Chrome, kliknij „Zainstaluj aplikację”, uruchom PEREKO z nowej ikony, zaloguj się i połącz powiadomienia.':'Na iPhone/iPad otwórz stronę w Safari, wybierz Udostępnij → Dodaj do ekranu początkowego, uruchom aplikację, zaloguj się i połącz powiadomienia.')+'</p><div class="pwa-login-actions"><button class="install" type="button">'+(desktop?'Android / iOS':'Zainstaluj aplikację')+'</button><button class="help" type="button">Jak to działa?</button></div><div class="pwa-login-help"></div>';
-    wrap.appendChild(panel);
+    loginPanel.appendChild(panel);
     panel.querySelector('.install').onclick=desktop?()=>showInstallHelp(true):installApp;
     panel.querySelector('.help').onclick=()=>{
       const box=panel.querySelector('.pwa-login-help');
