@@ -126,7 +126,7 @@
               </div>
               <div class="pf-dropzone" id="pdFilesDropzone">
                 <strong>Przeciągnij pliki tutaj</strong>
-                <span>lub użyj przycisku „Dodaj pliki”. Duże pliki są wysyłane w częściach.</span>
+                <span>lub użyj przycisku „Dodaj pliki”. Maksymalny rozmiar pojedynczego pliku: 5 MB.</span>
               </div>
               <div class="pf-upload-status" id="pdFilesUploadStatus" aria-live="polite"></div>
               <div class="pf-list" id="pdFilesList"><div class="pd-empty">Ładowanie materiałów…</div></div>
