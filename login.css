@@ -970,3 +970,66 @@ html,body{
     width:calc(100% - 28px)!important;
   }
 }
+
+
+/* FINAL VERTICAL FRAME — stała prawa kolumna i wspólna dolna krawędź */
+.login-app-column.login-help-open .login-app-steps{
+  display:none!important;
+}
+
+@media(min-width:821px){
+  .login-split-experiment{
+    overflow:auto!important;
+  }
+  .login-split-layout{
+    height:clamp(620px,calc(100vh - 92px),760px)!important;
+    min-height:0!important;
+    grid-template-rows:auto minmax(0,1fr)!important;
+    align-items:stretch!important;
+  }
+
+  /* Prawa kolumna ma stałe punkty odniesienia: karta u góry, notatka na dole. */
+  .login-access-column{
+    height:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:space-between!important;
+    align-content:initial!important;
+  }
+  .login-split-experiment .login-panel-minimal{
+    flex:0 0 auto!important;
+  }
+  .login-access-note{
+    flex:0 0 auto!important;
+    margin-top:16px!important;
+  }
+
+  /* Lewa kolumna kończy się dokładnie na tej samej linii co „Prywatny system PEREKO”. */
+  .login-app-column{
+    min-height:0!important;
+    height:100%!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:0!important;
+    overflow:visible!important;
+  }
+  .login-app-copy{
+    flex:0 0 auto!important;
+  }
+  .login-app-steps{
+    flex:0 0 auto!important;
+    margin-top:22px!important;
+  }
+  .login-pwa-host{
+    flex:0 0 auto!important;
+    margin-top:auto!important;
+  }
+
+  /* Po otwarciu instrukcji panel rośnie w górę, nie zmieniając wysokości całego układu. */
+  .login-app-column.login-help-open .login-pwa-host{
+    margin-top:auto!important;
+  }
+}
