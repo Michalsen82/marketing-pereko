@@ -179,3 +179,14 @@
     column-gap:6px!important
   }
 }
+
+
+/* Desktop login — panel PWA wyrównany dokładnie do formularza */
+@media(min-width:621px){
+  .login-minimal-wrap>.pwa-login-panel{
+    width:min(520px,100%)!important;
+    max-width:520px!important;
+    justify-self:start!important;
+    box-sizing:border-box!important;
+  }
+}
