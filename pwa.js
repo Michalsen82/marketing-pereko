@@ -187,6 +187,11 @@
     }
   }
 
+  function setLoginHelpExpanded(open){
+    if(!document.querySelector('.login-minimal-page'))return;
+    document.body.classList.toggle('login-pwa-expanded',!!open);
+  }
+
   function showInstallHelp(fromInstallButton=false){
     const loginPanel=document.querySelector('#pwaLoginPanel');
     if(loginPanel&&!window.perekoLoggedPerson){
@@ -196,6 +201,7 @@
           ?(isIOS()?iosGuide():isAndroid()?androidGuide():desktopGuide())
           :loginPlatformGuide();
         box.dataset.open='1';
+        setLoginHelpExpanded(true);
       }
       return;
     }
@@ -213,6 +219,7 @@
     const wrap=document.querySelector('.login-minimal-wrap');
     const loginPanel=document.querySelector('.login-panel-minimal');
     if(!wrap||!loginPanel)return;
+    document.body.classList.add('login-pwa-static');
     const panel=document.createElement('section');
     panel.className='pwa-login-panel';
     panel.id='pwaLoginPanel';
@@ -225,6 +232,7 @@
       const open=box.dataset.open==='1';
       box.innerHTML=open?'':loginPlatformGuide();
       box.dataset.open=open?'0':'1';
+      setLoginHelpExpanded(!open);
     };
     if(isStandalone())panel.hidden=true;
   }
