@@ -922,3 +922,51 @@ html,body{
   .login-app-copy h1{font-size:29px!important}
   .login-app-copy p{font-size:12px!important}
 }
+
+
+/* FINAL ALIGNMENT — identyczna oś z dashboardem i topbarem */
+.login-split-experiment{
+  padding:46px 0!important;
+}
+.login-split-layout{
+  width:min(1400px,calc(100% - 48px))!important;
+  margin:0 auto!important;
+}
+
+/* Logo i prawa krawędź panelu siedzą na tych samych osiach co topbar/page-shell */
+.login-split-layout>.login-brand-center{
+  margin-left:0!important;
+}
+.login-split-experiment .login-panel-minimal,
+.login-split-experiment .login-access-note{
+  margin-right:0!important;
+}
+
+/* Te same breakpointy bocznych marginesów co na dashboardzie */
+@media(max-width:900px){
+  .login-split-layout{
+    width:calc(100% - 32px)!important;
+  }
+}
+@media(max-width:820px){
+  .login-split-experiment{
+    padding:28px 0 40px!important;
+  }
+  .login-split-layout{
+    width:calc(100% - 32px)!important;
+    margin:0 auto!important;
+  }
+}
+@media(max-width:760px){
+  .login-split-layout{
+    width:calc(100% - 28px)!important;
+  }
+}
+@media(max-width:520px){
+  .login-split-experiment{
+    padding:22px 0 34px!important;
+  }
+  .login-split-layout{
+    width:calc(100% - 28px)!important;
+  }
+}
