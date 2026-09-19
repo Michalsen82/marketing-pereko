@@ -287,7 +287,7 @@
           const serverResponse=await window.perekoAuthFetch('/api/push-test',{method:'POST'});
           const serverData=await serverResponse.json().catch(()=>({}));
           if(serverResponse.ok&&serverData.sent>0){
-            msg.textContent='Web Push serwerowy działa. Wiadomość została wysłana do '+serverData.sent+' urządzenia/urządzeń.';
+            msg.textContent='Web Push serwerowy działa. Wiadomość została wysłana do '+serverData.sent+' '+(Number(serverData.sent)===1?'urządzenia':'urządzeń')+'.';
             msg.className='pwa-message ok';
           }else{
             const failure=Array.isArray(serverData.failures)&&serverData.failures[0]?serverData.failures[0]:null;
