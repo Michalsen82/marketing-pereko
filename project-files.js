@@ -1,7 +1,10 @@
 (()=>{
-  const API='/api/project-files';
-  const CHUNK_SIZE=16*1024*1024;
+  const API='/api/project-files-gateway';
+  const MAX_FILE_BYTES=5*1024*1024;
+  const FREE_STORAGE_BYTES=10*1000*1000*1000;
+  const CHUNK_SIZE=MAX_FILE_BYTES;
   let currentProject=null;
+  let storageUsage=null;
   let items=[];
   let showTrash=false;
   let versionAssetId='';
@@ -67,13 +70,76 @@
     el.textContent=text||'';
   }
 
+  const formatStorageGB=bytes=>{
+    const value=(Number(bytes)||0)/1000000000;
+    return (value>=10?value.toFixed(1):value.toFixed(2)).replace('.',',')+' GB';
+  };
+
+  function ensureStorageUi(){
+    const e=cardEls();if(!e.card)return null;
+    let el=e.card.querySelector('#pdFilesStorage');
+    if(el)return el;
+    el=document.createElement('div');
+    el.id='pdFilesStorage';
+    el.className='pf-storage';
+    if(e.drop)e.drop.before(el);else e.card.appendChild(el);
+    return el;
+  }
+
+  function renderStorageUsage(){
+    const el=ensureStorageUi();if(!el)return;
+    if(!storageUsage){
+      el.innerHTML='<span class="pf-storage-label">R2</span><strong>Oczekiwanie na dane magazynu…</strong>';
+      el.className='pf-storage';
+      return;
+    }
+    const percent=Math.max(0,Number(storageUsage.percent)||0);
+    const width=Math.min(100,percent);
+    const level=storageUsage.level||'ok';
+    const free=Math.max(0,Number(storageUsage.freeBytes)||0);
+    let message='Wykorzystanie magazynu jest bezpieczne.';
+    if(level==='warning')message='Uwaga: wykorzystano co najmniej 70% bezpłatnego progu 10 GB.';
+    if(level==='high')message='Wysokie wykorzystanie: przekroczono 85% bezpłatnego progu 10 GB.';
+    if(level==='critical')message=percent>=100?'Przekroczono orientacyjny bezpłatny próg 10 GB.':'Krytycznie: wykorzystano co najmniej 95% bezpłatnego progu 10 GB.';
+    el.className='pf-storage '+level;
+    el.innerHTML=
+      '<div class="pf-storage-top"><span class="pf-storage-label">CLOUDFLARE R2</span><strong>'+
+      formatStorageGB(storageUsage.usedBytes)+' / 10 GB · '+percent.toFixed(1).replace('.',',')+'%</strong></div>'+
+      '<div class="pf-storage-bar"><i style="width:'+width+'%"></i></div>'+
+      '<div class="pf-storage-bottom"><span>'+message+'</span><small>Wolne: '+formatStorageGB(free)+' · maks. 5 MB na plik</small></div>';
+
+    let global=document.querySelector('#r2StorageWarning');
+    if(level==='ok'){
+      global?.remove();
+      return;
+    }
+    if(!global){
+      global=document.createElement('div');
+      global.id='r2StorageWarning';
+      document.body.appendChild(global);
+    }
+    global.className='r2-storage-warning '+level;
+    global.textContent=message+' R2: '+percent.toFixed(1).replace('.',',')+'% wykorzystania.';
+  }
+
+  async function refreshStorageUsage(){
+    try{
+      storageUsage=await request(`${API}?action=usage`);
+      renderStorageUsage();
+    }catch{}
+  }
+
   async function loadProjectFiles(){
     if(!currentProject)return;
     const el=cardEls().list;
     if(el)el.innerHTML='<div class="pd-empty">Ładowanie materiałów…</div>';
     try{
-      const data=await request(`${API}?projectId=${encodeURIComponent(currentProject.id)}`);
+      const [data,usage]=await Promise.all([
+        request(`${API}?projectId=${encodeURIComponent(currentProject.id)}`),
+        request(`${API}?action=usage`).catch(()=>null)
+      ]);
       items=Array.isArray(data.items)?data.items:[];
+      if(usage)storageUsage=usage;
       renderFiles();
     }catch(error){
       items=[];
@@ -84,6 +150,7 @@
 
   function renderFiles(){
     const {list,search,summary,trash}=cardEls();if(!list)return;
+    renderStorageUsage();
     const q=String(search?.value||'').trim().toLowerCase();
     const visible=items.filter(x=>Boolean(x.trashed)===showTrash).filter(x=>{
       if(!q)return true;
@@ -121,7 +188,8 @@
           </div>
           <div class="pf-file-actions">
             ${item.trashed
-              ?`<button type="button" data-pf-restore="${escHtml(item.assetId)}">Przywróć</button>`
+              ?`<button type="button" data-pf-restore="${escHtml(item.assetId)}">Przywróć</button>
+                 <button class="danger" type="button" data-pf-purge="${escHtml(item.assetId)}">Usuń trwale</button>`
               :`<button type="button" data-pf-preview="${escHtml(item.latestKey)}" data-pf-name="${escHtml(item.originalName)}" data-pf-kind="${kind}">Podgląd</button>
                  <button type="button" data-pf-download="${escHtml(item.latestKey)}" data-pf-name="${escHtml(item.originalName)}">Pobierz</button>
                  <button type="button" data-pf-version="${escHtml(item.assetId)}">Nowa wersja</button>
@@ -143,6 +211,7 @@
     });
     document.querySelectorAll('[data-pf-trash]').forEach(btn=>btn.onclick=()=>moveToTrash(btn.dataset.pfTrash));
     document.querySelectorAll('[data-pf-restore]').forEach(btn=>btn.onclick=()=>restoreFile(btn.dataset.pfRestore));
+    document.querySelectorAll('[data-pf-purge]').forEach(btn=>btn.onclick=()=>purgeFile(btn.dataset.pfPurge));
   }
 
   async function fetchBlob(key,disposition='inline'){
@@ -193,7 +262,7 @@
     if(!currentProject||!assetId)return;
     try{
       await request(`${API}?action=trash`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projectId:currentProject.id,assetId})});
-      setStatus('Plik przeniesiony do kosza. Wszystkie jego wersje pozostają zachowane.','success');
+      setStatus('Plik przeniesiony do kosza. Nadal zajmuje miejsce w R2; aby zwolnić przestrzeń, użyj „Usuń trwale”.','success');
       await loadProjectFiles();
     }catch(error){setStatus(error.message,'error')}
   }
@@ -207,12 +276,32 @@
     }catch(error){setStatus(error.message,'error')}
   }
 
+  async function purgeFile(assetId){
+    if(!currentProject||!assetId)return;
+    const item=items.find(x=>x.assetId===assetId);
+    const name=item?.originalName||'ten plik';
+    if(!window.confirm(`Usunąć trwale „${name}”? Zostaną skasowane wszystkie wersje z aplikacji i Cloudflare R2. Tej operacji nie można cofnąć.`))return;
+    try{
+      const result=await request(`${API}?action=purge`,{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({projectId:currentProject.id,assetId})
+      });
+      setStatus(`Usunięto trwale z aplikacji i Cloudflare R2. Zwolniono ${formatBytes(result.freedBytes||0)}.`,'success');
+      await loadProjectFiles();
+    }catch(error){setStatus(error.message,'error')}
+  }
+
   async function uploadFiles(fileList,assetId=''){
     if(!currentProject)return;
     const files=[...fileList].filter(Boolean);if(!files.length)return;
     for(let index=0;index<files.length;index++){
       const file=files[index];
       let uploadInfo=null;
+      if(Number(file.size)>MAX_FILE_BYTES){
+        setStatus(`Nie można dodać ${file.name}: maksymalny rozmiar pojedynczego pliku to 5 MB.`,'error');
+        if(assetId)break;
+        continue;
+      }
       try{
         setStatus(`Przygotowanie ${file.name} (${index+1}/${files.length})…`);
         uploadInfo=await request(`${API}?action=begin`,{
@@ -264,6 +353,9 @@
   function bindCard(){
     const e=cardEls();if(!e.card||e.card.dataset.filesReady==='1')return;
     e.card.dataset.filesReady='1';
+    const dropHint=e.drop?.querySelector('span');
+    if(dropHint&&!dropHint.textContent.includes('5 MB'))dropHint.textContent=(dropHint.textContent.trim()?dropHint.textContent.trim()+' · ':'')+'Maksymalnie 5 MB na plik';
+    ensureStorageUi();
     e.add.onclick=()=>{versionAssetId='';e.input.multiple=true;e.input.value='';e.input.click()};
     e.input.onchange=()=>uploadFiles(e.input.files,versionAssetId);
     e.search.oninput=renderFiles;
@@ -318,5 +410,6 @@
     });
   }
 
+  setTimeout(()=>{if(window.perekoAuthFetch)refreshStorageUsage()},1800);
   window.addEventListener('beforeunload',()=>objectUrls.forEach(url=>URL.revokeObjectURL(url)));
 })();
