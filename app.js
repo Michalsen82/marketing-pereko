@@ -255,7 +255,7 @@ function refreshNewProjectOwners(){
   select.innerHTML='<option value="">Wybierz osobę</option>'+names.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');
 }
 $('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),projectYear:currentNumberingYear(),createdAt:new Date().toISOString(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
-const now=new Date();$('#todayBox').innerHTML=`<strong>${now.toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'})}</strong><span>${now.getFullYear()}</span>`;
+const now=new Date();const day=String(now.getDate()).padStart(2,'0');const weekday=now.toLocaleDateString('pl-PL',{weekday:'long'});const month=now.toLocaleDateString('pl-PL',{month:'long'});$('#todayBox').innerHTML=`<strong class="date-daynum">${day}</strong><span class="date-copy"><span class="date-weekday">${weekday}</span><strong>${month}</strong><span>${now.getFullYear()}</span></span>`;
 const autoRefreshRemote=()=>{
   if(document.visibilityState!=='visible'||!navigator.onLine)return;
   loadRemote({silent:true,auto:true});
