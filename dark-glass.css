@@ -854,16 +854,10 @@ html body input[type="date"]::-webkit-clear-button{
 .r2-global-module.is-demo{
   border-color:rgba(255,221,0,.14)!important;
 }
-.r2-global-module.is-demo .r2-global-head::after{
-  content:"TRYB TESTOWY";
-  margin-left:auto;
-  margin-right:12px;
-  padding:5px 7px;
+.r2-global-module.is-demo .module-label::after{
+  content:" · TRYB TESTOWY";
   color:#ffdd00;
-  border:1px solid rgba(255,221,0,.20);
-  background:rgba(255,221,0,.06);
-  font:800 8px/1 'Montserrat',sans-serif;
-  letter-spacing:.10em;
+  letter-spacing:.08em;
 }
 
 .r2-global-trash-panel{
@@ -961,7 +955,6 @@ html body input[type="date"]::-webkit-clear-button{
 }
 
 @media(max-width:760px){
-  .r2-global-head::after{display:none!important}
   .r2-global-body{padding:14px!important}
   .r2-global-metrics{gap:10px!important}
   .r2-metric{min-height:0!important}
