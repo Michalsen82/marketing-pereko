@@ -279,12 +279,30 @@
         data:{url:'/'}
       });
 
-      msg.textContent='Test lokalny wysłany. Powiadomienie powinno pojawić się w pasku systemowym.';
-      msg.className='pwa-message ok';
+      msg.textContent='Test lokalny działa. Sprawdzam teraz prawdziwy Web Push z serwera…';
+      msg.className='pwa-message';
 
-      /* Prawdziwy Web Push sprawdzamy dodatkowo, ale jego brak nie blokuje testu lokalnego. */
       if(window.perekoAuthFetch){
-        window.perekoAuthFetch('/api/push-test',{method:'POST'}).catch(()=>{});
+        try{
+          const serverResponse=await window.perekoAuthFetch('/api/push-test',{method:'POST'});
+          const serverData=await serverResponse.json().catch(()=>({}));
+          if(serverResponse.ok&&serverData.sent>0){
+            msg.textContent='Web Push serwerowy działa. Wiadomość została wysłana do '+serverData.sent+' urządzenia/urządzeń.';
+            msg.className='pwa-message ok';
+          }else{
+            const failure=Array.isArray(serverData.failures)&&serverData.failures[0]?serverData.failures[0]:null;
+            const reason=failure?.error||serverData.error||'Serwer nie wysłał wiadomości.';
+            const status=failure?.status?' Kod '+failure.status+'.':'';
+            msg.textContent='Web Push serwerowy nie przeszedł testu.'+status+' '+reason+' Subskrypcje: '+Number(serverData.subscriptions||0)+', próby wysyłki: '+Number(serverData.attempted||0)+'.';
+            msg.className='pwa-message error';
+          }
+        }catch(e){
+          msg.textContent='Test lokalny działa, ale test serwerowego Web Push nie powiódł się: '+(e?.message||'nieznany błąd')+'.';
+          msg.className='pwa-message error';
+        }
+      }else{
+        msg.textContent='Test lokalny działa, ale nie można uruchomić testu serwerowego bez aktywnej sesji.';
+        msg.className='pwa-message warn';
       }
     }catch(e){
       console.error('PWA notification test:',e);
