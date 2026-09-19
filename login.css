@@ -666,3 +666,45 @@ html,body{
     max-width:none!important;
   }
 }
+
+/* Czytelność strony logowania na desktopie — zgodna z dashboardem */
+@media(min-width:621px){
+  .login-brand-center .brand-copy strong::after{
+    font-size:15px!important;
+    line-height:1.2!important;
+  }
+  .login-brand-center .brand-copy span::after{
+    font-size:11.5px!important;
+    line-height:1.4!important;
+  }
+  .login-panel-minimal .login-card-head>span{
+    font-size:10.5px!important;
+    line-height:1.2!important;
+  }
+  .login-panel-minimal .login-card-head h2{
+    font-size:30px!important;
+    line-height:1.08!important;
+  }
+  .login-panel-minimal .login-card-head p{
+    font-size:13.5px!important;
+    line-height:1.55!important;
+  }
+  .login-panel-minimal #loginForm label>span{
+    font-size:11.5px!important;
+    line-height:1.25!important;
+  }
+  .login-panel-minimal #loginForm input{
+    font-size:13px!important;
+  }
+  .login-panel-minimal .login-submit{
+    font-size:11.5px!important;
+  }
+  .login-panel-minimal .login-forgot{
+    font-size:11px!important;
+  }
+  .login-panel-minimal .login-message{
+    font-size:11.5px!important;
+    line-height:1.45!important;
+  }
+}
+
