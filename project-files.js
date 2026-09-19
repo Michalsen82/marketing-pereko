@@ -3,6 +3,10 @@
   const MAX_FILE_BYTES=5*1024*1024;
   const FREE_STORAGE_BYTES=10*1000*1000*1000;
   const CHUNK_SIZE=MAX_FILE_BYTES;
+  const DEMO_PROJECT_ID='p1';
+  const DEMO_FILE_BYTES=Math.round(1.5*1024*1024);
+  const DEMO_ASSET_ID='demo-r2-1500kb';
+  let demoState='active';
   let currentProject=null;
   let storageUsage=null;
   let globalTrashItems=[];
@@ -26,6 +30,47 @@
     try{return new Date(v).toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})}catch{return v}
   };
   const projectNumber=p=>window.perekoProjectNumberLabel?.(p)||'';
+
+  function demoFile(){
+    const now='2026-09-19T21:20:00.000Z';
+    return {
+      demo:true,
+      assetId:DEMO_ASSET_ID,
+      originalName:'Plik testowy R2 — 1,5 MB.pdf',
+      projectId:DEMO_PROJECT_ID,
+      projectNumber:'P-001/26',
+      projectName:'Centrum Partnera PEREKO',
+      uploaderName:'Test systemowy',
+      uploaderEmail:'',
+      uploadedAt:now,
+      contentType:'application/pdf',
+      size:DEMO_FILE_BYTES,
+      latestVersion:1,
+      latestKey:'',
+      trashed:demoState==='trash',
+      versions:[{
+        demo:true,key:'',version:1,originalName:'Plik testowy R2 — 1,5 MB.pdf',
+        projectId:DEMO_PROJECT_ID,projectNumber:'P-001/26',projectName:'Centrum Partnera PEREKO',
+        uploaderName:'Test systemowy',uploadedAt:now,contentType:'application/pdf',size:DEMO_FILE_BYTES
+      }],
+      totalBytes:DEMO_FILE_BYTES
+    };
+  }
+
+  function demoUsage(){
+    const usedBytes=demoState==='deleted'?0:DEMO_FILE_BYTES;
+    const percent=usedBytes/FREE_STORAGE_BYTES*100;
+    return {
+      demo:true,
+      usedBytes,
+      freeBytes:Math.max(0,FREE_STORAGE_BYTES-usedBytes),
+      limitBytes:FREE_STORAGE_BYTES,
+      percent,
+      level:'ok',
+      objectCount:usedBytes?1:0,
+      truncated:false
+    };
+  }
 
   async function request(url,options={}){
     const r=await window.perekoAuthFetch(url,options);
@@ -117,16 +162,24 @@
     }
     const percent=Math.max(0,Number(storageUsage.percent)||0);
     const level=storageUsage.level||'ok';
+    const isDemo=!!storageUsage.demo;
     e.module.dataset.state=level;
-    if(e.used)e.used.textContent=formatStorageGB(storageUsage.usedBytes);
+    e.module.classList.toggle('is-demo',isDemo);
+    if(e.used)e.used.textContent=formatBytes(storageUsage.usedBytes);
     if(e.free)e.free.textContent=formatStorageGB(storageUsage.freeBytes);
-    if(e.percent)e.percent.textContent=percent.toFixed(1).replace('.',',')+'%';
-    if(e.level)e.level.textContent=level==='ok'?'bezpieczny poziom':level==='warning'?'zbliżamy się do limitu':level==='high'?'wysokie wykorzystanie':'krytyczne wykorzystanie';
+    if(e.percent)e.percent.textContent=(percent<0.1&&percent>0?percent.toFixed(2):percent.toFixed(1)).replace('.',',')+'%';
+    if(e.level)e.level.textContent=isDemo?'podgląd testowy':level==='ok'?'bezpieczny poziom':level==='warning'?'zbliżamy się do limitu':level==='high'?'wysokie wykorzystanie':'krytyczne wykorzystanie';
     if(e.bar)e.bar.style.width=Math.min(100,percent)+'%';
-    const message=storageMessage(level,percent);
+    const message=isDemo
+      ?(demoState==='deleted'
+        ?'Podgląd testowy: plik został trwale usunięty, więc zajęcie spadło do 0 B. Odśwież stronę, aby przywrócić demonstrację.'
+        :demoState==='trash'
+          ?'Podgląd testowy: plik 1,5 MB jest w koszu. Nadal zajmuje miejsce do chwili trwałego usunięcia.'
+          :'Podgląd testowy: plik 1,5 MB znajduje się w projekcie Centrum Partnera PEREKO. Po podłączeniu R2 pojawią się dane rzeczywiste.')
+      :storageMessage(level,percent);
     if(e.status)e.status.textContent=message;
 
-    if(level==='ok'){
+    if(level==='ok'||isDemo){
       warning?.remove();
     }else{
       const global=warning||document.body.appendChild(Object.assign(document.createElement('div'),{id:'r2StorageWarning'}));
@@ -139,7 +192,7 @@
     try{
       storageUsage=await request(`${API}?action=usage`);
     }catch{
-      storageUsage=null;
+      storageUsage=demoUsage();
     }
     renderGlobalStorage();
   }
@@ -180,13 +233,20 @@
       globalTrashItems=Array.isArray(data.items)?data.items:[];
       renderGlobalTrash();
     }catch(error){
-      globalTrashItems=[];
-      if(e.count)e.count.textContent='0';
-      if(e.list)e.list.innerHTML='<div class="r2-global-empty">Kosz będzie dostępny po podłączeniu magazynu R2.</div>';
+      globalTrashItems=demoState==='trash'?[demoFile()]:[];
+      renderGlobalTrash();
+      if(e.list&&!globalTrashItems.length)e.list.innerHTML='<div class="r2-global-empty">Kosz testowy jest pusty. Plik demonstracyjny znajduje się teraz w projekcie Centrum Partnera PEREKO.</div>';
     }
   }
 
   async function restoreGlobalFile(projectId,assetId){
+    if(projectId===DEMO_PROJECT_ID&&assetId===DEMO_ASSET_ID){
+      demoState='active';
+      storageUsage=demoUsage();
+      await Promise.all([loadGlobalTrash(),currentProject?.id===DEMO_PROJECT_ID?loadProjectFiles():Promise.resolve()]);
+      renderGlobalStorage();
+      return;
+    }
     try{
       await request(`${API}?action=restore`,{
         method:'POST',headers:{'Content-Type':'application/json'},
@@ -201,6 +261,13 @@
 
   async function purgeGlobalFile(projectId,assetId,name){
     if(!window.confirm(`Usunąć trwale „${name||'ten plik'}”? Wszystkie wersje zostaną skasowane z Cloudflare R2. Tej operacji nie można cofnąć.`))return;
+    if(projectId===DEMO_PROJECT_ID&&assetId===DEMO_ASSET_ID){
+      demoState='deleted';
+      storageUsage=demoUsage();
+      await Promise.all([loadGlobalTrash(),currentProject?.id===DEMO_PROJECT_ID?loadProjectFiles():Promise.resolve()]);
+      renderGlobalStorage();
+      return;
+    }
     try{
       await request(`${API}?action=purge`,{
         method:'POST',headers:{'Content-Type':'application/json'},
@@ -241,6 +308,17 @@
       renderGlobalStorage();
       renderFiles();
     }catch(error){
+      const isDemoProject=String(currentProject?.id||'')===DEMO_PROJECT_ID||String(currentProject?.name||'').toLowerCase()==='centrum partnera pereko';
+      if(isDemoProject){
+        storageUsage=demoUsage();
+        items=demoState==='deleted'?[]:[demoFile()];
+        renderGlobalStorage();
+        renderFiles();
+        setStatus(demoState==='deleted'
+          ?'Tryb testowy: plik demonstracyjny został trwale usunięty. Odśwież stronę, aby rozpocząć demonstrację od nowa.'
+          :'Tryb testowy R2: pokazujemy plik demonstracyjny 1,5 MB. Nie zajmuje on jeszcze realnej przestrzeni Cloudflare.','success');
+        return;
+      }
       items=[];
       if(el)el.innerHTML=`<div class="pf-error"><strong>Magazyn plików nie jest jeszcze aktywny.</strong><span>${escHtml(error.message)}</span></div>`;
       const summary=cardEls().summary;if(summary)summary.textContent='R2 niepodłączone';
@@ -288,10 +366,13 @@
             ${item.trashed
               ?`<button type="button" data-pf-restore="${escHtml(item.assetId)}">Przywróć</button>
                  <button class="danger" type="button" data-pf-purge="${escHtml(item.assetId)}">Usuń trwale</button>`
-              :`<button type="button" data-pf-preview="${escHtml(item.latestKey)}" data-pf-name="${escHtml(item.originalName)}" data-pf-kind="${kind}">Podgląd</button>
-                 <button type="button" data-pf-download="${escHtml(item.latestKey)}" data-pf-name="${escHtml(item.originalName)}">Pobierz</button>
-                 <button type="button" data-pf-version="${escHtml(item.assetId)}">Nowa wersja</button>
-                 <button class="danger" type="button" data-pf-trash="${escHtml(item.assetId)}">Do kosza</button>`}
+              :item.demo
+                ?`<span class="pf-demo-badge">TEST 1,5 MB</span>
+                   <button class="danger" type="button" data-pf-trash="${escHtml(item.assetId)}">Do kosza</button>`
+                :`<button type="button" data-pf-preview="${escHtml(item.latestKey)}" data-pf-name="${escHtml(item.originalName)}" data-pf-kind="${kind}">Podgląd</button>
+                   <button type="button" data-pf-download="${escHtml(item.latestKey)}" data-pf-name="${escHtml(item.originalName)}">Pobierz</button>
+                   <button type="button" data-pf-version="${escHtml(item.assetId)}">Nowa wersja</button>
+                   <button class="danger" type="button" data-pf-trash="${escHtml(item.assetId)}">Do kosza</button>`}
           </div>
         </article>`;
     }).join('');
@@ -358,6 +439,14 @@
 
   async function moveToTrash(assetId){
     if(!currentProject||!assetId)return;
+    if(assetId===DEMO_ASSET_ID&&String(currentProject.id||'')===DEMO_PROJECT_ID){
+      demoState='trash';
+      storageUsage=demoUsage();
+      items=[demoFile()];
+      renderFiles();renderGlobalStorage();await loadGlobalTrash();
+      setStatus('Plik testowy przeniesiono do kosza. Nadal zajmuje 1,5 MB — miejsce zwolni się dopiero po trwałym usunięciu.','success');
+      return;
+    }
     try{
       await request(`${API}?action=trash`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projectId:currentProject.id,assetId})});
       setStatus('Plik przeniesiony do kosza. Nadal zajmuje miejsce w R2; aby zwolnić przestrzeń, użyj „Usuń trwale”.','success');
@@ -368,6 +457,14 @@
 
   async function restoreFile(assetId){
     if(!currentProject||!assetId)return;
+    if(assetId===DEMO_ASSET_ID&&String(currentProject.id||'')===DEMO_PROJECT_ID){
+      demoState='active';
+      storageUsage=demoUsage();
+      items=[demoFile()];
+      renderFiles();renderGlobalStorage();await loadGlobalTrash();
+      setStatus('Plik testowy przywrócono do projektu.','success');
+      return;
+    }
     try{
       await request(`${API}?action=restore`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projectId:currentProject.id,assetId})});
       setStatus('Plik przywrócony.','success');
@@ -381,6 +478,14 @@
     const item=items.find(x=>x.assetId===assetId);
     const name=item?.originalName||'ten plik';
     if(!window.confirm(`Usunąć trwale „${name}”? Zostaną skasowane wszystkie wersje z aplikacji i Cloudflare R2. Tej operacji nie można cofnąć.`))return;
+    if(assetId===DEMO_ASSET_ID&&String(currentProject.id||'')===DEMO_PROJECT_ID){
+      demoState='deleted';
+      storageUsage=demoUsage();
+      items=[];
+      renderFiles();renderGlobalStorage();await loadGlobalTrash();
+      setStatus('Plik testowy usunięto trwale. Zajęcie spadło z 1,5 MB do 0 B. Odśwież stronę, aby przywrócić demonstrację.','success');
+      return;
+    }
     try{
       const result=await request(`${API}?action=purge`,{
         method:'POST',headers:{'Content-Type':'application/json'},
