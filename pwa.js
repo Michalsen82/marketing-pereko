@@ -103,11 +103,12 @@
     if(!document.querySelector('#loginForm')||document.querySelector('#pwaLoginPanel'))return;
     const wrap=document.querySelector('.login-minimal-wrap');
     if(!wrap)return;
+    const host=document.querySelector('#loginPwaHost')||document.querySelector('.login-app-column')||wrap;
     const panel=document.createElement('section');
     panel.className='pwa-login-panel';
     panel.id='pwaLoginPanel';
     panel.innerHTML='<strong>Centrum Marketingowe także jako aplikacja</strong><p>Po instalacji wykonaj 3 kroki: uruchom aplikację z ikony PEREKO, zaloguj się i połącz powiadomienia systemowe. Szczegóły dla iOS i Androida znajdziesz poniżej.</p><div class="pwa-login-actions"><button class="install" type="button">Zainstaluj aplikację</button><button class="help" type="button">Jak to działa?</button></div><div class="pwa-login-help"></div>';
-    wrap.appendChild(panel);
+    host.appendChild(panel);
     panel.querySelector('.install').onclick=installApp;
     panel.querySelector('.help').onclick=()=>{
       const box=panel.querySelector('.pwa-login-help');
