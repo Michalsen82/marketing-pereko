@@ -960,3 +960,115 @@ html body input[type="date"]::-webkit-clear-button{
   .r2-metric{min-height:0!important}
 }
 
+/* FINAL — kompaktowy magazyn R2 na dole dashboardu */
+.r2-global-module{
+  margin-top:14px!important;
+}
+.r2-global-head{
+  padding:14px 18px 12px!important;
+}
+.r2-global-head h2{
+  font-size:18px!important;
+  line-height:1.15!important;
+}
+.r2-global-head p{
+  margin-top:4px!important;
+  font-size:11.5px!important;
+  line-height:1.4!important;
+}
+.r2-global-trash-btn{
+  min-height:34px!important;
+  padding:0 10px!important;
+  font-size:9.5px!important;
+}
+.r2-global-trash-btn b{
+  min-width:20px!important;
+  height:20px!important;
+  font-size:8.5px!important;
+}
+.r2-global-body{
+  padding:12px 18px 14px!important;
+}
+.r2-global-metrics{
+  gap:9px!important;
+}
+.r2-metric{
+  min-height:72px!important;
+  padding:10px 12px!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.03)!important;
+}
+.r2-metric span{
+  font-size:8px!important;
+}
+.r2-metric strong{
+  margin-top:6px!important;
+  font-size:18px!important;
+  line-height:1.05!important;
+}
+.r2-metric small{
+  margin-top:4px!important;
+  font-size:9px!important;
+  line-height:1.3!important;
+}
+.r2-metric:first-child strong::after{
+  width:5px!important;
+  height:5px!important;
+  margin-left:6px!important;
+  box-shadow:0 0 0 3px rgba(255,221,0,.07)!important;
+}
+.r2-global-progress-wrap{
+  margin-top:9px!important;
+  padding:9px 11px!important;
+}
+.r2-global-progress{
+  height:5px!important;
+}
+.r2-global-progress-copy{
+  margin-top:7px!important;
+}
+.r2-global-progress-copy span{
+  font-size:10px!important;
+  line-height:1.35!important;
+}
+.r2-global-progress-copy small{
+  font-size:9px!important;
+  line-height:1.35!important;
+}
+.r2-global-module.is-demo{
+  border-color:rgba(255,255,255,.105)!important;
+}
+.r2-global-module.is-demo .module-label::after{
+  content:" · TEST";
+  color:rgba(255,221,0,.72);
+  font-size:7.5px;
+  letter-spacing:.08em;
+}
+.r2-global-trash-panel{
+  margin-top:9px!important;
+}
+.r2-global-trash-toolbar{
+  padding:10px 12px!important;
+}
+.r2-global-trash-list{
+  padding:3px 12px 8px!important;
+}
+.r2-trash-item{
+  padding:9px 0!important;
+}
+.r2-trash-icon{
+  width:36px!important;
+  height:36px!important;
+}
+.r2-trash-copy strong{font-size:11px!important}
+.r2-trash-copy span{font-size:9.5px!important}
+.r2-trash-copy small{font-size:8.5px!important}
+.r2-trash-actions button{
+  min-height:29px!important;
+  font-size:8.5px!important;
+}
+@media(max-width:760px){
+  .r2-global-head{padding:13px 14px 11px!important}
+  .r2-global-body{padding:10px 14px 12px!important}
+  .r2-global-metrics{gap:8px!important}
+}
+
