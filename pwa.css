@@ -290,3 +290,23 @@
   }
 }
 
+/* Przycisk zamykający rozwinięte instrukcje na logowaniu */
+.pwa-login-help-close-row{
+  display:flex;
+  justify-content:flex-end;
+  margin-top:12px;
+}
+.pwa-login-help-close{
+  min-height:36px;
+  padding:0 13px;
+  border:1px solid rgba(255,255,255,.14);
+  background:rgba(255,255,255,.055);
+  color:#fff;
+  font:700 11px/1 'Montserrat',sans-serif;
+  cursor:pointer;
+}
+.pwa-login-help-close:hover{
+  background:rgba(255,255,255,.09);
+  border-color:rgba(255,255,255,.22);
+}
+
