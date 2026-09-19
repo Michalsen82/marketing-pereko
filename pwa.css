@@ -219,3 +219,26 @@
     box-sizing:border-box!important;
   }
 }
+
+/* Czytelność okna „Aplikacja i powiadomienia” na desktopie */
+@media(min-width:761px){
+  .pwa-modal .pwa-kicker{font-size:10px;line-height:1.2}
+  .pwa-modal .pwa-head h3{font-size:26px;line-height:1.15}
+  .pwa-modal .pwa-head p{font-size:13.5px;line-height:1.5}
+  .pwa-modal .pwa-status-card span{font-size:10.5px;line-height:1.2}
+  .pwa-modal .pwa-status-card strong{font-size:15px;line-height:1.3}
+  .pwa-modal .pwa-status-card small{font-size:11.5px;line-height:1.5}
+  .pwa-modal .pwa-section-head span{font-size:10px;line-height:1.2}
+  .pwa-modal .pwa-section-head h4{font-size:18px;line-height:1.25}
+  .pwa-modal .pwa-section p{font-size:13px;line-height:1.6}
+  .pwa-modal .pwa-primary,
+  .pwa-modal .pwa-secondary{min-height:40px;padding:0 14px;font-size:11.5px;line-height:1}
+  .pwa-modal .pwa-guide{font-size:12.5px;line-height:1.65}
+  .pwa-modal .pwa-guide strong{font-size:13px}
+  .pwa-modal .pwa-pref strong{font-size:13px;line-height:1.35}
+  .pwa-modal .pwa-pref span{font-size:11.5px;line-height:1.5}
+  .pwa-modal .pwa-message{font-size:11.5px;line-height:1.5}
+  .pwa-modal .pwa-qr-wrap strong{font-size:13px}
+  .pwa-modal .pwa-qr-wrap p{font-size:12px;line-height:1.5}
+}
+
