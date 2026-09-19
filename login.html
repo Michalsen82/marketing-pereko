@@ -22,8 +22,8 @@
   <link rel="stylesheet" href="sharp-corners.css" />
 </head>
 <body>
-  <main class="login-minimal-page login-split-experiment">
-    <section class="login-minimal-wrap login-split-layout">
+  <main class="login-minimal-page">
+    <section class="login-minimal-wrap">
       <div class="login-brand-center">
         <div class="brand-zone">
           <div class="brand-badge">P</div>
@@ -34,64 +34,32 @@
         </div>
       </div>
 
-      <section class="login-app-column" aria-label="Centrum Marketingowe jako aplikacja">
-        <div class="login-app-copy">
-          <span class="login-app-kicker">APLIKACJA PEREKO</span>
-          <h1>Centrum Marketingowe zawsze pod ręką.</h1>
-          <p>Zainstaluj system na telefonie lub komputerze. Otwieraj go z własnej ikony i odbieraj powiadomienia o zadaniach także wtedy, gdy aplikacja jest zamknięta.</p>
+      <section class="login-panel-minimal">
+        <div class="login-card-head">
+          <span>BEZPIECZNY DOSTĘP</span>
+          <h2>Zaloguj się</h2>
+          <p>Użyj firmowego adresu e-mail i hasła.</p>
         </div>
 
-        <div class="login-app-steps" aria-label="Trzy kroki uruchomienia aplikacji">
-          <article class="login-app-step">
-            <span>01</span>
-            <div><strong>Zainstaluj</strong><p>Dodaj Centrum Marketingowe do ekranu głównego lub zainstaluj je jako aplikację.</p></div>
-          </article>
-          <article class="login-app-step">
-            <span>02</span>
-            <div><strong>Zaloguj się</strong><p>Użyj własnego konta PEREKO, aby przypisać urządzenie do właściwego użytkownika.</p></div>
-          </article>
-          <article class="login-app-step">
-            <span>03</span>
-            <div><strong>Połącz powiadomienia</strong><p>Włącz Web Push, aby nowe zadania i ważne zmiany trafiały na urządzenie od razu.</p></div>
-          </article>
-        </div>
+        <form id="loginForm" autocomplete="on" novalidate>
+          <label>
+            <span>Adres e-mail</span>
+            <input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="imie.nazwisko@pereko.pl" required />
+          </label>
+          <label>
+            <span>Hasło</span>
+            <div class="password-field">
+              <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Wpisz hasło" required />
+              <button id="togglePassword" type="button" aria-label="Pokaż lub ukryj hasło">
+                <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c5.5 0 9.5 5.1 9.5 7s-4 7-9.5 7S2.5 13.9 2.5 12 6.5 5 12 5Zm0 2C8.2 7 5 10.4 4.6 12 5 13.6 8.2 17 12 17s7-3.4 7.4-5C19 10.4 15.8 7 12 7Zm0 2.5A2.5 2.5 0 1 1 12 14.5 2.5 2.5 0 0 1 12 9.5Z"/></svg>
+              </button>
+            </div>
+          </label>
 
-        <div class="login-pwa-host" id="loginPwaHost"></div>
-      </section>
-
-      <section class="login-access-column" aria-label="Logowanie do Centrum Marketingowego">
-        <section class="login-panel-minimal">
-          <div class="login-card-head">
-            <span>BEZPIECZNY DOSTĘP</span>
-            <h2>Zaloguj się</h2>
-            <p>Użyj firmowego adresu e-mail i hasła.</p>
-          </div>
-
-          <form id="loginForm" autocomplete="on" novalidate>
-            <label>
-              <span>Adres e-mail</span>
-              <input id="loginEmail" name="email" type="email" autocomplete="username" placeholder="imie.nazwisko@pereko.pl" required />
-            </label>
-            <label>
-              <span>Hasło</span>
-              <div class="password-field">
-                <input id="loginPassword" name="password" type="password" autocomplete="current-password" placeholder="Wpisz hasło" required />
-                <button id="togglePassword" type="button" aria-label="Pokaż lub ukryj hasło">
-                  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 5c5.5 0 9.5 5.1 9.5 7s-4 7-9.5 7S2.5 13.9 2.5 12 6.5 5 12 5Zm0 2C8.2 7 5 10.4 4.6 12 5 13.6 8.2 17 12 17s7-3.4 7.4-5C19 10.4 15.8 7 12 7Zm0 2.5A2.5 2.5 0 1 1 12 14.5 2.5 2.5 0 0 1 12 9.5Z"/></svg>
-                </button>
-              </div>
-            </label>
-
-            <button class="login-submit" type="submit">Zaloguj się</button>
-            <button class="login-forgot" type="button" id="forgotPassword">Nie pamiętasz hasła?</button>
-            <div class="login-message" id="loginMessage" role="status" aria-live="polite"></div>
-          </form>
-        </section>
-
-        <div class="login-access-note">
-          <span>PRYWATNY SYSTEM PEREKO</span>
-          <p>Dostęp do projektów, zadań, materiałów i powiadomień jest dostępny wyłącznie dla zalogowanych użytkowników.</p>
-        </div>
+          <button class="login-submit" type="submit">Zaloguj się</button>
+          <button class="login-forgot" type="button" id="forgotPassword">Nie pamiętasz hasła?</button>
+          <div class="login-message" id="loginMessage" role="status" aria-live="polite"></div>
+        </form>
       </section>
     </section>
   </main>
