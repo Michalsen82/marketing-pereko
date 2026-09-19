@@ -708,3 +708,31 @@ html,body{
   }
 }
 
+/* Desktop login — bez przewijania do chwili rozwinięcia instrukcji */
+@media(min-width:621px){
+  body.login-pwa-static{
+    overflow:hidden!important;
+  }
+  body.login-pwa-static .login-minimal-page{
+    height:100dvh!important;
+    min-height:100dvh!important;
+    overflow:hidden!important;
+    padding:24px!important;
+  }
+  body.login-pwa-static .login-minimal-wrap{
+    gap:26px!important;
+  }
+  body.login-pwa-static .login-panel-minimal .login-message:empty{
+    min-height:8px!important;
+  }
+  body.login-pwa-static.login-pwa-expanded{
+    overflow-y:auto!important;
+  }
+  body.login-pwa-static.login-pwa-expanded .login-minimal-page{
+    height:auto!important;
+    min-height:100dvh!important;
+    overflow:visible!important;
+    padding:32px 24px!important;
+  }
+}
+
