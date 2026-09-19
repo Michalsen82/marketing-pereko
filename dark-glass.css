@@ -733,3 +733,237 @@ html body input[type="date"]::-webkit-clear-button{
   opacity:0!important;
   cursor:pointer!important
 }
+
+/* =========================================================
+   R2 — finalny dark glass zgodny z dashboardem
+   ========================================================= */
+.r2-global-module{
+  margin-top:18px!important;
+  overflow:hidden!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.075),rgba(255,255,255,.035))!important;
+  border:1px solid rgba(255,255,255,.105)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.045),0 18px 48px rgba(0,0,0,.26)!important;
+}
+.r2-global-head{
+  padding:20px 22px 18px!important;
+  align-items:center!important;
+  border-bottom:1px solid rgba(255,255,255,.08)!important;
+  background:transparent!important;
+}
+.r2-global-head h2{
+  color:#fff!important;
+  font-size:20px!important;
+}
+.r2-global-head p{
+  color:rgba(255,255,255,.52)!important;
+  font-size:12.5px!important;
+}
+.r2-global-trash-btn{
+  min-height:40px!important;
+  padding:0 13px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.13),rgba(255,255,255,.065))!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.16)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.055),0 8px 20px rgba(0,0,0,.14)!important;
+  backdrop-filter:blur(16px)!important;
+  -webkit-backdrop-filter:blur(16px)!important;
+}
+.r2-global-trash-btn:hover,
+.r2-global-trash-btn.active{
+  background:linear-gradient(145deg,rgba(255,255,255,.20),rgba(255,255,255,.09))!important;
+  border-color:rgba(255,255,255,.25)!important;
+}
+.r2-global-trash-btn b{
+  background:rgba(255,255,255,.09)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+}
+
+.r2-global-body{
+  padding:18px 22px 22px!important;
+}
+.r2-global-metrics{
+  gap:14px!important;
+}
+.r2-metric{
+  min-height:118px!important;
+  padding:18px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.085),rgba(255,255,255,.04))!important;
+  border:1px solid rgba(255,255,255,.105)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.04),0 12px 28px rgba(0,0,0,.16)!important;
+}
+.r2-metric::before{
+  display:none!important;
+}
+.r2-metric span{
+  color:rgba(255,255,255,.56)!important;
+  font-size:9px!important;
+}
+.r2-metric strong{
+  margin-top:10px!important;
+  color:#fff!important;
+  font-size:28px!important;
+  letter-spacing:-.035em!important;
+}
+.r2-metric small{
+  margin-top:7px!important;
+  color:rgba(255,255,255,.42)!important;
+  font-size:10.5px!important;
+}
+.r2-metric:first-child strong::after{
+  content:"";
+  display:inline-block;
+  width:7px;height:7px;
+  margin-left:9px;
+  background:#ffdd00;
+  border-radius:50%;
+  vertical-align:middle;
+  box-shadow:0 0 0 4px rgba(255,221,0,.08);
+}
+
+.r2-global-progress-wrap{
+  margin-top:14px!important;
+  padding:16px 18px!important;
+  background:rgba(255,255,255,.035)!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.r2-global-progress{
+  height:8px!important;
+  background:rgba(255,255,255,.085)!important;
+  overflow:hidden!important;
+}
+.r2-global-progress>span{
+  background:#ffdd00!important;
+  box-shadow:0 0 18px rgba(255,221,0,.18)!important;
+}
+.r2-global-progress-copy{
+  margin-top:11px!important;
+}
+.r2-global-progress-copy span{
+  color:rgba(255,255,255,.72)!important;
+  font-size:11.5px!important;
+}
+.r2-global-progress-copy small{
+  color:rgba(255,255,255,.42)!important;
+  font-size:10px!important;
+}
+.r2-global-module[data-state="warning"] .r2-global-progress>span{background:#ffdd00!important}
+.r2-global-module[data-state="high"] .r2-global-progress>span{background:#ffb44d!important}
+.r2-global-module[data-state="critical"] .r2-global-progress>span{background:#ff7f75!important}
+.r2-global-module.is-demo{
+  border-color:rgba(255,221,0,.14)!important;
+}
+.r2-global-module.is-demo .r2-global-head::after{
+  content:"TRYB TESTOWY";
+  margin-left:auto;
+  margin-right:12px;
+  padding:5px 7px;
+  color:#ffdd00;
+  border:1px solid rgba(255,221,0,.20);
+  background:rgba(255,221,0,.06);
+  font:800 8px/1 'Montserrat',sans-serif;
+  letter-spacing:.10em;
+}
+
+.r2-global-trash-panel{
+  margin-top:14px!important;
+  background:rgba(255,255,255,.025)!important;
+  border:1px solid rgba(255,255,255,.085)!important;
+}
+.r2-global-trash-toolbar{
+  padding:14px 16px!important;
+  border-bottom:1px solid rgba(255,255,255,.07)!important;
+}
+.r2-global-trash-toolbar>div>span{
+  color:#ffdd00!important;
+  font-size:8.5px!important;
+}
+.r2-global-trash-toolbar>div>strong{
+  color:#fff!important;
+  font-size:12.5px!important;
+}
+.r2-global-trash-search input{
+  height:38px!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  font-size:11.5px!important;
+}
+.r2-global-trash-search input::placeholder{color:rgba(255,255,255,.38)!important}
+.r2-global-trash-search svg{fill:rgba(255,255,255,.46)!important}
+.r2-global-trash-list{padding:5px 16px 12px!important}
+.r2-trash-item{
+  padding:13px 0!important;
+  border-bottom:1px solid rgba(255,255,255,.065)!important;
+}
+.r2-trash-icon{
+  width:42px!important;height:42px!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+}
+.r2-trash-copy strong{color:#fff!important;font-size:12px!important}
+.r2-trash-copy span{color:rgba(255,255,255,.62)!important;font-size:10.5px!important}
+.r2-trash-copy small{color:rgba(255,255,255,.42)!important;font-size:9.5px!important}
+.r2-trash-actions button{
+  min-height:32px!important;
+  background:rgba(255,255,255,.055)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+}
+.r2-trash-actions button:hover{
+  background:rgba(255,255,255,.10)!important;
+  border-color:rgba(255,255,255,.22)!important;
+}
+.r2-trash-actions button.danger{
+  background:rgba(194,72,61,.08)!important;
+  color:#ffaaa4!important;
+  border-color:rgba(230,104,94,.22)!important;
+}
+.r2-global-empty{
+  padding:22px 6px!important;
+  color:rgba(255,255,255,.48)!important;
+  font-size:11px!important;
+}
+.r2-global-error{
+  color:#ffaaa4!important;
+}
+
+/* Pliki projektu — jeszcze ciaśniej w systemie dark glass */
+.project-detail-modal .pd-files-card .pf-toolbar,
+.project-detail-modal .pd-files-card .pf-dropzone,
+.project-detail-modal .pd-files-card .pf-error{
+  background:rgba(255,255,255,.025)!important;
+}
+.project-detail-modal .pd-files-card .pf-toolbar{
+  padding:0!important;
+  border:0!important;
+}
+.project-detail-modal .pd-files-card .pf-search input{
+  background:rgba(255,255,255,.045)!important;
+  color:#fff!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+}
+.project-detail-modal .pd-files-card .pf-dropzone{
+  border-color:rgba(255,255,255,.13)!important;
+}
+.pf-demo-badge{
+  min-height:28px;
+  padding:0 8px;
+  display:inline-flex;
+  align-items:center;
+  border:1px solid rgba(255,221,0,.22);
+  background:rgba(255,221,0,.07);
+  color:#ffdd00;
+  font:800 8px/1 'Montserrat',sans-serif;
+  letter-spacing:.08em;
+}
+
+@media(max-width:760px){
+  .r2-global-head::after{display:none!important}
+  .r2-global-body{padding:14px!important}
+  .r2-global-metrics{gap:10px!important}
+  .r2-metric{min-height:0!important}
+}
+
