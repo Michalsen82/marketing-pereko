@@ -53,11 +53,11 @@
         </div>
       </div>
       <div class="topbar-actions">
-        <div class="sync-card" id="syncCard">
+        <div class="sync-card sync-technical-source" id="syncCard" aria-hidden="true">
           <span class="sync-dot" id="syncDot"></span>
           <div><strong id="syncTitle">Dane lokalne</strong><span id="syncText">Synchronizacja nieaktywna</span></div>
         </div>
-        <button class="top-button secondary-top" id="syncNow">Synchronizuj dane</button>
+        <button class="top-button secondary-top sync-technical-source" id="syncNow" type="button" aria-hidden="true" tabindex="-1">Synchronizuj dane</button>
         <button class="team-top-btn top-action-icon" id="teamTopBtn" type="button" data-tooltip="Zespół i współpracownicy" aria-label="Zespół i współpracownicy">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 19.5C2 15.91 4.91 13 8.5 13S15 15.91 15 19.5V21H2v-1.5Zm13.1-6.38A6.96 6.96 0 0 1 17 18v3h5v-1.25c0-3.1-2.52-5.63-5.63-5.63-.44 0-.86.05-1.27.14Z"/></svg>
         </button>
@@ -222,11 +222,10 @@
         </div>
       </div>
       <div class="footer-actions">
-        <button class="footer-sync-btn" id="footerSyncNow" type="button">Synchronizuj dane</button>
-        <button class="footer-status-btn" id="footerSyncStatus" type="button" data-state="local" tabindex="-1" aria-live="polite">
+        <div class="footer-status-btn" id="footerSyncStatus" data-state="local" role="status" aria-live="polite">
           <span class="footer-status-dot"></span>
           <span id="footerSyncText">Dane lokalne</span>
-        </button>
+        </div>
       </div>
     </div>
   </footer>
