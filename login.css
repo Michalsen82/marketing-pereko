@@ -647,13 +647,13 @@ html,body{
 }
 
 
-/* FINAL: formularz wyrównany do prawego marginesu brandingu */
+/* FINAL: formularz wyrównany do końca napisu „…PEREKO” w brandingu */
 .login-minimal-wrap{
   width:min(620px,100%)!important;
 }
 .login-panel-minimal{
-  width:min(620px,100%)!important;
-  max-width:620px!important;
+  width:min(575px,100%)!important;
+  max-width:575px!important;
   justify-self:start!important;
 }
 .login-panel-minimal .login-card-head,
