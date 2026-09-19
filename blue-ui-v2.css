@@ -1760,3 +1760,160 @@ body::after{display:none!important}
   }
 }
 
+/* =========================================================
+   POLISH PASS 03 — więcej treści nad linią zgięcia ekranu
+   ========================================================= */
+@media(min-width:1181px){
+  .intro-row{
+    min-height:218px!important;
+    padding:24px 28px 18px!important;
+    grid-template-columns:minmax(0,1.36fr) minmax(345px,.64fr)!important;
+    grid-template-rows:minmax(112px,1fr) auto!important;
+    column-gap:22px!important;
+    row-gap:8px!important;
+  }
+  .intro-row h1{
+    max-width:680px!important;
+    margin:8px 0 8px!important;
+    font-size:38px!important;
+    line-height:1.015!important;
+  }
+  .intro-row p{
+    font-size:12.8px!important;
+    line-height:1.42!important;
+  }
+  .blue-hero-proof{
+    margin-top:13px!important;
+    gap:5px 12px!important;
+  }
+  .blue-hero-proof span{font-size:8.2px!important}
+  .blue-hero-proof b{
+    width:21px!important;height:21px!important;
+    font-size:7.5px!important;
+  }
+  .blue-hero-visual{
+    min-height:132px!important;
+    margin:-24px -28px 0 0!important;
+    border-radius:0 18px 0 38px!important;
+  }
+  .blue-hero-signal{
+    top:18px!important;
+    right:21px!important;
+  }
+  .blue-hero-signal>strong{
+    font-size:17px!important;
+    line-height:1.28!important;
+  }
+  .blue-hero-signal>small{margin-top:8px!important}
+  .intro-actions{
+    grid-template-columns:minmax(188px,1fr) 146px!important;
+    gap:8px!important;
+  }
+  .intro-actions .date-box{
+    min-height:60px!important;
+    padding:7px 9px!important;
+    grid-template-columns:44px minmax(0,1fr)!important;
+    gap:8px!important;
+  }
+  .date-daynum{
+    width:44px!important;height:44px!important;
+    font-size:22px!important;
+  }
+  .date-copy .date-weekday{font-size:7px!important}
+  .date-copy>strong{font-size:12px!important}
+  .date-copy>span:last-child{font-size:8.5px!important}
+  .intro-project-actions{
+    min-width:146px!important;
+    width:146px!important;
+  }
+  .intro-add-project{
+    min-width:146px!important;
+    width:146px!important;
+    height:39px!important;
+    font-size:9.6px!important;
+  }
+  .stats-toggle-btn{
+    height:25px!important;
+    min-height:25px!important;
+    font-size:7.7px!important;
+  }
+
+  .stats-grid{
+    gap:10px!important;
+    margin-bottom:12px!important;
+  }
+  .stat-card{
+    min-height:88px!important;
+    padding:13px 15px 12px!important;
+  }
+  .stat-card span{font-size:9px!important}
+  .stat-card strong{
+    margin-top:4px!important;
+    font-size:28px!important;
+  }
+  .stat-card small{
+    margin-top:2px!important;
+    font-size:8.8px!important;
+  }
+
+  .projects-module .module-head{
+    min-height:82px!important;
+    padding:14px 18px!important;
+    align-items:center!important;
+  }
+  .projects-module .module-head h2{
+    margin-top:6px!important;
+    font-size:19px!important;
+  }
+  .project-module-actions{
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:8px!important;
+  }
+  .gantt-open-btn{
+    order:2!important;
+    height:34px!important;
+    white-space:nowrap!important;
+  }
+  .filters{
+    order:1!important;
+    gap:3px!important;
+    padding:3px!important;
+  }
+  .filter{
+    min-height:32px!important;
+    padding:0 12px!important;
+    font-size:9px!important;
+  }
+}
+
+@media(min-width:1181px) and (max-width:1360px){
+  .project-module-actions{
+    gap:6px!important;
+  }
+  .filter{
+    padding:0 10px!important;
+  }
+  .gantt-open-btn span{
+    max-width:190px!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+  .intro-row h1{font-size:35px!important}
+}
+
+@media(min-width:861px) and (max-width:1180px){
+  .projects-module .module-head{
+    min-height:96px!important;
+  }
+  .project-module-actions{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    justify-content:flex-end!important;
+    align-items:center!important;
+  }
+}
+
