@@ -666,3 +666,259 @@ html,body{
     max-width:none!important;
   }
 }
+
+
+/* SPLIT LOGIN EXPERIMENT — aplikacja po lewej, logowanie po prawej */
+.login-split-experiment{
+  position:relative!important;
+  min-height:100vh!important;
+  padding:46px 32px!important;
+  place-items:center!important;
+  overflow:hidden!important;
+  background:
+    radial-gradient(circle at 18% 24%,rgba(255,221,0,.065),transparent 28%),
+    radial-gradient(circle at 82% 18%,rgba(255,255,255,.025),transparent 24%),
+    linear-gradient(135deg,#050505 0%,#090b0c 54%,#0d1011 100%)!important;
+}
+.login-split-experiment::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.52;
+  background:
+    linear-gradient(rgba(255,255,255,.018) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:72px 72px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.72),transparent 92%);
+}
+.login-split-layout{
+  position:relative!important;
+  z-index:1!important;
+  width:min(1320px,100%)!important;
+  min-height:min(760px,calc(100vh - 92px))!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1.18fr) minmax(420px,.82fr)!important;
+  grid-template-areas:
+    "brand access"
+    "app access"!important;
+  grid-template-rows:auto 1fr!important;
+  column-gap:72px!important;
+  row-gap:34px!important;
+  align-items:stretch!important;
+  justify-items:stretch!important;
+}
+.login-split-layout>.login-brand-center{
+  grid-area:brand!important;
+  align-self:end!important;
+  justify-content:flex-start!important;
+  padding:0!important;
+}
+.login-split-layout>.login-brand-center .brand-zone{
+  justify-content:flex-start!important;
+}
+.login-app-column{
+  grid-area:app!important;
+  min-width:0!important;
+  display:grid!important;
+  align-content:start!important;
+  gap:22px!important;
+  padding:2px 8px 0 0!important;
+}
+.login-app-copy{
+  max-width:720px!important;
+}
+.login-app-kicker{
+  display:block!important;
+  color:#ffdd00!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.14em!important;
+}
+.login-app-copy h1{
+  margin:11px 0 12px!important;
+  max-width:680px!important;
+  color:#fff!important;
+  font:800 clamp(34px,4.1vw,58px)/.98 'Montserrat',sans-serif!important;
+  letter-spacing:-.048em!important;
+}
+.login-app-copy p{
+  margin:0!important;
+  max-width:650px!important;
+  color:rgba(255,255,255,.58)!important;
+  font:400 14px/1.55 'Source Sans 3',sans-serif!important;
+}
+.login-app-steps{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:10px!important;
+}
+.login-app-step{
+  min-width:0!important;
+  min-height:118px!important;
+  display:grid!important;
+  grid-template-columns:28px minmax(0,1fr)!important;
+  gap:10px!important;
+  padding:14px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:8px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.052),rgba(255,255,255,.022))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025)!important;
+}
+.login-app-step>span{
+  width:28px!important;
+  height:28px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:6px!important;
+  border:1px solid rgba(255,221,0,.30)!important;
+  background:rgba(255,221,0,.08)!important;
+  color:#ffdd00!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+}
+.login-app-step strong{
+  display:block!important;
+  color:#fff!important;
+  font:700 11px/1.25 'Montserrat',sans-serif!important;
+}
+.login-app-step p{
+  margin:5px 0 0!important;
+  color:rgba(255,255,255,.48)!important;
+  font-size:9.5px!important;
+  line-height:1.42!important;
+}
+.login-pwa-host{
+  min-width:0!important;
+  width:100%!important;
+}
+.login-access-column{
+  grid-area:access!important;
+  min-width:0!important;
+  display:grid!important;
+  align-content:center!important;
+  justify-items:stretch!important;
+  gap:16px!important;
+  padding-left:40px!important;
+  border-left:1px solid rgba(255,255,255,.08)!important;
+}
+.login-split-experiment .login-panel-minimal{
+  width:100%!important;
+  max-width:480px!important;
+  justify-self:end!important;
+  padding:32px!important;
+  border:1px solid rgba(255,255,255,.10)!important;
+  border-radius:8px!important;
+  background:linear-gradient(145deg,rgba(255,255,255,.055),rgba(255,255,255,.022))!important;
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.025),0 28px 80px rgba(0,0,0,.24)!important;
+  backdrop-filter:blur(18px)!important;
+  -webkit-backdrop-filter:blur(18px)!important;
+}
+.login-split-experiment .login-card-head>span{
+  color:#ffdd00!important;
+  font-size:8px!important;
+}
+.login-split-experiment .login-card-head h2{
+  margin:10px 0 8px!important;
+  font-size:30px!important;
+}
+.login-split-experiment .login-card-head p{
+  font-size:12px!important;
+}
+.login-split-experiment #loginForm{
+  gap:14px!important;
+  margin-top:26px!important;
+}
+.login-split-experiment #loginForm input{
+  height:48px!important;
+  border-radius:5px!important;
+  background:rgba(255,255,255,.045)!important;
+}
+.login-split-experiment .password-field button{
+  border-radius:5px!important;
+}
+.login-split-experiment .login-submit{
+  height:48px!important;
+  border-radius:5px!important;
+  border-color:#e0c500!important;
+  background:#ffdd00!important;
+  color:#141719!important;
+  font-weight:800!important;
+  box-shadow:none!important;
+}
+.login-split-experiment .login-submit:hover{
+  background:#ffe43c!important;
+  border-color:#ffe43c!important;
+}
+.login-access-note{
+  width:100%!important;
+  max-width:480px!important;
+  justify-self:end!important;
+  padding:12px 14px!important;
+  border-left:2px solid rgba(255,221,0,.72)!important;
+  background:rgba(255,221,0,.035)!important;
+}
+.login-access-note span{
+  display:block!important;
+  color:rgba(255,221,0,.78)!important;
+  font:800 7px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.12em!important;
+}
+.login-access-note p{
+  margin:5px 0 0!important;
+  color:rgba(255,255,255,.42)!important;
+  font-size:9px!important;
+  line-height:1.4!important;
+}
+
+@media(max-width:1080px){
+  .login-split-layout{
+    grid-template-columns:minmax(0,1fr) minmax(390px,.82fr)!important;
+    column-gap:42px!important;
+  }
+  .login-app-steps{grid-template-columns:1fr!important}
+  .login-app-step{min-height:0!important}
+  .login-access-column{padding-left:28px!important}
+}
+@media(max-width:820px){
+  .login-split-experiment{
+    padding:28px 18px 40px!important;
+    overflow:visible!important;
+  }
+  .login-split-layout{
+    width:min(620px,100%)!important;
+    min-height:auto!important;
+    grid-template-columns:1fr!important;
+    grid-template-areas:
+      "brand"
+      "access"
+      "app"!important;
+    grid-template-rows:auto auto auto!important;
+    gap:24px!important;
+  }
+  .login-split-layout>.login-brand-center{align-self:auto!important}
+  .login-access-column{
+    padding:0!important;
+    border-left:0!important;
+  }
+  .login-split-experiment .login-panel-minimal,
+  .login-access-note{
+    width:100%!important;
+    max-width:none!important;
+    justify-self:stretch!important;
+  }
+  .login-app-column{
+    padding:22px 0 0!important;
+    border-top:1px solid rgba(255,255,255,.08)!important;
+  }
+  .login-app-copy h1{
+    font-size:34px!important;
+  }
+  .login-app-steps{
+    grid-template-columns:1fr!important;
+  }
+}
+@media(max-width:520px){
+  .login-split-experiment{padding:22px 14px 34px!important}
+  .login-split-experiment .login-panel-minimal{padding:22px!important}
+  .login-app-copy h1{font-size:29px!important}
+  .login-app-copy p{font-size:12px!important}
+}
