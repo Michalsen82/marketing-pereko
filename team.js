@@ -32,26 +32,26 @@
   function buildManager(){
     if(managerModal)return;
     managerModal=document.createElement('div');
-    managerModal.className='team-manager-modal';
+    managerModal.className='modal team-manager-modal';
     managerModal.id='teamManagerModal';
     managerModal.innerHTML=`
-      <div class="team-manager-card">
-        <div class="team-manager-head">
+      <div class="modal-card team-manager-card">
+        <div class="modal-head team-manager-head">
           <div>
-            <span>ZESPÓŁ PEREKO</span>
+            <span class="module-label">ZESPÓŁ PEREKO</span>
             <h3>Współpracownicy</h3>
             <p>Lista osób dostępnych w Centrum Marketingowym.</p>
           </div>
-          <button class="team-manager-close" type="button" aria-label="Zamknij">×</button>
+          <button class="icon-close team-manager-close" type="button" aria-label="Zamknij">×</button>
         </div>
         <div class="team-manager-toolbar">
-          <label class="team-manager-search">
+          <label class="team-manager-search field">
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m21 19.6-5.2-5.2a7 7 0 1 0-1.4 1.4L19.6 21 21 19.6ZM5 10a5 5 0 1 1 10 0 5 5 0 0 1-10 0Z"/></svg>
             <input id="teamManagerSearch" type="search" autocomplete="off" placeholder="Szukaj po imieniu, stanowisku lub e-mailu…">
           </label>
           <div class="team-manager-toolbar-right">
             <span class="team-manager-count" id="teamManagerCount">0 osób</span>
-            ${admin?'<button class="team-manager-add" type="button"><span>+</span> Dodaj współpracownika</button>':''}
+            ${admin?'<button class="btn primary team-manager-add" type="button"><span>+</span> Dodaj współpracownika</button>':''}
           </div>
         </div>
         <div class="team-manager-list" id="teamManagerList"></div>
@@ -67,21 +67,24 @@
   function buildEditor(){
     if(editorModal)return;
     editorModal=document.createElement('div');
-    editorModal.className='team-modal';
+    editorModal.className='modal team-modal';
     editorModal.id='teamModal';
     editorModal.innerHTML=`
-      <div class="team-modal-card">
-        <div class="team-modal-head">
-          <div><span>NOWY WSPÓŁPRACOWNIK</span><h3>Dodaj osobę do zespołu</h3></div>
-          <button type="button" class="team-modal-close" aria-label="Zamknij">×</button>
+      <div class="modal-card team-modal-card">
+        <div class="modal-head team-modal-head">
+          <div><span class="module-label">NOWY WSPÓŁPRACOWNIK</span><h3>Dodaj osobę do zespołu</h3></div>
+          <button type="button" class="icon-close team-modal-close" aria-label="Zamknij">×</button>
         </div>
         <form id="teamForm">
-          <label>Imię i nazwisko<input name="name" required placeholder="np. Jan Kowalski"></label>
-          <label>Stanowisko<input name="role" required placeholder="np. Marketing Specialist"></label>
-          <label>Adres e-mail<input name="email" type="email" required placeholder="np. jan.kowalski@pereko.pl"></label>
-          <div class="team-modal-actions">
-            <button type="button" class="team-cancel">Anuluj</button>
-            <button type="submit" class="team-save">Dodaj</button>
+          <div class="form-grid">
+            <div class="field full"><label>Imię i nazwisko</label><input name="name" required placeholder="np. Jan Kowalski"></div>
+            <div class="field full"><label>Stanowisko</label><input name="role" required placeholder="np. Marketing Specialist"></div>
+            <div class="field full"><label>Adres e-mail</label><input name="email" type="email" required placeholder="np. jan.kowalski@pereko.pl"></div>
+          </div>
+          <div class="modal-actions team-modal-actions">
+            <div class="spacer"></div>
+            <button type="button" class="btn secondary team-cancel">Anuluj</button>
+            <button type="submit" class="btn primary team-save">Dodaj</button>
           </div>
         </form>
       </div>`;
@@ -134,8 +137,8 @@
           <small>${escHtml(person.email||'Brak adresu e-mail')}</small>
         </div>
         ${admin?`<div class="team-manager-actions">
-          <button type="button" data-team-edit="${index}">Edytuj</button>
-          <button class="danger" type="button" data-team-remove="${index}">Usuń</button>
+          <button class="btn secondary" type="button" data-team-edit="${index}">Edytuj</button>
+          <button class="btn secondary danger" type="button" data-team-remove="${index}">Usuń</button>
         </div>`:''}
       </article>`).join('');
 
