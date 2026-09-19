@@ -6,7 +6,7 @@
     notifyDismissed:'pereko_pwa_notify_dismissed'
   };
   const DEFAULT_PREFS={assignment:true,taskDone:true,comments:true,deadline:true,files:true};
-  let deferredPrompt=null;
+  let deferredPrompt=window.__perekoInstallPrompt||null;
   let registration=null;
   let settingsModal=null;
   let onboarding=null;
@@ -52,10 +52,16 @@
   window.addEventListener('beforeinstallprompt',event=>{
     event.preventDefault();
     deferredPrompt=event;
+    window.__perekoInstallPrompt=event;
+    refreshAll();
+  });
+  window.addEventListener('pereko:install-prompt-ready',()=>{
+    deferredPrompt=window.__perekoInstallPrompt||deferredPrompt;
     refreshAll();
   });
   window.addEventListener('appinstalled',()=>{
     deferredPrompt=null;
+    window.__perekoInstallPrompt=null;
     localStorage.removeItem(LS.installDismissed);
     refreshAll();
   });
@@ -66,35 +72,81 @@
   function androidGuide(){
     return '<div class="pwa-guide"><strong>Android — 3 kroki po instalacji</strong><ol><li><b>Uruchom aplikację z ikony PEREKO.</b> Jeśli dopiero ją instalujesz: użyj „Zainstaluj aplikację”; gdy przycisku nie ma, otwórz menu przeglądarki i wybierz „Zainstaluj aplikację” lub „Dodaj do ekranu głównego”.</li><li><b>Zaloguj się na swoje konto PEREKO.</b> Powiadomienia są przypisywane do zalogowanego użytkownika i konkretnego urządzenia.</li><li><b>Aktywuj Web Push.</b> Wejdź w „Aplikacja i powiadomienia” → kliknij „Włącz powiadomienia” lub „Połącz powiadomienia” → zaakceptuj zgodę systemową. Dopiero wtedy powiadomienia będą przychodziły także przy zamkniętej aplikacji.</li></ol><small>Ważne: te kroki trzeba wykonać osobno na każdym nowym telefonie lub komputerze, na którym chcesz odbierać powiadomienia.</small></div>';
   }
+  function desktopGuide(){
+    return '<div class="pwa-guide"><strong>Instalacja na komputerze — Chrome / Edge</strong><ol><li><b>Najpierw użyj przycisku „Zainstaluj aplikację”.</b> Gdy przeglądarka udostępni instalator PWA, otworzy się systemowe okno instalacji.</li><li><b>Jeśli okno się nie pojawi,</b> kliknij ikonę instalacji po prawej stronie paska adresu albo otwórz menu Chrome/Edge i wybierz „Zainstaluj PEREKO — Centrum Marketingowe”.</li><li><b>Po instalacji</b> uruchom aplikację z menu Start lub skrótu, zaloguj się i połącz powiadomienia w „Aplikacja i powiadomienia”.</li></ol><small>Jeżeli Chrome nie pokazuje żadnej opcji instalacji, odśwież stronę po zakończeniu wdrożenia i spróbuj ponownie. Instalacja desktopowa wymaga Chrome lub Edge obsługującego PWA.</small></div>';
+  }
+
+  function installPromptEvent(){
+    return deferredPrompt||window.__perekoInstallPrompt||null;
+  }
+
+  function waitForInstallPrompt(timeout=2200){
+    const existing=installPromptEvent();
+    if(existing)return Promise.resolve(existing);
+    return new Promise(resolve=>{
+      let done=false;
+      const finish=value=>{
+        if(done)return;
+        done=true;
+        window.removeEventListener('beforeinstallprompt',onPrompt);
+        window.removeEventListener('pereko:install-prompt-ready',onReady);
+        clearTimeout(timer);
+        resolve(value||installPromptEvent());
+      };
+      const onPrompt=event=>finish(event);
+      const onReady=()=>finish(installPromptEvent());
+      window.addEventListener('beforeinstallprompt',onPrompt,{once:true});
+      window.addEventListener('pereko:install-prompt-ready',onReady,{once:true});
+      const timer=setTimeout(()=>finish(null),timeout);
+    });
+  }
+
   function loginPlatformGuide(){
     return '<div class="pwa-login-guide"><div><strong>iPhone / iOS — 3 kroki</strong><ol><li><b>Zainstaluj i uruchom:</b> Safari → Udostępnij → Dodaj do ekranu początkowego → uruchom z ikony PEREKO.</li><li><b>Zaloguj się</b> na swoje konto.</li><li><b>Włącz Web Push:</b> Aplikacja i powiadomienia → Włącz/Połącz powiadomienia → zaakceptuj zgodę systemową.</li></ol></div><div><strong>Android — 3 kroki</strong><ol><li><b>Zainstaluj i uruchom:</b> „Zainstaluj aplikację” lub menu przeglądarki → Dodaj do ekranu głównego → uruchom z ikony PEREKO.</li><li><b>Zaloguj się</b> na swoje konto.</li><li><b>Włącz Web Push:</b> Aplikacja i powiadomienia → Włącz/Połącz powiadomienia → zaakceptuj zgodę systemową.</li></ol></div><p class="pwa-login-guide-note">Powiadomienia trzeba połączyć osobno na każdym urządzeniu. Bez kroku 3 nie będą przychodziły przy zamkniętej aplikacji.</p></div>';
   }
 
   async function installApp(){
     if(isStandalone())return true;
-    if(deferredPrompt){
-      deferredPrompt.prompt();
-      const choice=await deferredPrompt.userChoice.catch(()=>null);
-      if(choice?.outcome==='accepted')localStorage.removeItem(LS.installDismissed);
-      deferredPrompt=null;
-      refreshAll();
-      return choice?.outcome==='accepted';
+
+    if(!installPromptEvent()&&!isIOS()){
+      await registerSW();
+      const prompt=await waitForInstallPrompt();
+      if(prompt)deferredPrompt=prompt;
     }
-    showInstallHelp();
+
+    const prompt=installPromptEvent();
+    if(prompt){
+      try{
+        await prompt.prompt();
+        const choice=await prompt.userChoice.catch(()=>null);
+        if(choice?.outcome==='accepted')localStorage.removeItem(LS.installDismissed);
+        deferredPrompt=null;
+        window.__perekoInstallPrompt=null;
+        refreshAll();
+        return choice?.outcome==='accepted';
+      }catch(e){
+        console.warn('PWA install prompt:',e);
+      }
+    }
+
+    showInstallHelp(true);
     return false;
   }
-  function showInstallHelp(){
+  function showInstallHelp(fromInstallButton=false){
     const loginPanel=document.querySelector('#pwaLoginPanel');
     if(loginPanel&&!window.perekoLoggedPerson){
       const box=loginPanel.querySelector('.pwa-login-help');
-      if(box)box.innerHTML=loginPlatformGuide();
+      if(box){
+        box.innerHTML=fromInstallButton&&!isMobile()?desktopGuide():loginPlatformGuide();
+        box.dataset.open='1';
+      }
       return;
     }
     ensureSettings();
     settingsModal.classList.add('open');
     const guide=settingsModal.querySelector('#pwaInstallGuide');
     if(guide){
-      guide.innerHTML=isIOS()?iosGuide():androidGuide();
+      guide.innerHTML=isIOS()?iosGuide():isAndroid()?androidGuide():desktopGuide();
       guide.hidden=false;
     }
   }
