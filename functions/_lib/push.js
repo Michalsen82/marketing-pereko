@@ -85,32 +85,39 @@ async function vapidHeaders(env,endpoint){
 }
 async function sendOne(env,record,payload,key){
   const sub=record.subscription;
-  if(!sub?.endpoint||!sub?.keys?.p256dh||!sub?.keys?.auth)return {ok:false};
+  if(!sub?.endpoint||!sub?.keys?.p256dh||!sub?.keys?.auth)return {ok:false,status:0,error:'Niepełna subskrypcja urządzenia'};
   const headers=await vapidHeaders(env,sub.endpoint);
   const body=await encryptPayload(sub,payload);
   const response=await fetch(sub.endpoint,{method:'POST',headers:{TTL:'86400',Urgency:'normal','Content-Encoding':'aes128gcm','Content-Type':'application/octet-stream','Authorization':headers.authorization},body});
+  const details=response.ok?'':String(await response.text().catch(()=>'' )).slice(0,300);
   if((response.status===404||response.status===410)&&env.PUSH_SUBSCRIPTIONS&&key)await env.PUSH_SUBSCRIPTIONS.delete(key);
-  return {ok:response.ok,status:response.status};
+  return {ok:response.ok,status:response.status,error:details||''};
 }
 
 export async function sendUserNotification(env,email,payload,type){
   const store=env.PUSH_SUBSCRIPTIONS;
-  if(!store||!env.PUSH_VAPID_PRIVATE_JWK)return {ready:false,sent:0};
+  if(!store||!env.PUSH_VAPID_PRIVATE_JWK)return {ready:false,sent:0,attempted:0,subscriptions:0,failures:[]};
   const target=String(email||'').toLowerCase();
-  if(!target)return {ready:true,sent:0};
-  let cursor=undefined,sent=0;
+  if(!target)return {ready:true,sent:0,attempted:0,subscriptions:0,failures:[]};
+  let cursor=undefined,sent=0,attempted=0,subscriptions=0;
+  const failures=[];
   do{
     const page=await store.list({prefix:'sub:'+target+':',cursor});
     for(const item of page.keys){
       const record=await store.get(item.name,'json');
       if(!record)continue;
+      subscriptions++;
       if(type&&record.preferences?.[type]===false)continue;
+      attempted++;
       try{
         const result=await sendOne(env,record,payload,item.name);
         if(result.ok)sent++;
-      }catch{}
+        else failures.push({status:result.status||0,error:result.error||'Usługa push odrzuciła wiadomość'});
+      }catch(error){
+        failures.push({status:0,error:String(error?.message||error||'Nieznany błąd').slice(0,300)});
+      }
     }
     cursor=page.list_complete?undefined:page.cursor;
   }while(cursor);
-  return {ready:true,sent};
+  return {ready:true,sent,attempted,subscriptions,failures:failures.slice(0,5)};
 }
