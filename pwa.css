@@ -381,3 +381,161 @@
   }
 }
 
+/* =========================================================
+   FINAL DESKTOP RESPONSIVE TOPBAR — bez nachodzenia brandingu
+   Zakres 761–1240 px: zachowujemy jeden rząd, ale pozwalamy
+   części tekstowej elastycznie się skracać.
+   ========================================================= */
+@media(min-width:761px) and (max-width:1240px){
+  .topbar{
+    width:calc(100% - 32px)!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) auto!important;
+    align-items:center!important;
+    gap:14px!important;
+  }
+  .topbar .brand-zone{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:132px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:12px!important;
+    overflow:hidden!important;
+  }
+  .topbar .brand-badge{
+    width:132px!important;
+    min-width:132px!important;
+    max-width:132px!important;
+    flex-basis:132px!important;
+    height:34px!important;
+    background-size:126px auto!important;
+  }
+  .topbar .brand-copy{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    padding-left:12px!important;
+    overflow:hidden!important;
+    white-space:nowrap!important;
+  }
+  .topbar .brand-copy strong,
+  .topbar .brand-copy span{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+  }
+  .topbar .brand-copy strong::after,
+  .topbar .brand-copy span::after{
+    width:100%!important;
+    max-width:100%!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    white-space:nowrap!important;
+  }
+  .topbar .brand-copy strong::after{
+    font-size:13px!important;
+  }
+  .topbar .brand-copy span::after{
+    font-size:8.2px!important;
+  }
+
+  .topbar-actions{
+    min-width:0!important;
+    margin-left:0!important;
+    gap:7px!important;
+    flex-wrap:nowrap!important;
+  }
+  .topbar-actions .top-action-icon{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+    flex-basis:34px!important;
+  }
+  .topbar-actions .top-action-icon svg{
+    width:16px!important;
+    height:16px!important;
+  }
+  .topbar-actions .user-zone{
+    min-height:42px!important;
+    padding-left:10px!important;
+    gap:8px!important;
+  }
+  .topbar-actions .user-zone-copy{
+    max-width:132px!important;
+  }
+  .topbar-actions .user-zone-copy strong{
+    max-width:132px!important;
+    font-size:11.5px!important;
+    white-space:nowrap!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+  }
+  .topbar-actions .user-zone-copy span{
+    margin-top:3px!important;
+    font-size:8px!important;
+  }
+  .topbar-actions .user-avatar-control,
+  .topbar-actions .user-avatar-circle{
+    width:40px!important;
+    height:40px!important;
+  }
+  .topbar-actions .user-avatar-control{
+    flex-basis:40px!important;
+  }
+}
+
+@media(min-width:761px) and (max-width:1040px){
+  .topbar{
+    gap:10px!important;
+  }
+  .topbar .brand-zone{
+    grid-template-columns:118px minmax(0,1fr)!important;
+    gap:10px!important;
+  }
+  .topbar .brand-badge{
+    width:118px!important;
+    min-width:118px!important;
+    max-width:118px!important;
+    flex-basis:118px!important;
+    background-size:112px auto!important;
+  }
+  .topbar .brand-copy{
+    padding-left:10px!important;
+  }
+  .topbar .brand-copy strong::after{
+    font-size:12px!important;
+  }
+  .topbar .brand-copy span::after{
+    font-size:7.7px!important;
+  }
+  .topbar-actions{
+    gap:6px!important;
+  }
+  .topbar-actions .user-zone{
+    padding-left:8px!important;
+    gap:7px!important;
+  }
+  .topbar-actions .user-zone-copy{
+    max-width:105px!important;
+  }
+  .topbar-actions .user-zone-copy strong{
+    max-width:105px!important;
+    font-size:11px!important;
+  }
+  .topbar-actions .user-zone-copy span{
+    display:none!important;
+  }
+  .topbar-actions .user-avatar-control,
+  .topbar-actions .user-avatar-circle{
+    width:38px!important;
+    height:38px!important;
+  }
+  .topbar-actions .user-avatar-control{
+    flex-basis:38px!important;
+  }
+}
+
