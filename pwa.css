@@ -111,6 +111,35 @@
   font-size:7.8px;
   line-height:1.35
 }
+.pwa-login-guide ol{
+  margin:6px 0 0;
+  padding-left:14px;
+  color:rgba(255,255,255,.56);
+  font-size:7.8px;
+  line-height:1.45
+}
+.pwa-login-guide li+li{margin-top:5px}
+.pwa-login-guide li b{color:rgba(255,255,255,.88);font-weight:700}
+.pwa-login-guide-note{
+  grid-column:1/-1;
+  margin:0!important;
+  padding:7px 9px;
+  border-left:2px solid #ffdd00;
+  background:rgba(255,221,0,.045);
+  color:rgba(255,255,255,.62)!important;
+  font-size:7.8px!important;
+  line-height:1.45!important
+}
+.pwa-guide small{
+  display:block;
+  margin-top:10px;
+  padding-top:8px;
+  border-top:1px solid rgba(255,255,255,.08);
+  color:rgba(255,255,255,.56);
+  font-size:9px;
+  line-height:1.45
+}
+.pwa-guide li b{color:#fff;font-weight:700}
 .user-name-part{display:inline}
 
 /* Mobilnie: zachowaj wcześniejsze proporcje logowania, tylko podnieś panel aplikacji */
