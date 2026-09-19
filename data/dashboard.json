@@ -125,8 +125,16 @@
       "done": false,
       "id": "481b1465-ed29-48e8-8e9d-cf48e11f1019",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-18",
-      "history": [],
+      "scheduledFor": "2026-09-19",
+      "history": [
+        {
+          "id": "a435260a-2fda-4bf8-bb89-6f688508183e",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 18.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-19T06:01:23.072Z"
+        }
+      ],
       "assignee": "Michał Bukowski",
       "taskNumber": 1,
       "taskYear": 2026
@@ -136,8 +144,16 @@
       "done": false,
       "id": "611b9a4b-593e-4740-940b-fdd59316e60b",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-18",
-      "history": [],
+      "scheduledFor": "2026-09-19",
+      "history": [
+        {
+          "id": "17260035-9692-49bc-8039-05d5f3793292",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 18.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-19T06:01:23.072Z"
+        }
+      ],
       "assignee": "Michał Bukowski",
       "taskNumber": 2,
       "taskYear": 2026
@@ -147,8 +163,16 @@
       "done": false,
       "id": "f9b21f06-9c74-418c-b6f5-2c4d52506009",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-18",
-      "history": [],
+      "scheduledFor": "2026-09-19",
+      "history": [
+        {
+          "id": "f0984843-ff48-430b-856e-cfcaeda9ffe8",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 18.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-19T06:01:23.073Z"
+        }
+      ],
       "assignee": "Michał Bukowski",
       "taskNumber": 3,
       "taskYear": 2026
@@ -158,8 +182,16 @@
       "done": false,
       "id": "de10a715-5f38-4a07-858d-d4e2f1b622ff",
       "createdAt": "2026-09-18T11:57:42.914Z",
-      "scheduledFor": "2026-09-18",
-      "history": [],
+      "scheduledFor": "2026-09-19",
+      "history": [
+        {
+          "id": "394bb824-cb26-4714-a381-184c60fe1ab9",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 18.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-19T06:01:23.073Z"
+        }
+      ],
       "assignee": "Michał Bukowski",
       "taskNumber": 4,
       "taskYear": 2026
@@ -170,10 +202,17 @@
       "assignee": "Wiktoria Adamczyk",
       "done": false,
       "createdAt": "2026-09-18T12:07:00.202Z",
-      "scheduledFor": "2026-09-18",
+      "scheduledFor": "2026-09-19",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "6260b429-dba3-4258-823f-f54e64ff6ad7",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 18.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-19T06:01:23.073Z"
+        },
         {
           "id": "c9fbb17d-64a3-488c-ab14-d999a0dd1650",
           "type": "created",
@@ -191,10 +230,17 @@
       "assignee": "Łukasz Drozdowski",
       "done": false,
       "createdAt": "2026-09-18T12:43:04.598Z",
-      "scheduledFor": "2026-09-18",
+      "scheduledFor": "2026-09-19",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "282fdc0b-732e-4588-a2c2-c3e50ce0b395",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 18.09",
+          "date": "2026-09-19",
+          "createdAt": "2026-09-19T06:01:23.074Z"
+        },
         {
           "id": "67328978-422d-4b34-8bce-de99c03168af",
           "type": "created",
@@ -228,5 +274,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-18T19:38:54.671Z"
+  "updatedAt": "2026-09-19T06:01:24.005Z"
 }
