@@ -107,7 +107,18 @@
       "members": [
         "Michał"
       ],
-      "projectTasks": [],
+      "projectTasks": [
+        {
+          "id": "d599c087-8a1d-4bd2-b4ff-786d0fcf7158",
+          "taskNumber": 15,
+          "taskYear": 2026,
+          "createdAt": "2026-09-19T19:13:19.179Z",
+          "text": "test web push v2",
+          "assignee": "Michał Bukowski",
+          "deadline": "2026-10-01",
+          "done": false
+        }
+      ],
       "comments": [],
       "projectNumber": 2,
       "projectYear": 2026
@@ -284,5 +295,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-19T19:11:34.682Z"
+  "updatedAt": "2026-09-19T19:13:17.586Z"
 }
