@@ -5,6 +5,8 @@
   const CHUNK_SIZE=MAX_FILE_BYTES;
   let currentProject=null;
   let storageUsage=null;
+  let globalTrashItems=[];
+  let globalTrashOpen=false;
   let items=[];
   let showTrash=false;
   let versionAssetId='';
@@ -75,58 +77,154 @@
     return (value>=10?value.toFixed(1):value.toFixed(2)).replace('.',',')+' GB';
   };
 
-  function ensureStorageUi(){
-    const e=cardEls();if(!e.card)return null;
-    let el=e.card.querySelector('#pdFilesStorage');
-    if(el)return el;
-    el=document.createElement('div');
-    el.id='pdFilesStorage';
-    el.className='pf-storage';
-    if(e.drop)e.drop.before(el);else e.card.appendChild(el);
-    return el;
+  function globalR2Els(){
+    return {
+      module:document.querySelector('#r2GlobalModule'),
+      used:document.querySelector('#r2GlobalUsed'),
+      free:document.querySelector('#r2GlobalFree'),
+      percent:document.querySelector('#r2GlobalPercent'),
+      level:document.querySelector('#r2GlobalLevel'),
+      bar:document.querySelector('#r2GlobalProgressBar'),
+      status:document.querySelector('#r2GlobalStatus'),
+      toggle:document.querySelector('#r2GlobalTrashToggle'),
+      count:document.querySelector('#r2GlobalTrashCount'),
+      panel:document.querySelector('#r2GlobalTrashPanel'),
+      search:document.querySelector('#r2GlobalTrashSearch'),
+      list:document.querySelector('#r2GlobalTrashList')
+    };
   }
 
-  function renderStorageUsage(){
-    const el=ensureStorageUi();if(!el)return;
+  function storageMessage(level,percent){
+    if(level==='critical')return percent>=100?'Przekroczono orientacyjny bezpłatny próg 10 GB.':'Krytycznie: wykorzystano co najmniej 95% bezpłatnego progu 10 GB.';
+    if(level==='high')return 'Wysokie wykorzystanie: przekroczono 85% bezpłatnego progu 10 GB.';
+    if(level==='warning')return 'Uwaga: wykorzystano co najmniej 70% bezpłatnego progu 10 GB.';
+    return 'Wykorzystanie magazynu jest bezpieczne.';
+  }
+
+  function renderGlobalStorage(){
+    const e=globalR2Els();if(!e.module)return;
+    const warning=document.querySelector('#r2StorageWarning');
     if(!storageUsage){
-      el.innerHTML='<span class="pf-storage-label">R2</span><strong>Oczekiwanie na dane magazynu…</strong>';
-      el.className='pf-storage';
+      e.module.dataset.state='offline';
+      if(e.used)e.used.textContent='—';
+      if(e.free)e.free.textContent='—';
+      if(e.percent)e.percent.textContent='—';
+      if(e.level)e.level.textContent='R2 oczekuje na podłączenie';
+      if(e.bar)e.bar.style.width='0%';
+      if(e.status)e.status.textContent='Magazyn R2 nie jest jeszcze podłączony do aplikacji.';
+      warning?.remove();
       return;
     }
     const percent=Math.max(0,Number(storageUsage.percent)||0);
-    const width=Math.min(100,percent);
     const level=storageUsage.level||'ok';
-    const free=Math.max(0,Number(storageUsage.freeBytes)||0);
-    let message='Wykorzystanie magazynu jest bezpieczne.';
-    if(level==='warning')message='Uwaga: wykorzystano co najmniej 70% bezpłatnego progu 10 GB.';
-    if(level==='high')message='Wysokie wykorzystanie: przekroczono 85% bezpłatnego progu 10 GB.';
-    if(level==='critical')message=percent>=100?'Przekroczono orientacyjny bezpłatny próg 10 GB.':'Krytycznie: wykorzystano co najmniej 95% bezpłatnego progu 10 GB.';
-    el.className='pf-storage '+level;
-    el.innerHTML=
-      '<div class="pf-storage-top"><span class="pf-storage-label">CLOUDFLARE R2</span><strong>'+
-      formatStorageGB(storageUsage.usedBytes)+' / 10 GB · '+percent.toFixed(1).replace('.',',')+'%</strong></div>'+
-      '<div class="pf-storage-bar"><i style="width:'+width+'%"></i></div>'+
-      '<div class="pf-storage-bottom"><span>'+message+'</span><small>Wolne: '+formatStorageGB(free)+' · maks. 5 MB na plik</small></div>';
+    e.module.dataset.state=level;
+    if(e.used)e.used.textContent=formatStorageGB(storageUsage.usedBytes);
+    if(e.free)e.free.textContent=formatStorageGB(storageUsage.freeBytes);
+    if(e.percent)e.percent.textContent=percent.toFixed(1).replace('.',',')+'%';
+    if(e.level)e.level.textContent=level==='ok'?'bezpieczny poziom':level==='warning'?'zbliżamy się do limitu':level==='high'?'wysokie wykorzystanie':'krytyczne wykorzystanie';
+    if(e.bar)e.bar.style.width=Math.min(100,percent)+'%';
+    const message=storageMessage(level,percent);
+    if(e.status)e.status.textContent=message;
 
-    let global=document.querySelector('#r2StorageWarning');
     if(level==='ok'){
-      global?.remove();
-      return;
+      warning?.remove();
+    }else{
+      const global=warning||document.body.appendChild(Object.assign(document.createElement('div'),{id:'r2StorageWarning'}));
+      global.className='r2-storage-warning '+level;
+      global.textContent=message+' R2: '+percent.toFixed(1).replace('.',',')+'% wykorzystania.';
     }
-    if(!global){
-      global=document.createElement('div');
-      global.id='r2StorageWarning';
-      document.body.appendChild(global);
-    }
-    global.className='r2-storage-warning '+level;
-    global.textContent=message+' R2: '+percent.toFixed(1).replace('.',',')+'% wykorzystania.';
   }
 
   async function refreshStorageUsage(){
     try{
       storageUsage=await request(`${API}?action=usage`);
-      renderStorageUsage();
-    }catch{}
+    }catch{
+      storageUsage=null;
+    }
+    renderGlobalStorage();
+  }
+
+  function renderGlobalTrash(){
+    const e=globalR2Els();if(!e.list)return;
+    const q=String(e.search?.value||'').trim().toLowerCase();
+    const visible=globalTrashItems.filter(item=>{
+      if(!q)return true;
+      return [item.originalName,item.projectName,item.projectNumber,item.uploaderName].join(' ').toLowerCase().includes(q);
+    });
+    if(e.count)e.count.textContent=String(globalTrashItems.length);
+    if(!visible.length){
+      e.list.innerHTML='<div class="r2-global-empty">'+(globalTrashItems.length?'Brak plików pasujących do wyszukiwania.':'Kosz jest pusty.')+'</div>';
+      return;
+    }
+    e.list.innerHTML=visible.map(item=>`
+      <article class="r2-trash-item">
+        <div class="r2-trash-icon">R2</div>
+        <div class="r2-trash-copy">
+          <strong>${escHtml(item.originalName)}</strong>
+          <span>${escHtml(item.projectNumber||'Projekt')} · ${escHtml(item.projectName||'Bez nazwy')}</span>
+          <small>${item.versions||1} ${Number(item.versions)===1?'wersja':'wersje'} · ${formatBytes(item.totalBytes||item.latestSize||0)} · dodał: ${escHtml(item.uploaderName||'Użytkownik')}</small>
+        </div>
+        <div class="r2-trash-actions">
+          <button type="button" data-r2-restore="${escHtml(item.assetId)}" data-r2-project="${escHtml(item.projectId)}">Przywróć</button>
+          <button class="danger" type="button" data-r2-purge="${escHtml(item.assetId)}" data-r2-project="${escHtml(item.projectId)}" data-r2-name="${escHtml(item.originalName)}">Usuń trwale</button>
+        </div>
+      </article>`).join('');
+    e.list.querySelectorAll('[data-r2-restore]').forEach(btn=>btn.onclick=()=>restoreGlobalFile(btn.dataset.r2Project,btn.dataset.r2Restore));
+    e.list.querySelectorAll('[data-r2-purge]').forEach(btn=>btn.onclick=()=>purgeGlobalFile(btn.dataset.r2Project,btn.dataset.r2Purge,btn.dataset.r2Name));
+  }
+
+  async function loadGlobalTrash(){
+    const e=globalR2Els();
+    try{
+      const data=await request(`${API}?action=global-trash`);
+      globalTrashItems=Array.isArray(data.items)?data.items:[];
+      renderGlobalTrash();
+    }catch(error){
+      globalTrashItems=[];
+      if(e.count)e.count.textContent='0';
+      if(e.list)e.list.innerHTML='<div class="r2-global-empty">Kosz będzie dostępny po podłączeniu magazynu R2.</div>';
+    }
+  }
+
+  async function restoreGlobalFile(projectId,assetId){
+    try{
+      await request(`${API}?action=restore`,{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({projectId,assetId})
+      });
+      await Promise.all([loadGlobalTrash(),refreshStorageUsage()]);
+      if(currentProject?.id===projectId)await loadProjectFiles();
+    }catch(error){
+      const e=globalR2Els();if(e.list)e.list.insertAdjacentHTML('afterbegin',`<div class="r2-global-error">${escHtml(error.message)}</div>`);
+    }
+  }
+
+  async function purgeGlobalFile(projectId,assetId,name){
+    if(!window.confirm(`Usunąć trwale „${name||'ten plik'}”? Wszystkie wersje zostaną skasowane z Cloudflare R2. Tej operacji nie można cofnąć.`))return;
+    try{
+      await request(`${API}?action=purge`,{
+        method:'POST',headers:{'Content-Type':'application/json'},
+        body:JSON.stringify({projectId,assetId})
+      });
+      await Promise.all([loadGlobalTrash(),refreshStorageUsage()]);
+      if(currentProject?.id===projectId)await loadProjectFiles();
+    }catch(error){
+      const e=globalR2Els();if(e.list)e.list.insertAdjacentHTML('afterbegin',`<div class="r2-global-error">${escHtml(error.message)}</div>`);
+    }
+  }
+
+  function bindGlobalR2Ui(){
+    const e=globalR2Els();if(!e.module||e.module.dataset.ready==='1')return;
+    e.module.dataset.ready='1';
+    e.toggle?.addEventListener('click',async()=>{
+      globalTrashOpen=!globalTrashOpen;
+      e.toggle.setAttribute('aria-expanded',globalTrashOpen?'true':'false');
+      if(e.panel)e.panel.hidden=!globalTrashOpen;
+      e.toggle.classList.toggle('active',globalTrashOpen);
+      if(globalTrashOpen)await loadGlobalTrash();
+    });
+    e.search?.addEventListener('input',renderGlobalTrash);
+    renderGlobalStorage();
   }
 
   async function loadProjectFiles(){
@@ -140,6 +238,7 @@
       ]);
       items=Array.isArray(data.items)?data.items:[];
       if(usage)storageUsage=usage;
+      renderGlobalStorage();
       renderFiles();
     }catch(error){
       items=[];
@@ -150,7 +249,6 @@
 
   function renderFiles(){
     const {list,search,summary,trash}=cardEls();if(!list)return;
-    renderStorageUsage();
     const q=String(search?.value||'').trim().toLowerCase();
     const visible=items.filter(x=>Boolean(x.trashed)===showTrash).filter(x=>{
       if(!q)return true;
@@ -264,6 +362,7 @@
       await request(`${API}?action=trash`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projectId:currentProject.id,assetId})});
       setStatus('Plik przeniesiony do kosza. Nadal zajmuje miejsce w R2; aby zwolnić przestrzeń, użyj „Usuń trwale”.','success');
       await loadProjectFiles();
+      await loadGlobalTrash();
     }catch(error){setStatus(error.message,'error')}
   }
 
@@ -273,6 +372,7 @@
       await request(`${API}?action=restore`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({projectId:currentProject.id,assetId})});
       setStatus('Plik przywrócony.','success');
       await loadProjectFiles();
+      await loadGlobalTrash();
     }catch(error){setStatus(error.message,'error')}
   }
 
@@ -287,7 +387,7 @@
         body:JSON.stringify({projectId:currentProject.id,assetId})
       });
       setStatus(`Usunięto trwale z aplikacji i Cloudflare R2. Zwolniono ${formatBytes(result.freedBytes||0)}.`,'success');
-      await loadProjectFiles();
+      await Promise.all([loadProjectFiles(),loadGlobalTrash(),refreshStorageUsage()]);
     }catch(error){setStatus(error.message,'error')}
   }
 
@@ -347,7 +447,7 @@
     }
     versionAssetId='';
     const input=cardEls().input;if(input){input.multiple=true;input.value=''}
-    await loadProjectFiles();
+    await Promise.all([loadProjectFiles(),refreshStorageUsage()]);
   }
 
   function bindCard(){
@@ -355,7 +455,6 @@
     e.card.dataset.filesReady='1';
     const dropHint=e.drop?.querySelector('span');
     if(dropHint&&!dropHint.textContent.includes('5 MB'))dropHint.textContent=(dropHint.textContent.trim()?dropHint.textContent.trim()+' · ':'')+'Maksymalnie 5 MB na plik';
-    ensureStorageUi();
     e.add.onclick=()=>{versionAssetId='';e.input.multiple=true;e.input.value='';e.input.click()};
     e.input.onchange=()=>uploadFiles(e.input.files,versionAssetId);
     e.search.oninput=renderFiles;
@@ -410,6 +509,12 @@
     });
   }
 
-  setTimeout(()=>{if(window.perekoAuthFetch)refreshStorageUsage()},1800);
+  bindGlobalR2Ui();
+  setTimeout(()=>{
+    if(window.perekoAuthFetch){
+      refreshStorageUsage();
+      loadGlobalTrash();
+    }
+  },1800);
   window.addEventListener('beforeunload',()=>objectUrls.forEach(url=>URL.revokeObjectURL(url)));
 })();
