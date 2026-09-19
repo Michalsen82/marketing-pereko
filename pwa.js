@@ -112,9 +112,14 @@
     panel.querySelector('.install').onclick=installApp;
     panel.querySelector('.help').onclick=()=>{
       const box=panel.querySelector('.pwa-login-help');
+      const helpBtn=panel.querySelector('.help');
+      const appColumn=panel.closest('.login-app-column');
       const open=box.dataset.open==='1';
-      box.innerHTML=open?'':loginPlatformGuide();
-      box.dataset.open=open?'0':'1';
+      const nextOpen=!open;
+      box.innerHTML=nextOpen?loginPlatformGuide():'';
+      box.dataset.open=nextOpen?'1':'0';
+      appColumn?.classList.toggle('login-help-open',nextOpen);
+      if(helpBtn)helpBtn.textContent=nextOpen?'Wróć do kroków':'Jak to działa?';
     };
     if(isStandalone())panel.hidden=true;
   }
