@@ -7488,3 +7488,172 @@ body::after{display:none!important}
     display:inline-flex!important;
   }
 }
+
+
+/* =========================================================
+   BLUE UI PASS 20 — kompaktowa data, dyskretny toggle KPI,
+   żywsze zdjęcia projektów
+   2026-09-20
+   ========================================================= */
+
+/* Przełącznik statystyk przeniesiony do osobnego, lekkiego paska */
+.stats-visibility-toolbar{
+  display:flex!important;
+  justify-content:flex-end!important;
+  align-items:center!important;
+  margin:-2px 2px 8px!important;
+  min-height:22px!important;
+}
+.stats-visibility-toolbar .stats-toggle-btn{
+  width:auto!important;
+  min-width:0!important;
+  height:24px!important;
+  min-height:24px!important;
+  padding:0 7px!important;
+  gap:5px!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  color:#7a91aa!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+  font:600 8.5px/1 'Montserrat',sans-serif!important;
+  opacity:.72!important;
+}
+.stats-visibility-toolbar .stats-toggle-btn svg{
+  width:12px!important;
+  height:12px!important;
+}
+.stats-visibility-toolbar .stats-toggle-btn:hover{
+  background:#f2f7fc!important;
+  color:#3d6f9f!important;
+  opacity:1!important;
+  transform:none!important;
+}
+.stats-visibility-toolbar .stats-toggle-btn.is-active{
+  background:transparent!important;
+}
+
+/* Data: o połowę bardziej kompaktowa, tekst po lewej, ikonka przy prawej osi CTA */
+@media(min-width:1181px){
+  .intro-actions{
+    top:84px!important;
+    width:248px!important;
+    gap:6px!important;
+  }
+
+  .intro-actions .date-box{
+    height:34px!important;
+    min-height:34px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 28px!important;
+    align-items:center!important;
+    gap:8px!important;
+    padding:0!important;
+    background:transparent!important;
+    border:0!important;
+    box-shadow:none!important;
+  }
+
+  .date-copy{
+    order:1!important;
+    display:flex!important;
+    align-items:baseline!important;
+    justify-content:flex-end!important;
+    flex-wrap:wrap!important;
+    gap:0 5px!important;
+    text-align:right!important;
+    margin:0!important;
+    color:#0b477f!important;
+  }
+  .date-copy .date-weekday,
+  .date-copy>strong,
+  .date-copy>span:last-child{
+    margin:0!important;
+    color:#0b477f!important;
+    line-height:1!important;
+    text-transform:none!important;
+    letter-spacing:0!important;
+    white-space:nowrap!important;
+  }
+  .date-copy .date-weekday{
+    font-size:9px!important;
+    font-weight:700!important;
+  }
+  .date-copy>strong{
+    font-size:11.5px!important;
+    font-weight:800!important;
+  }
+  .date-copy>span:last-child{
+    font-size:9px!important;
+    font-weight:700!important;
+  }
+
+  .date-calendar-icon{
+    order:2!important;
+    width:28px!important;
+    height:28px!important;
+    justify-self:end!important;
+    border-radius:9px!important;
+    background:rgba(255,255,255,.54)!important;
+    border:1px solid rgba(23,105,255,.13)!important;
+    color:#1769ff!important;
+  }
+  .date-calendar-icon svg{
+    width:14px!important;
+    height:14px!important;
+  }
+
+  .intro-project-actions{
+    grid-template-columns:1fr!important;
+  }
+  .intro-add-project{
+    height:52px!important;
+    min-height:52px!important;
+  }
+}
+
+/* Bardziej żywe zdjęcia projektów */
+.project-visual-thumb{
+  background-blend-mode:normal!important;
+  filter:saturate(1.14) contrast(1.05)!important;
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.12)!important;
+}
+.project-visual-thumb span{
+  text-shadow:0 2px 12px rgba(0,18,38,.42)!important;
+}
+.project-visual-thumb::after{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  pointer-events:none!important;
+  background:linear-gradient(135deg,rgba(0,119,255,.03),rgba(255,179,0,.05))!important;
+  mix-blend-mode:screen!important;
+}
+
+/* Kiedy statystyki są schowane, toolbar zostaje dostępny, ale subtelny */
+.stats-visibility-toolbar:has(+ .stats-grid.is-hidden){
+  margin-bottom:4px!important;
+}
+
+/* tablet/mobile */
+@media(max-width:1180px){
+  .stats-visibility-toolbar{
+    margin:0 0 8px!important;
+  }
+  .intro-actions .date-box{
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 28px!important;
+    gap:8px!important;
+  }
+  .date-copy{
+    order:1!important;
+    justify-content:flex-end!important;
+    text-align:right!important;
+  }
+  .date-calendar-icon{
+    order:2!important;
+    justify-self:end!important;
+  }
+}
