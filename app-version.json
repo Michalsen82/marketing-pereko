@@ -1,19 +1,27 @@
 {
-  "version": "2.0.6",
-  "releasedAt": "2026-09-20T23:18:00+02:00",
+  "version": "2.0.7",
+  "releasedAt": "2026-09-20T23:32:00+02:00",
   "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0.6",
-  "releaseSummary": "Poprawka rozwiniętego widoku projektu w jasnym motywie aplikacji mobilnej.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.7",
+  "releaseSummary": "Nowy, dedykowany mobilny widok wykresu Gantta dla aplikacji i małych ekranów.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Dostępna jest wersja 2.0.6 z poprawionym rozwiniętym widokiem projektu w jasnym motywie.",
+  "message": "Dostępna jest wersja 2.0.7 z całkowicie przebudowanym wykresem Gantta na urządzeniach mobilnych.",
   "changes": [
     {
-      "title": "Jasny widok rozwiniętego projektu jak w dark mode",
-      "detail": "Zadania, komentarze i podsumowanie mają teraz tę samą geometrię, odstępy i układ jak w wersji czarnej."
+      "title": "Nowy mobilny Gantt",
+      "detail": "Na telefonie projekty i zadania są prezentowane jako czytelne karty zamiast pomniejszonego układu desktopowego."
     },
     {
-      "title": "Usunięcie rozjazdów mobilnych",
-      "detail": "Ujednolicono szerokości, marginesy, paddingi i siatkę rozwiniętej karty projektu w aplikacji mobilnej."
+      "title": "Przewijana oś czasu",
+      "detail": "Każdą oś czasu można przesuwać poziomo palcem bez ściskania nazw i terminów."
+    },
+    {
+      "title": "Skala Tydzień / Miesiąc",
+      "detail": "Dodano przełącznik gęstości osi czasu dopasowany do ekranu telefonu."
+    },
+    {
+      "title": "Light i Dark",
+      "detail": "Mobilny Gantt ma osobno dopracowaną paletę dla jasnego i ciemnego motywu."
     }
   ]
 }
