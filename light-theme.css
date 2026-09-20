@@ -962,3 +962,64 @@ html[data-theme="light"] .theme-toggle-btn svg{
     font-size:48px!important;
   }
 }
+
+
+/* =========================================================
+   LIGHT MODE — project summary + avatar precision pass
+   ========================================================= */
+html[data-theme="light"] .project-preview-block:not(.project-preview-left){
+  background:#f8fafa!important;
+  border-color:#e0e5e6!important;
+  box-shadow:inset 0 1px 0 #fff!important;
+}
+html[data-theme="light"] .project-preview-block:not(.project-preview-left) .project-preview-label{
+  color:#7b898f!important;
+}
+html[data-theme="light"] .project-preview-fact{
+  border-bottom-color:#e6ebed!important;
+}
+html[data-theme="light"] .project-preview-fact span{
+  color:#748187!important;
+}
+html[data-theme="light"] .project-preview-fact strong{
+  color:#202b30!important;
+}
+html[data-theme="light"] .project-preview-summary{
+  color:#344146!important;
+}
+html[data-theme="light"] .project-preview-summary-badge{
+  background:#fff!important;
+  border-color:#dde3e5!important;
+  color:#3b4145!important;
+}
+html[data-theme="light"] .project-preview-summary-badge strong,
+html[data-theme="light"] .project-preview-summary-badge small{
+  color:#4c585d!important;
+}
+
+/* Avatar w jasnym topbarze — ten sam komponent, odwrócony kontrast */
+html[data-theme="light"] .user-avatar-circle{
+  background:#f7f9f9!important;
+  border-color:#d8dfe1!important;
+  box-shadow:0 4px 12px rgba(20,28,32,.04)!important;
+}
+html[data-theme="light"] .user-avatar-placeholder svg{
+  color:#536167!important;
+  fill:currentColor!important;
+}
+html[data-theme="light"] .user-avatar-control:hover .user-avatar-circle{
+  background:#fff!important;
+  border-color:#bcc7ca!important;
+}
+html[data-theme="light"] .user-avatar-plus{
+  background:#ffdd00!important;
+  color:#111!important;
+  border-color:#fff!important;
+  box-shadow:0 4px 10px rgba(20,28,32,.16)!important;
+}
+html[data-theme="light"] .user-avatar-control::after{
+  background:#fff!important;
+  color:#273237!important;
+  border-color:#d9dfe1!important;
+  box-shadow:0 14px 36px rgba(20,28,32,.13)!important;
+}
