@@ -55,19 +55,48 @@
   };
 
   const projectVisualFor=p=>{
-    const name=searchNorm(p?.name);
-    const heat1='/assets/blue-ui/project1-reference.jpg';
-    const heat2='https://images.unsplash.com/photo-1776860150272-653efc74193c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=72&w=900';
-    if(name.includes('partner')||name.includes('b2b')||name.includes('centrum')){
-      return {url:heat1,label:'CIEPŁO\nW DOBRYM\nKIERUNKU',tags:['Platforma B2B','Materiały sprzedażowe','Partnerzy']};
+    const raw=String(p?.name||'');
+    const name=searchNorm(raw);
+    const desc=searchNorm(p?.desc||'');
+    const hay=name+' '+desc;
+
+    const photos={
+      b2b:'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      event:'https://images.unsplash.com/photo-1540575467063-178a50c2df87?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      gifts:'https://images.unsplash.com/photo-1513883049090-d0b7439799bf?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      campaign:'https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      digital:'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      video:'https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      training:'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      product:'https://images.unsplash.com/photo-1581094794329-c8112a89af12?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=88&w=1100',
+      default:'/assets/blue-ui/project1-reference.jpg'
+    };
+
+    if(hay.includes('partner')||hay.includes('b2b')||hay.includes('centrum')){
+      return {url:photos.b2b,label:'PARTNERZY\nW CENTRUM',tags:['Platforma B2B','Partnerzy','Sprzedaż']};
     }
-    if(name.includes('targ')||name.includes('expo')||name.includes('heating')){
-      return {url:heat2,label:'PEREKO\nNA TARGACH',tags:['Wydarzenia','Targi','PR']};
+    if(hay.includes('targ')||hay.includes('expo')||hay.includes('heating')||hay.includes('enex')||hay.includes('event')){
+      return {url:photos.event,label:'PEREKO\nNA ŻYWO',tags:['Wydarzenia','Targi','PR']};
     }
-    if(name.includes('kampani')||name.includes('wizerunk')){
-      return {url:heat2,label:'MARKA, KTÓRA\nINSPIRUJE',tags:['Wizerunek','Kampania 360°','Digital']};
+    if(hay.includes('upomink')||hay.includes('prezent')||hay.includes('swiate')||hay.includes('świąt')){
+      return {url:photos.gifts,label:'DOBRY GEST\nDOBRA MARKA',tags:['Upominki','Relacje','Branding']};
     }
-    return {url:heat1,label:'PEREKO\nMARKETING',tags:['Marketing','PEREKO','Projekt']};
+    if(hay.includes('video')||hay.includes('film')||hay.includes('rolk')||hay.includes('youtube')){
+      return {url:photos.video,label:'RUCH, KTÓRY\nPRZYCIĄGA',tags:['Wideo','Content','Social media']};
+    }
+    if(hay.includes('stron')||hay.includes('www')||hay.includes('digital')||hay.includes('aplik')||hay.includes('portal')){
+      return {url:photos.digital,label:'CYFROWE\nDOŚWIADCZENIE',tags:['Digital','WWW','UX']};
+    }
+    if(hay.includes('szkol')||hay.includes('warsztat')||hay.includes('akadem')){
+      return {url:photos.training,label:'WIEDZA, KTÓRA\nPRACUJE',tags:['Szkolenia','Partnerzy','Eksperci']};
+    }
+    if(hay.includes('produkt')||hay.includes('premier')||hay.includes('kocio')||hay.includes('pompa')||hay.includes('qmpell')||hay.includes('thermostar')){
+      return {url:photos.product,label:'TECHNOLOGIA\nW PRAKTYCE',tags:['Produkt','Technologia','Premiera']};
+    }
+    if(hay.includes('kampani')||hay.includes('wizerunk')||hay.includes('marka')||hay.includes('lead')){
+      return {url:photos.campaign,label:'MARKA, KTÓRA\nPRZYCIĄGA',tags:['Kampania','Wizerunek','Digital']};
+    }
+    return {url:photos.default,label:raw?raw.toUpperCase().slice(0,34):'PEREKO\nMARKETING',tags:['Marketing','PEREKO','Projekt']};
   };
 
   const ensureProjectVisual=(main,p)=>{
@@ -79,7 +108,9 @@
       media.className='project-visual-thumb';
       main.insertBefore(media,main.firstChild);
     }
-    media.style.backgroundImage='linear-gradient(180deg,rgba(7,31,61,.02),rgba(5,27,52,.55)),url("'+visual.url+'")';
+    media.style.backgroundImage='linear-gradient(180deg,rgba(7,31,61,.00),rgba(5,27,52,.28)),url("'+visual.url+'")';
+    media.style.backgroundPosition='center';
+    media.style.backgroundSize='cover';
     media.innerHTML='<span>'+visual.label.split('\n').map(esc).join('<br>')+'</span>';
     let tags=main.querySelector('.project-tag-row');
     if(!tags){
