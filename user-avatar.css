@@ -161,3 +161,16 @@
     height:18px!important;
   }
 }
+
+
+/* =========================================================
+   Avatar camera badge — final colors
+   Dark: camera icon matches the avatar tile background.
+   ========================================================= */
+.user-avatar-plus{
+  color:#1b1d1f!important;
+}
+.user-avatar-plus svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
