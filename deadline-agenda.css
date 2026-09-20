@@ -1,0 +1,35 @@
+/* =========================================================
+   NAJBLIŻSZE TERMINY — osobisty widok projektów i zadań
+   ========================================================= */
+.deadline-agenda-head{display:flex!important;align-items:center!important;justify-content:space-between!important;gap:14px!important}
+.deadline-agenda-filters{display:flex!important;align-items:center!important;gap:4px!important;padding:3px!important;border:1px solid rgba(255,255,255,.11)!important;border-radius:9px!important;background:rgba(255,255,255,.035)!important}
+.deadline-agenda-filter{height:30px!important;padding:0 9px!important;border:0!important;border-radius:7px!important;background:transparent!important;color:rgba(255,255,255,.58)!important;font:700 8.5px/1 'Montserrat',sans-serif!important;cursor:pointer!important}
+.deadline-agenda-filter.active{background:#ffdd00!important;color:#161819!important}
+.deadline-agenda-list{padding:8px 18px 14px!important;background:transparent!important}
+.deadline-agenda-item{display:grid!important;grid-template-columns:46px minmax(0,1fr) auto!important;gap:12px!important;align-items:center!important;padding:12px 0!important;border:0!important;border-bottom:1px solid rgba(255,255,255,.065)!important;background:transparent!important;box-shadow:none!important}
+.deadline-agenda-item:last-child{border-bottom:0!important}
+.deadline-agenda-copy{min-width:0!important}
+.deadline-agenda-type{display:block!important;margin-bottom:3px!important;color:rgba(255,255,255,.38)!important;font:800 7.5px/1 'Montserrat',sans-serif!important;letter-spacing:.10em!important}
+.deadline-agenda-item h5{margin:0!important;color:#fff!important;font:700 11.5px/1.25 'Montserrat',sans-serif!important;white-space:normal!important}
+.deadline-agenda-item p{margin:4px 0 0!important;color:rgba(255,255,255,.52)!important;font-size:9.5px!important}
+.deadline-agenda-open{min-height:32px!important;padding:0 9px!important;border:1px solid rgba(255,255,255,.13)!important;border-radius:8px!important;background:rgba(255,255,255,.055)!important;color:#fff!important;font:700 8.5px/1 'Montserrat',sans-serif!important;white-space:nowrap!important;cursor:pointer!important}
+.deadline-agenda-open:hover{background:rgba(255,255,255,.10)!important;border-color:rgba(255,221,0,.38)!important}
+.deadline-agenda-item .datebox{width:46px!important;height:46px!important;min-width:46px!important;display:grid!important;place-items:center!important;align-content:center!important;border-radius:12px!important;background:rgba(255,255,255,.075)!important;border:1px solid rgba(255,255,255,.11)!important;text-align:center!important;padding:0!important}
+.deadline-agenda-item .datebox b{font-size:16px!important;line-height:1!important;color:#fff!important}
+.deadline-agenda-item .datebox span{margin-top:3px!important;color:#ffdd00!important;font:800 7.5px/1 'Montserrat',sans-serif!important}
+.deadline-agenda-empty{padding:18px 0!important}
+html[data-theme="light"] .deadline-agenda-module,html[data-theme="light"] .deadline-agenda-list{background:#fff!important}
+html[data-theme="light"] .deadline-agenda-head{background:#fff!important}
+html[data-theme="light"] .deadline-agenda-filters{background:#f1f4f5!important;border-color:#d5dde0!important}
+html[data-theme="light"] .deadline-agenda-filter{color:#66757b!important}
+html[data-theme="light"] .deadline-agenda-filter.active{background:#20292d!important;color:#fff!important}
+html[data-theme="light"] .deadline-agenda-item{background:transparent!important;border-bottom-color:#e2e7e9!important}
+html[data-theme="light"] .deadline-agenda-type{color:#89959a!important}
+html[data-theme="light"] .deadline-agenda-item h5{color:#263237!important}
+html[data-theme="light"] .deadline-agenda-item p{color:#748187!important}
+html[data-theme="light"] .deadline-agenda-item .datebox{background:#20292d!important;border-color:#20292d!important}
+html[data-theme="light"] .deadline-agenda-item .datebox b{color:#fff!important}
+html[data-theme="light"] .deadline-agenda-item .datebox span{color:#ffdd00!important}
+html[data-theme="light"] .deadline-agenda-open{background:#f7f9f9!important;border-color:#d5dcde!important;color:#536167!important}
+html[data-theme="light"] .deadline-agenda-open:hover{background:#fff!important;border-color:#aebdc1!important;color:#202b30!important}
+@media(max-width:1320px){.deadline-agenda-head{align-items:flex-start!important;flex-direction:column!important}.deadline-agenda-filters{width:100%!important}.deadline-agenda-filter{flex:1 1 0!important}.deadline-agenda-item{grid-template-columns:46px minmax(0,1fr)!important}.deadline-agenda-open{grid-column:2!important;justify-self:start!important}}
