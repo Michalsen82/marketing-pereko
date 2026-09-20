@@ -3027,3 +3027,32 @@ html[data-theme="light"] .project.expanded .project-preview-block{
   box-sizing:border-box!important;
   max-width:100%!important;
 }
+
+
+/* LIGHT — keep expanded project fully inside its card */
+html[data-theme="light"] .project.expanded{
+  overflow:hidden!important;
+}
+html[data-theme="light"] .project.expanded .project-preview{
+  width:calc(100% - 57px)!important;
+  max-width:calc(100% - 57px)!important;
+  margin-left:57px!important;
+  margin-right:0!important;
+}
+html[data-theme="light"] .project.expanded .project-preview-grid{
+  width:100%!important;
+  max-width:100%!important;
+  grid-template-columns:minmax(0,1fr) minmax(220px,280px)!important;
+}
+html[data-theme="light"] .project.expanded .project-preview-block:not(.project-preview-left){
+  width:100%!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+@media(max-width:640px){
+  html[data-theme="light"] .project.expanded .project-preview{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+  }
+}
