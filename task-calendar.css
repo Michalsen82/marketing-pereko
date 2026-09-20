@@ -49,3 +49,69 @@
   color:#98a2a6!important;
   text-decoration:none!important
 }
+
+
+/* =========================================================
+   Task date field — deterministic visible value in both themes
+   ========================================================= */
+.task-add-form{
+  grid-template-columns:minmax(0,1fr) 152px auto!important;
+}
+.task-date-field{
+  position:relative!important;
+  min-width:0!important;
+  height:34px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:0 34px 0 10px!important;
+  border:1px solid rgba(255,255,255,.14)!important;
+  border-radius:8px!important;
+  background:rgba(255,255,255,.055)!important;
+  overflow:hidden!important;
+  cursor:pointer!important;
+}
+.task-date-value{
+  min-width:0!important;
+  color:rgba(255,255,255,.46)!important;
+  font:600 10px/1 'Montserrat',sans-serif!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  pointer-events:none!important;
+}
+.task-date-value.has-value{
+  color:#fff!important;
+  font-weight:700!important;
+}
+.task-date-icon{
+  position:absolute!important;
+  right:10px!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:15px!important;
+  height:15px!important;
+  display:grid!important;
+  place-items:center!important;
+  color:#fff!important;
+  pointer-events:none!important;
+}
+.task-date-icon svg{
+  width:15px!important;
+  height:15px!important;
+  fill:currentColor!important;
+}
+.task-date-field input[type="date"]{
+  position:absolute!important;
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  margin:0!important;
+  padding:0!important;
+  opacity:0!important;
+  cursor:pointer!important;
+  z-index:2!important;
+}
+@media(max-width:600px){
+  .task-add-form{grid-template-columns:1fr!important}
+  .task-date-field{width:100%!important}
+}
