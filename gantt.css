@@ -376,3 +376,163 @@ body.gantt-open{overflow:hidden}.gantt-modal{position:fixed;inset:0;z-index:1900
   .gantt-toolbar{padding:10px 16px!important}
   .gantt-body{max-height:calc(100vh - 180px)!important}
 }
+
+
+/* =========================================================
+   GANTT V3 — filtry + idealne wyrównanie zadań z osią czasu
+   ========================================================= */
+.gantt-controls{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:16px!important;
+  padding:12px 26px!important;
+  border-bottom:1px solid rgba(255,255,255,.075)!important;
+  background:rgba(255,255,255,.025)!important;
+}
+.gantt-view-switch{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:4px!important;
+  padding:4px!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.035)!important;
+}
+.gantt-view-btn{
+  min-height:34px!important;
+  padding:0 14px!important;
+  border:0!important;
+  border-radius:7px!important;
+  background:transparent!important;
+  color:rgba(255,255,255,.62)!important;
+  font:700 10px/1 'Montserrat',sans-serif!important;
+  cursor:pointer!important;
+}
+.gantt-view-btn:hover{background:rgba(255,255,255,.07)!important;color:#fff!important}
+.gantt-view-btn.active{background:#ffdd00!important;color:#161819!important}
+.gantt-person-filter{
+  display:flex!important;
+  align-items:center!important;
+  gap:9px!important;
+  color:rgba(255,255,255,.50)!important;
+  font:700 9px/1 'Montserrat',sans-serif!important;
+  text-transform:uppercase!important;
+  letter-spacing:.06em!important;
+}
+.gantt-person-filter select{
+  min-width:210px!important;
+  height:38px!important;
+  padding:0 34px 0 12px!important;
+  border-radius:8px!important;
+  border:1px solid rgba(255,255,255,.13)!important;
+  background:#1b1e20!important;
+  color:#fff!important;
+  font:600 11px/1 'Source Sans 3',Arial,sans-serif!important;
+  color-scheme:dark!important;
+}
+
+.gantt-body{max-height:calc(100vh - 250px)!important}
+.gantt-project-info{
+  padding:0!important;
+  display:block!important;
+}
+.gantt-project-summary{
+  height:var(--gantt-header-h,72px)!important;
+  padding:13px 20px 10px!important;
+  box-sizing:border-box!important;
+  border-bottom:1px solid rgba(255,255,255,.055)!important;
+}
+.gantt-project-summary.tasks-only{
+  padding-top:9px!important;
+}
+.gantt-project-summary>strong{
+  display:block!important;
+  color:#fff!important;
+  font:800 14px/1.2 'Montserrat',sans-serif!important;
+}
+.gantt-project-summary>small{
+  display:block!important;
+  margin-top:4px!important;
+  color:rgba(255,255,255,.52)!important;
+  font-size:10px!important;
+}
+.gantt-project-summary .gantt-progress-meta{margin-top:8px!important}
+
+.gantt-task-list{
+  margin:0!important;
+  gap:0!important;
+}
+.gantt-task-info{
+  height:var(--gantt-task-h,34px)!important;
+  min-height:var(--gantt-task-h,34px)!important;
+  padding:0 20px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:14px!important;
+  box-sizing:border-box!important;
+  border-bottom:1px solid rgba(255,255,255,.05)!important;
+  color:rgba(255,255,255,.72)!important;
+}
+.gantt-task-info:last-child{border-bottom:0!important}
+.gantt-task-main{
+  min-width:0!important;
+  display:flex!important;
+  align-items:baseline!important;
+  gap:8px!important;
+}
+.gantt-task-main strong{
+  min-width:0!important;
+  max-width:190px!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+  color:#fff!important;
+  font:700 10.5px/1 'Montserrat',sans-serif!important;
+}
+.gantt-task-main span{
+  min-width:0!important;
+  color:rgba(255,255,255,.48)!important;
+  font-size:9.5px!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+.gantt-task-info>small{
+  flex:0 0 auto!important;
+  color:rgba(255,255,255,.42)!important;
+  font-size:9px!important;
+}
+.gantt-task-info.done .gantt-task-main strong{
+  color:rgba(255,221,0,.78)!important;
+  text-decoration:line-through!important;
+}
+
+.gantt-track{position:relative!important}
+.gantt-bar{top:20px!important;height:30px!important}
+.gantt-task-line{
+  position:absolute!important;
+  transform:none!important;
+  z-index:2!important;
+}
+.gantt-task-end{
+  position:absolute!important;
+  z-index:3!important;
+}
+.gantt-row:hover .gantt-project-info,
+.gantt-row:hover .gantt-track{
+  background-color:rgba(255,255,255,.018)!important;
+}
+
+@media(max-width:900px){
+  .gantt-controls{padding:10px 18px!important;align-items:stretch!important;flex-direction:column!important}
+  .gantt-person-filter{justify-content:space-between!important}
+  .gantt-person-filter select{min-width:0!important;flex:1 1 auto!important}
+  .gantt-body{max-height:calc(100vh - 300px)!important}
+}
+@media(max-width:560px){
+  .gantt-view-switch{width:100%!important}
+  .gantt-view-btn{flex:1 1 0!important;padding:0 8px!important}
+  .gantt-person-filter{align-items:stretch!important;flex-direction:column!important}
+}
