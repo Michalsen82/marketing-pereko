@@ -1,19 +1,19 @@
 {
-  "version": "2.0.5",
-  "releasedAt": "2026-09-20T23:06:00+02:00",
+  "version": "2.0.6",
+  "releasedAt": "2026-09-20T23:18:00+02:00",
   "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0.5",
-  "releaseSummary": "Korekta informacji o zalogowanym użytkowniku w aplikacji mobilnej.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.6",
+  "releaseSummary": "Poprawka rozwiniętego widoku projektu w jasnym motywie aplikacji mobilnej.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Dostępna jest wersja 2.0.5 z poprawionym podpisem zalogowanego użytkownika.",
+  "message": "Dostępna jest wersja 2.0.6 z poprawionym rozwiniętym widokiem projektu w jasnym motywie.",
   "changes": [
     {
-      "title": "Widoczna nazwa zalogowanej osoby",
-      "detail": "Pod ikonami wyświetla się teraz „Zalogowany:” oraz pełne imię i nazwisko aktualnego użytkownika."
+      "title": "Jasny widok rozwiniętego projektu jak w dark mode",
+      "detail": "Zadania, komentarze i podsumowanie mają teraz tę samą geometrię, odstępy i układ jak w wersji czarnej."
     },
     {
-      "title": "Mniejsza czcionka",
-      "detail": "Podpis i nazwa użytkownika zostały delikatnie zmniejszone, żeby lepiej pasowały do mobilnego topbara."
+      "title": "Usunięcie rozjazdów mobilnych",
+      "detail": "Ujednolicono szerokości, marginesy, paddingi i siatkę rozwiniętej karty projektu w aplikacji mobilnej."
     }
   ]
 }
