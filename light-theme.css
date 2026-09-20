@@ -1889,3 +1889,176 @@ html[data-theme="light"] .project-preview-empty{
 html[data-theme="light"] .project-preview-left{
   border-right-color:#e2e7e9!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — files + destructive states pass 06
+   Widoczny magazyn plików oraz mocniejsze czerwone akcje.
+   ========================================================= */
+
+/* MAGAZYN PLIKÓW — pełna czytelność w jasnym motywie */
+html[data-theme="light"] .pd-files-card,
+html[data-theme="light"] .pd-files-card .pf-toolbar,
+html[data-theme="light"] .pd-files-card .pf-storage,
+html[data-theme="light"] .pd-files-card .pf-dropzone,
+html[data-theme="light"] .pd-files-card .pf-list,
+html[data-theme="light"] .pd-files-card .pf-item{
+  background:#fff!important;
+  color:#263237!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-toolbar{
+  border-bottom:1px solid #e2e7e9!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-search input{
+  background:#fff!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  border:1px solid #d6dde0!important;
+}
+html[data-theme="light"] .pd-files-card .pf-search input::placeholder{
+  color:#8c989d!important;
+  -webkit-text-fill-color:#8c989d!important;
+}
+html[data-theme="light"] .pd-files-card .pf-search svg{
+  fill:#6f7d83!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-summary{
+  color:#748187!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-storage{
+  background:#f7f9fa!important;
+  border-color:#dce3e5!important;
+  color:#4f5d62!important;
+}
+html[data-theme="light"] .pd-files-card .pf-storage-label,
+html[data-theme="light"] .pd-files-card .pf-storage-bottom span,
+html[data-theme="light"] .pd-files-card .pf-storage-bottom small{
+  color:#6f7c81!important;
+}
+html[data-theme="light"] .pd-files-card .pf-storage-top strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .pd-files-card .pf-storage-bar{
+  background:#e3e9eb!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-dropzone{
+  background:#f8fafa!important;
+  border:1px dashed #c5d0d3!important;
+}
+html[data-theme="light"] .pd-files-card .pf-dropzone strong{
+  color:#2e3a3f!important;
+}
+html[data-theme="light"] .pd-files-card .pf-dropzone span{
+  color:#829096!important;
+}
+html[data-theme="light"] .pd-files-card .pf-dropzone.dragover{
+  background:#fffbea!important;
+  border-color:#c7ae00!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-upload-status{
+  color:#718086!important;
+}
+html[data-theme="light"] .pd-files-card .pf-upload-status.success{
+  color:#3f8249!important;
+}
+html[data-theme="light"] .pd-files-card .pf-upload-status.error{
+  color:#bd443c!important;
+}
+
+html[data-theme="light"] .pd-files-card .pf-item{
+  border-bottom:1px solid #e7ecee!important;
+}
+html[data-theme="light"] .pd-files-card .pf-file-type{
+  background:#eef2f3!important;
+  border-color:#d3dcdf!important;
+  color:#4e5c62!important;
+}
+html[data-theme="light"] .pd-files-card .pf-file-copy>strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .pd-files-card .pf-file-copy>span{
+  color:#748187!important;
+}
+html[data-theme="light"] .pd-files-card .pf-file-copy>small{
+  color:#8d989d!important;
+}
+html[data-theme="light"] .pd-files-card .pf-versions summary{
+  color:#66757b!important;
+}
+html[data-theme="light"] .pd-files-card .pf-version-row{
+  border-bottom-color:#e8edef!important;
+}
+html[data-theme="light"] .pd-files-card .pf-version-row>span,
+html[data-theme="light"] .pd-files-card .pf-version-row strong{
+  color:#536167!important;
+}
+html[data-theme="light"] .pd-files-card .pf-version-row small{
+  color:#8a969b!important;
+}
+html[data-theme="light"] .pd-files-card .pf-error strong{
+  color:#9a5a1d!important;
+}
+html[data-theme="light"] .pd-files-card .pf-error span{
+  color:#7f8c92!important;
+}
+
+/* akcje plików */
+html[data-theme="light"] .pd-files-card .pf-file-actions button,
+html[data-theme="light"] .pd-files-card .pf-version-row button{
+  background:#f7f9f9!important;
+  color:#536167!important;
+  border-color:#d5dcde!important;
+}
+html[data-theme="light"] .pd-files-card .pf-file-actions button:hover,
+html[data-theme="light"] .pd-files-card .pf-version-row button:hover{
+  background:#fff!important;
+  color:#202b30!important;
+  border-color:#b9c5c9!important;
+}
+
+/* MOCNIEJSZE CZERWONE AKCJE / BŁĘDY */
+html[data-theme="light"] .pd-danger-zone button,
+html[data-theme="light"] .project-delete-btn,
+html[data-theme="light"] .pf-file-actions button.danger,
+html[data-theme="light"] .team-manager-actions .danger{
+  background:#d94b45!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border-color:#c93f39!important;
+  box-shadow:0 7px 16px rgba(201,63,57,.18)!important;
+}
+html[data-theme="light"] .pd-danger-zone button:hover,
+html[data-theme="light"] .project-delete-btn:hover,
+html[data-theme="light"] .pf-file-actions button.danger:hover,
+html[data-theme="light"] .team-manager-actions .danger:hover{
+  background:#c83e38!important;
+  border-color:#b73530!important;
+  color:#fff!important;
+}
+
+/* status błędu synchronizacji — czerwony, a nie bladoróżowy */
+html[data-theme="light"] .footer-status-btn[data-state="error"]{
+  background:#d94b45!important;
+  border-color:#c93f39!important;
+  color:#fff!important;
+  box-shadow:0 7px 16px rgba(201,63,57,.18)!important;
+}
+html[data-theme="light"] .footer-status-btn[data-state="error"] .footer-status-dot{
+  background:#fff!important;
+  box-shadow:0 0 0 3px rgba(255,255,255,.18)!important;
+}
+
+/* ewentualne komunikaty synchronizacji poza footerem */
+html[data-theme="light"] [data-state="error"].sync-card,
+html[data-theme="light"] .sync-error,
+html[data-theme="light"] .sync-status.error{
+  background:#d94b45!important;
+  border-color:#c93f39!important;
+  color:#fff!important;
+}
