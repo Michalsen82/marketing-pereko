@@ -2062,3 +2062,158 @@ html[data-theme="light"] .sync-status.error{
   border-color:#c93f39!important;
   color:#fff!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — globalny magazyn Cloudflare R2
+   Pełna czytelność: ciemne napisy na jasnym tle.
+   ========================================================= */
+
+html[data-theme="light"] .r2-global-module{
+  background:#fff!important;
+  border-color:#d5dde0!important;
+  color:#202b30!important;
+  box-shadow:0 12px 28px rgba(20,28,32,.07)!important;
+}
+
+html[data-theme="light"] .r2-global-head{
+  background:#fff!important;
+  border-bottom-color:#e1e7e9!important;
+}
+
+html[data-theme="light"] .r2-global-head h2{
+  color:#202b30!important;
+}
+
+html[data-theme="light"] .r2-global-head p{
+  color:#748187!important;
+}
+
+html[data-theme="light"] .r2-global-trash-btn{
+  background:#f6f8f9!important;
+  color:#344146!important;
+  border-color:#d4dcdf!important;
+  box-shadow:none!important;
+}
+
+html[data-theme="light"] .r2-global-trash-btn:hover,
+html[data-theme="light"] .r2-global-trash-btn.active{
+  background:#fff!important;
+  color:#202b30!important;
+  border-color:#b8c4c8!important;
+}
+
+html[data-theme="light"] .r2-global-trash-btn b{
+  background:#20292d!important;
+  color:#fff!important;
+  border-color:#20292d!important;
+}
+
+html[data-theme="light"] .r2-global-body{
+  background:#fff!important;
+}
+
+html[data-theme="light"] .r2-metric{
+  background:#f7f9fa!important;
+  border-color:#d8e0e2!important;
+  box-shadow:none!important;
+}
+
+html[data-theme="light"] .r2-metric span{
+  color:#6f7d83!important;
+}
+
+html[data-theme="light"] .r2-metric strong{
+  color:#202b30!important;
+}
+
+html[data-theme="light"] .r2-metric small{
+  color:#839096!important;
+}
+
+html[data-theme="light"] .r2-global-progress-wrap{
+  background:#f7f9fa!important;
+  border-color:#d8e0e2!important;
+  box-shadow:none!important;
+}
+
+html[data-theme="light"] .r2-global-progress{
+  background:#dfe6e8!important;
+}
+
+html[data-theme="light"] .r2-global-progress-copy span{
+  color:#4f5d63!important;
+}
+
+html[data-theme="light"] .r2-global-progress-copy small{
+  color:#7f8b90!important;
+}
+
+html[data-theme="light"] .r2-global-trash-panel{
+  background:#f8fafa!important;
+  border-color:#d8e0e2!important;
+}
+
+html[data-theme="light"] .r2-global-trash-toolbar{
+  border-bottom-color:#e3e8ea!important;
+}
+
+html[data-theme="light"] .r2-global-trash-toolbar>div>span{
+  color:#8b7600!important;
+}
+
+html[data-theme="light"] .r2-global-trash-toolbar>div>strong{
+  color:#263237!important;
+}
+
+html[data-theme="light"] .r2-global-trash-search input{
+  background:#fff!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  border-color:#d5dcde!important;
+}
+
+html[data-theme="light"] .r2-global-trash-search input::placeholder{
+  color:#8d989d!important;
+  -webkit-text-fill-color:#8d989d!important;
+}
+
+html[data-theme="light"] .r2-global-trash-search svg{
+  fill:#748187!important;
+}
+
+html[data-theme="light"] .r2-trash-item{
+  border-bottom-color:#e5eaec!important;
+}
+
+html[data-theme="light"] .r2-trash-icon{
+  background:#eef2f3!important;
+  border-color:#d3dcdf!important;
+  color:#536167!important;
+}
+
+html[data-theme="light"] .r2-trash-copy strong{
+  color:#263237!important;
+}
+
+html[data-theme="light"] .r2-trash-copy span{
+  color:#66757b!important;
+}
+
+html[data-theme="light"] .r2-trash-copy small{
+  color:#8a969b!important;
+}
+
+html[data-theme="light"] .r2-trash-actions button{
+  background:#fff!important;
+  border-color:#d5dcde!important;
+  color:#536167!important;
+}
+
+html[data-theme="light"] .r2-global-empty{
+  color:#7f8c92!important;
+}
+
+html[data-theme="light"] .r2-global-error{
+  color:#b84a42!important;
+}
