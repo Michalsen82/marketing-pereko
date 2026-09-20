@@ -3007,3 +3007,11 @@ html[data-theme="light"] .gantt-row:hover .gantt-project-info,
 html[data-theme="light"] .gantt-row:hover .gantt-track{
   background-color:#f5f8f8!important;
 }
+
+/* LIGHT — przycisk Gantta w podglądzie konkretnego projektu */
+html[data-theme="light"] .project-preview-gantt-btn{
+  background:#20292d!important;border-color:#20292d!important;color:#fff!important;box-shadow:none!important;
+}
+html[data-theme="light"] .project-preview-gantt-btn:hover{
+  background:#303b40!important;border-color:#303b40!important;color:#fff!important;
+}
