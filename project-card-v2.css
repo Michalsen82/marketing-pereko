@@ -1323,3 +1323,14 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
 .project-preview-fact span{
   font-weight:600!important;
 }
+
+/* Gantt dla konkretnego projektu — przycisk w rozwiniętym podsumowaniu */
+.project-preview-gantt-btn{
+  width:100%!important;min-height:38px!important;margin-top:12px!important;padding:0 12px!important;
+  display:flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;
+  border:1px solid rgba(255,255,255,.14)!important;border-radius:9px!important;
+  background:rgba(255,255,255,.075)!important;color:#fff!important;
+  font:800 9px/1 'Montserrat',sans-serif!important;cursor:pointer!important;transition:.16s ease!important;
+}
+.project-preview-gantt-btn svg{width:15px!important;height:15px!important;fill:currentColor!important;flex:0 0 15px!important}
+.project-preview-gantt-btn:hover{background:rgba(255,255,255,.13)!important;border-color:rgba(255,221,0,.48)!important;color:#ffdd00!important}
