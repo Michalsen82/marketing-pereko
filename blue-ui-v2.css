@@ -6801,3 +6801,193 @@ body::after{display:none!important}
     min-height:160px!important;
   }
 }
+
+
+/* =========================================================
+   BLUE UI PASS 16 — prawa kolumna hero, zaoblenia 14px,
+   mniejsze karty projektów i wyżej osadzone CTA
+   2026-09-20
+   ========================================================= */
+
+:root{
+  --ui-radius-unified:14px;
+}
+
+/* Ujednolicone zaoblenia w całym dashboardzie */
+.intro-row,
+.stat-card,
+.projects-module,
+.project,
+.filters,
+.gantt-open-btn,
+.blue-top-search,
+.intro-actions .date-box,
+.intro-add-project,
+.project-open-btn,
+.project-expand-btn,
+.project-visual-thumb,
+.project-tag-row span,
+.blue-nav-btn,
+.filter,
+.stat-icon{
+  border-radius:var(--ui-radius-unified)!important;
+}
+
+@media(min-width:1181px){
+  /* Prawa kolumna hero: data nad przyciskiem */
+  .intro-row{
+    min-height:292px!important;
+    height:292px!important;
+  }
+  .intro-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    justify-items:end!important;
+    align-content:start!important;
+    gap:12px!important;
+    right:24px!important;
+    top:138px!important;
+    bottom:auto!important;
+  }
+  .intro-actions .date-box,
+  .intro-add-project{
+    width:248px!important;
+    min-width:248px!important;
+  }
+  .intro-actions .date-box{
+    height:62px!important;
+    min-height:62px!important;
+    padding:10px 14px!important;
+    box-shadow:0 10px 24px rgba(25,68,119,.08)!important;
+  }
+  .intro-add-project{
+    height:62px!important;
+    min-height:62px!important;
+    align-self:start!important;
+    justify-self:end!important;
+    box-shadow:0 10px 24px rgba(23,105,255,.16)!important;
+  }
+
+  /* Delikatne dopięcie proporcji copy, aby z prawej było więcej oddechu */
+  .blue-hero-copy{
+    width:54%!important;
+    max-width:700px!important;
+  }
+  .intro-row h1{
+    max-width:650px!important;
+    font-size:43px!important;
+  }
+  .intro-row p{
+    max-width:610px!important;
+  }
+
+  /* Sekcja projektów: CTA i prawa kolumna wyżej, mniej pustego tła */
+  .projects-module .project-list{
+    padding:12px!important;
+    gap:12px!important;
+  }
+  .project{
+    min-height:142px!important;
+    padding:14px 16px!important;
+    grid-template-columns:minmax(0,1fr) 328px!important;
+    grid-template-areas:
+      "main progress"
+      "main side"
+      "main controls"
+      "preview preview"!important;
+    column-gap:18px!important;
+    row-gap:4px!important;
+    align-items:start!important;
+  }
+  .project-main{
+    min-height:114px!important;
+    grid-template-columns:212px minmax(0,1fr)!important;
+    column-gap:14px!important;
+    row-gap:8px!important;
+  }
+  .project-visual-thumb{
+    width:212px!important;
+    height:116px!important;
+    min-height:116px!important;
+  }
+  .project-title-copy h4,
+  .project h4{
+    font-size:19px!important;
+    margin:0 0 6px!important;
+  }
+  .project-title-copy .project-desc,
+  .project p{
+    font-size:11.5px!important;
+  }
+  .project-tag-row{
+    gap:8px!important;
+    margin-top:2px!important;
+  }
+  .project-tag-row span{
+    min-height:26px!important;
+    padding:0 11px!important;
+    font-size:9.5px!important;
+  }
+  .project .progress-wrap{
+    align-self:start!important;
+  }
+  .project-side-summary{
+    gap:8px 12px!important;
+  }
+  .project-side-owner,
+  .project-side-days,
+  .project-side-tasks{
+    min-height:34px!important;
+  }
+  .project-side-summary small{
+    font-size:8px!important;
+  }
+  .project-side-summary strong{
+    font-size:10px!important;
+  }
+  .project-card-controls{
+    min-height:30px!important;
+    margin-top:-2px!important;
+    align-self:start!important;
+    justify-content:flex-end!important;
+  }
+  .project-open-btn,
+  .project-expand-btn{
+    height:30px!important;
+    min-height:30px!important;
+  }
+}
+
+@media(max-width:1400px) and (min-width:1181px){
+  .intro-actions{
+    right:20px!important;
+    top:140px!important;
+  }
+  .intro-actions .date-box,
+  .intro-add-project{
+    width:236px!important;
+    min-width:236px!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 304px!important;
+  }
+  .project-main{
+    grid-template-columns:196px minmax(0,1fr)!important;
+  }
+  .project-visual-thumb{
+    width:196px!important;
+    height:112px!important;
+    min-height:112px!important;
+  }
+}
+
+@media(max-width:1180px){
+  .intro-actions{
+    grid-template-columns:1fr!important;
+  }
+  .intro-actions .date-box,
+  .intro-add-project{
+    width:100%!important;
+    min-width:0!important;
+  }
+}
