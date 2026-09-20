@@ -21,3 +21,14 @@
   box-shadow:0 0 0 3px rgba(82,184,90,.08)!important;
 }
 
+
+.footer-version-wrap{display:flex;align-items:center;gap:8px}
+.footer-version-badge,.footer-whats-new{min-height:32px;border-radius:9px;font:700 9.5px/1 'Montserrat',sans-serif;letter-spacing:.02em}
+.footer-version-badge{display:inline-flex;align-items:center;gap:5px;padding:0 10px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.045);color:rgba(255,255,255,.62)}
+.footer-version-badge b{color:#ffdd00;font-weight:900}
+.footer-whats-new{padding:0 11px;border:1px solid rgba(255,221,0,.28);background:rgba(255,221,0,.06);color:#fff2a6;cursor:pointer}
+.footer-whats-new:hover{background:rgba(255,221,0,.12);border-color:rgba(255,221,0,.48)}
+html[data-theme="light"] .footer-version-badge{border-color:rgba(32,41,45,.12);background:rgba(32,41,45,.04);color:#66747a}
+html[data-theme="light"] .footer-version-badge b{color:#8b7600}
+html[data-theme="light"] .footer-whats-new{border-color:rgba(139,118,0,.24);background:rgba(139,118,0,.06);color:#6f5f00}
+@media(max-width:640px){.footer-actions{gap:8px;flex-wrap:wrap}.footer-version-wrap{order:2;width:100%}}

@@ -608,3 +608,20 @@ html[data-theme="light"] .pwa-update-later{
   }
   .pwa-update-actions button{width:100%}
 }
+
+.pwa-changelog-card{max-width:720px}
+.pwa-changelog-version-row{display:flex;justify-content:space-between;gap:16px;align-items:flex-end;margin-bottom:14px}
+.pwa-changelog-version-row span{display:block;font:800 9px/1 'Montserrat',sans-serif;letter-spacing:.12em;color:rgba(255,255,255,.42);margin-bottom:5px}
+.pwa-changelog-version-row strong{font:900 28px/1 'Montserrat',sans-serif;color:#ffdd00}
+.pwa-changelog-version-row small{font-size:10.5px;color:rgba(255,255,255,.45)}
+.pwa-changelog-list{list-style:none;margin:18px 0 0;padding:0;display:grid;gap:10px}
+.pwa-changelog-list li{display:grid;grid-template-columns:22px 1fr;gap:10px;align-items:start;padding:10px 0;border-top:1px solid rgba(255,255,255,.07)}
+.pwa-changelog-list li>span{color:#ffdd00;font-weight:900}
+.pwa-changelog-list strong{display:block;font:800 11.5px/1.3 'Montserrat',sans-serif}
+.pwa-changelog-list small{display:block;margin-top:3px;font-size:10.5px;line-height:1.4;color:rgba(255,255,255,.56)}
+html[data-theme="light"] .pwa-changelog-version-row span,
+html[data-theme="light"] .pwa-changelog-version-row small{color:#7a878d}
+html[data-theme="light"] .pwa-changelog-version-row strong{color:#8b7600}
+html[data-theme="light"] .pwa-changelog-list li{border-color:rgba(32,41,45,.08)}
+html[data-theme="light"] .pwa-changelog-list li>span{color:#8b7600}
+html[data-theme="light"] .pwa-changelog-list small{color:#66747a}
