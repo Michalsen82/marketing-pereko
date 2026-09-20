@@ -238,7 +238,7 @@ function applyStatsVisibility(){
   const hidden=localStorage.getItem('pereko_stats_hidden')==='1';
   grid.classList.toggle('is-hidden',hidden);
   const label=btn.querySelector('span');
-  if(label)label.textContent=hidden?'Pokaż statystyki':'Ukryj statystyki';
+  if(label)label.textContent=hidden?'Pokaż kafelki':'Ukryj kafelki';
   btn.setAttribute('aria-expanded',hidden?'false':'true');
   btn.classList.toggle('is-active',!hidden);
   btn.title=hidden?'Pokaż kafelki podsumowania':'Ukryj kafelki podsumowania';
@@ -257,7 +257,7 @@ function refreshNewProjectOwners(){
   select.innerHTML='<option value="">Wybierz osobę</option>'+names.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');
 }
 $('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),projectYear:currentNumberingYear(),createdAt:new Date().toISOString(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
-const now=new Date();const day=String(now.getDate()).padStart(2,'0');const weekday=now.toLocaleDateString('pl-PL',{weekday:'long'});const month=now.toLocaleDateString('pl-PL',{month:'long'});$('#todayBox').innerHTML=`<span class="date-calendar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2Zm11 8H6v10h12V10ZM6 6v2h12V6H6Z"/></svg></span><span class="date-copy"><span class="date-weekday">${weekday}</span><strong>${day} ${month}</strong><span>${now.getFullYear()}</span></span>`;
+const now=new Date();const day=String(now.getDate()).padStart(2,'0');const weekday=now.toLocaleDateString('pl-PL',{weekday:'long'});const month=now.toLocaleDateString('pl-PL',{month:'long'});$('#todayBox').innerHTML=`<strong class="date-daynum">${day}</strong><span class="date-copy"><span class="date-weekday">${weekday}</span><strong>${month}</strong><span>${now.getFullYear()}</span></span>`;
 const autoRefreshRemote=()=>{
   if(document.visibilityState!=='visible'||!navigator.onLine)return;
   loadRemote({silent:true,auto:true});
