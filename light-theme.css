@@ -3015,3 +3015,15 @@ html[data-theme="light"] .project-preview-gantt-btn{
 html[data-theme="light"] .project-preview-gantt-btn:hover{
   background:#303b40!important;border-color:#303b40!important;color:#fff!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — expanded project width fix
+   ========================================================= */
+html[data-theme="light"] .project.expanded .project-preview,
+html[data-theme="light"] .project.expanded .project-preview-grid,
+html[data-theme="light"] .project.expanded .project-preview-left,
+html[data-theme="light"] .project.expanded .project-preview-block{
+  box-sizing:border-box!important;
+  max-width:100%!important;
+}
