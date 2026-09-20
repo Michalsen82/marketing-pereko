@@ -2779,3 +2779,17 @@ html[data-theme="light"] .stats-toggle-btn svg{
     align-self:flex-start!important;
   }
 }
+
+
+/* =========================================================
+   LIGHT MODE — avatar camera badge
+   Camera icon matches the dark-gray person icon; no white rim.
+   ========================================================= */
+html[data-theme="light"] .user-avatar-plus{
+  color:#536167!important;
+  border:0!important;
+}
+html[data-theme="light"] .user-avatar-plus svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
