@@ -1244,3 +1244,117 @@ html[data-theme="light"] .gantt-row:hover .gantt-track{
     font-size:10.5px!important;
   }
 }
+
+
+/* =========================================================
+   LIGHT MOBILE — rozwinięty projekt jak w wersji ciemnej
+   ========================================================= */
+@media(max-width:760px){
+  html[data-theme="light"] .project.expanded .project-preview{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    padding-top:16px!important;
+    overflow:hidden!important;
+    box-sizing:border-box!important;
+    background:#fff!important;
+    border-top:1px solid #e2e7e9!important;
+    border-radius:0!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-grid{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:20px!important;
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    align-items:start!important;
+    box-sizing:border-box!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-left,
+  html[data-theme="light"] .project.expanded .project-preview-block{
+    width:100%!important;
+    max-width:100%!important;
+    min-width:0!important;
+    box-sizing:border-box!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-left{
+    padding:0!important;
+    margin:0!important;
+    border:0!important;
+    background:#fff!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-block:not(.project-preview-left){
+    margin:0!important;
+    padding:14px 16px!important;
+    border:1px solid #d9e0e2!important;
+    border-radius:12px!important;
+    background:#fff!important;
+    box-shadow:none!important;
+    overflow:hidden!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-task{
+    display:grid!important;
+    grid-template-columns:22px minmax(0,1fr) 38px!important;
+    align-items:center!important;
+    gap:10px!important;
+    width:100%!important;
+    min-width:0!important;
+    padding:10px 0!important;
+    margin:0!important;
+    background:#fff!important;
+    border-bottom:1px solid #e7ecee!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-task-copy{
+    min-width:0!important;
+    width:100%!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-comments{
+    width:100%!important;
+    margin:22px 0 0!important;
+    padding:16px 0 0!important;
+    background:#fff!important;
+    border-top:1px solid #e7ecee!important;
+    box-sizing:border-box!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-comment{
+    display:grid!important;
+    grid-template-columns:22px minmax(0,1fr)!important;
+    align-items:flex-start!important;
+    gap:9px!important;
+    width:100%!important;
+    min-width:0!important;
+    margin:0!important;
+    padding:10px 0!important;
+    background:#fff!important;
+    border-bottom:1px solid #e7ecee!important;
+    box-sizing:border-box!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-fact{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:space-between!important;
+    gap:12px!important;
+    min-height:34px!important;
+    width:100%!important;
+    padding:9px 0!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+    border-bottom:1px solid #e6ebed!important;
+  }
+
+  html[data-theme="light"] .project.expanded .project-preview-label{
+    display:block!important;
+    margin:0 0 9px!important;
+  }
+}
