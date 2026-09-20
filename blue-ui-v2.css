@@ -8070,3 +8070,282 @@ body::after{display:none!important}
 }
 
 /* retrigger preview 2026-09-20 18:xx — bez zmian wizualnych */
+
+
+/* =========================================================
+   BLUE UI PASS 24 — faktyczna naprawa hero
+   ostre zdjęcie, czytelny CTA/data, równe 01/02/03
+   2026-09-20
+   ========================================================= */
+
+@media(min-width:1181px){
+  .intro-row{
+    position:relative!important;
+    height:258px!important;
+    min-height:258px!important;
+    padding:0!important;
+    overflow:hidden!important;
+    background:#f8fbff!important;
+  }
+
+  /* zdjęcie jest osobną warstwą po prawej, bez szarego welonu */
+  .intro-row::after{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    z-index:0!important;
+    top:0!important;
+    right:0!important;
+    bottom:0!important;
+    width:61%!important;
+    height:100%!important;
+    opacity:1!important;
+    filter:contrast(1.08) saturate(1.08)!important;
+    transform:none!important;
+    border-radius:0!important;
+    background-image:url('/assets/blue-ui/pereko-hq-hero.jpg')!important;
+    background-repeat:no-repeat!important;
+    background-position:right center!important;
+    background-size:auto 100%!important;
+    box-shadow:none!important;
+    -webkit-mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.20) 9%,#000 27%,#000 100%)!important;
+    mask-image:linear-gradient(90deg,transparent 0%,rgba(0,0,0,.20) 9%,#000 27%,#000 100%)!important;
+  }
+
+  /* tylko delikatne białe przejście od tekstu do zdjęcia */
+  .intro-row::before{
+    content:""!important;
+    display:block!important;
+    position:absolute!important;
+    z-index:1!important;
+    inset:0!important;
+    width:auto!important;
+    height:auto!important;
+    border-radius:0!important;
+    opacity:1!important;
+    filter:none!important;
+    transform:none!important;
+    pointer-events:none!important;
+    background:linear-gradient(90deg,
+      #f8fbff 0%,
+      #f8fbff 43%,
+      rgba(248,251,255,.96) 48%,
+      rgba(248,251,255,.72) 54%,
+      rgba(248,251,255,.30) 60%,
+      rgba(248,251,255,0) 67%)!important;
+    box-shadow:none!important;
+  }
+
+  .blue-hero-visual{
+    display:none!important;
+  }
+
+  .blue-hero-copy{
+    position:absolute!important;
+    z-index:3!important;
+    left:32px!important;
+    top:24px!important;
+    width:auto!important;
+    max-width:none!important;
+    padding:0!important;
+    transform:none!important;
+  }
+
+  .section-kicker{
+    margin:0 0 9px!important;
+  }
+
+  .intro-row h1{
+    margin:0 0 9px!important;
+    width:700px!important;
+    max-width:700px!important;
+    font-size:40px!important;
+    line-height:1.02!important;
+  }
+
+  .intro-row p{
+    margin:0!important;
+    width:650px!important;
+    max-width:650px!important;
+    font-size:13.5px!important;
+    line-height:1.4!important;
+  }
+
+  /* trzy benefity mają własne, stabilne kolumny */
+  .blue-hero-proof{
+    display:grid!important;
+    grid-template-columns:190px 260px 310px!important;
+    align-items:center!important;
+    justify-content:start!important;
+    gap:18px!important;
+    width:796px!important;
+    max-width:none!important;
+    margin-top:16px!important;
+  }
+
+  .blue-hero-proof span{
+    display:grid!important;
+    grid-template-columns:34px 24px minmax(0,1fr)!important;
+    align-items:center!important;
+    column-gap:7px!important;
+    min-width:0!important;
+    min-height:34px!important;
+    margin:0!important;
+  }
+
+  .blue-hero-proof b{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+    margin:0!important;
+  }
+
+  .blue-hero-proof i{
+    width:24px!important;
+    margin:0!important;
+    font-size:9px!important;
+    text-align:center!important;
+  }
+
+  .blue-hero-proof em{
+    margin:0!important;
+    min-width:0!important;
+    font-size:10px!important;
+    line-height:1.18!important;
+    white-space:nowrap!important;
+  }
+
+  /* prawa kolumna - czytelna niezależnie od zdjęcia */
+  .intro-actions{
+    position:absolute!important;
+    z-index:6!important;
+    top:78px!important;
+    right:24px!important;
+    bottom:auto!important;
+    left:auto!important;
+    width:248px!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:10px!important;
+    margin:0!important;
+  }
+
+  .intro-actions .date-box{
+    width:100%!important;
+    min-width:0!important;
+    height:38px!important;
+    min-height:38px!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 30px!important;
+    align-items:center!important;
+    gap:8px!important;
+    padding:0 4px 0 10px!important;
+    border:1px solid rgba(255,255,255,.55)!important;
+    border-radius:11px!important;
+    background:rgba(255,255,255,.74)!important;
+    box-shadow:0 6px 18px rgba(8,44,88,.10)!important;
+    backdrop-filter:blur(5px)!important;
+    -webkit-backdrop-filter:blur(5px)!important;
+  }
+
+  .date-copy{
+    order:1!important;
+    display:flex!important;
+    align-items:baseline!important;
+    justify-content:flex-end!important;
+    flex-wrap:nowrap!important;
+    gap:5px!important;
+    text-align:right!important;
+    margin:0!important;
+    text-shadow:none!important;
+  }
+
+  .date-copy .date-weekday,
+  .date-copy>strong,
+  .date-copy>span:last-child{
+    margin:0!important;
+    color:#0b477f!important;
+    line-height:1!important;
+    white-space:nowrap!important;
+  }
+
+  .date-copy .date-weekday{
+    font-size:8.5px!important;
+    font-weight:700!important;
+  }
+  .date-copy>strong{
+    font-size:11.5px!important;
+    font-weight:800!important;
+  }
+  .date-copy>span:last-child{
+    font-size:8.5px!important;
+    font-weight:700!important;
+  }
+
+  .date-calendar-icon{
+    order:2!important;
+    justify-self:end!important;
+    width:28px!important;
+    height:28px!important;
+    border-radius:8px!important;
+    background:#eef5ff!important;
+    border:1px solid #d6e6f8!important;
+    box-shadow:none!important;
+    color:#1769ff!important;
+  }
+
+  .date-calendar-icon svg{
+    width:14px!important;
+    height:14px!important;
+  }
+
+  .intro-project-actions{
+    display:block!important;
+    width:100%!important;
+    margin:0!important;
+  }
+
+  .intro-add-project{
+    width:100%!important;
+    min-width:0!important;
+    height:52px!important;
+    min-height:52px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:10px!important;
+    border-radius:12px!important;
+    background:#1769ff!important;
+    color:#fff!important;
+    box-shadow:0 12px 28px rgba(23,105,255,.24)!important;
+  }
+}
+
+@media(max-width:1400px) and (min-width:1181px){
+  .intro-row h1{
+    width:610px!important;
+    max-width:610px!important;
+    font-size:36px!important;
+  }
+  .intro-row p{
+    width:560px!important;
+    max-width:560px!important;
+    font-size:12.5px!important;
+  }
+  .blue-hero-proof{
+    grid-template-columns:170px 225px 270px!important;
+    gap:12px!important;
+    width:689px!important;
+  }
+  .blue-hero-proof em{
+    font-size:8.8px!important;
+  }
+  .intro-row::after{
+    width:57%!important;
+  }
+  .intro-actions{
+    right:20px!important;
+    width:224px!important;
+  }
+}
