@@ -38,11 +38,56 @@
     return {title:'Wyłączone',detail:'Włącz je jednym przyciskiem po zalogowaniu.'};
   }
 
+  let swRefreshInProgress=false;
+  let swUpdateTimer=null;
+
+  function activateWaitingWorker(reg){
+    try{
+      if(reg?.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'});
+    }catch(e){
+      console.warn('PWA activate waiting worker:',e);
+    }
+  }
+
+  async function checkForAppUpdate(){
+    if(!registration)return null;
+    try{
+      await registration.update();
+      activateWaitingWorker(registration);
+      return registration;
+    }catch(e){
+      console.warn('PWA update check:',e);
+      return registration;
+    }
+  }
+
   async function registerSW(){
     if(!('serviceWorker' in navigator))return null;
     try{
-      registration=await navigator.serviceWorker.register('/sw.js',{scope:'/'});
+      registration=await navigator.serviceWorker.register('/sw.js',{scope:'/',updateViaCache:'none'});
+
+      navigator.serviceWorker.addEventListener('controllerchange',()=>{
+        if(swRefreshInProgress)return;
+        swRefreshInProgress=true;
+        setTimeout(()=>location.reload(),250);
+      });
+
+      registration.addEventListener('updatefound',()=>{
+        const worker=registration.installing;
+        if(!worker)return;
+        worker.addEventListener('statechange',()=>{
+          if(worker.state==='installed'&&navigator.serviceWorker.controller){
+            activateWaitingWorker(registration);
+          }
+        });
+      });
+
       await navigator.serviceWorker.ready;
+      await checkForAppUpdate();
+
+      clearInterval(swUpdateTimer);
+      swUpdateTimer=setInterval(()=>checkForAppUpdate(),5*60*1000);
+
       return registration;
     }catch(e){
       console.warn('PWA Service Worker:',e);
@@ -616,10 +661,14 @@
   document.addEventListener('visibilitychange',()=>{
     if(!document.hidden){
       refreshAll();
+      checkForAppUpdate();
       try{navigator.clearAppBadge?.()}catch{}
     }
   });
-  window.addEventListener('focus',()=>{try{navigator.clearAppBadge?.()}catch{}});
+  window.addEventListener('focus',()=>{
+    checkForAppUpdate();
+    try{navigator.clearAppBadge?.()}catch{}
+  });
 
   registerSW();
   buildLoginPanel();
