@@ -1334,3 +1334,53 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
 }
 .project-preview-gantt-btn svg{width:15px!important;height:15px!important;fill:currentColor!important;flex:0 0 15px!important}
 .project-preview-gantt-btn:hover{background:rgba(255,255,255,.13)!important;border-color:rgba(255,221,0,.48)!important;color:#ffdd00!important}
+
+
+/* =========================================================
+   FIX — rozwinięty projekt nie może wychodzić poza kartę
+   ========================================================= */
+.project.expanded,
+.project.expanded .project-preview,
+.project.expanded .project-preview-grid{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  box-sizing:border-box!important;
+}
+.project.expanded .project-preview-grid{
+  grid-template-columns:minmax(0,1fr) minmax(220px,280px)!important;
+  gap:24px!important;
+}
+.project.expanded .project-preview-left,
+.project.expanded .project-preview-block{
+  min-width:0!important;
+  max-width:100%!important;
+  box-sizing:border-box!important;
+}
+.project.expanded .project-preview-block:not(.project-preview-left){
+  overflow:hidden!important;
+}
+.project.expanded .project-preview-fact{
+  min-width:0!important;
+}
+.project.expanded .project-preview-fact strong{
+  min-width:0!important;
+  max-width:58%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+@media(max-width:1180px){
+  .project.expanded .project-preview-grid{
+    grid-template-columns:minmax(0,1fr) minmax(210px,250px)!important;
+    gap:18px!important;
+  }
+}
+@media(max-width:980px){
+  .project.expanded .project-preview-grid{
+    grid-template-columns:1fr!important;
+  }
+  .project.expanded .project-preview-fact strong{
+    max-width:65%!important;
+  }
+}
