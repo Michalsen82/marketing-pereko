@@ -10,6 +10,8 @@ const taskNo=t=>window.perekoTaskNumberLabel?.(t)||'Z-—';
 let viewMode='all';
 let personFilter='all';
 let scopedProjectId=null;
+let mobileZoom='month';
+const isMobileGantt=()=>window.matchMedia('(max-width:760px)').matches;
 
 function people(){
   const set=new Set();
@@ -39,6 +41,14 @@ function build(){
         </div>
         <label class="gantt-person-filter"><span>Pracownik</span><select id="ganttPersonFilter"><option value="all">Wszyscy pracownicy</option></select></label>
       </div>
+      <div class="gantt-mobile-tools" aria-label="Widok mobilny">
+        <span>Skala</span>
+        <div class="gantt-mobile-zoom" role="group" aria-label="Skala osi czasu">
+          <button type="button" data-gantt-zoom="week">Tydzień</button>
+          <button type="button" class="active" data-gantt-zoom="month">Miesiąc</button>
+        </div>
+        <small>Przesuń oś czasu palcem →</small>
+      </div>
       <div class="gantt-toolbar">
         <div class="gantt-legend">
           <span><i></i>Projekt / postęp</span>
@@ -58,6 +68,11 @@ function build(){
     render();
   }));
   document.querySelector('#ganttPersonFilter').addEventListener('change',e=>{personFilter=e.target.value;render()});
+  m.querySelectorAll('[data-gantt-zoom]').forEach(b=>b.addEventListener('click',()=>{
+    mobileZoom=b.dataset.ganttZoom;
+    m.querySelectorAll('[data-gantt-zoom]').forEach(x=>x.classList.toggle('active',x===b));
+    render();
+  }));
 }
 function refreshPeople(){
   const s=document.querySelector('#ganttPersonFilter');if(!s)return;
@@ -104,6 +119,59 @@ function projectStart(p,r,ts){
   if(taskDates.length)return new Date(Math.min(...taskDates.map(d=>d.getTime())));
   return r.min
 }
+
+function mobileTicks(r){
+  const step=mobileZoom==='week'?7:14;
+  const out=[];
+  for(let d=new Date(r.min),i=0;d<=r.max;d=add(d,step),i++){
+    out.push({x:clamp(days(r.min,d)/r.total*100,0,100),label:d.toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit'})});
+  }
+  return out;
+}
+function renderMobile(ps,r,today,showProjects,showTasks){
+  const body=document.querySelector('#ganttBody');
+  const pxPerDay=mobileZoom==='week'?22:11;
+  const canvasW=Math.max(680,Math.min(2400,r.total*pxPerDay));
+  const th=clamp(days(r.min,today)/r.total*100,0,100);
+  const ticks=mobileTicks(r);
+  const axis='<div class="gantt-mobile-axis" style="width:'+canvasW+'px">'+
+    ticks.map(t=>'<span style="left:'+t.x+'%">'+escG(t.label)+'</span>').join('')+
+    '<i class="gantt-mobile-today" style="left:'+th+'%"></i></div>';
+
+  const cards=ps.map(p=>{
+    const ts=showTasks?tasksFor(p):[];
+    const allTasks=Array.isArray(p.projectTasks)?p.projectTasks:[];
+    const done=allTasks.filter(t=>t.done).length;
+    const prog=allTasks.length?Math.round(done/allTasks.length*100):(p.progress||0);
+    const end=fmt(p.deadline)||r.max,start=projectStart(p,r,allTasks);
+    const l=clamp(days(r.min,start)/r.total*100,0,100),w=clamp(days(start,end)/r.total*100,1,100-l);
+    const projectTrack=showProjects?
+      '<div class="gantt-mobile-project-track" style="width:'+canvasW+'px"><div class="gantt-mobile-grid"></div><i class="gantt-mobile-today" style="left:'+th+'%"></i><div class="gantt-mobile-project-bar" style="left:'+l+'%;width:'+w+'%"><span style="width:'+prog+'%"></span><b>'+prog+'%</b></div></div>':'';
+
+    const taskRows=showTasks?(ts.length?ts.map(t=>{
+      const d=fmt(t.deadline),s=d?(fmt(t.createdAt)||add(d,-7)):null;
+      const sx=s?clamp(days(r.min,s)/r.total*100,0,100):0;
+      const x=d?clamp(days(r.min,d)/r.total*100,0,100):0;
+      const left=Math.min(sx,x),width=d?Math.max(.5,Math.abs(x-sx)):0;
+      return '<div class="gantt-mobile-task">'+
+        '<div class="gantt-mobile-task-copy"><strong>'+escG(t.text)+'</strong><span>'+escG(taskNo(t))+' · '+escG(t.assignee||'Bez przypisania')+'</span><small>Termin: '+escG(t.deadline||'brak')+'</small></div>'+
+        '<div class="gantt-mobile-task-scroll"><div class="gantt-mobile-task-track" style="width:'+canvasW+'px"><div class="gantt-mobile-grid"></div><i class="gantt-mobile-today" style="left:'+th+'%"></i>'+
+          (d?'<div class="gantt-mobile-task-bar '+(t.done?'done':'')+'" style="left:'+left+'%;width:'+width+'%"></div><i class="gantt-mobile-task-end '+(t.done?'done':'')+'" style="left:'+x+'%"></i>':'<span class="gantt-mobile-no-date">Brak terminu</span>')+
+        '</div></div>'+
+      '</div>';
+    }).join(''):'<div class="gantt-mobile-empty-task">Brak zadań w projekcie.</div>'):'';
+
+    return '<article class="gantt-mobile-card">'+
+      '<div class="gantt-mobile-card-head"><div><span>'+escG(statusText[p.status]||'—')+'</span><h3>'+escG(p.name)+'</h3><p>'+escG(p.owner||'Brak właściciela')+' · termin '+escG(p.deadline||'brak')+'</p></div>'+
+      '<div class="gantt-mobile-progress"><strong>'+prog+'%</strong><small>'+done+'/'+allTasks.length+' zadań</small></div></div>'+
+      '<div class="gantt-mobile-scroll">'+axis+projectTrack+'</div>'+
+      (taskRows?'<div class="gantt-mobile-tasks">'+taskRows+'</div>':'')+
+    '</article>';
+  }).join('');
+
+  body.innerHTML='<div class="gantt-mobile-list">'+cards+'</div>';
+}
+
 function render(){
   build();refreshPeople();
   const body=document.querySelector('#ganttBody');
@@ -114,6 +182,11 @@ function render(){
   const th=clamp(days(r.min,today)/r.total*100,0,100);
   const mh=months(r).map(m=>'<div class="gantt-month" style="left:'+m.l+'%;width:'+m.w+'%">'+escG(m.t)+'</div>').join('');
   const showProjects=scopedProjectId?true:viewMode!=='tasks',showTasks=scopedProjectId?true:viewMode!=='projects';
+  document.querySelector('#ganttModal')?.classList.toggle('mobile-mode',isMobileGantt());
+  if(isMobileGantt()){
+    renderMobile(ps,r,today,showProjects,showTasks);
+    return;
+  }
 
   const rows=ps.map(p=>{
     const ts=showTasks?tasksFor(p):[];
@@ -176,6 +249,10 @@ function openProjectGantt(projectId){
   document.querySelector('#ganttModal').classList.add('open');document.body.classList.add('gantt-open')
 }
 window.openProjectGantt=openProjectGantt;
+window.addEventListener('resize',()=>{
+  const modal=document.querySelector('#ganttModal');
+  if(modal?.classList.contains('open'))render();
+});
 function closeG(){document.querySelector('#ganttModal')?.classList.remove('open');document.body.classList.remove('gantt-open')}
 document.addEventListener('click',e=>{
   if(e.target.closest('#openGantt'))openG();
