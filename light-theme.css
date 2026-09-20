@@ -1664,3 +1664,181 @@ html[data-theme="light"] .projects-module .project-topic-icon{
   background:#e9eef0!important;
   border-color:#cbd5d8!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — hierarchy pass 05
+   Jeszcze bliżej dark mode: wyraźniejsze warstwy, ten sam układ.
+   ========================================================= */
+
+/* Główna plansza: nie biel na bieli, tylko trzy poziomy jasności */
+html[data-theme="light"] body,
+html[data-theme="light"] .page-shell{
+  background:#eef2f3!important;
+}
+html[data-theme="light"] .dashboard-grid{
+  background:transparent!important;
+}
+
+/* Moduły główne — jasna karta na chłodniejszym tle strony */
+html[data-theme="light"] .module{
+  background:#f9fbfb!important;
+  border-color:#cfd8db!important;
+  box-shadow:0 14px 34px rgba(20,28,32,.07)!important;
+}
+html[data-theme="light"] .module-head{
+  background:#ffffff!important;
+  border-bottom:1px solid #dce3e5!important;
+}
+
+/* Projekty — odpowiednik ciemnej karty na ciemnym panelu */
+html[data-theme="light"] .projects-module{
+  background:#e8edef!important;
+  border-color:#c9d3d6!important;
+}
+html[data-theme="light"] .projects-module .module-head{
+  background:#fdfefe!important;
+}
+html[data-theme="light"] .projects-module .project-list{
+  background:#e8edef!important;
+  padding:20px!important;
+}
+html[data-theme="light"] .projects-module .project{
+  background:linear-gradient(145deg,#fdfefe 0%,#f4f7f8 100%)!important;
+  border:1px solid #becacd!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 12px 26px rgba(20,28,32,.085)!important;
+}
+html[data-theme="light"] .projects-module .project:hover{
+  background:#fff!important;
+  border-color:#aebdc1!important;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,1),
+    0 16px 34px rgba(20,28,32,.12)!important;
+}
+
+/* Wnętrze rozwiniętego projektu */
+html[data-theme="light"] .projects-module .project-preview{
+  background:#edf2f3!important;
+  border-top-color:#cfd9dc!important;
+}
+html[data-theme="light"] .project-preview-block:not(.project-preview-left){
+  background:#f8fafa!important;
+  border-color:#cfd9dc!important;
+}
+html[data-theme="light"] .project-preview-left{
+  border-right-color:#d5dde0!important;
+}
+
+/* Czytelniejsze separatory sekcji zadania/komentarze */
+html[data-theme="light"] .project-preview-label{
+  color:#6d7c82!important;
+}
+html[data-theme="light"] .project-preview-task,
+html[data-theme="light"] .project-preview-comment{
+  border-bottom-color:#dce3e5!important;
+}
+
+/* Właściciel, dni, przyciski — zachowaj hierarchię dark mode */
+html[data-theme="light"] .project-owner-badge{
+  background:#20292d!important;
+  border-color:#20292d!important;
+}
+html[data-theme="light"] .project-close-badge{
+  background:#20292d!important;
+  border-color:#20292d!important;
+}
+html[data-theme="light"] .project-open-btn{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  color:#fff!important;
+}
+html[data-theme="light"] .project-expand-btn{
+  background:#eef2f3!important;
+  border-color:#c9d3d6!important;
+  color:#435158!important;
+}
+html[data-theme="light"] .project-status-badge{
+  background:#f8fafa!important;
+  border-color:#89969b!important;
+}
+
+/* Pasek postępu mocniej odcina się od karty */
+html[data-theme="light"] .project .progress{
+  background:#dbe3e5!important;
+}
+html[data-theme="light"] .project .progress>span{
+  background:#ffdd00!important;
+}
+
+/* TASKI — również jeden panel, ale z warstwami jak dark */
+html[data-theme="light"] .task-calendar-module{
+  background:#f7f9fa!important;
+  border-color:#cfd8db!important;
+}
+html[data-theme="light"] .task-calendar-module .module-head{
+  background:#fff!important;
+}
+html[data-theme="light"] .task-calendar-module .task-date-nav{
+  background:#f1f5f6!important;
+  border-top:1px solid #dde4e6!important;
+  border-bottom:1px solid #d6dfe2!important;
+}
+html[data-theme="light"] .task-calendar-module .task-add-form{
+  background:#eef3f4!important;
+  border-bottom-color:#d5dde0!important;
+}
+html[data-theme="light"] .task-calendar-module .tasks,
+html[data-theme="light"] .task-calendar-module .task-closed-wrap{
+  background:#f7f9fa!important;
+}
+html[data-theme="light"] .task-calendar-module .task-calendar-item{
+  border-bottom-color:#d9e1e4!important;
+}
+html[data-theme="light"] .task-calendar-module .task-calendar-item:hover{
+  background:#f1f5f6!important;
+}
+
+/* boczne moduły: subtelnie odcięte */
+html[data-theme="light"] .side-column .module{
+  background:#f7f9fa!important;
+  border-color:#cfd8db!important;
+}
+html[data-theme="light"] .side-column .module .module-head{
+  background:#fff!important;
+}
+html[data-theme="light"] .side-column .deadlines,
+html[data-theme="light"] .side-column .team-grid{
+  background:#f7f9fa!important;
+}
+
+/* kafle KPI — mniej płaskie, bliżej dark-glass */
+html[data-theme="light"] .stat-card{
+  background:linear-gradient(145deg,#ffffff,#f4f7f8)!important;
+  border-color:#cfd8db!important;
+  box-shadow:0 12px 28px rgba(20,28,32,.07)!important;
+}
+html[data-theme="light"] .stat-card:hover{
+  border-color:#b9c5c9!important;
+  box-shadow:0 16px 34px rgba(20,28,32,.10)!important;
+}
+
+/* filtry i Gantt — wyraźniejsze jak w ciemnej */
+html[data-theme="light"] .filter,
+html[data-theme="light"] .gantt-open-btn{
+  background:#eef2f3!important;
+  border-color:#cbd5d8!important;
+  color:#536167!important;
+}
+html[data-theme="light"] .filter.active{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  color:#fff!important;
+}
+html[data-theme="light"] .gantt-open-btn:hover,
+html[data-theme="light"] .filter:hover{
+  background:#fff!important;
+  border-color:#aebdc1!important;
+  color:#202b30!important;
+}
