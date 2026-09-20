@@ -1,19 +1,19 @@
 {
-  "version": "2.0.4",
-  "releasedAt": "2026-09-20T23:30:00+02:00",
+  "version": "2.0.5",
+  "releasedAt": "2026-09-20T23:06:00+02:00",
   "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0.4",
-  "releaseSummary": "Uproszczony mobilny topbar: wszystkie pięć ikon akcji w jednym rzędzie, a informacja o zalogowanym użytkowniku bezpośrednio pod nimi.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.5",
+  "releaseSummary": "Korekta informacji o zalogowanym użytkowniku w aplikacji mobilnej.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Dostępna jest wersja 2.0.4 z uproszczonym układem górnego paska w aplikacji mobilnej.",
+  "message": "Dostępna jest wersja 2.0.5 z poprawionym podpisem zalogowanego użytkownika.",
   "changes": [
     {
-      "title": "Pięć ikon w jednym rzędzie",
-      "detail": "Wyloguj, zmiana hasła, pracownicy, aplikacja i powiadomienia oraz jasno/ciemno są teraz w jednej linii po prawej stronie."
+      "title": "Widoczna nazwa zalogowanej osoby",
+      "detail": "Pod ikonami wyświetla się teraz „Zalogowany:” oraz pełne imię i nazwisko aktualnego użytkownika."
     },
     {
-      "title": "Informacja o użytkowniku pod ikonami",
-      "detail": "Pod rzędem ikon widoczny jest tekst „Zalogowany:” oraz imię i nazwisko aktualnie zalogowanej osoby."
+      "title": "Mniejsza czcionka",
+      "detail": "Podpis i nazwa użytkownika zostały delikatnie zmniejszone, żeby lepiej pasowały do mobilnego topbara."
     }
   ]
 }
