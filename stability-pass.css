@@ -1044,3 +1044,135 @@ html[data-theme="light"] .gantt-row:hover .gantt-track{
     font-size:12.5px!important;
   }
 }
+
+
+/* =========================================================
+   MOBILE TOPBAR 2.0.4 — pięć ikon w jednym rzędzie,
+   informacja o użytkowniku pod spodem
+   ========================================================= */
+@media(max-width:760px){
+  .topbar-actions{
+    width:100%!important;
+    max-width:none!important;
+    margin-left:0!important;
+    margin-right:0!important;
+    align-self:stretch!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) repeat(5,34px)!important;
+    grid-template-rows:34px auto!important;
+    column-gap:6px!important;
+    row-gap:7px!important;
+    align-items:center!important;
+  }
+
+  .topbar-actions .logout-btn{
+    grid-column:2!important;
+    grid-row:1!important;
+  }
+
+  .topbar-actions .password-change-btn{
+    grid-column:3!important;
+    grid-row:1!important;
+  }
+
+  .topbar-actions .team-top-btn{
+    grid-column:4!important;
+    grid-row:1!important;
+  }
+
+  .topbar-actions .pwa-settings-btn{
+    grid-column:5!important;
+    grid-row:1!important;
+  }
+
+  .topbar-actions .theme-toggle-btn{
+    grid-column:6!important;
+    grid-row:1!important;
+  }
+
+  .topbar-actions .top-action-icon{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    min-height:34px!important;
+    flex-basis:34px!important;
+    margin:0!important;
+  }
+
+  .topbar-actions .user-zone{
+    grid-column:1 / -1!important;
+    grid-row:2!important;
+    width:100%!important;
+    min-height:auto!important;
+    padding:0!important;
+    border-left:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:0!important;
+    overflow:visible!important;
+  }
+
+  .topbar-actions .user-avatar-control{
+    display:none!important;
+  }
+
+  .topbar-actions .user-zone-copy{
+    display:block!important;
+    width:auto!important;
+    max-width:100%!important;
+    min-width:0!important;
+    overflow:visible!important;
+    text-align:right!important;
+  }
+
+  .topbar-actions .user-zone-copy>span{
+    display:none!important;
+  }
+
+  .topbar-actions .user-zone-copy strong{
+    display:block!important;
+    width:auto!important;
+    max-width:100%!important;
+    margin:0!important;
+    color:inherit!important;
+    font-size:12.5px!important;
+    line-height:1.15!important;
+    font-weight:700!important;
+    text-align:right!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+  }
+
+  .topbar-actions .user-zone-copy strong::before{
+    content:"Zalogowany: ";
+    font-weight:500!important;
+    opacity:.62;
+  }
+
+  .topbar-actions .user-name-part{
+    display:inline!important;
+    white-space:nowrap!important;
+  }
+}
+
+@media(max-width:430px){
+  .topbar-actions{
+    grid-template-columns:minmax(0,1fr) repeat(5,32px)!important;
+    grid-template-rows:32px auto!important;
+    column-gap:5px!important;
+  }
+
+  .topbar-actions .top-action-icon{
+    width:32px!important;
+    height:32px!important;
+    min-width:32px!important;
+    min-height:32px!important;
+    flex-basis:32px!important;
+  }
+
+  .topbar-actions .user-zone-copy strong{
+    font-size:12px!important;
+  }
+}
