@@ -1,4 +1,4 @@
-const CACHE_NAME='pereko-marketing-pwa-v5';
+const CACHE_NAME='pereko-marketing-pwa-v6';
 const APP_SHELL=[
   '/',
   '/index.html',
@@ -7,7 +7,6 @@ const APP_SHELL=[
   '/manifest.webmanifest',
   '/favicon.svg',
   '/icons/pereko-marketing-v3-192.png',
-  '/icons/pereko-marketing-v2-512.png',
   '/icons/pereko-marketing-v2-512.png',
   '/icons/pereko-marketing-v3-apple.png',
   '/styles.css',
@@ -22,6 +21,7 @@ const APP_SHELL=[
   '/user-avatar.css',
   '/project-card-v2.css',
   '/stability-pass.css',
+  '/light-theme.css',
   '/deadline-agenda.css',
   '/gantt.css',
   '/account-security.css',
@@ -37,6 +37,7 @@ const APP_SHELL=[
   '/task-calendar.js',
   '/project-cards.js',
   '/deadline-agenda.js',
+  '/light-theme.js',
   '/global-search.js',
   '/project-files.js',
   '/footer.js',
@@ -83,7 +84,7 @@ self.addEventListener('fetch',event=>{
         }
         return response;
       }catch{
-        return (await caches.match(request))||new Response('',{status:503,statusText:'Offline'});
+        return (await caches.match(request,{ignoreSearch:true}))||new Response('',{status:503,statusText:'Offline'});
       }
     })());
     return;
