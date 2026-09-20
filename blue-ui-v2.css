@@ -6991,3 +6991,102 @@ body::after{display:none!important}
     min-width:0!important;
   }
 }
+
+
+/* =========================================================
+   BLUE UI PASS 17 — naprawa prawego bloku hero
+   2026-09-20
+   ========================================================= */
+
+@media(min-width:1181px){
+  .intro-row{
+    overflow:hidden!important;
+  }
+
+  .intro-actions{
+    position:absolute!important;
+    top:112px!important;
+    right:24px!important;
+    bottom:auto!important;
+    width:248px!important;
+    max-width:calc(100% - 48px)!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:flex-start!important;
+    gap:12px!important;
+    margin:0!important;
+    box-sizing:border-box!important;
+  }
+
+  .intro-actions .date-box,
+  .intro-project-actions,
+  .intro-add-project{
+    width:100%!important;
+    min-width:0!important;
+    max-width:100%!important;
+    box-sizing:border-box!important;
+    margin:0!important;
+  }
+
+  .intro-actions .date-box{
+    height:62px!important;
+    min-height:62px!important;
+  }
+
+  .intro-project-actions{
+    display:block!important;
+  }
+
+  .intro-add-project{
+    height:62px!important;
+    min-height:62px!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+  }
+
+  /* ukryty techniczny przycisk nie może wpływać na wysokość kolumny */
+  .stats-toggle-btn{
+    display:none!important;
+  }
+
+  /* oddech dla hasła, aby nie kolidowało z prawą kolumną */
+  .blue-hero-slogan{
+    right:300px!important;
+    top:62px!important;
+  }
+}
+
+@media(max-width:1400px) and (min-width:1181px){
+  .intro-actions{
+    top:112px!important;
+    right:20px!important;
+    width:230px!important;
+    max-width:calc(100% - 40px)!important;
+  }
+  .blue-hero-slogan{
+    right:270px!important;
+  }
+}
+
+@media(max-width:1180px){
+  .intro-actions{
+    position:relative!important;
+    top:auto!important;
+    right:auto!important;
+    bottom:auto!important;
+    width:100%!important;
+    max-width:none!important;
+    margin-top:20px!important;
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:12px!important;
+  }
+  .intro-actions .date-box,
+  .intro-project-actions,
+  .intro-add-project{
+    width:100%!important;
+    max-width:none!important;
+  }
+}
