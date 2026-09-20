@@ -2217,3 +2217,166 @@ html[data-theme="light"] .r2-global-empty{
 html[data-theme="light"] .r2-global-error{
   color:#b84a42!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — geometry parity pass 07
+   Light i Dark mają mieć identyczny layout. Ten blok NIE zmienia kolorów.
+   ========================================================= */
+
+/* Górny hero / data — dokładnie geometria dark mode */
+html[data-theme="light"] .intro-row{
+  display:grid!important;
+  grid-template-columns:3fr 1fr!important;
+  column-gap:14px!important;
+  row-gap:0!important;
+  align-items:center!important;
+  margin-bottom:24px!important;
+}
+html[data-theme="light"] .intro-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-self:stretch!important;
+  justify-content:flex-start!important;
+  gap:12px!important;
+  min-width:0!important;
+}
+html[data-theme="light"] .date-box{
+  grid-template-columns:72px 1fr!important;
+  gap:8px!important;
+  min-width:220px!important;
+  max-width:250px!important;
+  padding:14px 16px!important;
+  align-items:center!important;
+  margin-left:0!important;
+  transform:translateX(10px)!important;
+}
+html[data-theme="light"] .date-daynum{
+  width:72px!important;
+  height:64px!important;
+  padding:0!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  font-size:50px!important;
+  line-height:1!important;
+  letter-spacing:-.055em!important;
+  transform:none!important;
+}
+html[data-theme="light"] .date-copy{
+  display:grid!important;
+  grid-template-rows:auto auto auto!important;
+  row-gap:4px!important;
+  align-content:center!important;
+}
+html[data-theme="light"] .date-copy .date-weekday,
+html[data-theme="light"] .date-copy strong,
+html[data-theme="light"] .date-copy span{
+  margin:0!important;
+  line-height:1.08!important;
+}
+html[data-theme="light"] .date-copy .date-weekday{font-size:10px!important}
+html[data-theme="light"] .date-copy strong{font-size:16px!important}
+html[data-theme="light"] .date-copy span{
+  font-size:12px!important;
+  transform:translateY(-1px)!important;
+}
+
+/* Moduł projektów — identyczne wymiary/paddingi jak dark */
+html[data-theme="light"] .projects-module{
+  overflow:hidden!important;
+}
+html[data-theme="light"] .projects-module .module-head{
+  padding:20px 22px 18px!important;
+}
+html[data-theme="light"] .projects-module .project-list{
+  padding:18px!important;
+  gap:16px!important;
+}
+html[data-theme="light"] .projects-module .project{
+  margin:0!important;
+  border-radius:16px!important;
+}
+
+/* Taski — dokładnie te same odstępy co dark */
+html[data-theme="light"] .task-calendar-module .tasks{
+  padding:12px 18px 10px!important;
+}
+html[data-theme="light"] .task-calendar-item{
+  padding:12px 0!important;
+}
+html[data-theme="light"] .task-date-nav{
+  grid-template-columns:34px 1fr 34px!important;
+  gap:7px!important;
+  padding:10px 12px!important;
+}
+html[data-theme="light"] .task-nav-arrow{
+  width:34px!important;
+  height:34px!important;
+}
+html[data-theme="light"] .task-date-main{
+  min-height:38px!important;
+}
+
+/* Karty i KPI — identyczna geometria niezależnie od motywu */
+html[data-theme="light"] .stats-grid{
+  gap:14px!important;
+  align-items:stretch!important;
+}
+html[data-theme="light"] .stat-card{
+  padding:22px 20px 19px!important;
+  overflow:hidden!important;
+}
+html[data-theme="light"] .project{
+  grid-template-columns:minmax(0,1fr) 170px 140px!important;
+  gap:18px!important;
+  align-items:center!important;
+  padding:22px!important;
+}
+
+/* boczne terminy: dokładnie ten sam raster 44x44 */
+html[data-theme="light"] .deadline{
+  grid-template-columns:44px 1fr!important;
+  gap:12px!important;
+  align-items:center!important;
+}
+html[data-theme="light"] .deadline .datebox{
+  width:44px!important;
+  height:44px!important;
+  min-width:44px!important;
+  min-height:44px!important;
+  max-width:44px!important;
+  max-height:44px!important;
+  flex:0 0 44px!important;
+  aspect-ratio:1/1!important;
+  padding:4px!important;
+  border-radius:12px!important;
+  box-sizing:border-box!important;
+}
+
+/* Responsive parity */
+@media(max-width:1100px){
+  html[data-theme="light"] .intro-row{
+    grid-template-columns:1fr!important;
+  }
+  html[data-theme="light"] .date-box{
+    transform:none!important;
+  }
+}
+@media(max-width:760px){
+  html[data-theme="light"] .projects-module .project-list{
+    padding:12px!important;
+  }
+  html[data-theme="light"] .date-box{
+    min-width:0!important;
+    max-width:none!important;
+    width:100%!important;
+    grid-template-columns:70px 1fr!important;
+  }
+  html[data-theme="light"] .date-daynum{
+    width:70px!important;
+    height:64px!important;
+    padding-left:8px!important;
+    font-size:48px!important;
+  }
+}
