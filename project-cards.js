@@ -56,7 +56,7 @@
 
   const projectVisualFor=p=>{
     const name=searchNorm(p?.name);
-    const heat1='https://images.unsplash.com/photo-1776860155275-eee24bfb1dee?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=72&w=900';
+    const heat1='/assets/blue-ui/project1-reference.jpg';
     const heat2='https://images.unsplash.com/photo-1776860150272-653efc74193c?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=72&w=900';
     if(name.includes('partner')||name.includes('b2b')||name.includes('centrum')){
       return {url:heat1,label:'CIEPŁO\nW DOBRYM\nKIERUNKU',tags:['Platforma B2B','Materiały sprzedażowe','Partnerzy']};
