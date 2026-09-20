@@ -536,3 +536,7 @@ body.gantt-open{overflow:hidden}.gantt-modal{position:fixed;inset:0;z-index:1900
   .gantt-view-btn{flex:1 1 0!important;padding:0 8px!important}
   .gantt-person-filter{align-items:stretch!important;flex-direction:column!important}
 }
+
+/* Gantt pojedynczego projektu */
+.gantt-controls[hidden]{display:none!important}
+.gantt-shell:has(.gantt-controls[hidden]) .gantt-toolbar{border-top:0!important}
