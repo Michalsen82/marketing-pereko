@@ -1461,3 +1461,97 @@ html[data-theme="light"] .deadline-edit input[type="date"]{
 html[data-theme="light"] input[type="date"]{
   scrollbar-color:#7a878d #fff;
 }
+
+
+/* =========================================================
+   LIGHT MODE — mirror hierarchy of dark project cards
+   ========================================================= */
+
+/* Task date: exact same geometry, inverted contrast */
+html[data-theme="light"] .task-date-field{
+  background:#fff!important;
+  border-color:#d5dcde!important;
+}
+html[data-theme="light"] .task-date-value{
+  color:#8a969b!important;
+}
+html[data-theme="light"] .task-date-value.has-value{
+  color:#202b30!important;
+}
+html[data-theme="light"] .task-date-icon{
+  color:#202b30!important;
+}
+
+/* Dark mode highlights white; light mode mirrors them with dark surfaces */
+html[data-theme="light"] .project-owner-badge{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  box-shadow:0 8px 20px rgba(20,28,32,.12)!important;
+}
+html[data-theme="light"] .project-owner-badge span{
+  color:rgba(255,255,255,.62)!important;
+}
+html[data-theme="light"] .project-owner-badge strong{
+  color:#fff!important;
+}
+
+html[data-theme="light"] .project-close-badge{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  color:#fff!important;
+  box-shadow:0 8px 20px rgba(20,28,32,.10)!important;
+}
+html[data-theme="light"] .project-close-badge strong,
+html[data-theme="light"] .project-close-badge span{
+  color:#fff!important;
+}
+html[data-theme="light"] .project-close-badge small{
+  color:rgba(255,255,255,.68)!important;
+}
+
+html[data-theme="light"] .project-status-badge,
+html[data-theme="light"] .project-status-badge.work,
+html[data-theme="light"] .project-status-badge.plan,
+html[data-theme="light"] .project-status-badge.done{
+  background:transparent!important;
+  border:1px solid #66757b!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .project-status-badge span{
+  color:#77858b!important;
+}
+html[data-theme="light"] .project-status-badge strong{
+  color:#202b30!important;
+}
+
+/* same visual weight for project icon: inverse of dark translucent tile */
+html[data-theme="light"] .project-topic-icon{
+  background:#eef2f3!important;
+  border-color:#cfd8db!important;
+  color:#202b30!important;
+  box-shadow:inset 0 1px 0 #fff!important;
+}
+
+/* preview summary mirrors dark inset card */
+html[data-theme="light"] .project-preview-block:not(.project-preview-left){
+  background:#f5f7f7!important;
+  border-color:#d8dfe1!important;
+  box-shadow:inset 0 1px 0 #fff!important;
+}
+
+/* date tiles / secondary controls retain identical hierarchy */
+html[data-theme="light"] .project-open-btn{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  color:#fff!important;
+}
+html[data-theme="light"] .project-open-btn:hover{
+  background:#303b40!important;
+  border-color:#303b40!important;
+  color:#fff!important;
+}
+html[data-theme="light"] .project-expand-btn{
+  background:#f7f9f9!important;
+  border-color:#d5dcde!important;
+  color:#536167!important;
+}
