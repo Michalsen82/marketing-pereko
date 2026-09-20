@@ -21,7 +21,7 @@
       }
       (Array.isArray(p.projectTasks)?p.projectTasks:[]).forEach(t=>{
         if(!t.done&&t.deadline&&mine(t.assignee)){
-          items.push({kind:'task',date:t.deadline,title:t.text,meta:(t.assignee||'Bez przypisania')+' · '+p.name,projectId:p.id,taskId:t.id});
+          items.push({kind:'project-task',date:t.deadline,title:t.text,meta:(t.assignee||'Bez przypisania')+' · '+p.name,projectId:p.id,taskId:t.id});
         }
       });
     });
@@ -32,7 +32,12 @@
       }
     });
     return items
-      .filter(x=>mode==='all'||(mode==='projects'&&x.kind==='project')||(mode==='tasks'&&x.kind==='task'))
+      .filter(x=>
+        mode==='all' ||
+        (mode==='projects' && x.kind==='project') ||
+        (mode==='project-tasks' && x.kind==='project-task') ||
+        (mode==='tasks' && x.kind==='task')
+      )
       .sort((a,b)=>String(a.date).localeCompare(String(b.date)));
   };
   const renderAgenda=()=>{
@@ -40,9 +45,10 @@
     const items=collect();
     list.innerHTML=items.length?items.map(x=>{
       const d=dateLabel(x.date);
-      const type=x.kind==='project'?'PROJEKT':'ZADANIE';
-      const action=x.kind==='project'?'Przejdź do projektu':'Przejdź do zadania';
-      return '<article class="deadline-agenda-item '+x.kind+'">'+
+      const type=x.kind==='project'?'PROJEKT':(x.kind==='project-task'?'ZADANIE':'TASK');
+      const action=x.kind==='project'?'Przejdź do projektu':(x.kind==='project-task'?'Przejdź do zadania':'Przejdź do taska');
+      const itemClass=x.kind==='project'?'is-project':(x.kind==='project-task'?'is-project-task':'is-task');
+      return '<article class="deadline-agenda-item '+itemClass+'">'+
         '<div class="datebox"><b>'+d.day+'</b><span>'+d.mon+'</span></div>'+
         '<div class="deadline-agenda-copy"><span class="deadline-agenda-type">'+type+'</span><h5>'+esc(x.title)+'</h5><p>'+esc(x.meta)+'</p></div>'+
         '<button type="button" class="deadline-agenda-open" data-agenda-kind="'+x.kind+'" data-agenda-project="'+esc(x.projectId||'')+'" data-agenda-task="'+esc(x.taskId||'')+'" data-agenda-date="'+esc(x.date)+'">'+action+' <span>→</span></button>'+
@@ -51,7 +57,7 @@
     list.querySelectorAll('.deadline-agenda-open').forEach(btn=>btn.onclick=()=>{
       const kind=btn.dataset.agendaKind,projectId=btn.dataset.agendaProject,taskId=btn.dataset.agendaTask,date=btn.dataset.agendaDate;
       if(kind==='project'){window.openProjectDetail?.(projectId);return}
-      if(projectId){window.perekoOpenDeepLink?.({projectId,taskId});return}
+      if(kind==='project-task'&&projectId){window.perekoOpenDeepLink?.({projectId,taskId});return}
       window.perekoOpenTaskCalendar?.(date,taskId);
     });
   };
