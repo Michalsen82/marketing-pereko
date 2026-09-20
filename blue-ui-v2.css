@@ -5259,3 +5259,71 @@ body::after{display:none!important}
     min-height:104px!important;
   }
 }
+
+
+/* =========================================================
+   REFERENCE MATCH PASS 11 — kompozycja hero 1:1
+   2026-09-20
+   ========================================================= */
+
+@media(min-width:1181px){
+  /* Asset referencyjny ma już właściwą kompozycję.
+     Nie przycinamy go przez cover — pokazujemy pełny kadr hero. */
+  .blue-hero-visual{
+    background:
+      linear-gradient(90deg,#fff 0%,rgba(255,255,255,.985) 17%,rgba(255,255,255,.93) 29%,rgba(255,255,255,.68) 40%,rgba(255,255,255,.16) 53%,rgba(255,255,255,0) 64%),
+      url('/assets/blue-ui/hero-reference.jpg') center center/100% 100% no-repeat!important;
+  }
+
+  /* Benefity mają pozostać czytelne również na przejściu zdjęcia. */
+  .blue-hero-proof{
+    gap:17px!important;
+  }
+  .blue-hero-proof span{
+    opacity:1!important;
+  }
+  .blue-hero-proof em{
+    color:#607995!important;
+    font-size:8.2px!important;
+    text-shadow:0 1px 0 rgba(255,255,255,.72)!important;
+  }
+  .blue-hero-proof i{
+    color:#1769ff!important;
+  }
+
+  /* Hasło z prawej dokładniej wg makiety. */
+  .blue-hero-slogan{
+    left:63.6%!important;
+    top:45%!important;
+    font-size:14px!important;
+    line-height:1.28!important;
+  }
+  .blue-hero-slogan i{
+    width:48px!important;
+    height:4px!important;
+    margin-top:10px!important;
+  }
+
+  /* Minimalne uspokojenie akcji w prawym dolnym rogu. */
+  .intro-actions .date-box{
+    box-shadow:0 8px 22px rgba(19,62,108,.11)!important;
+  }
+  .intro-add-project{
+    box-shadow:0 8px 20px rgba(23,105,255,.20)!important;
+  }
+}
+
+/* Karty projektów — finalne, subtelne obramowanie jak w referencji. */
+.project{
+  border-color:#dbe5ef!important;
+  box-shadow:0 5px 16px rgba(35,78,124,.045)!important;
+}
+.project:hover{
+  border-color:#c8daec!important;
+  box-shadow:0 9px 22px rgba(35,78,124,.075)!important;
+}
+
+/* Nagłówek projektów ma być lekki, bez nadmiernego odcięcia od listy. */
+.projects-module .module-head{
+  box-shadow:none!important;
+}
