@@ -40,7 +40,9 @@
     const d=new Date();
     const weekday=d.toLocaleDateString('pl-PL',{weekday:'long'});
     const month=d.toLocaleDateString('pl-PL',{month:'long'});
-    box.innerHTML=`<div class="date-daynum">${String(d.getDate()).padStart(2,'0')}</div><div class="date-copy"><span class="date-weekday">${weekday}</span><strong>${month}</strong><span>${d.getFullYear()}</span></div>`;
+    const day=String(d.getDate()).padStart(2,'0');
+    const year=d.getFullYear();
+    box.innerHTML=`<div class="date-calendar-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2Zm11 8H6v10h12V10ZM6 8h12V6H6v2Z"/></svg></div><div class="date-copy"><span class="date-weekday">${weekday}</span><strong><b>${day}</b> ${month} ${year}</strong></div>`;
   };
 
   const iconForProject=name=>{
