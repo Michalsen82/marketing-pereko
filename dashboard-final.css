@@ -1374,3 +1374,272 @@ button{cursor:pointer}
     width:100%!important;
   }
 }
+
+
+/* =========================================================
+   PASS 27 — data 1:1 jak czarna wersja + niebieski CTA
+   + nowy układ informacji karty projektu
+   ========================================================= */
+
+/* DATA — dokładnie geometria i typografia czarnej wersji */
+.intro-actions .date-box{
+  min-width:235px!important;
+  width:auto!important;
+  display:grid!important;
+  grid-template-columns:66px 1fr!important;
+  gap:14px!important;
+  align-items:center!important;
+  text-align:left!important;
+  border:0!important;
+  border-left:0!important;
+  padding:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+.date-daynum{
+  width:66px!important;
+  height:66px!important;
+  display:grid!important;
+  place-items:center!important;
+  border-radius:16px!important;
+  background:#20292d!important;
+  color:#fff!important;
+  box-shadow:0 10px 28px rgba(20,28,32,.12)!important;
+  font:800 30px/1 'Montserrat',sans-serif!important;
+}
+.date-copy{
+  display:grid!important;
+  grid-template-columns:1fr!important;
+  gap:3px!important;
+  align-content:center!important;
+  justify-content:start!important;
+  margin:0!important;
+  text-align:left!important;
+}
+.date-copy .date-weekday{
+  color:#8a7215!important;
+  font:800 10px/1 'Montserrat',sans-serif!important;
+  letter-spacing:.11em!important;
+  text-transform:uppercase!important;
+}
+.date-copy>strong{
+  color:#172126!important;
+  font:700 15px/1.2 'Montserrat',sans-serif!important;
+  text-transform:capitalize!important;
+}
+.date-copy>span:last-child{
+  color:#7d898f!important;
+  font-size:12px!important;
+  line-height:1.2!important;
+}
+
+/* NOWY PROJEKT — zostaje w stylistyce Blue UI */
+.intro-add-project{
+  background:linear-gradient(180deg,#2878ff,#145fe8)!important;
+  border:1px solid #1769ff!important;
+  color:#fff!important;
+  box-shadow:0 10px 22px rgba(23,105,255,.24)!important;
+}
+.intro-add-project span{color:#fff!important}
+.intro-add-project:hover{
+  background:linear-gradient(180deg,#3d88ff,#1769ff)!important;
+  border-color:#1769ff!important;
+  color:#fff!important;
+  box-shadow:0 12px 26px rgba(23,105,255,.28)!important;
+}
+
+/* DESKTOP: szersza strefa postępu i uporządkowane 3 bloki */
+@media(min-width:1201px){
+  .project{
+    grid-template-columns:minmax(0,1fr) 460px!important;
+    grid-template-areas:
+      "main progress"
+      "main side"
+      "main controls"
+      "preview preview"!important;
+    column-gap:24px!important;
+    row-gap:10px!important;
+    padding:16px 18px!important;
+    align-items:start!important;
+  }
+
+  .project .progress-wrap{
+    grid-area:progress!important;
+    width:100%!important;
+    max-width:none!important;
+    margin:2px 0 4px!important;
+  }
+
+  .project .progress{
+    width:100%!important;
+    height:10px!important;
+  }
+
+  /* właściciel / pozostało dni / zadania w jednym rzędzie */
+  .project-side-summary{
+    grid-area:side!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+    width:100%!important;
+    margin:0!important;
+  }
+
+  .project-side-owner,
+  .project-side-days,
+  .project-side-tasks{
+    min-width:0!important;
+    min-height:60px!important;
+    display:grid!important;
+    grid-template-columns:34px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:8px!important;
+    padding:9px 10px!important;
+    border:1px solid #dbe6f1!important;
+    border-radius:10px!important;
+    background:#f8fbfe!important;
+  }
+
+  .project-side-avatar,
+  .project-side-calendar,
+  .project-side-tasks>span{
+    width:34px!important;
+    height:34px!important;
+    min-width:34px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:8px!important;
+    background:#eaf3ff!important;
+    color:#1769ff!important;
+    border:1px solid #d5e5f7!important;
+  }
+
+  .project-side-calendar svg,
+  .project-side-tasks>span svg{
+    width:15px!important;
+    height:15px!important;
+    fill:currentColor!important;
+  }
+
+  .project-side-avatar{
+    font:800 10px/1 'Montserrat',sans-serif!important;
+  }
+
+  .project-side-summary small{
+    display:block!important;
+    margin:0 0 3px!important;
+    color:#8295a8!important;
+    font:700 9px/1.1 'Source Sans 3',Arial,sans-serif!important;
+    white-space:nowrap!important;
+  }
+
+  .project-side-summary strong{
+    display:block!important;
+    min-width:0!important;
+    overflow:hidden!important;
+    text-overflow:ellipsis!important;
+    color:#0b2f57!important;
+    font:800 11.5px/1.15 'Montserrat',sans-serif!important;
+    white-space:nowrap!important;
+  }
+
+  /* właściciel jest już w bloku pod paskiem — bez duplikatu przy tytule */
+  .project-top-meta .project-owner-badge{
+    display:none!important;
+  }
+
+  /* pod trzema blokami wyłącznie przyciski */
+  .project-card-controls{
+    grid-area:controls!important;
+    display:block!important;
+    width:100%!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  .project-close-info{
+    display:none!important;
+  }
+
+  .project-card-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 42px!important;
+    gap:8px!important;
+    align-items:center!important;
+    margin:0!important;
+  }
+
+  .project-card-actions .project-open-btn{
+    width:100%!important;
+    height:40px!important;
+    justify-content:center!important;
+    border:1px solid #1769ff!important;
+    background:#1769ff!important;
+    color:#fff!important;
+    box-shadow:0 8px 18px rgba(23,105,255,.16)!important;
+  }
+
+  .project-card-actions .project-open-btn:hover{
+    background:#0f5be7!important;
+    border-color:#0f5be7!important;
+    color:#fff!important;
+  }
+
+  .project-card-actions .project-expand-btn{
+    width:42px!important;
+    height:40px!important;
+    border:1px solid #d7e3ef!important;
+    background:#fff!important;
+    color:#1769ff!important;
+    box-shadow:none!important;
+  }
+
+  .project-card-actions .project-expand-btn:hover{
+    background:#eef5ff!important;
+    border-color:#bfd3e7!important;
+    color:#0f5be7!important;
+  }
+}
+
+/* tablet: trzy bloki nadal obok siebie, gdy jest miejsce */
+@media(max-width:1200px) and (min-width:761px){
+  .project-side-summary{
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:8px!important;
+  }
+  .project-close-info{display:none!important}
+  .project-card-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 42px!important;
+    gap:8px!important;
+  }
+}
+
+/* telefon: logiczne przejście do jednej kolumny */
+@media(max-width:760px){
+  .intro-actions .date-box{
+    grid-template-columns:58px 1fr!important;
+  }
+  .date-daynum{
+    width:58px!important;
+    height:58px!important;
+    font-size:27px!important;
+  }
+  .project-side-summary{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:8px!important;
+  }
+  .project-close-info{display:none!important}
+  .project-card-actions{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) 42px!important;
+    gap:8px!important;
+  }
+}
