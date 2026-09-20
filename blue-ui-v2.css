@@ -3689,3 +3689,239 @@ body::after{display:none!important}
   }
 }
 
+/* =========================================================
+   REFERENCE MATCH PASS 05 — finalny hero, topbar i projekty
+   ========================================================= */
+
+/* Topbar jeszcze bliżej referencji: ikony jako lekkie glyphy */
+.topbar-actions .top-action-icon{
+  border-color:transparent!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#173f6e!important;
+}
+.topbar-actions .top-action-icon:hover,
+.topbar-actions .top-action-icon.active{
+  border-color:transparent!important;
+  background:#edf5ff!important;
+  color:#1769ff!important;
+}
+.topbar-actions .user-zone{
+  border-left:1px solid #dce6f1!important;
+}
+.topbar-actions .user-avatar-circle{
+  border:1px solid #d1deeb!important;
+  background:#eef4fb!important;
+}
+
+/* Hero: fotografia na całej szerokości i łagodny biały gradient pod tekstem */
+.blue-hero-visual{
+  inset:0!important;
+  width:100%!important;
+  height:100%!important;
+  border-radius:17px!important;
+  background:
+    linear-gradient(90deg,#fff 0%,rgba(255,255,255,.98) 18%,rgba(255,255,255,.88) 30%,rgba(255,255,255,.46) 43%,rgba(255,255,255,.07) 58%,rgba(255,255,255,0) 68%),
+    linear-gradient(180deg,rgba(23,103,196,.02),rgba(7,47,91,.08)),
+    url("https://images.unsplash.com/photo-1677492046987-4248aa4e8e7b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=75&w=2200") center 54%/cover no-repeat!important;
+}
+.blue-hero-visual::before{
+  width:25%!important;
+  clip-path:polygon(18% 0,100% 0,100% 100%,0 100%)!important;
+}
+.blue-hero-slogan{
+  left:62%!important;
+  top:50%!important;
+  transform:translate(-50%,-48%)!important;
+  font-size:14px!important;
+}
+.blue-building-brand{
+  right:34px!important;
+  top:60px!important;
+  width:172px!important;
+}
+.blue-building-brand strong{
+  font-size:22px!important;
+}
+.blue-building-brand span{
+  font-size:8px!important;
+}
+
+/* Data jak w referencji: ikonka kalendarza + jeden wiersz daty */
+.intro-actions .date-box{
+  width:260px!important;
+  min-width:260px!important;
+  min-height:62px!important;
+  grid-template-columns:44px minmax(0,1fr)!important;
+  gap:12px!important;
+  padding:8px 12px!important;
+}
+.date-calendar-icon{
+  width:44px;
+  height:44px;
+  display:grid;
+  place-items:center;
+  border-radius:10px;
+  background:#e9f3ff;
+  color:#1769ff;
+}
+.date-calendar-icon svg{
+  width:21px;
+  height:21px;
+  fill:currentColor;
+}
+.date-daynum{display:none!important}
+.date-copy{
+  gap:3px!important;
+}
+.date-copy .date-weekday{
+  color:#7b8fa6!important;
+  font-size:7.5px!important;
+  letter-spacing:.09em!important;
+}
+.date-copy>strong{
+  color:#0b2748!important;
+  font-size:12.5px!important;
+  line-height:1.2!important;
+  white-space:nowrap!important;
+}
+.date-copy>strong b{
+  color:#0b2748!important;
+  font-size:15px!important;
+  font-weight:800!important;
+}
+
+/* Sidebar: zdjęcie zaczyna się dopiero pod nawigacją */
+.blue-sidebar::after{
+  height:255px!important;
+  background:
+    linear-gradient(180deg,rgba(6,31,61,.06) 0%,rgba(6,31,61,.22) 18%,rgba(6,31,61,.83) 74%,rgba(6,31,61,.96) 100%),
+    url("https://images.unsplash.com/photo-1677492046987-4248aa4e8e7b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=65&w=900") center 62%/cover no-repeat!important;
+}
+.blue-sidebar-foot{
+  min-height:205px!important;
+  justify-content:flex-end!important;
+}
+
+/* Projekty: dokładnie jeden rząd filtrów + Gantt, bez drugiej wyszukiwarki */
+.project-search-box{
+  display:none!important;
+}
+.projects-module .module-head{
+  min-height:104px!important;
+  grid-template-columns:minmax(340px,1fr) auto!important;
+  gap:18px!important;
+  align-items:center!important;
+}
+.project-module-actions{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+}
+.filters{
+  flex:0 0 auto!important;
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+}
+.filter{
+  flex:0 0 auto!important;
+  white-space:nowrap!important;
+}
+.gantt-open-btn{
+  flex:0 0 auto!important;
+}
+.projects-module .module-head h2{
+  font-size:23px!important;
+}
+.project-heading-copy p{
+  max-width:560px!important;
+  font-size:10px!important;
+}
+
+/* KPI: większa czytelność wartości jak w makiecie */
+.stat-copy>strong{
+  font-size:32px!important;
+}
+.stat-copy>em{
+  font-size:9px!important;
+}
+.stat-copy>small{
+  font-size:8.7px!important;
+}
+
+/* Karty projektów jeszcze bliżej makiety */
+.project{
+  min-height:154px!important;
+}
+.project-main{
+  grid-template-columns:242px minmax(0,1fr)!important;
+}
+.project-visual-thumb{
+  min-height:132px!important;
+}
+.project-title-copy h4,.project h4{
+  font-size:17px!important;
+}
+.project-title-copy .project-desc,.project p{
+  font-size:10.8px!important;
+}
+.project .progress-wrap{
+  margin-top:6px!important;
+}
+.project-close-info{
+  grid-template-columns:46px minmax(0,1fr)!important;
+}
+.project-close-badge{
+  width:46px!important;
+  height:46px!important;
+}
+
+/* laptop */
+@media(max-width:1450px) and (min-width:1181px){
+  .blue-hero-slogan{
+    left:60%!important;
+    font-size:12.5px!important;
+  }
+  .blue-building-brand{
+    right:22px!important;
+    width:150px!important;
+  }
+  .blue-building-brand strong{font-size:19px!important}
+  .intro-actions .date-box{
+    width:232px!important;
+    min-width:232px!important;
+  }
+  .projects-module .module-head{
+    grid-template-columns:minmax(285px,1fr) auto!important;
+  }
+  .filter{
+    padding:0 10px!important;
+  }
+  .gantt-open-btn{
+    padding:0 11px!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 330px!important;
+  }
+  .project-main{
+    grid-template-columns:205px minmax(0,1fr)!important;
+  }
+}
+
+/* przy tabletach wracamy do układu wielorzędowego */
+@media(max-width:1180px) and (min-width:861px){
+  .project-module-actions{
+    display:flex!important;
+    flex-wrap:wrap!important;
+    justify-content:flex-start!important;
+  }
+  .filters{
+    flex-wrap:wrap!important;
+  }
+}
+
