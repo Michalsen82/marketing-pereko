@@ -1299,3 +1299,27 @@ html body input[type="date"]::-webkit-datetime-edit-year-field{
   color:rgba(255,255,255,.54)!important;
   text-decoration:none!important
 }
+
+
+/* =========================================================
+   Rozwinięty projekt — wyraźne podsumowanie
+   ========================================================= */
+.project-preview-grid{
+  align-items:start!important;
+}
+.project-preview-block:not(.project-preview-left){
+  padding:14px 16px!important;
+  border:1px solid rgba(255,255,255,.09)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.035)!important;
+}
+.project-preview-block:not(.project-preview-left) .project-preview-label{
+  margin-bottom:8px!important;
+}
+.project-preview-fact{
+  min-height:34px!important;
+  align-items:center!important;
+}
+.project-preview-fact span{
+  font-weight:600!important;
+}
