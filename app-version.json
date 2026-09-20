@@ -1,19 +1,19 @@
 {
-  "version": "2.0.2",
-  "releasedAt": "2026-09-20T23:08:00+02:00",
+  "version": "2.0.3",
+  "releasedAt": "2026-09-20T23:18:00+02:00",
   "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0.2",
-  "releaseSummary": "Drobna korekta mobilnego topbara: akcje dosunięte do prawej krawędzi, a informacja o użytkowniku uproszczona do samego imienia i nazwiska.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.3",
+  "releaseSummary": "Korekta mobilnego topbara przywracająca pełną widoczność imienia i nazwiska zalogowanego użytkownika.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Dostępna jest wersja 2.0.2 z poprawionym wyrównaniem górnego paska w aplikacji mobilnej.",
+  "message": "Dostępna jest wersja 2.0.3 z poprawioną widocznością nazwy użytkownika w aplikacji mobilnej.",
   "changes": [
     {
-      "title": "Akcje dosunięte do prawej krawędzi",
-      "detail": "Przyciski w mobilnym topbarze są wyrównane do prawego marginesu zgodnego z blokami funkcjonalnymi poniżej."
+      "title": "Widoczne imię i nazwisko",
+      "detail": "Rozszerzono lewą część mobilnego paska akcji, dzięki czemu nazwa zalogowanego użytkownika jest ponownie czytelna."
     },
     {
-      "title": "Tylko imię i nazwisko użytkownika",
-      "detail": "Usunięto podpis „Zalogowany użytkownik”; w pasku pozostaje wyłącznie imię i nazwisko."
+      "title": "Ikony nadal przy prawej krawędzi",
+      "detail": "Układ i wyrównanie pięciu przycisków pozostają zgodne z poprzednią wersją."
     }
   ]
 }

@@ -985,3 +985,62 @@ html[data-theme="light"] .gantt-row:hover .gantt-track{
     font-size:12.5px!important;
   }
 }
+
+
+/* =========================================================
+   MOBILE TOPBAR 2.0.3 — przywrócenie widoczności nazwy użytkownika
+   ========================================================= */
+@media(max-width:760px){
+  .topbar-actions{
+    width:100%!important;
+    max-width:none!important;
+    grid-template-columns:minmax(0,1fr) 34px 34px 34px!important;
+  }
+
+  .topbar-actions .user-zone{
+    min-width:0!important;
+    overflow:visible!important;
+    padding-right:10px!important;
+  }
+
+  .topbar-actions .user-zone-copy{
+    display:flex!important;
+    min-width:0!important;
+    max-width:none!important;
+    overflow:visible!important;
+    flex:1 1 auto!important;
+  }
+
+  .topbar-actions .user-zone-copy strong{
+    display:block!important;
+    width:100%!important;
+    max-width:none!important;
+    color:inherit!important;
+    font-size:13px!important;
+    line-height:1.08!important;
+    text-align:right!important;
+    white-space:normal!important;
+    overflow:visible!important;
+    text-overflow:clip!important;
+  }
+
+  .topbar-actions .user-name-part{
+    display:block!important;
+    max-width:100%!important;
+    white-space:nowrap!important;
+  }
+
+  .topbar-actions .user-zone-copy span:not(.user-name-part){
+    display:none!important;
+  }
+}
+
+@media(max-width:430px){
+  .topbar-actions{
+    grid-template-columns:minmax(0,1fr) 32px 32px 32px!important;
+  }
+
+  .topbar-actions .user-zone-copy strong{
+    font-size:12.5px!important;
+  }
+}
