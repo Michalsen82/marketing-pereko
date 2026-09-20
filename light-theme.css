@@ -2793,3 +2793,19 @@ html[data-theme="light"] .user-avatar-plus svg{
   fill:currentColor!important;
   color:inherit!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — avatar camera badge hard override
+   ========================================================= */
+html[data-theme="light"] .user-zone .user-avatar-control .user-avatar-plus{
+  background:#ffdd00!important;
+  color:#536167!important;
+  border:none!important;
+  outline:none!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .user-zone .user-avatar-control .user-avatar-plus svg{
+  fill:#536167!important;
+  color:#536167!important;
+}
