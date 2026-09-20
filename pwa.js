@@ -6,7 +6,7 @@
     notifyDismissed:'pereko_pwa_notify_dismissed'
   };
   const DEFAULT_PREFS={assignment:true,taskDone:true,comments:true,deadline:true,files:true};
-  const APP_VERSION='2026.09.20.1';
+  const APP_VERSION='2.0.0';
   const VERSION_URL='/app-version.json';
   let latestPublishedVersion=null;
   let updateBanner=null;
@@ -126,14 +126,53 @@
     section.innerHTML='<div class="pwa-section-head"><div><span>AKTUALIZACJE</span><h4>Wersja aplikacji</h4></div></div>'+
       '<p>Aktualna wersja: <b>'+APP_VERSION+'</b>. Aplikacja sprawdza nowe wydania automatycznie, ale możesz też wymusić sprawdzenie ręcznie.</p>'+
       '<div class="pwa-actions"><button class="pwa-secondary" id="pwaCheckUpdateBtn" type="button">Sprawdź aktualizacje</button>'+
+      '<button class="pwa-secondary" id="pwaWhatsNewBtn" type="button">Co nowego?</button>'+
       '<button class="pwa-primary" id="pwaForceUpdateBtn" type="button">Odśwież aplikację</button></div>';
     settingsModal.querySelector('.pwa-content')?.appendChild(section);
     section.querySelector('#pwaCheckUpdateBtn').onclick=async()=>{
       const result=await checkPublishedVersion(true);
       if(result.update)openSettings();
     };
+    section.querySelector('#pwaWhatsNewBtn').onclick=openChangelog;
     section.querySelector('#pwaForceUpdateBtn').onclick=()=>forceAppUpdate(latestPublishedVersion?.version||'latest');
   }
+
+
+  async function getReleaseInfo(){
+    if(latestPublishedVersion)return latestPublishedVersion;
+    latestPublishedVersion=await fetchPublishedVersion();
+    return latestPublishedVersion;
+  }
+
+  async function openChangelog(){
+    ensureSettings();
+    let modal=document.querySelector('#pwaChangelogModal');
+    if(!modal){
+      modal=document.createElement('div');
+      modal.className='pwa-modal';
+      modal.id='pwaChangelogModal';
+      modal.innerHTML='<div class="pwa-card pwa-changelog-card"><div class="pwa-head"><div><span class="pwa-kicker">CO NOWEGO</span><h3>Historia zmian</h3><p>Najważniejsze zmiany w Centrum Marketingowym PEREKO.</p></div><button class="pwa-close" type="button" aria-label="Zamknij">×</button></div><div class="pwa-content"><div class="pwa-changelog-loading">Ładowanie informacji o wersji…</div></div></div>';
+      document.body.appendChild(modal);
+      modal.querySelector('.pwa-close').onclick=()=>modal.classList.remove('open');
+      modal.onclick=e=>{if(e.target===modal)modal.classList.remove('open')};
+    }
+    modal.classList.add('open');
+    const content=modal.querySelector('.pwa-content');
+    const info=await getReleaseInfo();
+    if(!info){
+      content.innerHTML='<div class="pwa-message warn">Nie udało się pobrać informacji o wersji.</div>';
+      return;
+    }
+    const changes=Array.isArray(info.changes)?info.changes:[];
+    content.innerHTML='<section class="pwa-section pwa-changelog-release">'+
+      '<div class="pwa-changelog-version-row"><div><span>AKTUALNA WERSJA</span><strong>v'+String(info.version||APP_VERSION)+'</strong></div>'+
+      '<small>'+(info.releasedLabel||'')+'</small></div>'+
+      '<h4>'+(info.releaseName||'Centrum Marketingowe PEREKO')+'</h4>'+
+      '<p>'+(info.releaseSummary||info.message||'')+'</p>'+
+      (changes.length?'<ul class="pwa-changelog-list">'+changes.map(x=>'<li><span>✓</span><div><strong>'+String(x.title||x)+'</strong>'+(x.detail?'<small>'+String(x.detail)+'</small>':'')+'</div></li>').join('')+'</ul>':'')+
+      '</section>';
+  }
+  window.perekoOpenChangelog=openChangelog;
 
   function installMeta(){
     if(isStandalone())return {title:'Zainstalowana',detail:'Uruchamiasz Centrum Marketingowe jak aplikację.'};
