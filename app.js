@@ -238,7 +238,7 @@ function applyStatsVisibility(){
   const hidden=localStorage.getItem('pereko_stats_hidden')==='1';
   grid.classList.toggle('is-hidden',hidden);
   const label=btn.querySelector('span');
-  if(label)label.textContent=hidden?'Pokaż':'Ukryj';
+  if(label)label.textContent=hidden?'Pokaż statystyki':'Ukryj statystyki';
   btn.setAttribute('aria-expanded',hidden?'false':'true');
   btn.classList.toggle('is-active',!hidden);
   btn.title=hidden?'Pokaż kafelki podsumowania':'Ukryj kafelki podsumowania';
