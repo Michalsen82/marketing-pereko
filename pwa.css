@@ -625,3 +625,66 @@ html[data-theme="light"] .pwa-changelog-version-row strong{color:#8b7600}
 html[data-theme="light"] .pwa-changelog-list li{border-color:rgba(32,41,45,.08)}
 html[data-theme="light"] .pwa-changelog-list li>span{color:#8b7600}
 html[data-theme="light"] .pwa-changelog-list small{color:#66747a}
+
+
+/* =========================================================
+   PWA — wersja aplikacji i ekran „Co nowego”
+   ========================================================= */
+.pwa-app-version-card{
+  display:grid;
+  grid-template-columns:46px minmax(0,1fr) auto;
+  gap:13px;
+  align-items:center;
+  padding:14px 15px;
+  border:1px solid rgba(255,221,0,.26);
+  background:linear-gradient(135deg,rgba(255,221,0,.09),rgba(255,255,255,.025));
+}
+.pwa-app-version-mark{
+  width:46px;height:46px;display:grid;place-items:center;
+  background:#ffdd00;color:#111;
+  font:900 20px/1 'Montserrat',sans-serif;
+  border-radius:12px;
+}
+.pwa-app-version-copy{min-width:0}
+.pwa-app-version-copy>span{
+  display:block;margin-bottom:4px;color:rgba(255,255,255,.42);
+  font:800 8px/1 'Montserrat',sans-serif;letter-spacing:.12em
+}
+.pwa-app-version-copy>strong{
+  display:block;font:800 13px/1.25 'Montserrat',sans-serif;color:#fff
+}
+.pwa-app-version-copy>strong b{color:#ffdd00}
+.pwa-app-version-copy>small{
+  display:block;margin-top:3px;font-size:9.5px;color:rgba(255,255,255,.48)
+}
+.pwa-app-version-more{
+  min-height:36px;padding:0 12px;border-radius:9px;
+  border:1px solid rgba(255,221,0,.32);
+  background:rgba(255,221,0,.07);
+  color:#fff2a6;cursor:pointer;
+  font:800 10px/1 'Montserrat',sans-serif
+}
+.pwa-app-version-more:hover{background:rgba(255,221,0,.13)}
+.pwa-release-welcome.open{display:flex}
+.pwa-release-welcome-card{width:min(430px,calc(100vw - 28px))}
+.pwa-release-welcome-card .pwa-release-version{
+  display:inline-flex;align-items:center;min-height:28px;margin-top:4px;padding:0 9px;
+  border:1px solid rgba(255,221,0,.28);background:rgba(255,221,0,.07);
+  color:#fff2a6;font:800 9px/1 'Montserrat',sans-serif;border-radius:8px
+}
+html[data-theme="light"] .pwa-app-version-card{
+  border-color:rgba(139,118,0,.24);
+  background:linear-gradient(135deg,rgba(255,221,0,.12),rgba(32,41,45,.02))
+}
+html[data-theme="light"] .pwa-app-version-copy>span{color:#7a878d}
+html[data-theme="light"] .pwa-app-version-copy>strong{color:#263238}
+html[data-theme="light"] .pwa-app-version-copy>strong b{color:#8b7600}
+html[data-theme="light"] .pwa-app-version-copy>small{color:#7a878d}
+html[data-theme="light"] .pwa-app-version-more{
+  border-color:rgba(139,118,0,.24);background:rgba(139,118,0,.06);color:#6f5f00
+}
+@media(max-width:560px){
+  .pwa-app-version-card{grid-template-columns:42px minmax(0,1fr);padding:12px}
+  .pwa-app-version-mark{width:42px;height:42px}
+  .pwa-app-version-more{grid-column:1/-1;width:100%}
+}
