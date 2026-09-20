@@ -10,6 +10,11 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
   <meta name="apple-mobile-web-app-title" content="PEREKO Marketing" />
   <script>
+    try{
+      var __perekoTheme=localStorage.getItem('pereko_theme')||'dark';
+      document.documentElement.dataset.theme=__perekoTheme;
+      document.documentElement.style.colorScheme=__perekoTheme;
+    }catch(e){}
     window.__perekoInstallPrompt=null;
     window.addEventListener('beforeinstallprompt',function(event){
       event.preventDefault();
@@ -41,6 +46,7 @@
   <link rel="stylesheet" href="mobile-responsive.css" />
   <link rel="stylesheet" href="pwa.css" />
   <link rel="stylesheet" href="sharp-corners.css" />
+  <link rel="stylesheet" href="light-theme.css?v=1" />
 </head>
 <body style="visibility:hidden">
   <header class="topbar-shell">
@@ -58,6 +64,10 @@
           <div><strong id="syncTitle">Dane lokalne</strong><span id="syncText">Synchronizacja nieaktywna</span></div>
         </div>
         <button class="top-button secondary-top sync-technical-source" id="syncNow" type="button" aria-hidden="true" tabindex="-1">Synchronizuj dane</button>
+        <button class="theme-toggle-btn top-action-icon" id="themeToggle" type="button" data-tooltip="Przełącz motyw" aria-label="Przełącz na jasny motyw" aria-pressed="false">
+          <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0-6h1v4h-2V2h1Zm0 16h1v4h-2v-4h1ZM2 11h4v2H2v-2Zm16 0h4v2h-4v-2ZM4.22 5.64l1.42-1.42 2.83 2.83-1.42 1.42-2.83-2.83Zm11.31 11.31 1.42-1.42 2.83 2.83-1.42 1.42-2.83-2.83Zm0-9.9 2.83-2.83 1.42 1.42-2.83 2.83-1.42-1.42ZM4.22 18.36l2.83-2.83 1.42 1.42-2.83 2.83-1.42-1.42Z"/></svg>
+          <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 9 9 0 1 0 20.2 15.3ZM12 20a7 7 0 0 1-5.8-10.9A10.5 10.5 0 0 0 14.9 17.8 7 7 0 0 1 12 20Z"/></svg>
+        </button>
         <button class="team-top-btn top-action-icon" id="teamTopBtn" type="button" data-tooltip="Zespół i współpracownicy" aria-label="Zespół i współpracownicy">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 19.5C2 15.91 4.91 13 8.5 13S15 15.91 15 19.5V21H2v-1.5Zm13.1-6.38A6.96 6.96 0 0 1 17 18v3h5v-1.25c0-3.1-2.52-5.63-5.63-5.63-.44 0-.86.05-1.27.14Z"/></svg>
         </button>
@@ -278,6 +288,7 @@
   <script src="user-avatar.js"></script>
   <script src="gantt.js"></script>
   <script src="account-security.js"></script>
+  <script src="light-theme.js?v=1"></script>
   <script src="pwa.js"></script>
 </body>
 </html>
