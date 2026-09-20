@@ -4244,3 +4244,328 @@ body::after{display:none!important}
   }
 }
 
+/* =========================================================
+   REFERENCE MATCH PASS 07 — finalny rytm dashboardu
+   ========================================================= */
+
+/* Hero — proporcje i benefity jak w referencji */
+.intro-row{
+  min-height:286px!important;
+  height:286px!important;
+}
+.blue-hero-copy{
+  top:47%!important;
+  width:56%!important;
+}
+.intro-row h1{
+  font-size:42px!important;
+  line-height:1.01!important;
+  max-width:700px!important;
+}
+.intro-row p{
+  font-size:13.5px!important;
+  max-width:625px!important;
+}
+.blue-hero-proof{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  gap:18px!important;
+  margin-top:18px!important;
+}
+.blue-hero-proof span{
+  display:grid!important;
+  grid-template-columns:32px auto!important;
+  grid-template-rows:auto auto!important;
+  grid-template-areas:
+    "icon number"
+    "icon text"!important;
+  column-gap:8px!important;
+  row-gap:2px!important;
+  align-items:center!important;
+  min-width:0!important;
+  color:#607995!important;
+  white-space:nowrap!important;
+}
+.blue-hero-proof b{
+  grid-area:icon!important;
+  width:32px!important;
+  height:32px!important;
+  display:grid!important;
+  place-items:center!important;
+  border:1px solid #d5e4f3!important;
+  border-radius:9px!important;
+  background:#eaf3ff!important;
+  color:#1769ff!important;
+}
+.blue-hero-proof b svg{
+  width:17px!important;
+  height:17px!important;
+  fill:currentColor!important;
+}
+.blue-hero-proof i{
+  grid-area:number!important;
+  color:#1769ff!important;
+  font:800 8px/1 'Montserrat',sans-serif!important;
+  font-style:normal!important;
+}
+.blue-hero-proof em{
+  grid-area:text!important;
+  color:#647c97!important;
+  font:600 8.5px/1.2 'Montserrat',sans-serif!important;
+  font-style:normal!important;
+}
+.blue-hero-visual{
+  background:
+    linear-gradient(90deg,#fff 0%,rgba(255,255,255,.985) 16%,rgba(255,255,255,.92) 28%,rgba(255,255,255,.62) 39%,rgba(255,255,255,.15) 51%,rgba(255,255,255,0) 62%),
+    linear-gradient(180deg,rgba(23,103,196,.02),rgba(7,47,91,.08)),
+    url("https://images.unsplash.com/photo-1677492046987-4248aa4e8e7b?auto=format&fit=crop&fm=jpg&ixlib=rb-4.1.0&q=75&w=2200") center 57%/cover no-repeat!important;
+}
+.intro-actions{
+  bottom:15px!important;
+}
+.intro-actions .date-box{
+  min-height:58px!important;
+}
+.intro-add-project{
+  height:58px!important;
+}
+
+/* KPI — niższe, bliżej makiety */
+.stats-grid{
+  gap:13px!important;
+  margin-bottom:14px!important;
+}
+.stat-card{
+  min-height:108px!important;
+  padding:14px 16px!important;
+  grid-template-columns:52px minmax(0,1fr)!important;
+  gap:13px!important;
+}
+.stat-icon{
+  width:52px!important;
+  height:52px!important;
+}
+.stat-icon svg{
+  width:24px!important;
+  height:24px!important;
+}
+.stat-copy>strong{
+  font-size:30px!important;
+}
+.stat-copy>small{
+  font-size:8.3px!important;
+}
+
+/* Sekcja projektów — układ zgodny z docelową makietą */
+.project-search-box{
+  display:none!important;
+}
+.projects-module .module-head{
+  min-height:96px!important;
+  padding:14px 18px!important;
+  grid-template-columns:minmax(320px,1fr) auto!important;
+  gap:18px!important;
+}
+.project-module-actions{
+  display:flex!important;
+  flex-wrap:nowrap!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:10px!important;
+}
+.filters{
+  flex:0 0 auto!important;
+  height:40px!important;
+}
+.gantt-open-btn{
+  flex:0 0 auto!important;
+  height:40px!important;
+}
+.projects-module .module-head h2{
+  font-size:22px!important;
+}
+.project-heading-copy p{
+  margin-top:5px!important;
+  font-size:9.5px!important;
+}
+
+/* Karta projektu — kompresja do wysokości z referencji */
+.projects-module .project-list{
+  padding:10px 12px 14px!important;
+  gap:9px!important;
+}
+.project{
+  min-height:150px!important;
+  padding:10px 12px!important;
+  grid-template-columns:minmax(0,1fr) 365px!important;
+  grid-template-areas:
+    "main progress"
+    "main side"
+    "main controls"
+    "preview preview"!important;
+  gap:5px 20px!important;
+  border-radius:12px!important;
+}
+.project-main{
+  grid-template-columns:230px minmax(0,1fr)!important;
+  gap:6px 14px!important;
+}
+.project-visual-thumb{
+  min-height:126px!important;
+  border-radius:9px!important;
+}
+.project-title-copy{
+  padding-top:1px!important;
+}
+.project-heading-meta{
+  margin-bottom:2px!important;
+}
+.project-title-copy h4,.project h4{
+  font-size:16px!important;
+  line-height:1.18!important;
+}
+.project-title-copy .project-desc,.project p{
+  font-size:9.8px!important;
+  line-height:1.35!important;
+}
+.project-tag-row{
+  gap:4px!important;
+  margin-top:2px!important;
+}
+.project-tag-row span{
+  min-height:23px!important;
+  padding:0 8px!important;
+  font-size:7.5px!important;
+}
+.project .progress-wrap{
+  margin-top:4px!important;
+  gap:4px 8px!important;
+}
+.project .progress-wrap::before{
+  font-size:8.5px!important;
+}
+.project .progress{
+  height:6px!important;
+}
+.project-progress-caption strong{
+  font-size:9px!important;
+}
+.project-progress-caption span{
+  display:none!important;
+}
+.project-side-summary{
+  grid-template-columns:minmax(0,1fr) minmax(125px,.72fr)!important;
+  gap:7px 12px!important;
+}
+.project-side-avatar,
+.project-side-calendar,
+.project-side-tasks>span{
+  width:32px!important;
+  height:32px!important;
+  flex-basis:32px!important;
+}
+.project-side-calendar svg,
+.project-side-tasks>span svg{
+  width:15px!important;
+  height:15px!important;
+}
+.project-side-summary small{
+  font-size:7px!important;
+}
+.project-side-summary strong{
+  font-size:9.5px!important;
+}
+.project-side-tasks{
+  padding-top:6px!important;
+}
+.project-card-controls{
+  min-height:30px!important;
+}
+.project-open-btn{
+  height:29px!important;
+  min-height:29px!important;
+  padding:0 9px!important;
+  border-color:transparent!important;
+  background:transparent!important;
+  color:#1769ff!important;
+  box-shadow:none!important;
+  font-size:8px!important;
+}
+.project-open-btn:hover{
+  border-color:transparent!important;
+  background:#eef5ff!important;
+}
+.project-expand-btn{
+  width:29px!important;
+  min-width:29px!important;
+  height:29px!important;
+}
+.project-status-inline{
+  min-height:20px!important;
+  padding:0 7px!important;
+  font-size:7.5px!important;
+}
+
+/* Dolna część sidebara ma się mieścić w typowym widoku laptopowym */
+.blue-sidebar::after{
+  height:225px!important;
+}
+.blue-sidebar-foot{
+  min-height:178px!important;
+  padding-bottom:6px!important;
+}
+.blue-sidebar-foot strong{
+  font-size:13.5px!important;
+  line-height:1.42!important;
+}
+.blue-sidebar-foot i{
+  width:48px!important;
+  height:3px!important;
+}
+
+/* laptop 1366–1450 */
+@media(max-width:1450px) and (min-width:1181px){
+  .intro-row{
+    min-height:270px!important;
+    height:270px!important;
+  }
+  .intro-row h1{
+    font-size:37px!important;
+    max-width:620px!important;
+  }
+  .intro-row p{
+    font-size:12px!important;
+  }
+  .blue-hero-proof{
+    gap:12px!important;
+    margin-top:14px!important;
+  }
+  .blue-hero-proof b{
+    width:29px!important;
+    height:29px!important;
+  }
+  .blue-hero-proof em{
+    font-size:7.7px!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 315px!important;
+  }
+  .project-main{
+    grid-template-columns:195px minmax(0,1fr)!important;
+  }
+  .project-visual-thumb{
+    min-height:118px!important;
+  }
+  .project-side-summary{
+    grid-template-columns:1fr 1fr!important;
+    grid-template-areas:"owner days" "tasks tasks"!important;
+  }
+}
+
+/* tablet / mobile nie pokazują benefitów w hero */
+@media(max-width:1180px){
+  .blue-hero-proof{
+    display:none!important;
+  }
+}
+
