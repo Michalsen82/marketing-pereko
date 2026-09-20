@@ -160,10 +160,32 @@ function buildPushEvents(previous,next,user){
 }
 
 async function dispatchPushEvents(context,events){
-  if(!events.length)return;
-  const job=Promise.allSettled(events.map(event=>sendUserNotification(context.env,event.email,event.payload,event.type)));
-  if(typeof context.waitUntil==='function')context.waitUntil(job);
-  else await job;
+  if(!events.length)return {events:0,sent:0,attempted:0,subscriptions:0,failures:[]};
+  const settled=await Promise.allSettled(
+    events.map(async event=>{
+      const result=await sendUserNotification(context.env,event.email,event.payload,event.type);
+      return {email:event.email,type:event.type,tag:event.payload?.tag||'',...result};
+    })
+  );
+  const details=settled.map((entry,index)=>{
+    if(entry.status==='fulfilled')return entry.value;
+    const event=events[index]||{};
+    return {
+      email:event.email||'',
+      type:event.type||'',
+      tag:event.payload?.tag||'',
+      ready:false,sent:0,attempted:0,subscriptions:0,
+      failures:[{status:0,error:String(entry.reason?.message||entry.reason||'Błąd wysyłki').slice(0,300)}]
+    };
+  });
+  return {
+    events:events.length,
+    sent:details.reduce((n,x)=>n+Number(x.sent||0),0),
+    attempted:details.reduce((n,x)=>n+Number(x.attempted||0),0),
+    subscriptions:details.reduce((n,x)=>n+Number(x.subscriptions||0),0),
+    failures:details.flatMap(x=>x.failures||[]).slice(0,8),
+    details
+  };
 }
 
 export async function onRequestGet(context) {
@@ -218,12 +240,15 @@ export async function onRequestPut(context) {
       throw new Error(`GitHub PUT failed: ${response.status} ${details}`);
     }
 
+    let push={events:0,sent:0,attempted:0,subscriptions:0,failures:[]};
     try{
       const events=buildPushEvents(previous,payload,user);
-      await dispatchPushEvents(context,events);
-    }catch{}
+      push=await dispatchPushEvents(context,events);
+    }catch(error){
+      push={events:0,sent:0,attempted:0,subscriptions:0,failures:[{status:0,error:String(error?.message||error||'Błąd Web Push').slice(0,300)}]};
+    }
 
-    return Response.json({ ok: true, ...payload }, { headers: { 'Cache-Control': 'no-store' } });
+    return Response.json({ ok: true, ...payload, push }, { headers: { 'Cache-Control': 'no-store' } });
   } catch (error) {
     return Response.json({ error: error.message }, { status: 500 });
   }
