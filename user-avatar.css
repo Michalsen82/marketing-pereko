@@ -174,3 +174,17 @@
   fill:currentColor!important;
   color:inherit!important;
 }
+
+
+/* =========================================================
+   Avatar camera badge — hard override
+   ========================================================= */
+html[data-theme="dark"] .user-zone .user-avatar-control .user-avatar-plus{
+  background:#ffdd00!important;
+  color:#151719!important;
+  border-color:#070707!important;
+}
+html[data-theme="dark"] .user-zone .user-avatar-control .user-avatar-plus svg{
+  fill:#151719!important;
+  color:#151719!important;
+}
