@@ -38,7 +38,8 @@
   <link rel="stylesheet" href="dark-glass.css" />
   <link rel="stylesheet" href="team.css" />
   <link rel="stylesheet" href="user-avatar.css?v=4" />
-  <link rel="stylesheet" href="project-card-v2.css?v=3" />
+  <link rel="stylesheet" href="project-card-v2.css?v=4" />
+  <link rel="stylesheet" href="deadline-agenda.css?v=1" />
   <link rel="stylesheet" href="gantt.css?v=4" />
   <link rel="stylesheet" href="account-security.css" />
   <link rel="stylesheet" href="global-search.css" />
@@ -46,7 +47,7 @@
   <link rel="stylesheet" href="mobile-responsive.css" />
   <link rel="stylesheet" href="pwa.css" />
   <link rel="stylesheet" href="sharp-corners.css" />
-  <link rel="stylesheet" href="light-theme.css?v=20" />
+  <link rel="stylesheet" href="light-theme.css?v=21" />
 </head>
 <body style="visibility:hidden">
   <header class="topbar-shell">
@@ -154,9 +155,16 @@
           <div class="tasks" id="taskList"></div>
         </section>
 
-        <section class="module">
-          <div class="module-head compact"><div><span class="module-label">TERMINY</span><h2>Najbliższe terminy</h2></div></div>
-          <div class="deadlines" id="deadlineList"></div>
+        <section class="module deadline-agenda-module">
+          <div class="module-head compact deadline-agenda-head">
+            <div><span class="module-label">TERMINY</span><h2>Najbliższe terminy</h2></div>
+            <div class="deadline-agenda-filters" role="group" aria-label="Filtr najbliższych terminów">
+              <button type="button" class="deadline-agenda-filter active" data-deadline-filter="all">Wszystko</button>
+              <button type="button" class="deadline-agenda-filter" data-deadline-filter="projects">Projekty</button>
+              <button type="button" class="deadline-agenda-filter" data-deadline-filter="tasks">Zadania</button>
+            </div>
+          </div>
+          <div class="deadlines deadline-agenda-list" id="deadlineList"></div>
         </section>
 
       </aside>
@@ -279,8 +287,9 @@
   <script src="auth-guard.js"></script>
   <script src="app.js"></script>
   <script src="project-detail.js"></script>
-  <script src="task-calendar.js?v=3"></script>
+  <script src="task-calendar.js?v=4"></script>
   <script src="project-cards.js?v=2"></script>
+  <script src="deadline-agenda.js?v=1"></script>
   <script src="global-search.js"></script>
   <script src="project-files.js"></script>
   <script src="footer.js"></script>
