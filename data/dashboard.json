@@ -166,6 +166,16 @@
       ],
       "projectTasks": [
         {
+          "id": "72c72d18-858d-4c67-a4fd-5088c5b586f8",
+          "taskNumber": 20,
+          "taskYear": 2026,
+          "createdAt": "2026-09-20T12:29:25.902Z",
+          "text": "7",
+          "assignee": "Michał Bukowski",
+          "deadline": "2026-10-02",
+          "done": false
+        },
+        {
           "id": "08edabd3-ad95-4e24-9bf2-db24f1a6aa75",
           "taskNumber": 19,
           "taskYear": 2026,
@@ -385,5 +395,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-19T23:32:45.573Z"
+  "updatedAt": "2026-09-20T12:29:26.509Z"
 }
