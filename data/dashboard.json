@@ -5,13 +5,23 @@
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
       "status": "work",
-      "progress": 33,
+      "progress": 30,
       "deadline": "2026-10-15",
       "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
       "members": [
         "Michał"
       ],
       "projectTasks": [
+        {
+          "id": "81fb9b56-13b4-4fbb-8e95-bdc4717df07c",
+          "taskNumber": 23,
+          "taskYear": 2026,
+          "createdAt": "2026-09-20T21:31:34.589Z",
+          "text": "jhgjhgjhgkjg",
+          "assignee": "Michał Bukowski",
+          "deadline": "2026-09-21",
+          "done": false
+        },
         {
           "id": "358dc760-1edb-4b49-9f89-75e76832786b",
           "taskNumber": 22,
@@ -419,5 +429,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-20T21:24:29.668Z"
+  "updatedAt": "2026-09-20T21:31:31.485Z"
 }
