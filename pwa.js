@@ -134,7 +134,6 @@
       if(result.update)openSettings();
     };
     section.querySelector('#pwaWhatsNewBtn').onclick=openChangelog;
-    section.querySelector('#pwaWhatsNewBtn').onclick=openChangelog;
     section.querySelector('#pwaForceUpdateBtn').onclick=()=>forceAppUpdate(latestPublishedVersion?.version||'latest');
   }
 
@@ -174,6 +173,53 @@
       '</section>';
   }
   window.perekoOpenChangelog=openChangelog;
+
+
+  function addAppVersionCard(){
+    ensureSettings();
+    const content=settingsModal?.querySelector('.pwa-content');
+    if(!content||content.querySelector('#pwaAppVersionCard'))return;
+    const card=document.createElement('section');
+    card.className='pwa-app-version-card';
+    card.id='pwaAppVersionCard';
+    card.innerHTML='<div class="pwa-app-version-mark">P</div>'+
+      '<div class="pwa-app-version-copy"><span>AKTUALNA WERSJA APLIKACJI</span><strong>Centrum Marketingowe PEREKO <b>2.0</b></strong><small>Wersja techniczna '+APP_VERSION+'</small></div>'+
+      '<button class="pwa-app-version-more" type="button">Co nowego?</button>';
+    content.prepend(card);
+    card.querySelector('.pwa-app-version-more').onclick=openChangelog;
+  }
+
+  async function maybeShowReleaseWelcome(){
+    if(!isStandalone())return;
+    const key='pereko_release_seen_'+APP_VERSION;
+    if(localStorage.getItem(key)==='1')return;
+    const info=await getReleaseInfo();
+    let modal=document.querySelector('#pwaReleaseWelcome');
+    if(!modal){
+      modal=document.createElement('div');
+      modal.className='pwa-modal pwa-release-welcome';
+      modal.id='pwaReleaseWelcome';
+      modal.innerHTML='<div class="pwa-onboarding-card pwa-release-welcome-card">'+
+        '<div class="mark">P</div>'+
+        '<span>NOWA WERSJA</span>'+
+        '<h3>Centrum Marketingowe PEREKO 2.0</h3>'+
+        '<p>'+(info?.releaseSummary||'Aplikacja została zaktualizowana do nowej wersji.')+'</p>'+
+        '<div class="pwa-release-version">Wersja '+APP_VERSION+'</div>'+
+        '<div class="pwa-onboarding-actions"><button class="primary" id="pwaReleaseWhatsNew" type="button">Zobacz co nowego</button><button class="later" id="pwaReleaseOk" type="button">OK</button></div>'+
+        '</div>';
+      document.body.appendChild(modal);
+      modal.querySelector('#pwaReleaseWhatsNew').onclick=()=>{
+        localStorage.setItem(key,'1');
+        modal.classList.remove('open');
+        openChangelog();
+      };
+      modal.querySelector('#pwaReleaseOk').onclick=()=>{
+        localStorage.setItem(key,'1');
+        modal.classList.remove('open');
+      };
+    }
+    modal.classList.add('open');
+  }
 
   function installMeta(){
     if(isStandalone())return {title:'Zainstalowana',detail:'Uruchamiasz Centrum Marketingowe jak aplikację.'};
@@ -504,7 +550,7 @@
     renderPrefs();
   }
   function closeSettings(){settingsModal?.classList.remove('open')}
-  function openSettings(){ensureSettings();refreshSettings();settingsModal.classList.add('open')}
+  function openSettings(){ensureSettings();addAppVersionCard();refreshSettings();settingsModal.classList.add('open')}
 
   function renderPrefs(){
     if(!settingsModal)return;
@@ -799,8 +845,10 @@
   document.addEventListener('pereko:user-ready',()=>{
     addSettingsButton();
     addManualUpdateControl();
+    addAppVersionCard();
     refreshAll();
     setTimeout(maybeOnboard,750);
+    setTimeout(maybeShowReleaseWelcome,1200);
     handleDeepLink(location.href);
     if(hasNotifications()&&Notification.permission==='granted'){
       setTimeout(()=>subscribePush().catch(()=>{}),1100);
