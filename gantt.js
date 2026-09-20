@@ -9,6 +9,7 @@ const samePerson=(a,b)=>{const x=norm(a),y=norm(b);if(!x||!y)return false;return
 const taskNo=t=>window.perekoTaskNumberLabel?.(t)||'Z-—';
 let viewMode='all';
 let personFilter='all';
+let scopedProjectId=null;
 
 function people(){
   const set=new Set();
@@ -27,7 +28,7 @@ function build(){
   m.innerHTML=`
     <div class="gantt-shell">
       <div class="gantt-head">
-        <div><span class="gantt-kicker">PORTFEL PROJEKTÓW</span><h2>Wykres Gantta</h2><p>Projekty, zadania, odpowiedzialni i terminy na jednej osi czasu.</p></div>
+        <div><span class="gantt-kicker" id="ganttKicker">PORTFEL PROJEKTÓW</span><h2 id="ganttTitle">Wykres Gantta</h2><p id="ganttSubtitle">Projekty, zadania, odpowiedzialni i terminy na jednej osi czasu.</p></div>
         <button class="gantt-close" id="ganttClose" type="button" aria-label="Zamknij">×</button>
       </div>
       <div class="gantt-controls">
@@ -72,10 +73,11 @@ function projectMatchesPerson(p){
 }
 function tasksFor(p){
   let ts=Array.isArray(p.projectTasks)?p.projectTasks:[];
-  if(personFilter!=='all')ts=ts.filter(t=>samePerson(t.assignee,personFilter));
+  if(!scopedProjectId&&personFilter!=='all')ts=ts.filter(t=>samePerson(t.assignee,personFilter));
   return ts;
 }
 function visibleProjects(){
+  if(scopedProjectId)return (projects||[]).filter(p=>String(p.id)===String(scopedProjectId));
   return (projects||[]).filter(p=>{
     if(personFilter==='all')return true;
     if(viewMode==='projects')return projectMatchesPerson(p);
@@ -85,7 +87,7 @@ function visibleProjects(){
 function range(ps){
   const ds=[new Date()];
   ps.forEach(p=>{
-    if(viewMode!=='tasks'){const d=fmt(p.deadline);if(d)ds.push(d)}
+    if(scopedProjectId||viewMode!=='tasks'){const d=fmt(p.deadline);if(d)ds.push(d)}
     tasksFor(p).forEach(t=>{const d=fmt(t.deadline),s=fmt(t.createdAt);if(d)ds.push(d);if(s)ds.push(s)});
   });
   let min=new Date(Math.min(...ds.map(d=>d.getTime()))),max=new Date(Math.max(...ds.map(d=>d.getTime())));
@@ -111,7 +113,7 @@ function render(){
   document.querySelector('#ganttRange').textContent=r.min.toLocaleDateString('pl-PL')+' — '+r.max.toLocaleDateString('pl-PL');
   const th=clamp(days(r.min,today)/r.total*100,0,100);
   const mh=months(r).map(m=>'<div class="gantt-month" style="left:'+m.l+'%;width:'+m.w+'%">'+escG(m.t)+'</div>').join('');
-  const showProjects=viewMode!=='tasks',showTasks=viewMode!=='projects';
+  const showProjects=scopedProjectId?true:viewMode!=='tasks',showTasks=scopedProjectId?true:viewMode!=='projects';
 
   const rows=ps.map(p=>{
     const ts=showTasks?tasksFor(p):[];
@@ -143,7 +145,41 @@ function render(){
 
   body.innerHTML='<div class="gantt-table"><div class="gantt-months"><div class="gantt-left-head">PROJEKT / ZADANIE / ODPOWIEDZIALNY</div><div class="gantt-month-grid">'+mh+'<div class="gantt-today" style="left:'+th+'%"></div></div></div>'+rows+'</div>';
 }
-function openG(){build();refreshPeople();render();document.querySelector('#ganttModal').classList.add('open');document.body.classList.add('gantt-open')}
+function setScopeUi(){
+  const controls=document.querySelector('.gantt-controls');
+  const p=scopedProjectId?(projects||[]).find(x=>String(x.id)===String(scopedProjectId)):null;
+  if(controls)controls.hidden=!!p;
+  const kicker=document.querySelector('#ganttKicker');
+  const title=document.querySelector('#ganttTitle');
+  const subtitle=document.querySelector('#ganttSubtitle');
+  if(p){
+    if(kicker)kicker.textContent='PROJEKT';
+    if(title)title.textContent='Gantt · '+p.name;
+    if(subtitle)subtitle.textContent='Projekt, wszystkie zadania, odpowiedzialni i terminy na jednej osi czasu.';
+  }else{
+    if(kicker)kicker.textContent='PORTFEL PROJEKTÓW';
+    if(title)title.textContent='Wykres Gantta';
+    if(subtitle)subtitle.textContent='Projekty, zadania, odpowiedzialni i terminy na jednej osi czasu.';
+  }
+}
+function openG(){
+  scopedProjectId=null;viewMode='all';personFilter='all';
+  build();refreshPeople();
+  document.querySelectorAll('[data-gantt-view]').forEach(x=>x.classList.toggle('active',x.dataset.ganttView==='all'));
+  const s=document.querySelector('#ganttPersonFilter');if(s)s.value='all';
+  setScopeUi();render();
+  document.querySelector('#ganttModal').classList.add('open');document.body.classList.add('gantt-open')
+}
+function openProjectGantt(projectId){
+  scopedProjectId=projectId;viewMode='all';personFilter='all';
+  build();setScopeUi();render();
+  document.querySelector('#ganttModal').classList.add('open');document.body.classList.add('gantt-open')
+}
+window.openProjectGantt=openProjectGantt;
 function closeG(){document.querySelector('#ganttModal')?.classList.remove('open');document.body.classList.remove('gantt-open')}
-document.addEventListener('click',e=>{if(e.target.closest('#openGantt'))openG()});
+document.addEventListener('click',e=>{
+  if(e.target.closest('#openGantt'))openG();
+  const projectBtn=e.target.closest('[data-project-gantt]');
+  if(projectBtn)openProjectGantt(projectBtn.dataset.projectGantt);
+});
 })();
