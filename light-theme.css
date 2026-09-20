@@ -2809,3 +2809,139 @@ html[data-theme="light"] .user-zone .user-avatar-control .user-avatar-plus svg{
   fill:#536167!important;
   color:#536167!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — GANTT V2
+   Ta sama geometria co dark, odwrócona paleta.
+   ========================================================= */
+html[data-theme="light"] .gantt-modal{
+  background:rgba(27,35,39,.28)!important;
+}
+
+html[data-theme="light"] .gantt-shell{
+  background:linear-gradient(180deg,#ffffff 0%,#f5f7f8 100%)!important;
+  border-color:#cfd8db!important;
+  box-shadow:0 34px 100px rgba(20,28,32,.20)!important;
+}
+
+html[data-theme="light"] .gantt-head{
+  background:#fff!important;
+  border-bottom-color:#dfe5e7!important;
+}
+
+html[data-theme="light"] .gantt-kicker{
+  color:#8b7600!important;
+}
+
+html[data-theme="light"] .gantt-head h2{
+  color:#202b30!important;
+}
+
+html[data-theme="light"] .gantt-head p{
+  color:#6f7d83!important;
+}
+
+html[data-theme="light"] .gantt-close{
+  background:#f5f7f8!important;
+  border-color:#d3dcdf!important;
+  color:#445259!important;
+}
+
+html[data-theme="light"] .gantt-toolbar{
+  background:#f7f9fa!important;
+  border-bottom-color:#dfe5e7!important;
+}
+
+html[data-theme="light"] .gantt-legend span,
+html[data-theme="light"] .gantt-range{
+  color:#627077!important;
+}
+
+html[data-theme="light"] .gantt-legend i.task-line{
+  background:#68767c!important;
+}
+
+html[data-theme="light"] .gantt-months,
+html[data-theme="light"] .gantt-left-head{
+  background:#edf2f3!important;
+}
+
+html[data-theme="light"] .gantt-months{
+  border-bottom-color:#d5dde0!important;
+}
+
+html[data-theme="light"] .gantt-left-head{
+  color:#66757b!important;
+  box-shadow:12px 0 24px rgba(20,28,32,.045)!important;
+}
+
+html[data-theme="light"] .gantt-month{
+  color:#59676d!important;
+  border-left-color:#d8e0e2!important;
+}
+
+html[data-theme="light"] .gantt-row{
+  border-bottom-color:#dfe5e7!important;
+}
+
+html[data-theme="light"] .gantt-project-info{
+  background:linear-gradient(180deg,#ffffff,#f8fafa)!important;
+  box-shadow:12px 0 24px rgba(20,28,32,.045)!important;
+}
+
+html[data-theme="light"] .gantt-project-info strong{
+  color:#202b30!important;
+}
+
+html[data-theme="light"] .gantt-project-info>small{
+  color:#718086!important;
+}
+
+html[data-theme="light"] .gantt-progress-mini{
+  background:#dfe6e8!important;
+}
+
+html[data-theme="light"] .gantt-progress-meta b{
+  color:#202b30!important;
+}
+
+html[data-theme="light"] .gantt-progress-meta small{
+  color:#7f8c92!important;
+}
+
+html[data-theme="light"] .gantt-task-info{
+  color:#536167!important;
+}
+
+html[data-theme="light"] .gantt-task-info small{
+  color:#879398!important;
+}
+
+html[data-theme="light"] .gantt-track{
+  background-color:#fbfcfc!important;
+  background-image:linear-gradient(to right,#e4eaec 1px,transparent 1px)!important;
+}
+
+html[data-theme="light"] .gantt-task-line{
+  background:#6f7d83!important;
+}
+
+html[data-theme="light"] .gantt-task-line::before{
+  background:#6f7d83!important;
+}
+
+html[data-theme="light"] .gantt-task-end{
+  background:#20292d!important;
+  border-color:#fff!important;
+  box-shadow:0 0 0 1px #cbd5d8!important;
+}
+
+html[data-theme="light"] .gantt-task-end.done{
+  background:#ffdd00!important;
+  border-color:#8c7800!important;
+}
+
+html[data-theme="light"] .gantt-empty{
+  color:#748187!important;
+}
