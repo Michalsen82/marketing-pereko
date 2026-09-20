@@ -2380,3 +2380,97 @@ html[data-theme="light"] .deadline .datebox{
     font-size:48px!important;
   }
 }
+
+
+/* =========================================================
+   LIGHT MODE — fix project card width regression
+   Przywrócenie pełnej szerokości treści projektu.
+   ========================================================= */
+
+html[data-theme="light"] .project{
+  grid-template-columns:1fr!important;
+  grid-template-areas:
+    "main"
+    "progress"
+    "controls"
+    "preview"!important;
+  gap:18px!important;
+  align-items:stretch!important;
+  padding:22px!important;
+}
+
+html[data-theme="light"] .project-main{
+  grid-area:main!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  justify-content:space-between!important;
+  gap:20px!important;
+  width:100%!important;
+  min-width:0!important;
+  padding-right:0!important;
+}
+
+html[data-theme="light"] .project-title-row{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  width:auto!important;
+  align-items:flex-start!important;
+}
+
+html[data-theme="light"] .project-title-copy{
+  flex:1 1 auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  width:auto!important;
+}
+
+html[data-theme="light"] .project-title-copy h4,
+html[data-theme="light"] .project-title-copy .project-desc{
+  max-width:none!important;
+  width:auto!important;
+}
+
+html[data-theme="light"] .project-top-meta{
+  flex:0 0 auto!important;
+  display:flex!important;
+  align-items:flex-start!important;
+  gap:8px!important;
+  margin-left:auto!important;
+}
+
+html[data-theme="light"] .project .progress-wrap{
+  grid-area:progress!important;
+  width:auto!important;
+  margin-left:57px!important;
+  margin-right:0!important;
+}
+
+html[data-theme="light"] .project-card-controls{
+  grid-area:controls!important;
+  width:100%!important;
+  margin-left:0!important;
+}
+
+html[data-theme="light"] .project-preview{
+  grid-area:preview!important;
+  width:100%!important;
+}
+
+@media(max-width:900px){
+  html[data-theme="light"] .project-main{
+    flex-direction:column!important;
+  }
+  html[data-theme="light"] .project-top-meta{
+    margin-left:57px!important;
+    flex-wrap:wrap!important;
+  }
+}
+
+@media(max-width:640px){
+  html[data-theme="light"] .project-top-meta{
+    margin-left:0!important;
+  }
+  html[data-theme="light"] .project .progress-wrap{
+    margin-left:0!important;
+  }
+}
