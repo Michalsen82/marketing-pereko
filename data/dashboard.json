@@ -5,7 +5,7 @@
       "name": "Centrum Partnera PEREKO",
       "owner": "Michał",
       "status": "work",
-      "progress": 14,
+      "progress": 29,
       "deadline": "2026-10-15",
       "desc": "Rozwój platformy B2B, materiały dla partnerów i narzędzia sprzedażowe.",
       "members": [
@@ -30,7 +30,9 @@
           "text": "Zadanie dla Michała od Wiktorii",
           "assignee": "Michał Bukowski",
           "deadline": "2026-09-23",
-          "done": false
+          "done": true,
+          "completedAt": "2026-09-20T21:22:20.688Z",
+          "completedOn": "2026-09-20"
         },
         {
           "id": "370d07a2-d2ea-4489-9fbe-ac8041d54237",
@@ -395,5 +397,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-20T20:40:03.086Z"
+  "updatedAt": "2026-09-20T21:22:17.676Z"
 }
