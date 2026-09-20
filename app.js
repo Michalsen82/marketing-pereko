@@ -135,7 +135,16 @@ async function pushRemote(manual=false){
     pendingLocalChanges=false;
     lastRemoteUpdatedAt=p.updatedAt||lastRemoteUpdatedAt;
     localStorage.setItem('pereko_cloud_sync','1');
-    setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');
+    const push=p.push||null;
+    if(push?.events>0&&push.sent===0){
+      console.warn('Web Push: zdarzenie wykryte, ale wiadomość nie została dostarczona.',push);
+      setSyncStatus('ok','Zsynchronizowano','Dane zapisane; powiadomienie oczekuje na aktywną subskrypcję');
+    }else if(push?.sent>0){
+      console.info('Web Push: wysłano',push.sent,'powiadomień.',push);
+      setSyncStatus('ok','Zsynchronizowano','Dane zapisane i powiadomienie wysłane');
+    }else{
+      setSyncStatus('ok','Zsynchronizowano','Dane zapisane centralnie');
+    }
     return true;
   }catch(e){
     setSyncStatus('error','Błąd synchronizacji',e.message);
