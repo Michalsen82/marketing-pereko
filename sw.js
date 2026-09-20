@@ -1,4 +1,4 @@
-const CACHE_NAME='pereko-marketing-pwa-v13';
+const CACHE_NAME='pereko-marketing-pwa-v14';
 const APP_SHELL=[
   '/',
   '/index.html',
