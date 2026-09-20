@@ -3925,3 +3925,322 @@ body::after{display:none!important}
   }
 }
 
+/* =========================================================
+   REFERENCE MATCH PASS 06 — karta projektu + hero cleanup
+   ========================================================= */
+
+/* Hero: usuń elementy, których nie ma w makiecie */
+.blue-hero-proof{
+  display:none!important;
+}
+.blue-hero-copy{
+  top:45%!important;
+}
+.blue-sidebar-foot>span{
+  display:none!important;
+}
+
+/* Nagłówek projektów — przywróć lokalne szukanie jak w referencji */
+.project-search-box{
+  display:block!important;
+  width:232px!important;
+  flex:0 0 232px!important;
+}
+.projects-module .module-head{
+  grid-template-columns:minmax(320px,1fr) auto!important;
+}
+.project-module-actions{
+  display:grid!important;
+  grid-template-columns:232px auto auto!important;
+  grid-template-areas:"search filters gantt"!important;
+  align-items:center!important;
+  gap:9px!important;
+}
+.project-search-box{grid-area:search!important}
+.filters{grid-area:filters!important}
+.gantt-open-btn{grid-area:gantt!important}
+
+/* Karta: prawa kolumna jak na makiecie */
+.project{
+  grid-template-columns:minmax(0,1fr) 390px!important;
+  grid-template-areas:
+    "main progress"
+    "main side"
+    "main controls"
+    "preview preview"!important;
+  min-height:174px!important;
+  gap:8px 24px!important;
+  padding:13px!important;
+}
+.project-main{
+  grid-area:main!important;
+  grid-template-columns:246px minmax(0,1fr)!important;
+}
+.project-visual-thumb{
+  min-height:146px!important;
+}
+.project-top-meta{
+  display:none!important;
+}
+.project-heading-meta{
+  display:flex;
+  align-items:center;
+  gap:7px;
+  margin-bottom:3px;
+}
+.project-number{
+  display:inline-flex!important;
+  align-items:center!important;
+  min-height:22px!important;
+  margin:0!important;
+  color:#68809b!important;
+  font-size:8px!important;
+}
+.project-status-inline{
+  display:inline-flex;
+  align-items:center;
+  min-height:22px;
+  padding:0 8px;
+  border:1px solid #d9e4ef;
+  border-radius:999px;
+  background:#f7faff;
+  color:#5f7893;
+  font:700 8px/1 'Montserrat',sans-serif;
+}
+.project-status-inline.work{
+  border-color:#cde0f5;
+  background:#edf5ff;
+  color:#1769ff;
+}
+.project-status-inline.plan{
+  border-color:#d8e3ef;
+  background:#f7faff;
+  color:#5b7390;
+}
+.project-status-inline.done{
+  border-color:#d7e5dc;
+  background:#f2f8f4;
+  color:#2d8a5b;
+}
+.project-title-copy h4,.project h4{
+  font-size:18px!important;
+}
+.project-title-copy .project-desc,.project p{
+  max-width:620px!important;
+  font-size:11px!important;
+  line-height:1.42!important;
+}
+.project-tag-row{
+  margin-top:4px;
+}
+.project-tag-row span{
+  min-height:25px!important;
+  padding:0 10px!important;
+  font-size:8px!important;
+}
+
+/* Progress zgodny z referencją: label + procent nad paskiem */
+.project .progress-wrap{
+  grid-area:progress!important;
+  margin:8px 0 0!important;
+  display:grid!important;
+  grid-template-columns:1fr auto!important;
+  grid-template-areas:
+    "label percent"
+    "bar bar"
+    "detail detail"!important;
+  gap:5px 10px!important;
+  align-items:center!important;
+}
+.project .progress-wrap::before{
+  content:"Postęp projektu";
+  grid-area:label;
+  color:#607995;
+  font:700 9px/1 'Montserrat',sans-serif;
+}
+.project .progress{
+  grid-area:bar!important;
+  height:7px!important;
+}
+.project-progress-caption{
+  display:contents!important;
+}
+.project-progress-caption strong{
+  grid-area:percent!important;
+  justify-self:end!important;
+  color:#173553!important;
+  font-size:10px!important;
+}
+.project-progress-caption span{
+  grid-area:detail!important;
+  justify-self:end!important;
+  color:#8b9bad!important;
+  font-size:8px!important;
+}
+
+/* Panel boczny z właścicielem, terminem i zadaniami */
+.project-side-summary{
+  grid-area:side;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) minmax(140px,.8fr);
+  grid-template-areas:
+    "owner days"
+    "tasks tasks";
+  gap:10px 14px;
+  align-items:center;
+}
+.project-side-owner,
+.project-side-days,
+.project-side-tasks{
+  min-width:0;
+  display:flex;
+  align-items:center;
+  gap:9px;
+}
+.project-side-owner{grid-area:owner}
+.project-side-days{grid-area:days}
+.project-side-tasks{
+  grid-area:tasks;
+  padding-top:9px;
+  border-top:1px solid #e8eef5;
+}
+.project-side-avatar,
+.project-side-calendar,
+.project-side-tasks>span{
+  width:36px;
+  height:36px;
+  flex:0 0 36px;
+  display:grid;
+  place-items:center;
+  border-radius:50%;
+  background:#edf5ff;
+  color:#1769ff;
+  font:800 9px/1 'Montserrat',sans-serif;
+}
+.project-side-calendar,
+.project-side-tasks>span{
+  border-radius:9px;
+}
+.project-side-calendar svg,
+.project-side-tasks>span svg{
+  width:17px;
+  height:17px;
+  fill:currentColor;
+}
+.project-side-summary small{
+  display:block;
+  color:#8999aa;
+  font-size:7.5px;
+  line-height:1.15;
+}
+.project-side-summary strong{
+  display:block;
+  margin-top:3px;
+  color:#173553;
+  font:700 10px/1.2 'Montserrat',sans-serif;
+}
+.project-side-days strong{
+  color:#1769ff;
+}
+.project-side-tasks strong{
+  font-size:11px;
+}
+
+/* Kontrolki akcji już bez duplikatu "pozostało dni" */
+.project-card-controls{
+  grid-area:controls!important;
+  justify-content:flex-end!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+.project-card-controls .project-close-info{
+  display:none!important;
+}
+.project-card-actions{
+  display:flex!important;
+  align-items:center!important;
+  gap:7px!important;
+}
+.project-open-btn{
+  height:33px!important;
+  padding:0 12px!important;
+  border-color:#cfe0f2!important;
+  background:#f7faff!important;
+  color:#1769ff!important;
+  font-size:8.8px!important;
+}
+.project-expand-btn{
+  width:33px!important;
+  min-width:33px!important;
+  height:33px!important;
+}
+
+/* laptop */
+@media(max-width:1450px) and (min-width:1181px){
+  .project-search-box{
+    width:200px!important;
+    flex-basis:200px!important;
+  }
+  .project-module-actions{
+    grid-template-columns:200px auto auto!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 330px!important;
+  }
+  .project-main{
+    grid-template-columns:205px minmax(0,1fr)!important;
+  }
+  .project-side-summary{
+    grid-template-columns:1fr!important;
+    grid-template-areas:"owner" "days" "tasks"!important;
+    gap:7px!important;
+  }
+  .project-side-tasks{
+    padding-top:7px!important;
+  }
+}
+
+/* tablet */
+@media(max-width:1180px) and (min-width:861px){
+  .project-module-actions{
+    display:grid!important;
+    grid-template-columns:minmax(220px,1fr) auto!important;
+    grid-template-areas:
+      "search gantt"
+      "filters filters"!important;
+  }
+  .project-search-box{
+    width:auto!important;
+    flex-basis:auto!important;
+  }
+  .project{
+    grid-template-columns:1fr!important;
+    grid-template-areas:"main" "progress" "side" "controls" "preview"!important;
+  }
+  .project-side-summary{
+    grid-template-columns:1fr 1fr!important;
+    grid-template-areas:"owner days" "tasks tasks"!important;
+  }
+}
+
+/* mobile */
+@media(max-width:860px){
+  .project-search-box{
+    display:block!important;
+    width:100%!important;
+  }
+  .project-module-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    grid-template-areas:"search" "filters" "gantt"!important;
+  }
+  .project{
+    grid-template-columns:1fr!important;
+    grid-template-areas:"main" "progress" "side" "controls" "preview"!important;
+  }
+  .project-side-summary{
+    grid-template-columns:1fr!important;
+    grid-template-areas:"owner" "days" "tasks"!important;
+  }
+}
+
