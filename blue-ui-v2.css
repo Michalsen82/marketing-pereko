@@ -5157,3 +5157,105 @@ body::after{display:none!important}
     grid-template-columns:178px minmax(0,1fr)!important;
   }
 }
+
+
+/* =========================================================
+   REFERENCE MATCH PASS 10 — hero overlay + spokojne karty
+   2026-09-20
+   ========================================================= */
+
+/* Hero: przywrócenie elementów obecnych w makiecie */
+@media(min-width:1181px){
+  .blue-hero-slogan{
+    display:block!important;
+    position:absolute!important;
+    left:64%!important;
+    top:43%!important;
+    right:auto!important;
+    bottom:auto!important;
+    transform:translate(-50%,-50%)!important;
+    z-index:4!important;
+    color:#fff!important;
+    text-align:left!important;
+    font:500 15px/1.28 'Montserrat',sans-serif!important;
+    letter-spacing:.02em!important;
+    text-shadow:0 2px 10px rgba(8,38,72,.25)!important;
+  }
+  .blue-hero-slogan i{
+    display:block!important;
+    width:44px!important;
+    height:4px!important;
+    margin-top:10px!important;
+    border-radius:99px!important;
+    background:#6caeff!important;
+  }
+  /* Logo i branding budynku są już w grafice referencyjnej,
+     więc nie dokładamy drugiej kopii tekstu. */
+  .blue-building-brand{
+    display:none!important;
+  }
+}
+
+/* Usuń techniczne wyróżnienie kart z moimi taskami:
+   referencja używa jednolitego obramowania kart. */
+.project.has-my-tasks{
+  border-color:#d9e4f0!important;
+}
+.project.has-my-tasks .project-topic-icon{
+  box-shadow:none!important;
+}
+.project-my-task-badge{
+  display:none!important;
+}
+
+/* Karty: trochę bardziej jak makieta — spokojniejsza prawa strona */
+@media(min-width:1181px){
+  .project{
+    min-height:132px!important;
+    border-radius:14px!important;
+  }
+  .project-main{
+    grid-template-columns:188px minmax(0,1fr)!important;
+  }
+  .project-visual-thumb{
+    height:108px!important;
+    min-height:108px!important;
+  }
+  .project-side-summary{
+    align-content:start!important;
+  }
+  .project-side-owner,
+  .project-side-days,
+  .project-side-tasks{
+    min-height:28px!important;
+  }
+  .project-side-avatar,
+  .project-side-calendar,
+  .project-side-tasks>span{
+    width:27px!important;
+    height:27px!important;
+    flex-basis:27px!important;
+  }
+  .project-open-btn{
+    padding-left:8px!important;
+    padding-right:8px!important;
+  }
+}
+
+/* Makieta ma delikatniejszy separator i mniej "panelowy" nagłówek */
+.projects-module{
+  overflow:hidden!important;
+}
+.projects-module .module-head{
+  border-bottom-color:#e7eef6!important;
+}
+
+/* KPI: zbliżenie do referencji, bez dalszego ściskania treści */
+@media(min-width:1181px){
+  .stats-grid{
+    gap:13px!important;
+  }
+  .stat-card{
+    min-height:104px!important;
+  }
+}
