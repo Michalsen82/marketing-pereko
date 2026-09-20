@@ -636,3 +636,329 @@ html[data-theme="light"] .footer-status-btn{
     display:grid!important;
   }
 }
+
+
+/* =========================================================
+   LIGHT MODE — precision pass 02
+   Korekty na podstawie porównania widoku ciemnego i jasnego.
+   ========================================================= */
+
+/* 1. DATA — zachowaj dokładnie geometrię ciemnej wersji,
+      zmieniając wyłącznie kontrast kolorystyczny. */
+html[data-theme="light"] .date-box{
+  min-width:280px!important;
+  max-width:340px!important;
+  grid-template-columns:78px minmax(0,1fr)!important;
+  gap:16px!important;
+  align-items:center!important;
+  padding:14px 16px!important;
+  text-align:left!important;
+  background:transparent!important;
+  border:1px solid transparent!important;
+  box-shadow:none!important;
+  backdrop-filter:none!important;
+  -webkit-backdrop-filter:none!important;
+}
+html[data-theme="light"] .date-daynum{
+  width:78px!important;
+  height:68px!important;
+  padding-left:14px!important;
+  box-sizing:border-box!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  transform:translateY(1px)!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  box-shadow:none!important;
+  color:#172126!important;
+  font:800 54px/.92 'Montserrat',sans-serif!important;
+  letter-spacing:-.06em!important;
+}
+html[data-theme="light"] .date-copy{
+  display:grid!important;
+  grid-template-rows:auto auto auto!important;
+  row-gap:3px!important;
+  align-content:center!important;
+  justify-items:start!important;
+}
+html[data-theme="light"] .date-copy .date-weekday{
+  margin:0!important;
+  color:#827000!important;
+  font-size:10px!important;
+  line-height:1!important;
+  font-weight:800!important;
+}
+html[data-theme="light"] .date-copy strong{
+  margin:0!important;
+  color:#172126!important;
+  font-size:16px!important;
+  line-height:1.05!important;
+  font-weight:800!important;
+}
+html[data-theme="light"] .date-copy span{
+  margin:0!important;
+  color:#6f7d83!important;
+  line-height:1!important;
+  transform:none!important;
+}
+
+/* 2. PRZEŁĄCZNIK KAFELKÓW — w jasnym motywie nie może ginąć. */
+html[data-theme="light"] .stats-toggle-btn{
+  background:#f7f9f9!important;
+  border:1px solid #d5dcde!important;
+  color:#59676d!important;
+  box-shadow:0 4px 12px rgba(20,28,32,.035)!important;
+}
+html[data-theme="light"] .stats-toggle-btn svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
+html[data-theme="light"] .stats-toggle-btn:hover{
+  background:#fff!important;
+  border-color:#bcc7ca!important;
+  color:#202b30!important;
+}
+
+/* 3. NAGŁÓWEK PROJEKTÓW / GANTT / FILTRY */
+html[data-theme="light"] .gantt-open-btn{
+  background:#f7f9f9!important;
+  border-color:#d5dcde!important;
+  color:#4f5f66!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .gantt-open-btn svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
+html[data-theme="light"] .gantt-open-btn:hover{
+  background:#fff!important;
+  border-color:#c3ad00!important;
+  color:#202b30!important;
+}
+html[data-theme="light"] .project-view-switch{
+  background:#f5f7f7!important;
+  border-color:#dce2e4!important;
+}
+html[data-theme="light"] .project-view-btn{
+  color:#66757b!important;
+}
+html[data-theme="light"] .project-view-btn:hover{
+  background:#fff!important;
+  color:#202b30!important;
+}
+html[data-theme="light"] .project-view-btn.active{
+  background:#20292d!important;
+  color:#fff!important;
+}
+html[data-theme="light"] .project-view-btn[data-project-scope="mine"].active{
+  background:#ffdd00!important;
+  color:#17191a!important;
+}
+
+/* 4. KARTA PROJEKTU — ikona, numer, status i drobne etykiety. */
+html[data-theme="light"] .project-topic-icon{
+  background:#f2f5f6!important;
+  border:1px solid #d8dfe1!important;
+  color:#273237!important;
+  box-shadow:inset 0 1px 0 #fff!important;
+}
+html[data-theme="light"] .project-topic-icon svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
+html[data-theme="light"] .project-number,
+html[data-theme="light"] .pd-task-number,
+html[data-theme="light"] .task-calendar-item .task-number,
+html[data-theme="light"] .project-preview-task-number{
+  color:#748288!important;
+}
+html[data-theme="light"] .project-status-badge,
+html[data-theme="light"] .project-status-badge.work,
+html[data-theme="light"] .project-status-badge.plan,
+html[data-theme="light"] .project-status-badge.done{
+  background:#fff!important;
+  border:1px solid #cfd7da!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .project-status-badge span{
+  color:#7b878c!important;
+}
+html[data-theme="light"] .project-status-badge strong{
+  color:#273237!important;
+}
+html[data-theme="light"] .project-owner-badge{
+  background:#fff!important;
+  border-color:#e0e5e6!important;
+  box-shadow:0 8px 20px rgba(20,28,32,.08)!important;
+}
+html[data-theme="light"] .project-owner-badge span{color:#7a868b!important}
+html[data-theme="light"] .project-owner-badge strong{color:#20292d!important}
+
+html[data-theme="light"] .project-my-task-badge{
+  background:rgba(255,221,0,.14)!important;
+  border-color:rgba(190,165,0,.45)!important;
+  color:#6f5f00!important;
+}
+html[data-theme="light"] .project.has-my-tasks .project-topic-icon{
+  box-shadow:0 0 0 1px rgba(190,165,0,.16),0 8px 20px rgba(20,28,32,.06)!important;
+}
+
+/* 5. PASEK POSTĘPU I OPISY */
+html[data-theme="light"] .project .progress,
+html[data-theme="light"] .progress{
+  background:#e6ebed!important;
+}
+html[data-theme="light"] .progress-wrap small,
+html[data-theme="light"] .project-progress-caption span{
+  color:#76858b!important;
+}
+html[data-theme="light"] .project-progress-caption strong{
+  color:#263237!important;
+}
+
+/* 6. TASKI — środkowy nagłówek daty i ikony nawigacji były białe na białym. */
+html[data-theme="light"] .task-date-main,
+html[data-theme="light"] .task-date-main span{
+  color:#202b30!important;
+}
+html[data-theme="light"] .task-date-main small{
+  color:#839096!important;
+}
+html[data-theme="light"] .task-nav-arrow{
+  background:#fff!important;
+  border-color:#d5dcde!important;
+  color:#263237!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .task-nav-arrow:hover{
+  background:#f8fafa!important;
+  border-color:#c5b000!important;
+  color:#202b30!important;
+}
+html[data-theme="light"] .task-calendar-item input,
+html[data-theme="light"] .task input,
+html[data-theme="light"] .pd-task-check input{
+  accent-color:#20292d!important;
+}
+html[data-theme="light"] .task-calendar-item strong,
+html[data-theme="light"] .task span{
+  color:#263237!important;
+}
+html[data-theme="light"] .task-calendar-item small{
+  color:#849197!important;
+}
+
+/* 7. Ikony i przyciski w kartach / modułach */
+html[data-theme="light"] :is(
+  .project-expand-btn,
+  .project-open-btn,
+  .pd-glass-btn,
+  .task-glass-btn,
+  .filter,
+  .btn.secondary
+) svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
+html[data-theme="light"] .project-expand-btn span{
+  color:inherit!important;
+}
+html[data-theme="light"] .project-search-box>svg{
+  fill:#718087!important;
+}
+html[data-theme="light"] .project-search-clear{
+  color:#718087!important;
+}
+html[data-theme="light"] .project-search-clear:hover{
+  color:#202b30!important;
+  background:#eef2f3!important;
+}
+html[data-theme="light"] .project-search-count{
+  color:#7e8b91!important;
+}
+html[data-theme="light"] .project-search-box input{
+  background:#fff!important;
+  border-color:#d8dfe1!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+}
+html[data-theme="light"] .project-search-box input::placeholder{
+  color:#929da2!important;
+  -webkit-text-fill-color:#929da2!important;
+}
+
+/* 8. Najbliższe terminy / zespół — ikony i mini-kafelki */
+html[data-theme="light"] .avatar{
+  background:#eef2f3!important;
+  border-color:#d8dfe1!important;
+  color:#273237!important;
+}
+html[data-theme="light"] .datebox{
+  background:#20292d!important;
+  color:#fff!important;
+}
+html[data-theme="light"] .datebox b{color:#fff!important}
+html[data-theme="light"] .datebox span{color:#ffdd00!important}
+html[data-theme="light"] .deadline h5{color:#263237!important}
+html[data-theme="light"] .deadline p{color:#7d898f!important}
+
+/* 9. Rozwinięty podgląd projektu — usunięcie pozostałych białych napisów. */
+html[data-theme="light"] .project-preview-comments{
+  border-top-color:#e6ebed!important;
+}
+html[data-theme="light"] .project-preview-comment{
+  border-bottom-color:#edf0f1!important;
+}
+html[data-theme="light"] .project-preview-comment-avatar{
+  background:#eef2f3!important;
+  border-color:#d8dfe1!important;
+  color:#8a7600!important;
+}
+html[data-theme="light"] .project-preview-comment-copy strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .project-preview-comment-copy small{
+  color:#849197!important;
+}
+
+/* 10. Przyciski statusowe — jasny motyw ma własne kontrastowe stany. */
+html[data-theme="light"] .status.work{
+  background:#e8f1ff!important;
+  border-color:#cedff6!important;
+  color:#2f6fb3!important;
+}
+html[data-theme="light"] .status.plan{
+  background:#fff4d7!important;
+  border-color:#eadcae!important;
+  color:#806000!important;
+}
+html[data-theme="light"] .status.done{
+  background:#e3f4e4!important;
+  border-color:#cce4ce!important;
+  color:#2b6a2f!important;
+}
+
+/* 11. Ikony w górnym pasku: zawsze czytelne w jasnym motywie. */
+html[data-theme="light"] .top-action-icon svg,
+html[data-theme="light"] .team-top-btn svg,
+html[data-theme="light"] .password-change-btn svg,
+html[data-theme="light"] .theme-toggle-btn svg{
+  fill:currentColor!important;
+  color:inherit!important;
+}
+
+/* 12. Mobile — zachowaj proporcje daty bez ciemnego kafla. */
+@media(max-width:760px){
+  html[data-theme="light"] .date-box{
+    grid-template-columns:70px 1fr!important;
+    max-width:none!important;
+  }
+  html[data-theme="light"] .date-daynum{
+    width:70px!important;
+    height:64px!important;
+    padding-left:8px!important;
+    font-size:48px!important;
+  }
+}
