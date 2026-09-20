@@ -539,3 +539,72 @@
   }
 }
 
+
+
+/* =========================================================
+   PWA — ręczna i automatyczna aktualizacja aplikacji
+   ========================================================= */
+.pwa-update-banner{
+  position:fixed;
+  left:50%;
+  bottom:22px;
+  transform:translateX(-50%);
+  z-index:10050;
+  width:min(760px,calc(100vw - 28px));
+  display:grid;
+  grid-template-columns:44px minmax(0,1fr) auto;
+  gap:14px;
+  align-items:center;
+  padding:14px 16px;
+  border:1px solid rgba(255,221,0,.45);
+  border-radius:14px;
+  background:rgba(18,21,23,.97);
+  color:#fff;
+  box-shadow:0 18px 50px rgba(0,0,0,.32);
+  backdrop-filter:blur(18px);
+  -webkit-backdrop-filter:blur(18px);
+}
+.pwa-update-icon{
+  width:44px;height:44px;border-radius:12px;
+  display:grid;place-items:center;
+  background:#ffdd00;color:#171a1c;
+  font:900 24px/1 'Montserrat',sans-serif;
+}
+.pwa-update-copy{min-width:0;display:grid;gap:3px}
+.pwa-update-copy strong{font:800 13px/1.2 'Montserrat',sans-serif}
+.pwa-update-copy span{font-size:11px;line-height:1.35;color:rgba(255,255,255,.76)}
+.pwa-update-copy small{font-size:9.5px;color:rgba(255,255,255,.46)}
+.pwa-update-actions{display:flex;gap:8px;align-items:center}
+.pwa-update-actions button{
+  min-height:36px;padding:0 12px;border-radius:9px;
+  font:800 10px/1 'Montserrat',sans-serif;cursor:pointer
+}
+.pwa-update-now{border:1px solid #ffdd00;background:#ffdd00;color:#171a1c}
+.pwa-update-later{border:1px solid rgba(255,255,255,.16);background:rgba(255,255,255,.07);color:#fff}
+
+html[data-theme="light"] .pwa-update-banner{
+  background:rgba(255,255,255,.98);
+  color:#1e272b;
+  border-color:#d6bd00;
+  box-shadow:0 18px 46px rgba(20,28,32,.16);
+}
+html[data-theme="light"] .pwa-update-copy span{color:#536167}
+html[data-theme="light"] .pwa-update-copy small{color:#7b888d}
+html[data-theme="light"] .pwa-update-later{
+  background:#f2f5f5;border-color:#d3dcdf;color:#3e4c52
+}
+
+@media(max-width:640px){
+  .pwa-update-banner{
+    bottom:12px;
+    grid-template-columns:40px minmax(0,1fr);
+    padding:12px;
+  }
+  .pwa-update-icon{width:40px;height:40px}
+  .pwa-update-actions{
+    grid-column:1/-1;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+  }
+  .pwa-update-actions button{width:100%}
+}
