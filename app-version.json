@@ -1,35 +1,19 @@
 {
-  "version": "2.0.0",
-  "releasedAt": "2026-09-20T22:35:00+02:00",
+  "version": "2.0.1",
+  "releasedAt": "2026-09-20T22:55:00+02:00",
   "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0",
-  "releaseSummary": "Nowa generacja dashboardu z jasnym i ciemnym motywem, rozbudowanymi projektami, terminami, Ganttem i usprawnioną aplikacją PWA.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.1",
+  "releaseSummary": "Drobna aktualizacja aplikacji mobilnej porządkująca górny pasek użytkownika i przyciski akcji.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Opublikowaliśmy nowszą wersję Centrum Marketingowego. Aktualizacja zajmie kilka sekund.",
+  "message": "Dostępna jest wersja 2.0.1 z poprawionym układem górnego paska w aplikacji mobilnej.",
   "changes": [
     {
-      "title": "Tryb jasny i ciemny",
-      "detail": "Pełny Light/Dark z zachowaniem tej samej hierarchii i układu interfejsu."
+      "title": "Nowy układ górnego paska w aplikacji",
+      "detail": "Po prawej stronie: Zespół, Zmiana hasła i Wyloguj w pierwszym rzędzie; Aplikacja i powiadomienia oraz Jasno/Ciemno w drugim."
     },
     {
-      "title": "Nowy moduł „Najbliższe terminy”",
-      "detail": "Rozdzielenie projektów, zadań projektowych i osobistych tasków."
-    },
-    {
-      "title": "Wykres Gantta",
-      "detail": "Widok globalny oraz Gantt dla pojedynczego projektu."
-    },
-    {
-      "title": "Lepsza responsywność",
-      "detail": "Dopracowany desktop, tablet i smartfon, w tym rozwinięte projekty i moduły boczne."
-    },
-    {
-      "title": "Stabilizacja interfejsu",
-      "detail": "Ujednolicone focusy, pola daty, typografia, hover i geometria modułów."
-    },
-    {
-      "title": "Aktualizacje aplikacji PWA",
-      "detail": "Automatyczne sprawdzanie wersji, komunikat o nowej wersji oraz ręczny przycisk aktualizacji."
+      "title": "Większa informacja o zalogowanym użytkowniku",
+      "detail": "Imię i nazwisko jest czytelniejsze, ale nadal mieści się w ustalonych marginesach mobilnego topbara."
     }
   ]
 }
