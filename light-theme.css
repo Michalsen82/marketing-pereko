@@ -1383,3 +1383,81 @@ html[data-theme="light"] #pdCommentSave{
 html[data-theme="light"] button:disabled{
   opacity:.55!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — date inputs visibility pass
+   Ciemny tekst daty + ciemna ikona kalendarza we wszystkich polach daty.
+   ========================================================= */
+
+html[data-theme="light"] input[type="date"]{
+  color-scheme:light!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  background-color:#fff!important;
+  border-color:#d5dcde!important;
+  opacity:1!important;
+  cursor:pointer!important;
+}
+
+/* natywny tekst segmentów daty — Chromium/WebKit */
+html[data-theme="light"] input[type="date"]::-webkit-datetime-edit,
+html[data-theme="light"] input[type="date"]::-webkit-datetime-edit-fields-wrapper,
+html[data-theme="light"] input[type="date"]::-webkit-datetime-edit-text,
+html[data-theme="light"] input[type="date"]::-webkit-datetime-edit-month-field,
+html[data-theme="light"] input[type="date"]::-webkit-datetime-edit-day-field,
+html[data-theme="light"] input[type="date"]::-webkit-datetime-edit-year-field{
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  opacity:1!important;
+}
+
+/* jasny placeholder/segment pustego pola, nadal widoczny */
+html[data-theme="light"] input[type="date"]:invalid::-webkit-datetime-edit{
+  color:#748187!important;
+  -webkit-text-fill-color:#748187!important;
+}
+
+/* natywna ikona kalendarza — ciemna */
+html[data-theme="light"] input[type="date"]::-webkit-calendar-picker-indicator{
+  opacity:1!important;
+  filter:brightness(0) saturate(100%)!important;
+  cursor:pointer!important;
+}
+
+/* pełny widok projektu miał własne ukrycie natywnej ikony — nadpisujemy je */
+html[data-theme="light"] .project-detail-modal input[type="date"]{
+  color-scheme:light!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  background:#fff!important;
+  background-image:none!important;
+  padding-right:38px!important;
+}
+html[data-theme="light"] .project-detail-modal input[type="date"]::-webkit-calendar-picker-indicator{
+  position:static!important;
+  inset:auto!important;
+  width:18px!important;
+  height:18px!important;
+  opacity:1!important;
+  filter:brightness(0) saturate(100%)!important;
+  cursor:pointer!important;
+}
+
+/* formularz dodawania taska w projekcie */
+html[data-theme="light"] .pd-task-form input[type="date"],
+html[data-theme="light"] #pdTaskDate,
+html[data-theme="light"] #pdDeadline,
+html[data-theme="light"] #taskNewDate,
+html[data-theme="light"] .deadline-edit input[type="date"]{
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  background:#fff!important;
+  border-color:#d5dcde!important;
+  color-scheme:light!important;
+}
+
+/* Firefox */
+html[data-theme="light"] input[type="date"]{
+  scrollbar-color:#7a878d #fff;
+}
