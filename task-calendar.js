@@ -198,4 +198,20 @@
   selectedTaskDate=isoToday();
   normalizeTasks();
   renderTaskCalendar();
+
+  window.perekoOpenTaskCalendar=(date,taskId)=>{
+    selectedTaskDate=date||isoToday();
+    renderTaskCalendar();
+    const module=document.querySelector('#taskList')?.closest('.module');
+    module?.scrollIntoView({behavior:'smooth',block:'start'});
+    if(taskId){
+      setTimeout(()=>{
+        const target=[...document.querySelectorAll('[data-calendar-task]')].find(el=>String(el.dataset.calendarTask)===String(taskId))?.closest('.task-calendar-item');
+        if(!target)return;
+        target.classList.add('pwa-deep-link-target');
+        target.scrollIntoView({behavior:'smooth',block:'center'});
+        setTimeout(()=>target.classList.remove('pwa-deep-link-target'),2600);
+      },120);
+    }
+  };
 })();
