@@ -5742,3 +5742,451 @@ body::after{display:none!important}
     padding-top:22px!important;
   }
 }
+
+
+/* =========================================================
+   BLUE UI PASS 14 — system odstępów, osi i przycisków
+   2026-09-20
+   ========================================================= */
+
+:root{
+  --ui-space-1:4px;
+  --ui-space-2:8px;
+  --ui-space-3:12px;
+  --ui-space-4:16px;
+  --ui-space-5:20px;
+  --ui-space-6:24px;
+  --ui-radius-sm:10px;
+  --ui-radius-md:14px;
+  --ui-control-h:40px;
+}
+
+/* globalny rytm strony */
+@media(min-width:1181px){
+  .page-shell{
+    padding-left:24px!important;
+    padding-right:24px!important;
+    padding-bottom:48px!important;
+  }
+  .intro-row{
+    margin-bottom:16px!important;
+  }
+  .stats-grid{
+    margin-bottom:16px!important;
+  }
+  .dashboard-grid{
+    gap:16px!important;
+  }
+}
+
+/* HEADER — wspólna oś pionowa i jednakowe wysokości */
+.topbar{
+  align-items:center!important;
+}
+.blue-top-search{
+  height:44px!important;
+  min-height:44px!important;
+  border-radius:11px!important;
+}
+.topbar-actions{
+  height:44px!important;
+  align-items:center!important;
+  gap:10px!important;
+}
+.topbar-actions .top-action-icon{
+  width:36px!important;
+  height:36px!important;
+  min-width:36px!important;
+  min-height:36px!important;
+  flex-basis:36px!important;
+  display:grid!important;
+  place-items:center!important;
+  padding:0!important;
+  margin:0!important;
+}
+.topbar-actions .user-zone{
+  min-height:44px!important;
+  height:44px!important;
+  display:flex!important;
+  align-items:center!important;
+  gap:10px!important;
+  padding-left:14px!important;
+  margin-left:2px!important;
+}
+.topbar-actions .user-avatar-control,
+.topbar-actions .user-avatar-circle{
+  width:38px!important;
+  height:38px!important;
+  min-width:38px!important;
+  min-height:38px!important;
+}
+
+/* SIDEBAR — jeden rytm nawigacji */
+.blue-sidebar{
+  padding-left:18px!important;
+  padding-right:18px!important;
+}
+.blue-sidebar-brand{
+  padding-left:10px!important;
+  padding-right:10px!important;
+}
+.blue-sidebar-nav{
+  gap:8px!important;
+  margin-top:18px!important;
+}
+.blue-nav-btn{
+  min-height:44px!important;
+  height:44px!important;
+  padding:0 14px!important;
+  gap:12px!important;
+  border-radius:10px!important;
+}
+.blue-nav-btn svg{
+  width:18px!important;
+  height:18px!important;
+  flex:0 0 18px!important;
+}
+.blue-sidebar-foot{
+  padding-left:14px!important;
+  padding-right:14px!important;
+  padding-bottom:6px!important;
+}
+
+/* HERO — jedna siatka odstępów */
+@media(min-width:1181px){
+  .blue-hero-copy{
+    left:32px!important;
+    top:28px!important;
+  }
+  .section-kicker{
+    margin-bottom:10px!important;
+  }
+  .intro-row h1{
+    margin-bottom:10px!important;
+  }
+  .blue-hero-proof{
+    margin-top:18px!important;
+    gap:16px!important;
+    align-items:center!important;
+  }
+  .blue-hero-proof span{
+    min-height:36px!important;
+    align-items:center!important;
+  }
+  .blue-hero-proof b{
+    width:32px!important;
+    height:32px!important;
+    flex:0 0 32px!important;
+  }
+  .intro-actions{
+    display:flex!important;
+    align-items:stretch!important;
+    gap:12px!important;
+    right:24px!important;
+    bottom:18px!important;
+  }
+  .intro-actions .date-box,
+  .intro-add-project{
+    height:58px!important;
+    min-height:58px!important;
+    margin:0!important;
+  }
+  .intro-actions .date-box{
+    padding:7px 12px!important;
+    grid-template-columns:44px minmax(0,1fr)!important;
+    gap:12px!important;
+    align-items:center!important;
+  }
+  .intro-add-project{
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:9px!important;
+    padding:0 18px!important;
+  }
+  .intro-add-project span{
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    line-height:1!important;
+  }
+}
+
+/* KPI — identyczny układ we wszystkich czterech kaflach */
+@media(min-width:1181px){
+  .stats-grid{
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+    gap:14px!important;
+  }
+  .stat-card{
+    min-height:104px!important;
+    height:104px!important;
+    padding:14px 16px!important;
+    display:grid!important;
+    grid-template-columns:52px minmax(0,1fr)!important;
+    align-items:center!important;
+    gap:14px!important;
+  }
+  .stat-icon{
+    width:52px!important;
+    height:52px!important;
+    display:grid!important;
+    place-items:center!important;
+    margin:0!important;
+  }
+  .stat-copy{
+    min-width:0!important;
+    display:grid!important;
+    grid-template-columns:auto 1fr!important;
+    grid-template-areas:
+      "label label"
+      "value value"
+      "delta delta"
+      "helper helper"!important;
+    row-gap:2px!important;
+    align-content:center!important;
+  }
+  .stat-copy>span{grid-area:label!important;margin:0!important}
+  .stat-copy>strong{grid-area:value!important;margin:0!important;line-height:1!important}
+  .stat-copy>em{grid-area:delta!important;margin:2px 0 0!important}
+  .stat-copy>small{grid-area:helper!important;margin:1px 0 0!important}
+}
+
+/* NAGŁÓWEK PROJEKTÓW — tekst i wszystkie kontrolki na jednej osi */
+@media(min-width:1181px){
+  .projects-module .module-head{
+    min-height:90px!important;
+    padding:14px 18px!important;
+    display:grid!important;
+    grid-template-columns:minmax(300px,1fr) auto!important;
+    align-items:center!important;
+    gap:20px!important;
+  }
+  .project-heading-copy{
+    min-width:0!important;
+  }
+  .project-heading-copy .module-label{
+    display:block!important;
+    margin-bottom:5px!important;
+  }
+  .project-heading-copy h2{
+    margin:0!important;
+    line-height:1.08!important;
+  }
+  .project-heading-copy p{
+    margin:5px 0 0!important;
+  }
+
+  .project-module-actions{
+    display:flex!important;
+    flex-direction:row!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:10px!important;
+    margin:0!important;
+  }
+  .project-search-box{
+    display:none!important;
+  }
+  .filters{
+    height:40px!important;
+    min-height:40px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:4px!important;
+    padding:4px!important;
+    margin:0!important;
+    border-radius:12px!important;
+  }
+  .filter{
+    height:32px!important;
+    min-height:32px!important;
+    padding:0 14px!important;
+    margin:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    white-space:nowrap!important;
+  }
+  .gantt-open-btn{
+    height:40px!important;
+    min-height:40px!important;
+    padding:0 16px!important;
+    margin:0!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:8px!important;
+    white-space:nowrap!important;
+  }
+}
+
+/* KARTY PROJEKTÓW — uporządkowane osie i symetryczne marginesy */
+@media(min-width:1181px){
+  .projects-module .project-list{
+    padding:12px!important;
+    gap:10px!important;
+  }
+  .project{
+    min-height:132px!important;
+    padding:10px 12px!important;
+    grid-template-columns:minmax(0,1fr) 316px!important;
+    grid-template-areas:
+      "main progress"
+      "main side"
+      "main controls"
+      "preview preview"!important;
+    column-gap:18px!important;
+    row-gap:5px!important;
+    align-items:start!important;
+  }
+  .project-main{
+    grid-area:main!important;
+    min-height:110px!important;
+    display:grid!important;
+    grid-template-columns:190px minmax(0,1fr)!important;
+    grid-template-areas:
+      "visual title"
+      "visual tags"!important;
+    column-gap:14px!important;
+    row-gap:8px!important;
+    align-items:start!important;
+    justify-content:initial!important;
+    padding:0!important;
+  }
+  .project-visual-thumb{
+    grid-area:visual!important;
+    width:190px!important;
+    height:110px!important;
+    min-height:110px!important;
+    margin:0!important;
+  }
+  .project-title-row{
+    grid-area:title!important;
+    margin:0!important;
+    min-width:0!important;
+  }
+  .project-title-copy{
+    min-width:0!important;
+  }
+  .project-heading-meta{
+    margin:0 0 4px!important;
+  }
+  .project-title-copy h4,
+  .project h4{
+    margin:0 0 5px!important;
+    line-height:1.18!important;
+  }
+  .project-title-copy .project-desc,
+  .project p{
+    margin:0!important;
+    line-height:1.4!important;
+  }
+  .project-tag-row{
+    grid-area:tags!important;
+    margin:0!important;
+    gap:6px!important;
+    align-self:end!important;
+  }
+  .project-tag-row span{
+    height:22px!important;
+    min-height:22px!important;
+    padding:0 9px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    margin:0!important;
+  }
+
+  .project .progress-wrap{
+    grid-area:progress!important;
+    margin:0!important;
+    padding:0!important;
+    align-self:start!important;
+  }
+  .project-side-summary{
+    grid-area:side!important;
+    margin:0!important;
+    padding:0!important;
+    display:grid!important;
+    grid-template-columns:minmax(0,1fr) minmax(0,1fr)!important;
+    grid-template-areas:
+      "owner days"
+      "tasks tasks"!important;
+    gap:6px 10px!important;
+    align-items:center!important;
+  }
+  .project-side-owner{grid-area:owner!important}
+  .project-side-days{grid-area:days!important}
+  .project-side-tasks{grid-area:tasks!important}
+  .project-side-owner,
+  .project-side-days,
+  .project-side-tasks{
+    min-height:30px!important;
+    display:flex!important;
+    align-items:center!important;
+    gap:8px!important;
+    margin:0!important;
+  }
+  .project-card-controls{
+    grid-area:controls!important;
+    min-height:28px!important;
+    margin:0!important;
+    padding:0!important;
+    display:flex!important;
+    align-items:center!important;
+    justify-content:flex-end!important;
+    gap:8px!important;
+  }
+  .project-open-btn,
+  .project-expand-btn{
+    height:28px!important;
+    min-height:28px!important;
+    margin:0!important;
+  }
+  .project-expand-btn{
+    width:28px!important;
+    min-width:28px!important;
+    padding:0!important;
+    display:grid!important;
+    place-items:center!important;
+  }
+
+  /* neutralizujemy stare absolutne badge z project-card-v2.css */
+  .project-owner-badge,
+  .project-status-badge{
+    position:static!important;
+    box-shadow:none!important;
+  }
+  .project-top-meta{
+    position:static!important;
+    margin:0!important;
+    padding:0!important;
+  }
+}
+
+/* laptop — zachowaj ten sam rytm, tylko ciaśniej */
+@media(max-width:1450px) and (min-width:1181px){
+  .projects-module .module-head{
+    grid-template-columns:minmax(260px,1fr) auto!important;
+    gap:14px!important;
+  }
+  .filter{
+    padding:0 11px!important;
+  }
+  .gantt-open-btn{
+    padding:0 12px!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 292px!important;
+    column-gap:14px!important;
+  }
+  .project-main{
+    grid-template-columns:176px minmax(0,1fr)!important;
+    column-gap:12px!important;
+  }
+  .project-visual-thumb{
+    width:176px!important;
+  }
+}
