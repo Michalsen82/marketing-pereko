@@ -113,9 +113,12 @@
   }
 
   function visibleClosedTasks(){
-    const globals=tasks.filter(t=>isMine(t.assignee)&&t.done&&t.completedOn===selectedTaskDate).map(t=>({...t,_source:'global'}));
-    const projectOnes=personalProjectTasks().filter(t=>t.done&&t.completedOn===selectedTaskDate);
-    return [...globals,...projectOnes];
+    /* Zamknięte zadania projektowe pozostają w projekcie i nie dublują się
+       w bocznym module „Taski na dziś”. Ten moduł archiwizuje wyłącznie
+       taski utworzone bezpośrednio w kalendarzu. */
+    return tasks
+      .filter(t=>isMine(t.assignee)&&t.done&&t.completedOn===selectedTaskDate)
+      .map(t=>({...t,_source:'global'}));
   }
 
   function toggleTaskDone(id,checked,source='global',projectId=''){
