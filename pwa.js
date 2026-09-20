@@ -134,6 +134,7 @@
       if(result.update)openSettings();
     };
     section.querySelector('#pwaWhatsNewBtn').onclick=openChangelog;
+    section.querySelector('#pwaWhatsNewBtn').onclick=openChangelog;
     section.querySelector('#pwaForceUpdateBtn').onclick=()=>forceAppUpdate(latestPublishedVersion?.version||'latest');
   }
 
