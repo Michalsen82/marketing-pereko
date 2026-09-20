@@ -6,7 +6,7 @@
     notifyDismissed:'pereko_pwa_notify_dismissed'
   };
   const DEFAULT_PREFS={assignment:true,taskDone:true,comments:true,deadline:true,files:true};
-  const APP_VERSION='2.0.0';
+  const APP_VERSION='2.0.1';
   const VERSION_URL='/app-version.json';
   let latestPublishedVersion=null;
   let updateBanner=null;
