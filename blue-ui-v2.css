@@ -7657,3 +7657,41 @@ body::after{display:none!important}
     justify-self:end!important;
   }
 }
+
+
+/* =========================================================
+   BLUE UI PASS 21 — wyłącznie nowa grafika w górnym hero
+   2026-09-20
+   ========================================================= */
+
+.intro-row{
+  background:
+    linear-gradient(90deg,
+      rgba(248,251,255,.99) 0%,
+      rgba(248,251,255,.97) 28%,
+      rgba(248,251,255,.88) 43%,
+      rgba(248,251,255,.58) 57%,
+      rgba(248,251,255,.20) 70%,
+      rgba(248,251,255,.02) 100%),
+    url('/assets/blue-ui/pereko-hq-hero.jpg') center right / cover no-repeat !important;
+}
+
+.intro-row::before{
+  content:""!important;
+  position:absolute!important;
+  inset:0!important;
+  z-index:1!important;
+  pointer-events:none!important;
+  background:
+    linear-gradient(180deg,rgba(255,255,255,.10),rgba(8,35,66,.05)),
+    radial-gradient(circle at 18% 34%,rgba(255,255,255,.34),transparent 34%)!important;
+}
+
+.intro-row > *{
+  position:relative!important;
+  z-index:2!important;
+}
+
+.blue-hero-visual{
+  display:none!important;
+}
