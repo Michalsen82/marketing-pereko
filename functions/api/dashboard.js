@@ -4,6 +4,7 @@ const OWNER = 'Michalsen82';
 const REPO = 'marketing-pereko';
 const FILE_PATH = 'data/dashboard.json';
 const BRANCH = 'main';
+const PRODUCTION_DASHBOARD_API = 'https://marketing-pereko.pages.dev/api/dashboard';
 const SUPABASE_URL = 'https://gtzbjpgpxopccauicumz.supabase.co';
 const SUPABASE_KEY = 'sb_publishable_rwjSZQl6PhkENNfflgh60w_4r-a-tzw';
 
@@ -171,7 +172,17 @@ export async function onRequestGet(context) {
     const user = await requireUser(context.request);
     if (!user) return Response.json({ error: 'Brak autoryzacji' }, { status: 401 });
     const token = context.env.GITHUB_TOKEN;
-    if (!token) return Response.json({ error: 'Brak sekretu GITHUB_TOKEN' }, { status: 500 });
+    if (!token) {
+      const authorization = context.request.headers.get('Authorization') || '';
+      const response = await fetch(PRODUCTION_DASHBOARD_API, {
+        headers: { 'Authorization': authorization, 'Cache-Control': 'no-store' }
+      });
+      const body = await response.text();
+      return new Response(body, {
+        status: response.status,
+        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
+      });
+    }
     const file = await getCurrentFile(token);
     const data = JSON.parse(decodeBase64Utf8(file.content));
     return Response.json(data, { headers: { 'Cache-Control': 'no-store' } });
@@ -185,7 +196,24 @@ export async function onRequestPut(context) {
     const user = await requireUser(context.request);
     if (!user) return Response.json({ error: 'Brak autoryzacji' }, { status: 401 });
     const token = context.env.GITHUB_TOKEN;
-    if (!token) return Response.json({ error: 'Brak sekretu GITHUB_TOKEN' }, { status: 500 });
+    if (!token) {
+      const authorization = context.request.headers.get('Authorization') || '';
+      const rawBody = await context.request.text();
+      const response = await fetch(PRODUCTION_DASHBOARD_API, {
+        method: 'PUT',
+        headers: {
+          'Authorization': authorization,
+          'Content-Type': 'application/json',
+          'Cache-Control': 'no-store'
+        },
+        body: rawBody
+      });
+      const responseBody = await response.text();
+      return new Response(responseBody, {
+        status: response.status,
+        headers: { 'Content-Type': 'application/json; charset=utf-8', 'Cache-Control': 'no-store' }
+      });
+    }
 
     const body = await context.request.json();
     if (!Array.isArray(body.projects) || !Array.isArray(body.tasks)) {
