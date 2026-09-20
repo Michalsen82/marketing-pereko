@@ -1023,3 +1023,363 @@ html[data-theme="light"] .user-avatar-control::after{
   border-color:#d9dfe1!important;
   box-shadow:0 14px 36px rgba(20,28,32,.13)!important;
 }
+
+
+/* =========================================================
+   LIGHT MODE — precision pass 03
+   Modale zespołu, hasła, PWA i pełny widok projektu
+   ========================================================= */
+
+/* ---------- ZESPÓŁ ---------- */
+html[data-theme="light"] .team-manager-card,
+html[data-theme="light"] .team-modal-card{
+  background:#fff!important;
+  color:#263237!important;
+  border-color:#dce2e4!important;
+}
+html[data-theme="light"] .team-manager-toolbar{
+  border-bottom-color:#e7ecee!important;
+}
+html[data-theme="light"] .team-manager-search input{
+  background:#fff!important;
+  color:#263237!important;
+  border-color:#d6dde0!important;
+}
+html[data-theme="light"] .team-manager-search svg{
+  fill:#748187!important;
+}
+html[data-theme="light"] .team-manager-count{
+  color:#7f8b90!important;
+}
+html[data-theme="light"] .team-manager-add{
+  background:#20292d!important;
+  color:#fff!important;
+  border-color:#20292d!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .team-manager-add span{
+  color:#ffdd00!important;
+}
+html[data-theme="light"] .team-manager-person{
+  border-bottom-color:#edf0f1!important;
+}
+html[data-theme="light"] .team-manager-avatar{
+  background:#eef2f3!important;
+  border-color:#d7dfe1!important;
+  color:#263237!important;
+}
+html[data-theme="light"] .team-manager-copy strong{
+  color:#202b30!important;
+}
+html[data-theme="light"] .team-manager-copy span{
+  color:#66757b!important;
+}
+html[data-theme="light"] .team-manager-copy small{
+  color:#8a969b!important;
+}
+html[data-theme="light"] .team-manager-actions .btn{
+  background:#f7f9f9!important;
+  border-color:#d6dde0!important;
+  color:#536167!important;
+}
+html[data-theme="light"] .team-manager-actions .btn:hover{
+  background:#fff!important;
+  border-color:#bfc9cc!important;
+  color:#202b30!important;
+}
+html[data-theme="light"] .team-manager-actions .danger{
+  background:#fff5f4!important;
+  border-color:#efc8c4!important;
+  color:#a94c44!important;
+}
+html[data-theme="light"] .team-manager-empty{
+  color:#819096!important;
+}
+
+/* ---------- ZMIANA HASŁA ---------- */
+html[data-theme="light"] .password-card{
+  background:#fff!important;
+  color:#263237!important;
+}
+html[data-theme="light"] .password-head h3{
+  color:#202b30!important;
+}
+html[data-theme="light"] .password-head p{
+  color:#7b898f!important;
+}
+html[data-theme="light"] .password-form .field label{
+  color:#64737a!important;
+}
+html[data-theme="light"] .password-form input{
+  background:#fff!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  border-color:#d5dcde!important;
+}
+html[data-theme="light"] .password-actions .btn.secondary{
+  background:#f7f9f9!important;
+  color:#536167!important;
+  border-color:#d5dcde!important;
+}
+html[data-theme="light"] .password-actions .btn.primary{
+  background:#20292d!important;
+  color:#fff!important;
+  border-color:#20292d!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .password-actions .btn.primary:disabled{
+  background:#eef2f3!important;
+  color:#a4adb1!important;
+  border-color:#dfe4e5!important;
+  opacity:1!important;
+}
+
+/* ---------- PWA / APLIKACJA I POWIADOMIENIA ---------- */
+html[data-theme="light"] .pwa-settings-btn{
+  background:#f7f9f9!important;
+  border-color:#d9dfe1!important;
+  color:#5d6a70!important;
+}
+html[data-theme="light"] .pwa-settings-btn:hover{
+  background:#fff!important;
+  border-color:#c7d0d3!important;
+  color:#20292d!important;
+}
+html[data-theme="light"] .pwa-modal{
+  background:rgba(25,32,36,.34)!important;
+}
+html[data-theme="light"] .pwa-card{
+  background:linear-gradient(180deg,#ffffff,#f5f7f7)!important;
+  border-color:#dce3e5!important;
+  color:#263237!important;
+  box-shadow:0 32px 110px rgba(20,28,32,.22)!important;
+}
+html[data-theme="light"] .pwa-head{
+  background:rgba(255,255,255,.97)!important;
+  border-bottom-color:#e5eaec!important;
+}
+html[data-theme="light"] .pwa-kicker,
+html[data-theme="light"] .pwa-section-head span{
+  color:#8d7600!important;
+}
+html[data-theme="light"] .pwa-head h3,
+html[data-theme="light"] .pwa-section-head h4{
+  color:#202b30!important;
+}
+html[data-theme="light"] .pwa-head p,
+html[data-theme="light"] .pwa-section p{
+  color:#6f7d83!important;
+}
+html[data-theme="light"] .pwa-close{
+  background:#f7f9f9!important;
+  border-color:#d8dfe1!important;
+  color:#536167!important;
+}
+html[data-theme="light"] .pwa-status-card,
+html[data-theme="light"] .pwa-section,
+html[data-theme="light"] .pwa-pref{
+  background:#fff!important;
+  border-color:#e0e5e6!important;
+}
+html[data-theme="light"] .pwa-status-card span{
+  color:#7b888e!important;
+}
+html[data-theme="light"] .pwa-status-card strong,
+html[data-theme="light"] .pwa-pref strong,
+html[data-theme="light"] .pwa-qr-wrap strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .pwa-status-card small,
+html[data-theme="light"] .pwa-pref span,
+html[data-theme="light"] .pwa-qr-wrap span{
+  color:#7f8c92!important;
+}
+html[data-theme="light"] .pwa-primary{
+  background:#ffdd00!important;
+  border-color:#d6bd00!important;
+  color:#151819!important;
+}
+html[data-theme="light"] .pwa-secondary{
+  background:#f7f9f9!important;
+  border-color:#d6dde0!important;
+  color:#536167!important;
+}
+html[data-theme="light"] .pwa-secondary:hover{
+  background:#fff!important;
+  color:#202b30!important;
+}
+html[data-theme="light"] .pwa-guide{
+  background:#fffbed!important;
+  border-left-color:#d3b900!important;
+  color:#5f6d73!important;
+}
+html[data-theme="light"] .pwa-guide strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .pwa-guide small{
+  border-top-color:#eadf9d!important;
+  color:#748187!important;
+}
+html[data-theme="light"] .pwa-message{
+  color:#758288!important;
+}
+
+/* ---------- PEŁNY WIDOK PROJEKTU ---------- */
+html[data-theme="light"] .project-detail-card{
+  background:linear-gradient(180deg,#f8fafa,#f1f4f4)!important;
+}
+html[data-theme="light"] .pd-card{
+  background:#fff!important;
+  color:#263237!important;
+  border-color:#dce2e4!important;
+}
+html[data-theme="light"] .pd-card-head{
+  border-bottom-color:#edf0f1!important;
+}
+html[data-theme="light"] .pd-card-head h3{
+  color:#202b30!important;
+}
+html[data-theme="light"] .pd-field>span{
+  color:#6f7d83!important;
+}
+html[data-theme="light"] .project-detail-modal select,
+html[data-theme="light"] .project-detail-modal input,
+html[data-theme="light"] .project-detail-modal textarea,
+html[data-theme="light"] .pd-task-form input,
+html[data-theme="light"] .pd-task-form select,
+html[data-theme="light"] .pd-comment-form textarea,
+html[data-theme="light"] .pd-member-add select{
+  color-scheme:light!important;
+  background-color:#fff!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  border-color:#d7dee0!important;
+}
+html[data-theme="light"] .project-detail-modal select option,
+html[data-theme="light"] .project-detail-modal select optgroup{
+  background:#fff!important;
+  color:#263237!important;
+}
+html[data-theme="light"] .project-detail-modal input[type="date"]{
+  color-scheme:light!important;
+  background-color:#fff!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  background-image:none!important;
+}
+html[data-theme="light"] .pd-task-form,
+html[data-theme="light"] .pd-member-add{
+  background:#fbfcfc!important;
+  border-color:#edf0f1!important;
+}
+html[data-theme="light"] .pd-task,
+html[data-theme="light"] .pd-member,
+html[data-theme="light"] .pd-comment{
+  border-bottom-color:#edf0f1!important;
+}
+html[data-theme="light"] .pd-task strong,
+html[data-theme="light"] .pd-member strong,
+html[data-theme="light"] .pd-comment-meta strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .pd-task small,
+html[data-theme="light"] .pd-member span,
+html[data-theme="light"] .pd-comment-meta span{
+  color:#849197!important;
+}
+html[data-theme="light"] .pd-comment p{
+  color:#4e5c62!important;
+}
+html[data-theme="light"] .pd-avatar,
+html[data-theme="light"] .pd-comment-avatar{
+  background:#20292d!important;
+  color:#ffdd00!important;
+}
+html[data-theme="light"] .pd-task>button,
+html[data-theme="light"] .pd-member>button{
+  color:#89969b!important;
+}
+html[data-theme="light"] .pd-task>button:hover,
+html[data-theme="light"] .pd-member>button:hover{
+  color:#b84f46!important;
+}
+
+/* wszystkie jasne przyciski akcji w projekcie muszą mieć widoczny tekst */
+html[data-theme="light"] .pd-accent-btn,
+html[data-theme="light"] #pdTaskSave,
+html[data-theme="light"] #pdCommentSave,
+html[data-theme="light"] #pdFileAdd,
+html[data-theme="light"] #pdAssignMember{
+  background:#20292d!important;
+  border:1px solid #20292d!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .pd-accent-btn:hover,
+html[data-theme="light"] #pdTaskSave:hover,
+html[data-theme="light"] #pdCommentSave:hover,
+html[data-theme="light"] #pdFileAdd:hover,
+html[data-theme="light"] #pdAssignMember:hover{
+  background:#303b40!important;
+  border-color:#303b40!important;
+}
+html[data-theme="light"] .pd-glass-btn{
+  background:#f7f9f9!important;
+  color:#536167!important;
+  border-color:#d6dde0!important;
+  -webkit-text-fill-color:#536167!important;
+}
+html[data-theme="light"] .pd-danger-zone button{
+  background:#fff5f4!important;
+  border-color:#efc8c4!important;
+  color:#b5534b!important;
+}
+
+/* ---------- MATERIAŁY PROJEKTU ---------- */
+html[data-theme="light"] .pf-toolbar,
+html[data-theme="light"] .pf-dropzone{
+  background:#fbfcfc!important;
+}
+html[data-theme="light"] .pf-search input{
+  background:#fff!important;
+  color:#263237!important;
+  border-color:#d7dee0!important;
+}
+html[data-theme="light"] .pf-search svg{
+  fill:#7b898f!important;
+}
+html[data-theme="light"] .pf-dropzone strong{
+  color:#344146!important;
+}
+html[data-theme="light"] .pf-dropzone span{
+  color:#89959a!important;
+}
+html[data-theme="light"] .pf-file-copy>strong{
+  color:#263237!important;
+}
+html[data-theme="light"] .pf-file-actions button,
+html[data-theme="light"] .pf-version-row button{
+  background:#f7f9f9!important;
+  border-color:#d6dde0!important;
+  color:#536167!important;
+}
+html[data-theme="light"] .pf-file-actions button:hover,
+html[data-theme="light"] .pf-version-row button:hover{
+  background:#fff!important;
+  border-color:#c6b000!important;
+  color:#202b30!important;
+}
+
+/* ---------- NOTATKI I USTALENIA ---------- */
+html[data-theme="light"] .pd-comment-form{
+  border-bottom-color:#edf0f1!important;
+}
+html[data-theme="light"] #pdCommentSave{
+  min-width:108px!important;
+}
+
+/* ---------- disabled buttons ---------- */
+html[data-theme="light"] button:disabled{
+  opacity:.55!important;
+}
