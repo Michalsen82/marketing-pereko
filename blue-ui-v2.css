@@ -4794,3 +4794,198 @@ body::after{display:none!important}
   }
 }
 
+
+
+/* =========================================================
+   REFERENCE MATCH PASS 08 — hero + cards compression
+   2026-09-20
+   ========================================================= */
+
+/* Hero: więcej ostrości i proporcje bliższe makiecie */
+@media(min-width:1181px){
+  .intro-row{
+    height:292px!important;
+    min-height:292px!important;
+    border-radius:16px!important;
+    overflow:hidden!important;
+  }
+  .blue-hero-copy{
+    left:30px!important;
+    top:26px!important;
+    width:58%!important;
+  }
+  .intro-row h1{
+    max-width:660px!important;
+    font-size:42px!important;
+    line-height:1.02!important;
+    letter-spacing:-.045em!important;
+  }
+  .intro-row p{
+    max-width:600px!important;
+    font-size:13px!important;
+    line-height:1.45!important;
+  }
+  .blue-hero-visual{
+    width:69%!important;
+    min-height:292px!important;
+    filter:none!important;
+    background-position:center 54%!important;
+    background-size:cover!important;
+  }
+  .blue-hero-visual::before{
+    background:
+      linear-gradient(90deg,rgba(255,255,255,.98) 0%,rgba(255,255,255,.90) 14%,rgba(255,255,255,.42) 31%,rgba(255,255,255,0) 52%),
+      linear-gradient(180deg,rgba(8,42,80,0),rgba(8,42,80,.08))!important;
+  }
+  .blue-hero-slogan{
+    right:300px!important;
+    bottom:102px!important;
+  }
+  .intro-actions{
+    right:22px!important;
+    bottom:14px!important;
+  }
+}
+
+/* KPI: subtelnie niższe i lżejsze */
+@media(min-width:1181px){
+  .stats-grid{
+    gap:12px!important;
+    margin-bottom:14px!important;
+  }
+  .stat-card{
+    min-height:98px!important;
+    padding:12px 14px!important;
+    grid-template-columns:48px minmax(0,1fr)!important;
+    gap:11px!important;
+  }
+  .stat-icon{
+    width:48px!important;
+    height:48px!important;
+  }
+  .stat-icon svg{
+    width:22px!important;
+    height:22px!important;
+  }
+  .stat-copy>strong{
+    font-size:28px!important;
+  }
+}
+
+/* Nagłówek sekcji projektów bardziej zwarty */
+@media(min-width:1181px){
+  .projects-module .module-head{
+    min-height:84px!important;
+    padding:12px 18px!important;
+  }
+  .projects-module .module-head h2{
+    font-size:21px!important;
+  }
+  .project-heading-copy p{
+    margin-top:4px!important;
+    font-size:9px!important;
+  }
+}
+
+/* Karty projektów: docelowo zwarte jak w referencji */
+@media(min-width:1181px){
+  .projects-module .project-list{
+    padding:9px 12px 12px!important;
+    gap:8px!important;
+  }
+  .project{
+    min-height:132px!important;
+    padding:8px 10px!important;
+    grid-template-columns:minmax(0,1fr) 330px!important;
+    gap:3px 16px!important;
+  }
+  .project-main{
+    grid-template-columns:198px minmax(0,1fr)!important;
+    gap:4px 12px!important;
+  }
+  .project-visual-thumb{
+    min-height:112px!important;
+    height:112px!important;
+    border-radius:10px!important;
+  }
+  .project-title-copy h4,
+  .project h4{
+    font-size:15px!important;
+    line-height:1.2!important;
+    margin-bottom:4px!important;
+  }
+  .project-title-copy .project-desc,
+  .project p{
+    font-size:8.9px!important;
+    line-height:1.35!important;
+  }
+  .project-tag-row{
+    gap:5px!important;
+    margin-top:7px!important;
+  }
+  .project-tag-row span{
+    min-height:20px!important;
+    padding:0 9px!important;
+    font-size:7px!important;
+  }
+  .project .progress-wrap{
+    margin-top:0!important;
+  }
+  .project-side-summary{
+    gap:5px 9px!important;
+    padding-top:3px!important;
+  }
+  .project-side-avatar,
+  .project-side-calendar,
+  .project-side-tasks>span{
+    width:28px!important;
+    height:28px!important;
+    flex-basis:28px!important;
+  }
+  .project-side-summary small{
+    font-size:6.4px!important;
+  }
+  .project-side-summary strong{
+    font-size:8.8px!important;
+  }
+  .project-card-controls{
+    min-height:25px!important;
+    margin-top:2px!important;
+  }
+  .project-open-btn{
+    height:26px!important;
+    min-height:26px!important;
+    font-size:8px!important;
+  }
+  .project-expand-btn{
+    width:26px!important;
+    min-width:26px!important;
+    height:26px!important;
+  }
+}
+
+/* Laptop 1181–1450: zachowaj kompresję bez utraty czytelności */
+@media(max-width:1450px) and (min-width:1181px){
+  .intro-row{
+    height:280px!important;
+    min-height:280px!important;
+  }
+  .intro-row h1{
+    font-size:38px!important;
+    max-width:610px!important;
+  }
+  .blue-hero-visual{
+    min-height:280px!important;
+    width:68%!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 305px!important;
+  }
+  .project-main{
+    grid-template-columns:180px minmax(0,1fr)!important;
+  }
+  .project-visual-thumb{
+    min-height:108px!important;
+    height:108px!important;
+  }
+}
