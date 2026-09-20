@@ -1,0 +1,806 @@
+/* =========================================================
+   FINAL STABILITY PASS — 2026-09-20
+   Cel: jedna geometria Light/Dark, czytelna typografia,
+   bezpieczne overflow i spójne breakpointy.
+   Ten plik jest ostatnią warstwą CSS i nie zmienia koncepcji UI.
+   ========================================================= */
+
+*,
+*::before,
+*::after{
+  box-sizing:border-box;
+}
+
+html{
+  text-size-adjust:100%;
+  -webkit-text-size-adjust:100%;
+}
+
+body,
+button,
+input,
+select,
+textarea{
+  font-family:'Source Sans 3',Arial,sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6,
+.module-label,
+.project-number,
+.task-number,
+.deadline-agenda-type,
+.gantt-kicker,
+.gantt-view-btn,
+.stats-toggle-btn,
+.intro-add-project{
+  font-family:'Montserrat',Arial,sans-serif;
+}
+
+/* ---------- wspólne minimum czytelności ---------- */
+.module p,
+.module small,
+.project-desc,
+.project-owner,
+.project-progress-caption span,
+.project-preview-empty,
+.project-preview-more,
+.task-calendar-item small,
+.deadline-agenda-item p,
+.deadline-agenda-open,
+.deadline-agenda-filter,
+.gantt-project-summary>small,
+.gantt-task-main span,
+.gantt-task-info>small,
+.gantt-legend span,
+.gantt-range{
+  font-size:max(10px,1em);
+}
+
+button,
+.btn,
+.filter,
+.task-glass-btn,
+.pd-glass-btn,
+.project-open-btn,
+.project-expand-btn,
+.project-preview-gantt-btn{
+  min-height:34px;
+}
+
+/* =========================================================
+   HERO — jedna geometria dla Light / Dark
+   ========================================================= */
+.intro-row{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.55fr) minmax(320px,.72fr)!important;
+  column-gap:18px!important;
+  align-items:start!important;
+  margin-bottom:24px!important;
+}
+
+.intro-actions{
+  width:100%!important;
+  padding-top:28px!important;
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) auto!important;
+  column-gap:12px!important;
+  align-items:center!important;
+  justify-self:stretch!important;
+  min-width:0!important;
+}
+
+.intro-actions .date-box{
+  justify-self:start!important;
+  align-self:center!important;
+  margin:0!important;
+  transform:translateY(-16px)!important;
+  display:grid!important;
+  grid-template-columns:78px 1fr!important;
+  column-gap:3px!important;
+  min-width:214px!important;
+  max-width:236px!important;
+  overflow:visible!important;
+  padding:0!important;
+  border:0!important;
+  box-shadow:none!important;
+}
+
+.date-daynum{
+  width:78px!important;
+  height:68px!important;
+  padding-left:14px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  font:800 54px/.92 'Montserrat',sans-serif!important;
+  letter-spacing:-.06em!important;
+}
+
+.date-copy{
+  display:grid!important;
+  grid-template-rows:auto auto auto!important;
+  row-gap:3px!important;
+  align-content:center!important;
+  justify-items:start!important;
+  min-width:0!important;
+}
+
+.date-copy .date-weekday{
+  font-size:10px!important;
+  line-height:1!important;
+}
+.date-copy strong{
+  font-size:16px!important;
+  line-height:1.05!important;
+}
+.date-copy>span:last-child{
+  font-size:12px!important;
+  line-height:1!important;
+}
+
+.intro-project-actions{
+  padding:0!important;
+  margin:0!important;
+  align-self:center!important;
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:flex-end!important;
+  justify-content:center!important;
+  gap:7px!important;
+}
+
+.intro-add-project{
+  height:46px!important;
+  min-height:46px!important;
+  margin:0!important;
+}
+
+.stats-toggle-btn{
+  height:28px!important;
+  min-height:28px!important;
+  padding:0 9px!important;
+  margin:0!important;
+  font-size:10px!important;
+}
+
+/* =========================================================
+   DASHBOARD / MODUŁY
+   ========================================================= */
+.dashboard-grid,
+.projects-module,
+.task-calendar-module,
+.deadline-agenda-module,
+.side-column,
+.module{
+  min-width:0;
+}
+
+.module{
+  overflow:hidden;
+}
+
+.projects-module .module-head{
+  padding:20px 22px 18px!important;
+}
+
+.projects-module .project-list{
+  padding:18px!important;
+  gap:16px!important;
+}
+
+/* =========================================================
+   KARTY PROJEKTÓW — wspólny układ Light/Dark
+   ========================================================= */
+.project{
+  width:100%!important;
+  max-width:100%!important;
+  min-width:0!important;
+  margin:0!important;
+}
+
+.project-main,
+.project-title-row,
+.project-title-copy,
+.project-deadline-status,
+.project-card-controls,
+.project-preview,
+.project-preview-grid,
+.project-preview-block,
+.project-preview-left{
+  min-width:0!important;
+}
+
+.project-title-copy h4{
+  overflow-wrap:anywhere;
+}
+
+.project-title-copy .project-desc{
+  overflow-wrap:anywhere;
+}
+
+.project .progress-wrap{
+  min-width:0!important;
+}
+
+.project-preview{
+  overflow:hidden!important;
+}
+
+.project.expanded .project-preview{
+  width:calc(100% - 57px)!important;
+  max-width:calc(100% - 57px)!important;
+  margin-left:57px!important;
+  margin-right:0!important;
+  box-sizing:border-box!important;
+}
+
+.project.expanded .project-preview-grid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1fr) minmax(220px,280px)!important;
+  gap:24px!important;
+  width:100%!important;
+  max-width:100%!important;
+  align-items:start!important;
+}
+
+.project.expanded .project-preview-block:not(.project-preview-left){
+  width:100%!important;
+  max-width:100%!important;
+  overflow:hidden!important;
+}
+
+.project-preview-fact{
+  min-width:0!important;
+}
+
+.project-preview-fact strong{
+  min-width:0!important;
+  max-width:60%!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+
+.project-preview-task{
+  min-width:0!important;
+}
+
+.project-preview-task-copy{
+  min-width:0!important;
+}
+
+.project-preview-task-copy>strong,
+.project-preview-task-copy>small,
+.project-preview-task-copy>em{
+  overflow-wrap:anywhere!important;
+}
+
+/* =========================================================
+   TASKI — spójne i czytelne
+   ========================================================= */
+.task-calendar-module .tasks{
+  padding:12px 18px 10px!important;
+}
+
+.task-calendar-item{
+  min-width:0!important;
+}
+
+.task-calendar-item strong{
+  overflow-wrap:anywhere;
+}
+
+.task-date-nav{
+  grid-template-columns:34px 1fr 34px!important;
+  gap:7px!important;
+  padding:10px 12px!important;
+}
+
+.task-nav-arrow{
+  width:34px!important;
+  height:34px!important;
+}
+
+.task-date-main{
+  min-height:38px!important;
+}
+
+.task-add-form{
+  min-width:0!important;
+}
+
+.task-date-field,
+.task-add-form input{
+  min-width:0!important;
+}
+
+/* =========================================================
+   NAJBLIŻSZE TERMINY — Projekt / Zadanie / Task
+   ========================================================= */
+.deadline-agenda-head{
+  gap:12px!important;
+}
+
+.deadline-agenda-filters{
+  min-width:0!important;
+}
+
+.deadline-agenda-filter{
+  min-width:0!important;
+  font-size:10px!important;
+}
+
+.deadline-agenda-item{
+  min-width:0!important;
+}
+
+.deadline-agenda-copy{
+  min-width:0!important;
+}
+
+.deadline-agenda-item h5{
+  font-size:12px!important;
+  overflow-wrap:anywhere!important;
+}
+
+.deadline-agenda-item p{
+  font-size:10.5px!important;
+}
+
+.deadline-agenda-type{
+  font-size:9px!important;
+}
+
+.deadline-agenda-open{
+  font-size:10px!important;
+}
+
+/* =========================================================
+   GANTT — większa czytelność bez zmiany logiki
+   ========================================================= */
+.gantt-head h2{
+  font-size:30px!important;
+}
+
+.gantt-head p{
+  font-size:13px!important;
+}
+
+.gantt-left-head{
+  font-size:10px!important;
+}
+
+.gantt-month{
+  font-size:11px!important;
+}
+
+.gantt-project-summary>strong{
+  font-size:14px!important;
+}
+
+.gantt-project-summary>small{
+  font-size:10.5px!important;
+}
+
+.gantt-task-main strong{
+  font-size:11px!important;
+}
+
+.gantt-task-main span{
+  font-size:10px!important;
+}
+
+.gantt-task-info>small{
+  font-size:10px!important;
+}
+
+.gantt-view-btn,
+.gantt-person-filter,
+.gantt-person-filter select{
+  font-size:10px!important;
+}
+
+.gantt-legend span,
+.gantt-range{
+  font-size:10.5px!important;
+}
+
+.gantt-body{
+  overscroll-behavior:contain;
+}
+
+/* =========================================================
+   INPUTY / DATY — wspólny kontrast i stabilność wymiarów
+   ========================================================= */
+input,
+select,
+textarea,
+button{
+  line-height:1.2;
+}
+
+input[type="date"]{
+  min-height:38px;
+}
+
+html[data-theme="light"] input[type="date"]{
+  color-scheme:light!important;
+}
+
+html[data-theme="dark"] input[type="date"],
+html:not([data-theme="light"]) input[type="date"]{
+  color-scheme:dark!important;
+}
+
+/* =========================================================
+   RESPONSYWNOŚĆ
+   ========================================================= */
+@media(max-width:1180px){
+  .project.expanded .project-preview-grid{
+    grid-template-columns:minmax(0,1fr) minmax(210px,250px)!important;
+    gap:18px!important;
+  }
+
+  .deadline-agenda-filters{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    width:100%!important;
+  }
+}
+
+@media(max-width:1100px){
+  .intro-row{
+    grid-template-columns:1fr!important;
+  }
+
+  .intro-actions{
+    grid-template-columns:minmax(0,1fr) auto!important;
+    padding-top:0!important;
+  }
+
+  .intro-actions .date-box{
+    transform:none!important;
+  }
+}
+
+@media(max-width:980px){
+  .project.expanded .project-preview{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+  }
+
+  .project.expanded .project-preview-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  .project-preview-fact strong{
+    max-width:70%!important;
+  }
+}
+
+@media(max-width:900px){
+  .project-main{
+    flex-wrap:wrap!important;
+  }
+
+  .gantt-controls,
+  .gantt-toolbar{
+    align-items:stretch!important;
+  }
+}
+
+@media(max-width:760px){
+  .intro-actions{
+    grid-template-columns:1fr!important;
+    row-gap:12px!important;
+  }
+
+  .intro-project-actions{
+    align-items:flex-start!important;
+  }
+
+  .intro-add-project,
+  .stats-toggle-btn{
+    align-self:flex-start!important;
+  }
+
+  .projects-module .project-list{
+    padding:12px!important;
+  }
+
+  .project{
+    padding:16px!important;
+  }
+
+  .project .progress-wrap,
+  .project-preview{
+    margin-left:0!important;
+  }
+
+  .deadline-agenda-head{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+
+  .deadline-agenda-filters{
+    width:100%!important;
+  }
+
+  .deadline-agenda-item{
+    grid-template-columns:46px minmax(0,1fr)!important;
+    grid-template-areas:
+      "date copy"
+      ". action"!important;
+    row-gap:8px!important;
+  }
+
+  .deadline-agenda-open{
+    grid-area:action!important;
+    justify-self:start!important;
+  }
+
+  .gantt-modal{
+    padding:0!important;
+  }
+
+  .gantt-shell{
+    height:100vh!important;
+    max-height:100vh!important;
+    border-radius:0!important;
+  }
+}
+
+@media(max-width:560px){
+  .deadline-agenda-filters{
+    grid-template-columns:1fr 1fr!important;
+  }
+
+  .date-daynum{
+    font-size:48px!important;
+  }
+
+  .project-preview-fact strong{
+    max-width:62%!important;
+  }
+}
+
+
+/* =========================================================
+   FINAL POLISH PASS — readability, tablet, dates, hover/focus
+   ========================================================= */
+
+/* 1. Czytelność najmniejszych tekstów */
+.project-number,
+.task-number,
+.deadline-agenda-type,
+.gantt-kicker,
+.gantt-left-head{
+  font-size:10px!important;
+}
+
+.project-preview-task-copy>small,
+.project-preview-task-copy>em,
+.task-calendar-item small,
+.deadline-agenda-item p,
+.gantt-project-summary>small,
+.gantt-task-main span,
+.gantt-task-info>small,
+.gantt-legend span,
+.gantt-range{
+  font-size:10.5px!important;
+  line-height:1.35!important;
+}
+
+.project-desc,
+.project-owner,
+.project-progress-caption span,
+.deadline-agenda-item h5,
+.task-calendar-item strong{
+  line-height:1.35!important;
+}
+
+/* 2. Spójny focus/hover dla interaktywnych elementów */
+button,
+a,
+input,
+select,
+textarea{
+  transition:border-color .16s ease,background-color .16s ease,color .16s ease,box-shadow .16s ease,transform .16s ease!important;
+}
+
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+[tabindex]:focus-visible{
+  outline:2px solid #ffdd00!important;
+  outline-offset:2px!important;
+  box-shadow:0 0 0 3px rgba(255,221,0,.18)!important;
+}
+
+html[data-theme="light"] button:focus-visible,
+html[data-theme="light"] a:focus-visible,
+html[data-theme="light"] input:focus-visible,
+html[data-theme="light"] select:focus-visible,
+html[data-theme="light"] textarea:focus-visible,
+html[data-theme="light"] [tabindex]:focus-visible{
+  outline-color:#8b7600!important;
+  box-shadow:0 0 0 3px rgba(139,118,0,.13)!important;
+}
+
+/* 3. Jeden wizualny standard pól daty */
+input[type="date"],
+.deadline-date-shell,
+.task-date-field{
+  height:38px!important;
+  min-height:38px!important;
+  border-radius:9px!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+
+input[type="date"]{
+  font:700 11px/1 'Montserrat',sans-serif!important;
+  background-position:right 11px center!important;
+  background-size:15px 15px!important;
+}
+
+html[data-theme="light"] input[type="date"],
+html[data-theme="light"] .deadline-date-shell,
+html[data-theme="light"] .task-date-field{
+  background-color:#fff!important;
+  border-color:#d3dcdf!important;
+  color:#263237!important;
+}
+
+html[data-theme="dark"] input[type="date"],
+html[data-theme="dark"] .deadline-date-shell,
+html[data-theme="dark"] .task-date-field,
+html:not([data-theme="light"]) input[type="date"],
+html:not([data-theme="light"]) .deadline-date-shell,
+html:not([data-theme="light"]) .task-date-field{
+  background-color:rgba(255,255,255,.045)!important;
+  border-color:rgba(255,255,255,.14)!important;
+  color:#fff!important;
+}
+
+/* 4. Najbliższe terminy — lepszy rytm i ochrona długich nazw */
+.deadline-agenda-type{
+  margin-bottom:5px!important;
+}
+
+.deadline-agenda-item{
+  align-items:center!important;
+}
+
+.deadline-agenda-copy{
+  overflow:hidden!important;
+}
+
+.deadline-agenda-item h5{
+  margin:0!important;
+  overflow-wrap:anywhere!important;
+}
+
+.deadline-agenda-open{
+  flex:0 0 auto!important;
+  max-width:170px!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+
+@media(min-width:1321px){
+  .deadline-agenda-item{
+    grid-template-columns:46px minmax(0,1fr) minmax(118px,auto)!important;
+  }
+}
+
+/* 5. Gantt — czytelne powiązanie lewego opisu z linią czasu */
+.gantt-row{
+  position:relative!important;
+}
+
+.gantt-row::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:transparent;
+  transition:background .16s ease;
+  z-index:1;
+}
+
+.gantt-row:hover::after{
+  background:rgba(255,221,0,.035)!important;
+}
+
+html[data-theme="light"] .gantt-row:hover::after{
+  background:rgba(32,41,45,.035)!important;
+}
+
+.gantt-row:hover .gantt-project-info,
+.gantt-row:hover .gantt-track{
+  box-shadow:inset 0 1px 0 rgba(255,221,0,.10), inset 0 -1px 0 rgba(255,221,0,.10)!important;
+}
+
+html[data-theme="light"] .gantt-row:hover .gantt-project-info,
+html[data-theme="light"] .gantt-row:hover .gantt-track{
+  box-shadow:inset 0 1px 0 rgba(32,41,45,.08), inset 0 -1px 0 rgba(32,41,45,.08)!important;
+}
+
+/* 6. Tablet 768–1024 — wcześniej składamy newralgiczne sekcje */
+@media(min-width:768px) and (max-width:1024px){
+  .dashboard-grid{
+    grid-template-columns:1fr!important;
+  }
+
+  .side-column{
+    display:grid!important;
+    grid-template-columns:1fr 1fr!important;
+    gap:16px!important;
+  }
+
+  .project-main{
+    flex-direction:column!important;
+    align-items:stretch!important;
+  }
+
+  .project-top-meta{
+    margin-left:57px!important;
+    align-self:flex-start!important;
+    flex-wrap:wrap!important;
+  }
+
+  .project.expanded .project-preview{
+    width:100%!important;
+    max-width:100%!important;
+    margin-left:0!important;
+  }
+
+  .project.expanded .project-preview-grid{
+    grid-template-columns:1fr!important;
+    gap:16px!important;
+  }
+
+  .deadline-agenda-head{
+    align-items:flex-start!important;
+    flex-direction:column!important;
+  }
+
+  .deadline-agenda-filters{
+    width:100%!important;
+    display:grid!important;
+    grid-template-columns:repeat(4,minmax(0,1fr))!important;
+  }
+
+  .deadline-agenda-filter{
+    width:100%!important;
+  }
+
+  .gantt-controls{
+    flex-direction:column!important;
+    align-items:stretch!important;
+  }
+
+  .gantt-person-filter{
+    width:100%!important;
+    justify-content:space-between!important;
+  }
+
+  .gantt-person-filter select{
+    min-width:0!important;
+    flex:1 1 auto!important;
+  }
+}
+
+@media(min-width:768px) and (max-width:860px){
+  .side-column{
+    grid-template-columns:1fr!important;
+  }
+
+  .deadline-agenda-filters{
+    grid-template-columns:1fr 1fr!important;
+  }
+}

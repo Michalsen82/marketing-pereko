@@ -70,17 +70,33 @@
       </div>
       <div class="task-add-form" id="taskAddForm">
         <input id="taskNewText" type="text" placeholder="Nazwa taska">
-        <input id="taskNewDate" type="date">
+        <label class="task-date-field" for="taskNewDate">
+          <span class="task-date-value" id="taskNewDateValue">Wybierz datę</span>
+          <span class="task-date-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M7 2h2v2h6V2h2v2h2a2 2 0 0 1 2 2v13a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2V2Zm12 8H5v9h14v-9ZM5 8h14V6H5v2Z"/></svg></span>
+          <input id="taskNewDate" type="date" aria-label="Termin taska">
+        </label>
         <button type="button" class="task-save-btn" id="taskSaveNew">Dodaj</button>
       </div>`);
     list.insertAdjacentHTML('afterend','<div class="task-closed-wrap" id="taskClosedWrap"></div><div class="task-history-panel" id="taskHistoryPanel"></div>');
     document.querySelector('#taskPrevDay').onclick=()=>{selectedTaskDate=addDays(selectedTaskDate,-1);renderTaskCalendar()};
     document.querySelector('#taskNextDay').onclick=()=>{selectedTaskDate=addDays(selectedTaskDate,1);renderTaskCalendar()};
     document.querySelector('#taskTodayJump').onclick=()=>{selectedTaskDate=isoToday();renderTaskCalendar()};
+    const taskDateInput=document.querySelector('#taskNewDate');
+    const taskDateValue=document.querySelector('#taskNewDateValue');
+    const syncTaskDateValue=()=>{
+      if(!taskDateInput||!taskDateValue)return;
+      const v=taskDateInput.value;
+      taskDateValue.textContent=v?new Date(v+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'Wybierz datę';
+      taskDateValue.classList.toggle('has-value',!!v);
+    };
+    taskDateInput?.addEventListener('change',syncTaskDateValue);
+    taskDateInput?.addEventListener('input',syncTaskDateValue);
+
     document.querySelector('#taskAddBtn').onclick=()=>{
       const form=document.querySelector('#taskAddForm');
       form.classList.toggle('open');
-      document.querySelector('#taskNewDate').value=selectedTaskDate<isoToday()?isoToday():selectedTaskDate;
+      taskDateInput.value=selectedTaskDate<isoToday()?isoToday():selectedTaskDate;
+      syncTaskDateValue();
       if(form.classList.contains('open'))document.querySelector('#taskNewText').focus();
     };
     document.querySelector('#taskHistoryBtn').onclick=()=>{taskHistoryOpen=!taskHistoryOpen;renderTaskHistory()};
@@ -113,9 +129,12 @@
   }
 
   function visibleClosedTasks(){
-    const globals=tasks.filter(t=>isMine(t.assignee)&&t.done&&t.completedOn===selectedTaskDate).map(t=>({...t,_source:'global'}));
-    const projectOnes=personalProjectTasks().filter(t=>t.done&&t.completedOn===selectedTaskDate);
-    return [...globals,...projectOnes];
+    /* Zamknięte zadania projektowe pozostają w projekcie i nie dublują się
+       w bocznym module „Taski na dziś”. Ten moduł archiwizuje wyłącznie
+       taski utworzone bezpośrednio w kalendarzu. */
+    return tasks
+      .filter(t=>isMine(t.assignee)&&t.done&&t.completedOn===selectedTaskDate)
+      .map(t=>({...t,_source:'global'}));
   }
 
   function toggleTaskDone(id,checked,source='global',projectId=''){
@@ -152,7 +171,13 @@
     const closed=visibleClosedTasks(),wrap=document.querySelector('#taskClosedWrap');
     if(wrap)wrap.innerHTML=closed.length?`<div class="task-closed-head"><span>ZAMKNIĘTE</span><strong>${closed.length}</strong></div>${closed.map(t=>`<label class="task task-calendar-item done archived"><input type="checkbox" data-calendar-closed="${t.id}" data-task-source="${t._source||'global'}" data-project-id="${t._projectId||''}" checked><span><b class="task-number">${esc(taskNumberLabel(t))}</b><strong>${esc(t.text)}</strong><small>${t._source==='project'?`Projekt: ${esc(t._projectName||'')}`:`Zamknięte ${new Date(t.completedAt||nowISO()).toLocaleTimeString('pl-PL',{hour:'2-digit',minute:'2-digit'})}`}</small></span></label>`).join('')}`:''; 
     document.querySelectorAll('[data-calendar-closed]').forEach(el=>el.onchange=()=>toggleTaskDone(el.dataset.calendarClosed,el.checked,el.dataset.taskSource,el.dataset.projectId));
-    const dateInput=document.querySelector('#taskNewDate');if(dateInput&&!dateInput.value)dateInput.value=selectedTaskDate<today?today:selectedTaskDate;
+    const dateInput=document.querySelector('#taskNewDate');
+    if(dateInput&&!dateInput.value)dateInput.value=selectedTaskDate<today?today:selectedTaskDate;
+    const dateValue=document.querySelector('#taskNewDateValue');
+    if(dateInput&&dateValue){
+      dateValue.textContent=dateInput.value?new Date(dateInput.value+'T12:00:00').toLocaleDateString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric'}):'Wybierz datę';
+      dateValue.classList.toggle('has-value',!!dateInput.value);
+    }
     renderTaskHistory();
   }
 
@@ -173,4 +198,20 @@
   selectedTaskDate=isoToday();
   normalizeTasks();
   renderTaskCalendar();
+
+  window.perekoOpenTaskCalendar=(date,taskId)=>{
+    selectedTaskDate=date||isoToday();
+    renderTaskCalendar();
+    const module=document.querySelector('#taskList')?.closest('.module');
+    module?.scrollIntoView({behavior:'smooth',block:'start'});
+    if(taskId){
+      setTimeout(()=>{
+        const target=[...document.querySelectorAll('[data-calendar-task]')].find(el=>String(el.dataset.calendarTask)===String(taskId))?.closest('.task-calendar-item');
+        if(!target)return;
+        target.classList.add('pwa-deep-link-target');
+        target.scrollIntoView({behavior:'smooth',block:'center'});
+        setTimeout(()=>target.classList.remove('pwa-deep-link-target'),2600);
+      },120);
+    }
+  };
 })();

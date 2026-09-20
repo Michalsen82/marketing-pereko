@@ -100,6 +100,10 @@
           <div class="project-preview-fact"><span>Koniec projektu</span><strong>${projectDue.state==='none'?'Brak terminu':projectDue.days+' '+(projectDue.days==='1'?'dzień':'dni')}</strong></div>
           <div class="project-preview-fact"><span>Zadania</span><strong>${list.filter(t=>t.done).length}/${list.length}</strong></div>
           <div class="project-preview-fact"><span>Komentarze</span><strong>${comments.length}</strong></div>
+          <button type="button" class="project-preview-gantt-btn" data-project-gantt="${esc(p.id)}">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h5v3H4V5Zm7 0h9v3h-9V5ZM4 10h10v3H4v-3Zm12 0h4v3h-4v-3ZM4 15h7v3H4v-3Zm9 0h7v3h-7v-3Z"/></svg>
+            <span>Wykres Gantta</span>
+          </button>
         </div>
       </div>
     </div>`;
