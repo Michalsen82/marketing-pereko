@@ -1,27 +1,19 @@
 {
-  "version": "2.0.7",
-  "releasedAt": "2026-09-20T23:32:00+02:00",
+  "version": "2.0.8",
+  "releasedAt": "2026-09-20T23:45:00+02:00",
   "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0.7",
-  "releaseSummary": "Nowy, dedykowany mobilny widok wykresu Gantta dla aplikacji i małych ekranów.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.8",
+  "releaseSummary": "Poprawa niezawodności serwerowych powiadomień Web Push po przypisaniu zadań.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Dostępna jest wersja 2.0.7 z całkowicie przebudowanym wykresem Gantta na urządzeniach mobilnych.",
+  "message": "Wersja 2.0.8 poprawia wysyłkę powiadomień o nowych zadaniach i dodaje diagnostykę dostarczenia.",
   "changes": [
     {
-      "title": "Nowy mobilny Gantt",
-      "detail": "Na telefonie projekty i zadania są prezentowane jako czytelne karty zamiast pomniejszonego układu desktopowego."
+      "title": "Pewniejsza wysyłka Web Push",
+      "detail": "Serwer czeka teraz na wynik wysyłki powiadomienia przed zakończeniem zapisu danych."
     },
     {
-      "title": "Przewijana oś czasu",
-      "detail": "Każdą oś czasu można przesuwać poziomo palcem bez ściskania nazw i terminów."
-    },
-    {
-      "title": "Skala Tydzień / Miesiąc",
-      "detail": "Dodano przełącznik gęstości osi czasu dopasowany do ekranu telefonu."
-    },
-    {
-      "title": "Light i Dark",
-      "detail": "Mobilny Gantt ma osobno dopracowaną paletę dla jasnego i ciemnego motywu."
+      "title": "Diagnostyka subskrypcji",
+      "detail": "Zapis zwraca informację, czy zdarzenie zostało wykryte, ile urządzeń ma subskrypcję i czy push został faktycznie wysłany."
     }
   ]
 }
