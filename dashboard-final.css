@@ -1180,3 +1180,197 @@ button{cursor:pointer}
   .project-title-copy h4,.project h4{font-size:18px!important}
   .project-title-copy .project-desc,.project p{font-size:13px!important}
 }
+
+
+/* =========================================================
+   PASS 26 — elementy z czarnej wersji w Blue UI:
+   data premium, żółty Nowy projekt, kompaktowe Pokaż/Ukryj kafelki
+   ========================================================= */
+
+@media(min-width:1181px){
+  .intro-actions{
+    top:58px!important;
+    right:28px!important;
+    width:auto!important;
+    display:grid!important;
+    grid-template-columns:236px 170px!important;
+    align-items:center!important;
+    justify-content:end!important;
+    gap:14px!important;
+  }
+
+  /* DATA — geometria z czarnej wersji */
+  .intro-actions .date-box{
+    min-width:236px!important;
+    width:236px!important;
+    height:auto!important;
+    min-height:72px!important;
+    display:grid!important;
+    grid-template-columns:64px minmax(0,1fr)!important;
+    gap:14px!important;
+    align-items:center!important;
+    padding:0!important;
+    border:0!important;
+    border-radius:0!important;
+    background:transparent!important;
+    box-shadow:none!important;
+    backdrop-filter:none!important;
+    -webkit-backdrop-filter:none!important;
+    text-align:left!important;
+  }
+
+  .date-daynum{
+    width:64px!important;
+    height:64px!important;
+    display:grid!important;
+    place-items:center!important;
+    border-radius:12px!important;
+    background:#16314d!important;
+    color:#fff!important;
+    box-shadow:0 10px 24px rgba(20,48,77,.16)!important;
+    font:800 29px/1 "Montserrat",Arial,sans-serif!important;
+  }
+
+  .date-copy{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    gap:4px!important;
+    align-content:center!important;
+    justify-content:start!important;
+    margin:0!important;
+    text-align:left!important;
+  }
+
+  .date-copy .date-weekday{
+    color:#2f6da8!important;
+    font:800 10px/1 "Montserrat",Arial,sans-serif!important;
+    letter-spacing:.11em!important;
+    text-transform:uppercase!important;
+  }
+
+  .date-copy>strong{
+    color:#0b2f57!important;
+    font:700 15px/1.15 "Montserrat",Arial,sans-serif!important;
+    text-transform:capitalize!important;
+  }
+
+  .date-copy>span:last-child{
+    color:#71869d!important;
+    font-size:12px!important;
+    line-height:1.1!important;
+  }
+
+  /* kolumna przycisków */
+  .intro-project-actions{
+    width:170px!important;
+    display:flex!important;
+    flex-direction:column!important;
+    align-items:stretch!important;
+    justify-content:center!important;
+    gap:7px!important;
+    margin:0!important;
+    padding:0!important;
+  }
+
+  /* NOWY PROJEKT — wygląd z czarnej wersji */
+  .intro-add-project{
+    width:100%!important;
+    min-width:0!important;
+    height:46px!important;
+    min-height:46px!important;
+    padding:0 18px!important;
+    border:1px solid rgba(193,167,0,.56)!important;
+    border-radius:11px!important;
+    background:#ffdd00!important;
+    color:#172126!important;
+    box-shadow:0 9px 24px rgba(110,94,0,.12)!important;
+    font:700 12px/1 "Montserrat",Arial,sans-serif!important;
+    transition:.18s ease!important;
+  }
+  .intro-add-project span{
+    color:#172126!important;
+    font-size:18px!important;
+    font-weight:600!important;
+    line-height:1!important;
+    margin-top:-1px!important;
+  }
+  .intro-add-project:hover{
+    background:#ffe62e!important;
+    border-color:#d3b900!important;
+    color:#172126!important;
+    transform:translateY(-1px)!important;
+    box-shadow:0 12px 30px rgba(110,94,0,.17)!important;
+  }
+
+  /* POKAŻ / UKRYJ KAFELKI — kompaktowy odpowiednik czarnej wersji */
+  .intro-project-actions .stats-toggle-btn{
+    width:auto!important;
+    align-self:flex-end!important;
+    height:28px!important;
+    min-height:28px!important;
+    padding:0 9px!important;
+    display:inline-flex!important;
+    align-items:center!important;
+    justify-content:center!important;
+    gap:6px!important;
+    border-radius:8px!important;
+    border:1px solid #d7e3ef!important;
+    background:rgba(255,255,255,.62)!important;
+    color:#607994!important;
+    box-shadow:none!important;
+    backdrop-filter:blur(8px)!important;
+    -webkit-backdrop-filter:blur(8px)!important;
+    font:700 8.5px/1 "Montserrat",Arial,sans-serif!important;
+    white-space:nowrap!important;
+    opacity:1!important;
+  }
+  .intro-project-actions .stats-toggle-btn svg{
+    width:12px!important;
+    height:12px!important;
+    fill:currentColor!important;
+  }
+  .intro-project-actions .stats-toggle-btn:hover{
+    background:#fff!important;
+    border-color:#bfd3e7!important;
+    color:#355f8b!important;
+  }
+}
+
+/* stary toolbar toggle nie jest już używany */
+.stats-visibility-toolbar{display:none!important}
+
+/* tablet/mobile: te same komponenty, bez łamania układu */
+@media(max-width:1200px){
+  .intro-actions{
+    display:grid!important;
+    grid-template-columns:1fr!important;
+    width:100%!important;
+    max-width:360px!important;
+    gap:10px!important;
+  }
+  .intro-actions .date-box{
+    width:100%!important;
+    min-width:0!important;
+  }
+  .intro-project-actions{
+    width:100%!important;
+  }
+  .intro-project-actions .stats-toggle-btn{
+    align-self:flex-start!important;
+  }
+}
+
+@media(max-width:760px){
+  .intro-actions .date-box{
+    grid-template-columns:58px minmax(0,1fr)!important;
+    gap:12px!important;
+  }
+  .date-daynum{
+    width:58px!important;
+    height:58px!important;
+    font-size:26px!important;
+  }
+  .intro-add-project{
+    width:100%!important;
+  }
+}
