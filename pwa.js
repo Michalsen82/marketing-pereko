@@ -6,6 +6,11 @@
     notifyDismissed:'pereko_pwa_notify_dismissed'
   };
   const DEFAULT_PREFS={assignment:true,taskDone:true,comments:true,deadline:true,files:true};
+  const APP_VERSION='2026.09.20.1';
+  const VERSION_URL='/app-version.json';
+  let latestPublishedVersion=null;
+  let updateBanner=null;
+  let updateCheckTimer=null;
   let deferredPrompt=window.__perekoInstallPrompt||null;
   let registration=null;
   let settingsModal=null;
@@ -25,6 +30,110 @@
   const getPrefs=()=>{try{return {...DEFAULT_PREFS,...JSON.parse(localStorage.getItem(LS.prefs)||'{}')}}catch{return {...DEFAULT_PREFS}}};
   const setPrefs=p=>localStorage.setItem(LS.prefs,JSON.stringify(p));
   const platformName=()=>isIOS()?'iPhone / iOS':isAndroid()?'Android':'Komputer';
+
+  function versionCmp(a,b){
+    const pa=String(a||'').split(/[^0-9]+/).filter(Boolean).map(Number);
+    const pb=String(b||'').split(/[^0-9]+/).filter(Boolean).map(Number);
+    const len=Math.max(pa.length,pb.length);
+    for(let i=0;i<len;i++){
+      const x=pa[i]||0,y=pb[i]||0;
+      if(x!==y)return x>y?1:-1;
+    }
+    return 0;
+  }
+
+  function removeUpdateBanner(){
+    updateBanner?.remove();
+    updateBanner=null;
+  }
+
+  function ensureUpdateBanner(info){
+    if(!info||versionCmp(info.version,APP_VERSION)<=0){removeUpdateBanner();return}
+    latestPublishedVersion=info;
+    if(!updateBanner){
+      updateBanner=document.createElement('aside');
+      updateBanner.className='pwa-update-banner';
+      updateBanner.setAttribute('role','status');
+      updateBanner.setAttribute('aria-live','polite');
+      document.body.appendChild(updateBanner);
+    }
+    updateBanner.innerHTML=
+      '<div class="pwa-update-icon" aria-hidden="true">↻</div>'+
+      '<div class="pwa-update-copy"><strong>'+(info.title||'Dostępna aktualizacja aplikacji')+'</strong>'+
+      '<span>'+(info.message||'Opublikowaliśmy nową wersję Centrum Marketingowego.')+'</span>'+
+      '<small>Wersja '+String(info.version||'')+'</small></div>'+
+      '<div class="pwa-update-actions"><button type="button" class="pwa-update-now">Aktualizuj aplikację</button>'+
+      '<button type="button" class="pwa-update-later">Później</button></div>';
+    updateBanner.querySelector('.pwa-update-now').onclick=()=>forceAppUpdate(info.version);
+    updateBanner.querySelector('.pwa-update-later').onclick=()=>removeUpdateBanner();
+  }
+
+  async function fetchPublishedVersion(){
+    try{
+      const response=await fetch(VERSION_URL+'?t='+Date.now(),{cache:'no-store',headers:{'Cache-Control':'no-cache'}});
+      if(!response.ok)return null;
+      return await response.json();
+    }catch{return null}
+  }
+
+  async function checkPublishedVersion(showFeedback=false){
+    const info=await fetchPublishedVersion();
+    if(info&&versionCmp(info.version,APP_VERSION)>0){
+      ensureUpdateBanner(info);
+      return {update:true,info};
+    }
+    if(showFeedback){
+      const msg=document.querySelector('#pwaMessage');
+      if(msg){
+        msg.textContent='Masz najnowszą wersję aplikacji ('+APP_VERSION+').';
+        msg.className='pwa-message success';
+      }
+    }
+    return {update:false,info};
+  }
+
+  async function forceAppUpdate(targetVersion){
+    const button=updateBanner?.querySelector('.pwa-update-now');
+    if(button){button.disabled=true;button.textContent='Aktualizuję…'}
+    try{
+      if('caches' in window){
+        const keys=await caches.keys();
+        await Promise.all(keys.filter(key=>key.startsWith('pereko-marketing-pwa-')).map(key=>caches.delete(key)));
+      }
+      const regs=await navigator.serviceWorker?.getRegistrations?.()||[];
+      for(const reg of regs){
+        try{
+          await reg.update();
+          if(reg.waiting)reg.waiting.postMessage({type:'SKIP_WAITING'});
+        }catch{}
+      }
+      sessionStorage.setItem('pereko_force_version',String(targetVersion||'latest'));
+      const url=new URL(location.href);
+      url.searchParams.set('app-update',Date.now().toString());
+      setTimeout(()=>location.replace(url.href),450);
+    }catch(e){
+      console.warn('PWA manual update:',e);
+      if(button){button.disabled=false;button.textContent='Spróbuj ponownie'}
+    }
+  }
+
+  function addManualUpdateControl(){
+    ensureSettings();
+    if(!settingsModal||settingsModal.querySelector('#pwaManualUpdateSection'))return;
+    const section=document.createElement('section');
+    section.className='pwa-section';
+    section.id='pwaManualUpdateSection';
+    section.innerHTML='<div class="pwa-section-head"><div><span>AKTUALIZACJE</span><h4>Wersja aplikacji</h4></div></div>'+
+      '<p>Aktualna wersja: <b>'+APP_VERSION+'</b>. Aplikacja sprawdza nowe wydania automatycznie, ale możesz też wymusić sprawdzenie ręcznie.</p>'+
+      '<div class="pwa-actions"><button class="pwa-secondary" id="pwaCheckUpdateBtn" type="button">Sprawdź aktualizacje</button>'+
+      '<button class="pwa-primary" id="pwaForceUpdateBtn" type="button">Odśwież aplikację</button></div>';
+    settingsModal.querySelector('.pwa-content')?.appendChild(section);
+    section.querySelector('#pwaCheckUpdateBtn').onclick=async()=>{
+      const result=await checkPublishedVersion(true);
+      if(result.update)openSettings();
+    };
+    section.querySelector('#pwaForceUpdateBtn').onclick=()=>forceAppUpdate(latestPublishedVersion?.version||'latest');
+  }
 
   function installMeta(){
     if(isStandalone())return {title:'Zainstalowana',detail:'Uruchamiasz Centrum Marketingowe jak aplikację.'};
@@ -649,6 +758,7 @@
 
   document.addEventListener('pereko:user-ready',()=>{
     addSettingsButton();
+    addManualUpdateControl();
     refreshAll();
     setTimeout(maybeOnboard,750);
     handleDeepLink(location.href);
@@ -662,15 +772,20 @@
     if(!document.hidden){
       refreshAll();
       checkForAppUpdate();
+      checkPublishedVersion();
       try{navigator.clearAppBadge?.()}catch{}
     }
   });
   window.addEventListener('focus',()=>{
     checkForAppUpdate();
+    checkPublishedVersion();
     try{navigator.clearAppBadge?.()}catch{}
   });
 
   registerSW();
+  checkPublishedVersion();
+  clearInterval(updateCheckTimer);
+  updateCheckTimer=setInterval(()=>checkPublishedVersion(),5*60*1000);
   buildLoginPanel();
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{buildLoginPanel();addSettingsButton();refreshAll();handleDeepLink(location.href)});
   else{addSettingsButton();refreshAll();handleDeepLink(location.href)}

@@ -1,10 +1,11 @@
-const CACHE_NAME='pereko-marketing-pwa-v7';
+const CACHE_NAME='pereko-marketing-pwa-v8';
 const APP_SHELL=[
   '/',
   '/index.html',
   '/login.html',
   '/offline.html',
   '/manifest.webmanifest',
+  '/app-version.json',
   '/favicon.svg',
   '/icons/pereko-marketing-v3-192.png',
   '/icons/pereko-marketing-v2-512.png',
