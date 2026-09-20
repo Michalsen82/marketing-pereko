@@ -4569,3 +4569,228 @@ body::after{display:none!important}
   }
 }
 
+/* =========================================================
+   REFERENCE MATCH PASS 08 — użycie referencyjnych assetów
+   ========================================================= */
+
+/* Hero: używamy dokładnej grafiki z makiety zamiast przybliżenia */
+.blue-hero-visual{
+  background:
+    linear-gradient(90deg,#fff 0%,rgba(255,255,255,.985) 16%,rgba(255,255,255,.93) 28%,rgba(255,255,255,.68) 38%,rgba(255,255,255,.18) 51%,rgba(255,255,255,0) 63%),
+    url('/assets/blue-ui/hero-reference.jpg') center/cover no-repeat!important;
+}
+.blue-hero-visual::before,
+.blue-hero-visual::after{
+  display:none!important;
+}
+.blue-hero-slogan,
+.blue-building-brand{
+  display:none!important;
+}
+
+/* Tekst hero zgodny z kompozycją referencyjną */
+.blue-hero-copy{
+  left:28px!important;
+  top:48%!important;
+  width:55%!important;
+}
+.intro-row h1{
+  max-width:660px!important;
+  font-size:41px!important;
+  line-height:1.01!important;
+}
+.intro-row p{
+  max-width:585px!important;
+  font-size:12.9px!important;
+}
+.blue-hero-proof{
+  margin-top:17px!important;
+  gap:16px!important;
+}
+
+/* Data + przycisk jak w makiecie */
+.intro-actions{
+  right:22px!important;
+  bottom:15px!important;
+  gap:12px!important;
+}
+.intro-actions .date-box{
+  width:250px!important;
+  min-width:250px!important;
+  min-height:58px!important;
+  border-radius:10px!important;
+}
+.intro-project-actions,
+.intro-add-project{
+  width:176px!important;
+  min-width:176px!important;
+}
+.intro-add-project{
+  height:58px!important;
+}
+
+/* KPI: jeszcze bliższe proporcjom referencji */
+.stat-card{
+  min-height:102px!important;
+  padding:13px 15px!important;
+  grid-template-columns:50px minmax(0,1fr)!important;
+  gap:12px!important;
+}
+.stat-icon{
+  width:50px!important;
+  height:50px!important;
+  border-radius:10px!important;
+}
+.stat-copy>strong{
+  font-size:29px!important;
+}
+.stat-copy>em{
+  font-size:8.6px!important;
+}
+
+/* Nagłówek projektów */
+.projects-module .module-head{
+  min-height:92px!important;
+  padding:13px 18px!important;
+}
+.projects-module .module-head h2{
+  font-size:21.5px!important;
+}
+.filter{
+  min-height:30px!important;
+  padding:0 12px!important;
+}
+.filters,
+.gantt-open-btn{
+  height:38px!important;
+}
+
+/* Karty projektów — wysokość i balans jak na makiecie */
+.project{
+  min-height:142px!important;
+  padding:9px 11px!important;
+  grid-template-columns:minmax(0,1fr) 350px!important;
+  gap:4px 18px!important;
+}
+.project-main{
+  grid-template-columns:220px minmax(0,1fr)!important;
+  gap:5px 13px!important;
+}
+.project-visual-thumb{
+  min-height:120px!important;
+}
+.project[data-project-id="p1"] .project-visual-thumb{
+  background-image:
+    linear-gradient(180deg,rgba(7,31,61,.02),rgba(5,27,52,.22)),
+    url('/assets/blue-ui/project1-reference.jpg')!important;
+  background-position:center!important;
+  background-size:cover!important;
+}
+.project-title-copy h4,.project h4{
+  font-size:15.5px!important;
+}
+.project-title-copy .project-desc,.project p{
+  font-size:9.4px!important;
+}
+.project-tag-row span{
+  min-height:22px!important;
+  font-size:7.2px!important;
+}
+.project-side-summary{
+  gap:6px 10px!important;
+}
+.project-side-summary small{
+  font-size:6.8px!important;
+}
+.project-side-summary strong{
+  font-size:9.2px!important;
+}
+.project-side-avatar,
+.project-side-calendar,
+.project-side-tasks>span{
+  width:30px!important;
+  height:30px!important;
+  flex-basis:30px!important;
+}
+.project-card-controls{
+  min-height:28px!important;
+}
+.project-open-btn{
+  height:28px!important;
+  min-height:28px!important;
+}
+.project-expand-btn{
+  width:28px!important;
+  min-width:28px!important;
+  height:28px!important;
+}
+
+/* Sidebar: proporcje bliżej makiety */
+.blue-sidebar{
+  width:252px!important;
+}
+.topbar-shell{
+  left:252px!important;
+  width:calc(100% - 252px)!important;
+  margin-left:252px!important;
+}
+.page-shell{
+  margin-left:252px!important;
+}
+.site-footer{
+  margin-left:252px!important;
+  width:calc(100% - 252px)!important;
+}
+.blue-sidebar-logo{
+  width:170px!important;
+}
+.blue-nav-btn{
+  min-height:46px!important;
+}
+.blue-sidebar::after{
+  height:210px!important;
+}
+
+/* szeroki desktop */
+@media(min-width:1451px){
+  .page-shell{
+    padding-left:22px!important;
+    padding-right:22px!important;
+  }
+}
+
+/* laptop */
+@media(max-width:1450px) and (min-width:1181px){
+  .blue-sidebar{width:220px!important}
+  .topbar-shell{left:220px!important;width:calc(100% - 220px)!important;margin-left:220px!important}
+  .page-shell{margin-left:220px!important}
+  .site-footer{margin-left:220px!important;width:calc(100% - 220px)!important}
+  .intro-row h1{
+    font-size:36px!important;
+    max-width:585px!important;
+  }
+  .intro-row p{
+    max-width:530px!important;
+    font-size:11.8px!important;
+  }
+  .blue-hero-copy{
+    left:26px!important;
+    width:55%!important;
+  }
+  .blue-hero-proof{
+    gap:10px!important;
+  }
+  .blue-hero-proof em{
+    font-size:7.4px!important;
+  }
+  .project{
+    grid-template-columns:minmax(0,1fr) 305px!important;
+  }
+  .project-main{
+    grid-template-columns:185px minmax(0,1fr)!important;
+  }
+  .project-visual-thumb{
+    min-height:112px!important;
+  }
+}
+
