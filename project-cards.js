@@ -90,6 +90,19 @@
     tags.innerHTML=visual.tags.map(tag=>'<span>'+esc(tag)+'</span>').join('')+'<span>+1</span>';
   };
 
+  const initialsFor=name=>String(name||'').trim().split(/\s+/).filter(Boolean).map(x=>x[0]).join('').slice(0,2).toUpperCase()||'—';
+
+  const projectSideSummaryHtml=p=>{
+    const owner=String(p.owner||'Brak właściciela').trim();
+    const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
+    const done=list.filter(t=>t.done).length;
+    const due=closeInfo(p.deadline);
+    const dueText=due.state==='none'?'Brak terminu':due.days+' '+(due.days==='1'?'dzień':'dni');
+    return '<div class="project-side-owner"><span class="project-side-avatar">'+esc(initialsFor(owner))+'</span><div><small>Właściciel projektu</small><strong>'+esc(owner)+'</strong></div></div>'+
+      '<div class="project-side-days"><span class="project-side-calendar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 2h2v2h6V2h2v2h3v18H4V4h3V2Zm11 8H6v10h12V10ZM6 8h12V6H6v2Z"/></svg></span><div><small>Pozostało dni</small><strong>'+esc(dueText)+'</strong></div></div>'+
+      '<div class="project-side-tasks"><span><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4V5Zm0 6h16v2H4v-2Zm0 6h10v2H4v-2Z"/></svg></span><div><small>Zadania</small><strong>'+done+' / '+list.length+'</strong></div></div>';
+  };
+
   const closeInfo=deadline=>{
     if(!deadline)return {days:'—',label:'dni',text:'Brak terminu zamknięcia projektu',state:'none'};
     const today=new Date();today.setHours(0,0,0,0);
@@ -183,6 +196,21 @@
         titleCopy.insertBefore(number,titleCopy.firstChild);
       }
       if(number)number.textContent=projectNumberLabel(p);
+      if(titleCopy&&number){
+        let headingMeta=titleCopy.querySelector('.project-heading-meta');
+        if(!headingMeta){
+          headingMeta=document.createElement('div');
+          headingMeta.className='project-heading-meta';
+          titleCopy.insertBefore(headingMeta,titleCopy.firstChild);
+          headingMeta.appendChild(number);
+          const inlineStatus=document.createElement('span');
+          inlineStatus.className='project-status-inline';
+          headingMeta.appendChild(inlineStatus);
+        }
+        const inlineStatus=headingMeta.querySelector('.project-status-inline');
+        inlineStatus.className='project-status-inline '+String(p.status||'');
+        inlineStatus.textContent=statusText[p.status]||'—';
+      }
       let mine=titleCopy?.querySelector('.project-my-task-badge');
       if(myTasks.length){
         if(!mine){
@@ -207,6 +235,14 @@
         '<div class="project-status-badge '+esc(p.status||'')+'"><span>Status</span><strong>'+esc(statusText[p.status]||'—')+'</strong></div>';
       const oldOwner=main?.querySelector('.project-owner');
       if(oldOwner) oldOwner.style.display='none';
+
+      let sideSummary=card.querySelector('.project-side-summary');
+      if(!sideSummary){
+        sideSummary=document.createElement('div');
+        sideSummary.className='project-side-summary';
+        card.appendChild(sideSummary);
+      }
+      sideSummary.innerHTML=projectSideSummaryHtml(p);
 
       let controls=card.querySelector('.project-card-controls');
       if(!controls){
