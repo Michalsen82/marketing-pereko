@@ -293,3 +293,235 @@ html[data-theme="light"] .deadline-agenda-filter.active{background:#20292d!impor
   .deadline-agenda-toggle{width:100%!important;justify-content:center!important}
   .deadline-agenda-filters{width:100%!important;min-width:0!important}
 }
+
+
+/* =========================================================
+   EXPERIMENT PATCH 03 — spójność UI / modale / task date
+   ========================================================= */
+
+/* Kafelki: ten sam mechanizm wizualny co Pokaż terminy */
+.stats-toggle-btn{
+  height:36px!important;
+  min-height:36px!important;
+  padding:0 10px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  gap:7px!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.025)!important;
+  color:rgba(255,255,255,.62)!important;
+  box-shadow:none!important;
+  font:700 8.5px/1 'Montserrat',sans-serif!important;
+  white-space:nowrap!important;
+}
+.stats-toggle-dot{
+  width:8px!important;height:8px!important;flex:0 0 8px!important;border-radius:50%!important;
+  background:#ffdd00!important;opacity:.50!important;
+  box-shadow:0 0 0 3px rgba(255,221,0,.10)!important;
+}
+.stats-toggle-btn.active .stats-toggle-dot{
+  opacity:1!important;
+  box-shadow:0 0 0 4px rgba(255,221,0,.16)!important;
+}
+.stats-toggle-btn:hover{border-color:rgba(255,221,0,.28)!important;background:rgba(255,255,255,.045)!important}
+
+/* Terminy: kontrolki nie mogą dotykać / wychodzić poza prawą krawędź */
+.deadline-agenda-head{
+  min-width:0!important;
+  overflow:visible!important;
+}
+.deadline-agenda-controls{
+  flex:0 1 286px!important;
+  width:min(286px,100%)!important;
+  max-width:286px!important;
+  min-width:0!important;
+  margin-left:auto!important;
+  padding-right:0!important;
+  box-sizing:border-box!important;
+}
+.deadline-agenda-toggle{
+  flex:0 0 auto!important;
+  min-width:96px!important;
+  padding:0 9px!important;
+}
+.deadline-agenda-filters{
+  flex:1 1 auto!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:none!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+.deadline-agenda-filter{
+  min-width:0!important;
+  padding:0 5px!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+  white-space:nowrap!important;
+}
+@media(max-width:520px){
+  .deadline-agenda-controls{max-width:none!important;flex-basis:auto!important}
+}
+
+/* Taski na dziś — geometria terminu dokładnie jak dark, osobna paleta light */
+html[data-theme="light"] .task-add-form{
+  grid-template-columns:minmax(0,1fr) 152px auto!important;
+}
+html[data-theme="light"] .task-date-field{
+  position:relative!important;
+  min-width:0!important;
+  width:100%!important;
+  height:38px!important;
+  min-height:38px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:0 36px 0 10px!important;
+  border:1px solid #cfd8db!important;
+  border-radius:9px!important;
+  background:#fff!important;
+  overflow:hidden!important;
+  cursor:pointer!important;
+}
+html[data-theme="light"] .task-date-value,
+html[data-theme="light"] .task-date-value.has-value{
+  display:block!important;
+  min-width:0!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  opacity:1!important;
+  visibility:visible!important;
+  font:700 10px/1 'Montserrat',sans-serif!important;
+  white-space:nowrap!important;
+  overflow:hidden!important;
+  text-overflow:ellipsis!important;
+}
+html[data-theme="light"] .task-date-icon{
+  position:absolute!important;
+  right:10px!important;
+  left:auto!important;
+  top:50%!important;
+  transform:translateY(-50%)!important;
+  width:15px!important;
+  height:15px!important;
+  display:grid!important;
+  place-items:center!important;
+  color:#263237!important;
+  opacity:1!important;
+}
+html[data-theme="light"] .task-date-icon svg{
+  width:15px!important;height:15px!important;fill:currentColor!important;
+}
+html[data-theme="light"] .task-date-field input[type="date"]{
+  position:absolute!important;inset:0!important;width:100%!important;height:100%!important;
+  opacity:0!important;cursor:pointer!important;z-index:2!important;
+}
+@media(max-width:600px){
+  html[data-theme="light"] .task-add-form{grid-template-columns:1fr!important}
+}
+
+/* Modale: bez wewnętrznego pionowego suwaka na desktopie */
+.piw-modal{
+  overflow:visible!important;
+}
+.piw-modal-card{
+  max-height:none!important;
+  overflow:visible!important;
+}
+.piw-modal-card-compact{width:min(540px,100%)!important}
+#piwMemberModal .piw-modal-card{width:min(520px,100%)!important}
+#piwTaskModal .piw-modal-card{width:min(540px,100%)!important}
+#piwProjectEditModal .piw-modal-card{width:min(560px,100%)!important}
+#piwMemberModal .piw-choice-menu,
+#piwTaskModal .piw-choice-menu,
+#piwProjectEditModal .piw-choice-menu{z-index:60!important}
+@media(max-width:680px){
+  .piw-modal{overflow:auto!important;align-items:flex-start!important;padding:10px!important}
+  .piw-modal-card{margin:auto 0!important;max-height:none!important;overflow:visible!important}
+}
+
+/* Estetyczny wybór plików */
+.piw-upload-zone{
+  padding:14px!important;
+  border:1px dashed rgba(255,255,255,.16)!important;
+  border-radius:12px!important;
+  background:rgba(255,255,255,.025)!important;
+}
+.piw-file-pick-btn{
+  width:100%!important;min-height:62px!important;padding:10px 12px!important;
+  display:flex!important;align-items:center!important;gap:11px!important;
+  border:1px solid rgba(255,255,255,.13)!important;border-radius:10px!important;
+  background:rgba(255,255,255,.055)!important;color:#fff!important;
+  text-align:left!important;cursor:pointer!important;
+}
+.piw-file-pick-btn:hover{border-color:rgba(255,221,0,.36)!important;background:rgba(255,255,255,.085)!important}
+.piw-file-pick-icon{
+  width:36px!important;height:36px!important;flex:0 0 36px!important;border-radius:9px!important;
+  display:grid!important;place-items:center!important;background:rgba(255,221,0,.12)!important;color:#ffdd00!important;
+}
+.piw-file-pick-icon svg{width:19px!important;height:19px!important;fill:none!important;stroke:currentColor!important;stroke-width:1.8!important;stroke-linecap:round!important;stroke-linejoin:round!important}
+.piw-file-pick-btn>span:last-child{display:grid!important;gap:3px!important}
+.piw-file-pick-btn strong{font:800 10.5px/1 'Montserrat',sans-serif!important}
+.piw-file-pick-btn small{color:rgba(255,255,255,.44)!important;font-size:9px!important}
+.piw-file-picked{margin-top:9px!important;display:grid!important;gap:5px!important}
+.piw-file-picked>span{
+  display:flex!important;align-items:center!important;justify-content:space-between!important;gap:12px!important;
+  min-height:28px!important;padding:0 8px!important;border-radius:7px!important;background:rgba(255,255,255,.035)!important;
+}
+.piw-file-picked b{min-width:0!important;overflow:hidden!important;text-overflow:ellipsis!important;white-space:nowrap!important;font-size:9.5px!important}
+.piw-file-picked small{flex:0 0 auto!important;color:rgba(255,255,255,.42)!important;font-size:8.5px!important}
+
+/* Usuwanie projektu — pełny, spójny modal */
+.piw-delete-modal-card{width:min(520px,100%)!important;padding:0!important;overflow:hidden!important}
+.piw-delete-visual{
+  display:grid!important;grid-template-columns:42px minmax(0,1fr) auto!important;grid-template-areas:"icon label step"!important;
+  align-items:center!important;gap:11px!important;padding:16px 18px!important;
+  border-bottom:1px solid rgba(227,93,83,.18)!important;background:rgba(227,93,83,.055)!important
+}
+.piw-delete-icon{
+  grid-area:icon!important;width:42px!important;height:42px!important;border-radius:11px!important;
+  display:grid!important;place-items:center!important;background:rgba(227,93,83,.12)!important;color:#ff8d85!important
+}
+.piw-delete-icon svg{width:21px!important;height:21px!important;fill:currentColor!important}
+.piw-delete-visual>span{grid-area:label!important;color:rgba(255,255,255,.56)!important;font:800 8px/1 'Montserrat',sans-serif!important;letter-spacing:.12em!important}
+.piw-delete-visual>b{grid-area:step!important;color:#ffaaa4!important;font:800 8px/1 'Montserrat',sans-serif!important}
+.piw-delete-head{padding:17px 18px 0!important;margin-bottom:13px!important}
+.piw-delete-project-card{
+  margin:0 18px 12px!important;padding:12px!important;border:1px solid rgba(255,255,255,.09)!important;border-radius:10px!important;background:rgba(255,255,255,.03)!important
+}
+.piw-delete-project-card span{display:block!important;color:rgba(255,255,255,.38)!important;font:800 7.5px/1 'Montserrat',sans-serif!important;letter-spacing:.11em!important}
+.piw-delete-project-card strong{display:block!important;margin-top:5px!important;color:#fff!important;font:800 12.5px/1.25 'Montserrat',sans-serif!important}
+.piw-delete-project-card small{display:block!important;margin-top:4px!important;color:rgba(255,255,255,.42)!important;font-size:9px!important}
+.piw-delete-message{margin:0 18px!important;padding:11px 12px!important;border-radius:10px!important;background:rgba(255,255,255,.025)!important}
+.piw-delete-message strong{color:#fff!important;font:700 10.5px/1.3 'Montserrat',sans-serif!important}
+.piw-delete-message p{margin:5px 0 0!important;color:rgba(255,255,255,.52)!important;font-size:10px!important;line-height:1.45!important}
+.piw-delete-modal-card .piw-modal-actions{padding:0 18px 18px!important}
+.piw-danger-final{background:#d94b45!important;border-color:#d94b45!important;color:#fff!important}
+
+/* Light parity */
+html[data-theme="light"] .stats-toggle-btn{
+  background:#f3f6f7!important;border-color:#d9e0e2!important;color:#637177!important
+}
+html[data-theme="light"] .stats-toggle-btn:hover{background:#eef2f3!important;border-color:#c8d2d5!important}
+html[data-theme="light"] .piw-upload-zone{background:#fafbfb!important;border-color:#cfd9dc!important}
+html[data-theme="light"] .piw-file-pick-btn{background:#fff!important;border-color:#d4dcdf!important;color:#263237!important}
+html[data-theme="light"] .piw-file-pick-btn:hover{background:#f7f9f9!important;border-color:#bfcacc!important}
+html[data-theme="light"] .piw-file-pick-icon{background:#fff8c9!important;color:#8b7600!important}
+html[data-theme="light"] .piw-file-pick-btn small,
+html[data-theme="light"] .piw-file-picked small{color:#7b898f!important}
+html[data-theme="light"] .piw-file-picked>span{background:#f3f6f7!important}
+html[data-theme="light"] .piw-delete-visual{background:#fff5f4!important;border-bottom-color:#efcecb!important}
+html[data-theme="light"] .piw-delete-icon{background:#ffe2df!important;color:#b53f39!important}
+html[data-theme="light"] .piw-delete-visual>span{color:#8b5f5c!important}
+html[data-theme="light"] .piw-delete-visual>b{color:#a83b35!important}
+html[data-theme="light"] .piw-delete-project-card{background:#f8fafa!important;border-color:#dfe5e7!important}
+html[data-theme="light"] .piw-delete-project-card span{color:#8b969a!important}
+html[data-theme="light"] .piw-delete-project-card strong,
+html[data-theme="light"] .piw-delete-message strong{color:#202b30!important}
+html[data-theme="light"] .piw-delete-project-card small,
+html[data-theme="light"] .piw-delete-message p{color:#718087!important}
+html[data-theme="light"] .piw-delete-message{background:#f7f9f9!important}
+
+/* Modal custom-choice: rozwijana lista pływa nad oknem, nie wymusza scrolla */
+.piw-choice{position:relative!important}
+.piw-choice-menu{max-height:190px!important}
