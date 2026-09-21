@@ -747,6 +747,32 @@
     settingsModal.querySelector('#pwaDeviceInfo').textContent=(isStandalone()?'Tryb aplikacji · ':'Tryb przeglądarki · ')+(navigator.onLine?'online':'offline')+'. Identyfikator urządzenia: '+deviceId().slice(0,8)+'…';
     settingsModal.querySelector('#pwaQrWrap').hidden=isMobile();
   }
+  function ensureMobileInstallCta(){
+    let cta=document.querySelector('#pwaMobileInstallCta');
+    if(!isMobile()||isStandalone()){
+      cta?.remove();
+      document.body.classList.remove('pwa-install-cta-visible');
+      return null;
+    }
+    if(!cta){
+      cta=document.createElement('button');
+      cta.id='pwaMobileInstallCta';
+      cta.className='pwa-mobile-install-cta';
+      cta.type='button';
+      cta.setAttribute('aria-label','Zainstaluj aplikację PEREKO');
+      cta.innerHTML='<span class="pwa-mobile-install-mark" aria-hidden="true">P</span><span class="pwa-mobile-install-copy"><strong>Zainstaluj aplikację</strong><small>PEREKO na telefonie</small></span><span class="pwa-mobile-install-arrow" aria-hidden="true">→</span>';
+      cta.addEventListener('click',installApp);
+      document.body.appendChild(cta);
+    }
+    document.body.classList.add('pwa-install-cta-visible');
+    const strong=cta.querySelector('strong');
+    const small=cta.querySelector('small');
+    if(strong)strong.textContent='Zainstaluj aplikację';
+    if(small)small.textContent=isIOS()?'iPhone / iPad — instrukcja instalacji':isAndroid()?(installPromptEvent()?'Android — gotowe do instalacji':'Android — instalacja w Chrome'):'PEREKO na telefonie';
+    cta.dataset.ready=installPromptEvent()?'1':'0';
+    return cta;
+  }
+
   function refreshAttention(){
     const btn=document.querySelector('#pwaSettingsBtn');
     if(!btn)return;
@@ -777,7 +803,7 @@
       }
     });
   }
-  function refreshAll(){refreshSettings();refreshAttention();refreshInstallUi();const login=document.querySelector('#pwaLoginPanel');if(login&&isStandalone())login.hidden=true}
+  function refreshAll(){refreshSettings();refreshAttention();refreshInstallUi();ensureMobileInstallCta();const login=document.querySelector('#pwaLoginPanel');if(login&&isStandalone())login.hidden=true}
 
   function ensureOnboarding(){
     if(onboarding)return;
