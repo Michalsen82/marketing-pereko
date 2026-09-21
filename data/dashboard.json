@@ -265,11 +265,18 @@
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
-      "done": false,
+      "done": true,
       "id": "611b9a4b-593e-4740-940b-fdd59316e60b",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-21",
       "history": [
+        {
+          "id": "8f3dc0dc-4fc2-40c5-bdfe-06c34697a4eb",
+          "type": "done",
+          "text": "Task oznaczono jako wykonany",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T05:24:08.550Z"
+        },
         {
           "id": "49311a4a-952a-4727-91f7-3329d5297cb5",
           "type": "rollover",
@@ -294,15 +301,24 @@
       ],
       "assignee": "Michał Bukowski",
       "taskNumber": 2,
-      "taskYear": 2026
+      "taskYear": 2026,
+      "completedAt": "2026-09-21T05:24:08.550Z",
+      "completedOn": "2026-09-21"
     },
     {
       "text": "Przygotować założenia do upominków świątecznych",
-      "done": false,
+      "done": true,
       "id": "f9b21f06-9c74-418c-b6f5-2c4d52506009",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-21",
       "history": [
+        {
+          "id": "e773922c-3c6f-41f3-b3a4-3f2c62cd7182",
+          "type": "done",
+          "text": "Task oznaczono jako wykonany",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T05:24:07.974Z"
+        },
         {
           "id": "e30a8228-e963-491d-8b9a-5e2e9776af76",
           "type": "rollover",
@@ -327,7 +343,9 @@
       ],
       "assignee": "Michał Bukowski",
       "taskNumber": 3,
-      "taskYear": 2026
+      "taskYear": 2026,
+      "completedAt": "2026-09-21T05:24:07.974Z",
+      "completedOn": "2026-09-21"
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
@@ -491,5 +509,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T05:24:04.397Z"
+  "updatedAt": "2026-09-21T05:24:05.725Z"
 }
