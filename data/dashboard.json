@@ -565,12 +565,19 @@
       "taskYear": 2026,
       "text": "Moduł - ŚWIAT KOMINKÓW",
       "assignee": "Michał Bukowski",
-      "done": false,
+      "done": true,
       "createdAt": "2026-09-21T06:07:28.734Z",
       "scheduledFor": "2026-09-21",
-      "completedAt": null,
-      "completedOn": null,
+      "completedAt": "2026-09-21T06:19:32.454Z",
+      "completedOn": "2026-09-21",
       "history": [
+        {
+          "id": "2a1948ce-c5d7-4625-a29b-f885225fc155",
+          "type": "done",
+          "text": "Task oznaczono jako wykonany",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T06:19:32.454Z"
+        },
         {
           "id": "fee37dcf-216a-4e63-8464-cb3b9c4ddad9",
           "type": "created",
@@ -581,5 +588,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T06:19:31.794Z"
+  "updatedAt": "2026-09-21T06:19:33.084Z"
 }
