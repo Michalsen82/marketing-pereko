@@ -259,12 +259,63 @@ $('#toggleStats')?.addEventListener('click',()=>{
 applyStatsVisibility();
 function refreshNewProjectOwners(){
   const select=$('#newProjectOwner');if(!select)return;
-  let team=[];
-  try{team=JSON.parse(localStorage.getItem('pereko_team')||'[]')}catch{}
-  const names=[...new Set(team.map(p=>p&&p.name).filter(Boolean))];
+  let localTeam=[];
+  try{localTeam=JSON.parse(localStorage.getItem('pereko_team')||'[]')||[]}catch{}
+  const liveTeam=Array.isArray(window.perekoTeam)?window.perekoTeam:[];
+  const names=[...new Set(
+    [...liveTeam,...localTeam]
+      .map(p=>p&&p.name)
+      .filter(Boolean)
+  )];
+  if(window.perekoLoggedPerson?.name&&!names.includes(window.perekoLoggedPerson.name))names.push(window.perekoLoggedPerson.name);
   select.innerHTML='<option value="">Wybierz osobę</option>'+names.map(name=>`<option value="${esc(name)}">${esc(name)}</option>`).join('');
+
+  let picker=$('#newProjectOwnerPicker');
+  if(!picker){
+    picker=document.createElement('div');
+    picker.id='newProjectOwnerPicker';
+    picker.className='new-project-owner-picker';
+    select.insertAdjacentElement('afterend',picker);
+    select.classList.add('new-project-owner-source');
+  }
+  picker.innerHTML=
+    '<button class="new-project-owner-trigger" type="button" aria-expanded="false"><span>Wybierz osobę</span><b>⌄</b></button>'+
+    '<div class="new-project-owner-menu">'+
+      (names.length?names.map(name=>'<button type="button" class="new-project-owner-option" data-owner="'+esc(name)+'">'+esc(name)+'</button>').join(''):'<div class="new-project-owner-empty">Brak osób w zespole.</div>')+
+    '</div>';
+  const trigger=picker.querySelector('.new-project-owner-trigger');
+  const triggerLabel=trigger.querySelector('span');
+  trigger.onclick=()=>{
+    const open=!picker.classList.contains('open');
+    picker.classList.toggle('open',open);
+    trigger.setAttribute('aria-expanded',open?'true':'false');
+  };
+  picker.querySelectorAll('.new-project-owner-option').forEach(btn=>btn.onclick=()=>{
+    select.value=btn.dataset.owner||'';
+    picker.querySelectorAll('.new-project-owner-option').forEach(x=>x.classList.toggle('selected',x===btn));
+    triggerLabel.textContent=btn.textContent;
+    picker.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+  });
+  const resetPicker=()=>{
+    select.value='';
+    triggerLabel.textContent='Wybierz osobę';
+    picker.querySelectorAll('.new-project-owner-option').forEach(x=>x.classList.remove('selected'));
+    picker.classList.remove('open');
+    trigger.setAttribute('aria-expanded','false');
+  };
+  picker.resetOwnerPicker=resetPicker;
 }
-$('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');$('#projectForm').onsubmit=e=>{e.preventDefault();const f=new FormData(e.currentTarget);projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),projectYear:currentNumberingYear(),createdAt:new Date().toISOString(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});save();render();e.currentTarget.reset();$('#modal').classList.remove('open')};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
+$('#addProject').onclick=()=>{refreshNewProjectOwners();$('#modal').classList.add('open')};
+$('#closeModal').onclick=$('#cancelModal').onclick=()=>$('#modal').classList.remove('open');
+$('#projectForm').onsubmit=e=>{
+  e.preventDefault();
+  const f=new FormData(e.currentTarget);
+  projects.unshift({id:crypto.randomUUID(),projectNumber:nextProjectNumber(),projectYear:currentNumberingYear(),createdAt:new Date().toISOString(),name:f.get('name'),owner:f.get('owner'),status:f.get('status'),progress:+f.get('progress'),deadline:f.get('deadline'),desc:f.get('desc')});
+  save();render();e.currentTarget.reset();
+  $('#newProjectOwnerPicker')?.resetOwnerPicker?.();
+  $('#modal').classList.remove('open');
+};$('#syncNow').onclick=async()=>{if(await pushRemote(true))alert('Dane zapisane centralnie.')};
 const now=new Date();$('#todayBox').innerHTML=`<strong>${now.toLocaleDateString('pl-PL',{weekday:'long',day:'2-digit',month:'long'})}</strong><span>${now.getFullYear()}</span>`;
 const autoRefreshRemote=()=>{
   if(document.visibilityState!=='visible'||!navigator.onLine)return;
