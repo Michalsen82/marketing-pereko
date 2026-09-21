@@ -1,19 +1,31 @@
 {
-  "version": "2.0.8",
-  "releasedAt": "2026-09-20T23:45:00+02:00",
-  "releasedLabel": "20 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.0.8",
-  "releaseSummary": "Poprawa niezawodności serwerowych powiadomień Web Push po przypisaniu zadań.",
+  "version": "2.0.9",
+  "releasedAt": "2026-09-21T08:30:00+02:00",
+  "releasedLabel": "21 września 2026",
+  "releaseName": "Centrum Marketingowe PEREKO 2.0.9",
+  "releaseSummary": "Dopracowanie jasnego motywu, filtrów terminów oraz domyślnych widoków projektów i terminów.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Wersja 2.0.8 poprawia wysyłkę powiadomień o nowych zadaniach i dodaje diagnostykę dostarczenia.",
+  "message": "Wersja 2.0.9 poprawia czytelność jasnego motywu i porządkuje domyślne widoki dashboardu.",
   "changes": [
     {
-      "title": "Pewniejsza wysyłka Web Push",
-      "detail": "Serwer czeka teraz na wynik wysyłki powiadomienia przed zakończeniem zapisu danych."
+      "title": "Taski w jasnym motywie",
+      "detail": "Termin, ikona kalendarza i przycisk „Dodaj” są teraz wyraźnie widoczne."
     },
     {
-      "title": "Diagnostyka subskrypcji",
-      "detail": "Zapis zwraca informację, czy zdarzenie zostało wykryte, ile urządzeń ma subskrypcję i czy push został faktycznie wysłany."
+      "title": "Najbliższe terminy domyślnie zwinięte",
+      "detail": "Dodano filtr „Zwinięte”; po wejściu lista terminów jest schowana, dopóki użytkownik nie wybierze zakresu."
+    },
+    {
+      "title": "Wyśrodkowane filtry terminów",
+      "detail": "Wszystkie pięć przełączników ma równy układ i tekst wyśrodkowany w zaznaczeniu."
+    },
+    {
+      "title": "Projekty domyślnie „W realizacji”",
+      "detail": "Po wejściu dashboard pokazuje najpierw aktywne projekty zamiast wszystkich."
+    },
+    {
+      "title": "Czytelny status w stopce Light",
+      "detail": "Napisy statusu synchronizacji w jasnym motywie mają poprawiony kontrast we wszystkich stanach."
     }
   ]
 }
