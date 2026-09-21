@@ -751,24 +751,47 @@
     let cta=document.querySelector('#pwaMobileInstallCta');
     if(!isMobile()||isStandalone()){
       cta?.remove();
-      document.body.classList.remove('pwa-install-cta-visible');
       return null;
     }
+
+    const onLogin=!!document.querySelector('#loginForm');
+    const host=onLogin
+      ?document.querySelector('#loginForm')
+      :document.querySelector('.page-shell');
+    if(!host)return null;
+
     if(!cta){
       cta=document.createElement('button');
       cta.id='pwaMobileInstallCta';
-      cta.className='pwa-mobile-install-cta';
+      cta.className='pwa-mobile-install-cta '+(onLogin?'pwa-mobile-install-login':'pwa-mobile-install-dashboard');
       cta.type='button';
       cta.setAttribute('aria-label','Zainstaluj aplikację PEREKO');
-      cta.innerHTML='<span class="pwa-mobile-install-mark" aria-hidden="true">P</span><span class="pwa-mobile-install-copy"><strong>Zainstaluj aplikację</strong><small>PEREKO na telefonie</small></span><span class="pwa-mobile-install-arrow" aria-hidden="true">→</span>';
+      cta.innerHTML='<span class="pwa-mobile-install-mark" aria-hidden="true">P</span><span class="pwa-mobile-install-copy"><strong>Zainstaluj aplikację PEREKO</strong><small>PEREKO na telefonie</small></span><span class="pwa-mobile-install-action">Zainstaluj</span>';
       cta.addEventListener('click',installApp);
-      document.body.appendChild(cta);
+
+      if(onLogin){
+        const loginSubmit=host.querySelector('.login-submit');
+        if(loginSubmit)loginSubmit.insertAdjacentElement('afterend',cta);
+        else host.appendChild(cta);
+      }else{
+        host.insertAdjacentElement('afterbegin',cta);
+      }
     }
-    document.body.classList.add('pwa-install-cta-visible');
-    const strong=cta.querySelector('strong');
+
+    cta.classList.toggle('pwa-mobile-install-login',onLogin);
+    cta.classList.toggle('pwa-mobile-install-dashboard',!onLogin);
     const small=cta.querySelector('small');
-    if(strong)strong.textContent='Zainstaluj aplikację';
-    if(small)small.textContent=isIOS()?'iPhone / iPad — instrukcja instalacji':isAndroid()?(installPromptEvent()?'Android — gotowe do instalacji':'Android — instalacja w Chrome'):'PEREKO na telefonie';
+    const action=cta.querySelector('.pwa-mobile-install-action');
+    if(isIOS()){
+      if(small)small.textContent='iPhone / iPad — instalacja przez Safari';
+      if(action)action.textContent='Instrukcja';
+    }else if(isAndroid()){
+      if(small)small.textContent=installPromptEvent()?'Android — aplikacja gotowa do instalacji':'Android — instalacja w Google Chrome';
+      if(action)action.textContent=installPromptEvent()?'Zainstaluj':'Jak zainstalować';
+    }else{
+      if(small)small.textContent='Aplikacja mobilna PEREKO';
+      if(action)action.textContent='Zainstaluj';
+    }
     cta.dataset.ready=installPromptEvent()?'1':'0';
     return cta;
   }
