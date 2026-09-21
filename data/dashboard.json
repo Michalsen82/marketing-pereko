@@ -488,12 +488,19 @@
       "taskYear": 2026,
       "text": "Nowy tak z 18.09",
       "assignee": "Michał Bukowski",
-      "done": false,
+      "done": true,
       "createdAt": "2026-09-18T17:42:00.701Z",
       "scheduledFor": "2026-09-21",
-      "completedAt": null,
-      "completedOn": null,
+      "completedAt": "2026-09-21T06:06:52.786Z",
+      "completedOn": "2026-09-21",
       "history": [
+        {
+          "id": "d36a8142-8903-41ed-aa48-95d2a3a905bc",
+          "type": "done",
+          "text": "Task oznaczono jako wykonany",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T06:06:52.786Z"
+        },
         {
           "id": "488ffc9f-2321-42f2-bae5-52fb516a92c9",
           "type": "rollover",
@@ -516,7 +523,28 @@
           "createdAt": "2026-09-18T17:42:00.714Z"
         }
       ]
+    },
+    {
+      "id": "745999d6-92db-487d-8b9a-4d31363448c3",
+      "taskNumber": 24,
+      "taskYear": 2026,
+      "text": "Artykuł - ŚWIAT KOMINKÓW",
+      "assignee": "Michał Bukowski",
+      "done": false,
+      "createdAt": "2026-09-21T06:07:09.190Z",
+      "scheduledFor": "2026-09-21",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "1116742f-d152-4d0b-9725-a2061ae2c7aa",
+          "type": "created",
+          "text": "Utworzono task na 21.09",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T06:07:09.190Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-21T06:06:53.177Z"
+  "updatedAt": "2026-09-21T06:07:09.848Z"
 }
