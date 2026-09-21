@@ -1358,3 +1358,119 @@ html[data-theme="light"] .gantt-row:hover .gantt-track{
     margin:0 0 9px!important;
   }
 }
+
+
+/* =========================================================
+   UI 2.0.9 — jasny task, terminy, footer
+   ========================================================= */
+
+/* TASKI: pełny kontrast pola terminu i przycisku Dodaj w Light */
+html[data-theme="light"] .task-add-form{
+  background:#f5f8f9!important;
+  border-bottom-color:#dfe5e7!important;
+}
+html[data-theme="light"] .task-add-form #taskNewText{
+  background:#fff!important;
+  border-color:#cfd8db!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+}
+html[data-theme="light"] .task-add-form #taskNewText::placeholder{
+  color:#8b979c!important;
+  -webkit-text-fill-color:#8b979c!important;
+  opacity:1!important;
+}
+html[data-theme="light"] .task-date-field{
+  background:#fff!important;
+  border-color:#cfd8db!important;
+  color:#263237!important;
+}
+html[data-theme="light"] .task-date-value,
+html[data-theme="light"] .task-date-value.has-value{
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  opacity:1!important;
+}
+html[data-theme="light"] .task-date-icon{
+  color:#263237!important;
+  opacity:1!important;
+}
+html[data-theme="light"] .task-save-btn{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .task-save-btn:hover{
+  background:#111719!important;
+  border-color:#111719!important;
+  color:#fff!important;
+}
+
+/* TERMINY: pięć równych, idealnie wyśrodkowanych przełączników */
+.deadline-agenda-filters{
+  display:grid!important;
+  grid-template-columns:repeat(5,minmax(0,1fr))!important;
+  align-items:stretch!important;
+  gap:4px!important;
+  width:100%!important;
+}
+.deadline-agenda-filter{
+  width:100%!important;
+  min-width:0!important;
+  height:30px!important;
+  padding:0 5px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  text-align:center!important;
+  line-height:1!important;
+}
+.deadline-agenda-list[hidden]{
+  display:none!important;
+}
+@media(max-width:430px){
+  .deadline-agenda-filter{
+    font-size:8px!important;
+    padding:0 3px!important;
+  }
+}
+
+/* FOOTER: czytelny status synchronizacji w jasnym motywie */
+html[data-theme="light"] .footer-status-btn{
+  background:#f7f9f9!important;
+  border-color:#d4dcdf!important;
+  color:#536167!important;
+  -webkit-text-fill-color:#536167!important;
+  box-shadow:none!important;
+}
+html[data-theme="light"] .footer-status-btn[data-state="ok"]{
+  background:#f3f8f4!important;
+  border-color:#c8ddcb!important;
+  color:#3f7046!important;
+  -webkit-text-fill-color:#3f7046!important;
+}
+html[data-theme="light"] .footer-status-btn[data-state="syncing"]{
+  background:#fff9dc!important;
+  border-color:#dfc95f!important;
+  color:#6f5f00!important;
+  -webkit-text-fill-color:#6f5f00!important;
+}
+html[data-theme="light"] .footer-status-btn[data-state="local"]{
+  background:#f5f7f8!important;
+  border-color:#d4dcdf!important;
+  color:#65737a!important;
+  -webkit-text-fill-color:#65737a!important;
+}
+html[data-theme="light"] .footer-status-btn[data-state="error"]{
+  background:#d94b45!important;
+  border-color:#c93f39!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+}
+html[data-theme="light"] #footerSyncText{
+  color:inherit!important;
+  -webkit-text-fill-color:currentColor!important;
+  opacity:1!important;
+}
