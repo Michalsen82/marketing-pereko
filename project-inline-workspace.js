@@ -532,4 +532,62 @@
     };
     modal.classList.add('open');
   }
+
+
+  /* ===== EXPERIMENT PATCH 03: dopracowanie modali i uploadu ===== */
+  function openMaterialModal(p){
+    const modal=buildModal('piwMaterialModal');
+    modal.innerHTML='<div class="piw-modal-card piw-modal-card-compact"><div class="piw-modal-head"><div><span class="piw-kicker">MATERIAŁY PROJEKTU</span><h3>Dodaj plik</h3><p>Wybierz pliki, które mają zostać przypięte do projektu. Maksymalnie 5 MB na plik.</p></div><button class="piw-icon-btn" type="button" data-close>×</button></div>'+
+      '<div class="piw-upload-zone"><input type="file" multiple data-files hidden><button class="piw-file-pick-btn" type="button" data-pick><span class="piw-file-pick-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12m0-12 4 4m-4-4L8 7M5 14v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-4"/></svg></span><span><strong>Wybierz pliki</strong><small>Kliknij, aby wskazać materiały z urządzenia</small></span></button><div class="piw-file-picked" data-picked><span>Nie wybrano plików.</span></div></div>'+
+      '<div class="piw-material-status" data-upload-status></div>'+
+      '<div class="piw-modal-actions"><button class="piw-btn" type="button" data-cancel>Anuluj</button><button class="piw-btn primary" type="button" data-save disabled>Dodaj pliki</button></div></div>';
+    const input=modal.querySelector('[data-files]'),picked=modal.querySelector('[data-picked]'),status=modal.querySelector('[data-upload-status]'),saveBtn=modal.querySelector('[data-save]');
+    modal.querySelector('[data-pick]').onclick=()=>input.click();
+    input.onchange=()=>{
+      const files=[...input.files];
+      picked.innerHTML=files.length?files.map(f=>'<span><b>'+esc(f.name)+'</b><small>'+esc(fmtBytes(f.size))+'</small></span>').join(''):'<span>Nie wybrano plików.</span>';
+      saveBtn.disabled=!files.length;
+    };
+    modal.querySelector('[data-close]').onclick=modal.querySelector('[data-cancel]').onclick=()=>closeModal(modal);
+    saveBtn.onclick=async()=>{
+      if(!input.files.length)return;
+      saveBtn.disabled=true;
+      status.classList.remove('error');
+      try{
+        await uploadMaterialFiles(p,input.files,text=>status.textContent=text);
+        status.textContent='Pliki dodane.';
+        closeModal(modal);
+        enhance();
+      }catch(error){
+        status.textContent=error.message||'Nie udało się dodać plików.';
+        status.classList.add('error');
+        saveBtn.disabled=false;
+      }
+    };
+    modal.classList.add('open');
+  }
+
+  function openDeleteModal(p){
+    const modal=buildModal('piwDeleteModal');
+    const renderStep=step=>{
+      const final=step===2;
+      modal.innerHTML='<div class="piw-modal-card piw-delete-modal-card">'+
+        '<div class="piw-delete-visual"><div class="piw-delete-icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 3h6l1 2h4v2H4V5h4l1-2Zm-2 6h10l-.7 11H7.7L7 9Zm3 2v7h2v-7h-2Zm4 0v7h2v-7h-2Z"/></svg></div><span>USUWANIE PROJEKTU</span><b>Krok '+step+' z 2</b></div>'+
+        '<div class="piw-modal-head piw-delete-head"><div><h3>'+(final?'Ostatnie potwierdzenie':'Czy na pewno?')+'</h3><p>'+(final?'Tej operacji nie będzie można cofnąć z poziomu dashboardu.':'Dla bezpieczeństwa usuwanie projektu wymaga dwóch potwierdzeń.')+'</p></div><button class="piw-icon-btn" type="button" data-close>×</button></div>'+
+        '<div class="piw-delete-project-card"><span>PROJEKT</span><strong>'+esc(p.name)+'</strong><small>'+esc(window.perekoProjectNumberLabel?.(p)||'')+'</small></div>'+
+        '<div class="piw-delete-message">'+(final
+          ?'<strong>Projekt zostanie trwale usunięty z dashboardu.</strong><p>Znikną również jego zadania i komentarze. Materiały zapisane w magazynie plików należy obsługiwać zgodnie z zasadami magazynu R2.</p>'
+          :'<strong>Chcesz przejść do drugiego etapu?</strong><p>Na tym etapie nic jeszcze nie zostanie usunięte.</p>')+'</div>'+
+        '<div class="piw-modal-actions"><button class="piw-btn" type="button" data-cancel>Anuluj</button>'+(final?'<button class="piw-btn danger piw-danger-final" type="button" data-final>Usuń projekt</button>':'<button class="piw-btn danger" type="button" data-next>Dalej</button>')+'</div>'+
+      '</div>';
+      modal.querySelector('[data-close]').onclick=modal.querySelector('[data-cancel]').onclick=()=>closeModal(modal);
+      modal.querySelector('[data-next]')?.addEventListener('click',()=>renderStep(2));
+      modal.querySelector('[data-final]')?.addEventListener('click',()=>{
+        projects=projects.filter(x=>x.id!==p.id);
+        closeModal(modal);saveAndRender();
+        if(typeof pushRemote==='function'&&cloudSyncEnabled)pushRemote(true);
+      });
+    };
+    renderStep(1);modal.classList.add('open');
+  }
 })();
