@@ -48,7 +48,7 @@
   <link rel="stylesheet" href="pwa.css?v=10" />
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=22" />
-  <link rel="stylesheet" href="stability-pass.css?v=8" />
+  <link rel="stylesheet" href="stability-pass.css?v=9" />
 </head>
 <body style="visibility:hidden">
   <header class="topbar-shell">
@@ -139,8 +139,8 @@
                 <span>Pokaż projekty na wykresie Gantta</span>
               </button>
               <div class="filters">
-              <button class="filter active" data-filter="all">Wszystkie</button>
-              <button class="filter" data-filter="work">W realizacji</button>
+              <button class="filter" data-filter="all">Wszystkie</button>
+              <button class="filter active" data-filter="work">W realizacji</button>
               <button class="filter" data-filter="plan">Planowane</button>
               <button class="filter" data-filter="done">Zakończone</button>
               </div>
@@ -160,7 +160,8 @@
           <div class="module-head compact deadline-agenda-head">
             <div><span class="module-label">TERMINY</span><h2>Najbliższe terminy</h2></div>
             <div class="deadline-agenda-filters" role="group" aria-label="Filtr najbliższych terminów">
-              <button type="button" class="deadline-agenda-filter active" data-deadline-filter="all">Wszystko</button>
+              <button type="button" class="deadline-agenda-filter active" data-deadline-filter="collapsed">Zwinięte</button>
+              <button type="button" class="deadline-agenda-filter" data-deadline-filter="all">Wszystko</button>
               <button type="button" class="deadline-agenda-filter" data-deadline-filter="projects">Projekty</button>
               <button type="button" class="deadline-agenda-filter" data-deadline-filter="project-tasks">Zadania</button>
               <button type="button" class="deadline-agenda-filter" data-deadline-filter="tasks">Taski</button>
@@ -287,11 +288,11 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="auth-guard.js"></script>
-  <script src="app.js?v=5"></script>
+  <script src="app.js?v=6"></script>
   <script src="project-detail.js"></script>
   <script src="task-calendar.js?v=4"></script>
   <script src="project-cards.js?v=2"></script>
-  <script src="deadline-agenda.js?v=2"></script>
+  <script src="deadline-agenda.js?v=3"></script>
   <script src="global-search.js"></script>
   <script src="project-files.js"></script>
   <script src="footer.js?v=2"></script>
@@ -300,6 +301,6 @@
   <script src="gantt.js?v=4"></script>
   <script src="account-security.js"></script>
   <script src="light-theme.js?v=1"></script>
-  <script src="pwa.js?v=15"></script>
+  <script src="pwa.js?v=16"></script>
 </body>
 </html>
