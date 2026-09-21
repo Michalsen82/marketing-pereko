@@ -525,3 +525,114 @@ html[data-theme="light"] .piw-delete-message{background:#f7f9f9!important}
 /* Modal custom-choice: rozwijana lista pływa nad oknem, nie wymusza scrolla */
 .piw-choice{position:relative!important}
 .piw-choice-menu{max-height:190px!important}
+
+
+/* =========================================================
+   EXPERIMENT PATCH 04 — czytelne filtry terminów
+   ========================================================= */
+.deadline-agenda-head{
+  align-items:flex-start!important;
+}
+.deadline-agenda-head>div:first-child{
+  flex:0 0 auto!important;
+}
+.deadline-agenda-controls{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:8px!important;
+  flex:1 1 auto!important;
+  width:min(100%,360px)!important;
+  max-width:360px!important;
+  min-width:300px!important;
+  margin-left:auto!important;
+}
+.deadline-agenda-filters{
+  width:100%!important;
+  min-width:0!important;
+  max-width:none!important;
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:5px!important;
+  padding:4px!important;
+  border:1px solid rgba(255,255,255,.11)!important;
+  border-radius:10px!important;
+  background:rgba(255,255,255,.028)!important;
+  box-sizing:border-box!important;
+}
+.deadline-agenda-filter{
+  width:100%!important;
+  min-width:0!important;
+  height:34px!important;
+  min-height:34px!important;
+  padding:0 10px!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  border:0!important;
+  border-radius:8px!important;
+  background:transparent!important;
+  color:rgba(255,255,255,.62)!important;
+  font:700 9px/1 'Montserrat',sans-serif!important;
+  text-align:center!important;
+  white-space:nowrap!important;
+  overflow:visible!important;
+  text-overflow:clip!important;
+}
+.deadline-agenda-filter.active{
+  background:#ffdd00!important;
+  color:#161819!important;
+  box-shadow:none!important;
+}
+.deadline-agenda-toggle{
+  align-self:flex-start!important;
+  width:auto!important;
+  min-width:116px!important;
+  height:32px!important;
+  min-height:32px!important;
+  padding:0 10px!important;
+  justify-content:flex-start!important;
+  border-radius:9px!important;
+  box-sizing:border-box!important;
+}
+.deadline-agenda-toggle-label{
+  overflow:visible!important;
+  text-overflow:clip!important;
+  white-space:nowrap!important;
+}
+html[data-theme="light"] .deadline-agenda-filters{
+  background:#f3f6f7!important;
+  border-color:#d9e0e2!important;
+}
+html[data-theme="light"] .deadline-agenda-filter{
+  color:#65757b!important;
+}
+html[data-theme="light"] .deadline-agenda-filter.active{
+  background:#20292d!important;
+  color:#fff!important;
+}
+@media(max-width:1320px){
+  .deadline-agenda-controls{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+    margin-left:0!important;
+  }
+}
+@media(max-width:760px){
+  .deadline-agenda-controls{
+    width:100%!important;
+    max-width:none!important;
+    min-width:0!important;
+  }
+  .deadline-agenda-filters{
+    width:100%!important;
+  }
+  .deadline-agenda-filter{
+    font-size:8.5px!important;
+    padding:0 6px!important;
+  }
+  .deadline-agenda-toggle{
+    align-self:flex-start!important;
+  }
+}
