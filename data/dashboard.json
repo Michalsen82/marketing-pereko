@@ -579,7 +579,28 @@
           "createdAt": "2026-09-21T09:12:55.689Z"
         }
       ]
+    },
+    {
+      "id": "587b05b9-320b-4d46-93b8-7043eb034951",
+      "taskNumber": 27,
+      "taskYear": 2026,
+      "text": "QMPELL DUO | RETRO DUO | TERMOSTAR PRO [na serwis wrzucić]",
+      "assignee": "Michał Bukowski",
+      "done": false,
+      "createdAt": "2026-09-21T09:13:31.132Z",
+      "scheduledFor": "2026-09-21",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "97241880-d915-4e33-afba-cba46f8a7a7c",
+          "type": "created",
+          "text": "Utworzono task na 21.09",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T09:13:31.132Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-21T09:12:56.307Z"
+  "updatedAt": "2026-09-21T09:13:31.875Z"
 }
