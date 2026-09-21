@@ -147,7 +147,7 @@
       "id": "p2",
       "name": "Targi HVAC 2027",
       "owner": "Michał",
-      "status": "plan",
+      "status": "work",
       "progress": 0,
       "deadline": "2027-03-01",
       "desc": "Plan targów, harmonogram, ekspozycja, materiały i komunikacja.",
@@ -602,5 +602,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T09:14:16.348Z"
+  "updatedAt": "2026-09-21T09:14:37.270Z"
 }
