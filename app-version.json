@@ -1,35 +1,23 @@
 {
-  "version": "2.1.0",
-  "releasedAt": "2026-09-21T09:43:00+02:00",
+  "version": "2.1.1",
+  "releasedAt": "2026-09-21T11:08:00+02:00",
   "releasedLabel": "21 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.1.0",
-  "releaseSummary": "Nowy zintegrowany widok projektów z pełną obsługą zadań, komentarzy, zespołu, materiałów, filtrów terminów i bezpiecznego usuwania bez osobnego otwierania projektu.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.1.1",
+  "releaseSummary": "Wdrożenie nowego, zintegrowanego widoku projektów oraz finalne dopracowanie sekcji terminów.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Wersja 2.1.0 wprowadza nowy zintegrowany widok projektu oraz szereg poprawek interfejsu Light/Dark.",
+  "message": "Wersja 2.1.1 wdraża nowy widok projektów i poprawiony układ najbliższych terminów.",
   "changes": [
     {
-      "title": "Projekt bez osobnego widoku",
-      "detail": "Usunięto przycisk „Otwórz projekt”; pełna obsługa projektu znajduje się teraz bezpośrednio w rozwijanej karcie."
+      "title": "Nowy widok projektów",
+      "detail": "Zadania, komentarze, osoby, podsumowanie i materiały projektu są dostępne bezpośrednio w rozwiniętej karcie projektu."
     },
     {
-      "title": "Zadania, komentarze i zespół",
-      "detail": "Dodawanie i edycja odbywają się w spójnych oknach, z filtrami Moje / Wszystkie / Wykonane oraz zarządzaniem osobami projektu."
+      "title": "Terminy jak filtry zadań",
+      "detail": "Wszystko, Projekty i Zadania mają ten sam styl i proporcje co przełączniki w zadaniach projektu."
     },
     {
-      "title": "Materiały projektu",
-      "detail": "Dodano osobny blok materiałów i nowy selektor plików z obsługą magazynu R2."
-    },
-    {
-      "title": "Bezpieczne usuwanie",
-      "detail": "Usuwanie projektu wymaga dwuetapowego potwierdzenia w dedykowanym oknie."
-    },
-    {
-      "title": "Najbliższe terminy",
-      "detail": "Filtry Wszystko / Projekty / Zadania są ujednolicone ze stylem zadań projektu, a zwijanie ma osobny przełącznik."
-    },
-    {
-      "title": "Dopracowany Light/Dark",
-      "detail": "Poprawiono daty, dropdowny, modale, taski na dziś i responsywność w obu motywach."
+      "title": "Przełącznik terminów po prawej",
+      "detail": "Pokaż/Ukryj terminy znajduje się pod filtrami i jest wyrównany do ich prawej krawędzi."
     }
   ]
 }
