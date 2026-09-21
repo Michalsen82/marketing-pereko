@@ -558,7 +558,28 @@
           "createdAt": "2026-09-21T06:07:28.734Z"
         }
       ]
+    },
+    {
+      "id": "0173a906-6b41-4244-8904-84b276b34a53",
+      "taskNumber": 26,
+      "taskYear": 2026,
+      "text": "gwarancja do TERMOSTAR PRO",
+      "assignee": "Michał Bukowski",
+      "done": false,
+      "createdAt": "2026-09-21T09:12:55.689Z",
+      "scheduledFor": "2026-09-21",
+      "completedAt": null,
+      "completedOn": null,
+      "history": [
+        {
+          "id": "7e24f675-f4a7-406c-bfbe-2569b031dc6e",
+          "type": "created",
+          "text": "Utworzono task na 21.09",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T09:12:55.689Z"
+        }
+      ]
     }
   ],
-  "updatedAt": "2026-09-21T09:08:52.714Z"
+  "updatedAt": "2026-09-21T09:12:56.307Z"
 }
