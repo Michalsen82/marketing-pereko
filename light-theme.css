@@ -3056,3 +3056,61 @@ html[data-theme="light"] .project.expanded .project-preview-block:not(.project-p
     margin-left:0!important;
   }
 }
+
+
+/* =========================================================
+   PROD FIX — NEW PROJECT MODAL / LIGHT
+   Readable labels and native owner list only.
+   ========================================================= */
+html[data-theme="light"] #modal .modal-card{
+  background:#fff!important;
+  color:#263237!important;
+}
+html[data-theme="light"] #modal .modal-head h3{
+  color:#1e282d!important;
+}
+html[data-theme="light"] #modal .field label{
+  color:#59686f!important;
+}
+html[data-theme="light"] #modal .field input,
+html[data-theme="light"] #modal .field select,
+html[data-theme="light"] #modal .field textarea{
+  background:#fff!important;
+  color:#263237!important;
+  -webkit-text-fill-color:#263237!important;
+  border-color:#cfd8db!important;
+}
+html[data-theme="light"] #modal .field input::placeholder,
+html[data-theme="light"] #modal .field textarea::placeholder{
+  color:#98a4a9!important;
+  -webkit-text-fill-color:#98a4a9!important;
+}
+html[data-theme="light"] #modal #newProjectOwner{
+  background:#fff!important;
+  color:#263237!important;
+  color-scheme:light!important;
+}
+html[data-theme="light"] #modal #newProjectOwner option{
+  background:#fff!important;
+  color:#263237!important;
+}
+html[data-theme="light"] #modal .new-project-progress-note{
+  background:#f5f7f8!important;
+  border-color:#d7dfe1!important;
+  color:#718087!important;
+}
+html[data-theme="light"] #modal .btn.secondary{
+  background:#fff!important;
+  border-color:#d4dcdf!important;
+  color:#4e5d63!important;
+}
+html[data-theme="light"] #modal .btn.primary{
+  background:#20292d!important;
+  border-color:#20292d!important;
+  color:#fff!important;
+}
+html[data-theme="light"] #modal .btn.primary:hover{
+  background:#303b40!important;
+  border-color:#303b40!important;
+}
+
