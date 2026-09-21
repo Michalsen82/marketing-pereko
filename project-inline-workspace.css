@@ -747,3 +747,27 @@ html[data-theme="light"] .deadline-agenda-filter.active{
     align-self:flex-end!important;
   }
 }
+
+
+/* =========================================================
+   EXPERIMENT PATCH 06 — identyczny rozmiar przełączników
+   ========================================================= */
+.stats-toggle-btn,
+.deadline-agenda-toggle{
+  width:116px!important;
+  min-width:116px!important;
+  max-width:116px!important;
+  height:36px!important;
+  min-height:36px!important;
+  padding:0 10px!important;
+  gap:7px!important;
+  border-radius:9px!important;
+  font:700 8.5px/1 'Montserrat',sans-serif!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+}
+.deadline-agenda-toggle{
+  align-self:flex-end!important;
+}
