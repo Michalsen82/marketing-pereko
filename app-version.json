@@ -1,23 +1,19 @@
 {
-  "version": "2.1.1",
-  "releasedAt": "2026-09-21T11:08:00+02:00",
+  "version": "2.1.2",
+  "releasedAt": "2026-09-21T11:07:00+02:00",
   "releasedLabel": "21 września 2026",
-  "releaseName": "Centrum Marketingowe PEREKO 2.1.1",
-  "releaseSummary": "Wdrożenie nowego, zintegrowanego widoku projektów oraz finalne dopracowanie sekcji terminów.",
+  "releaseName": "Centrum Marketingowe PEREKO 2.1.2",
+  "releaseSummary": "Poprawiony i ujednolicony formularz dodawania nowego projektu w jasnym i ciemnym motywie.",
   "title": "Dostępna aktualizacja aplikacji",
-  "message": "Wersja 2.1.1 wdraża nowy widok projektów i poprawiony układ najbliższych terminów.",
+  "message": "Wersja 2.1.2 poprawia wyłącznie formularz dodawania nowego projektu.",
   "changes": [
     {
-      "title": "Nowy widok projektów",
-      "detail": "Zadania, komentarze, osoby, podsumowanie i materiały projektu są dostępne bezpośrednio w rozwiniętej karcie projektu."
+      "title": "Czytelny formularz nowego projektu",
+      "detail": "Układ pól, odstępy, kontrast i przyciski zostały ujednolicone w Light i Dark."
     },
     {
-      "title": "Terminy jak filtry zadań",
-      "detail": "Wszystko, Projekty i Zadania mają ten sam styl i proporcje co przełączniki w zadaniach projektu."
-    },
-    {
-      "title": "Przełącznik terminów po prawej",
-      "detail": "Pokaż/Ukryj terminy znajduje się pod filtrami i jest wyrównany do ich prawej krawędzi."
+      "title": "Wybór osoby z jednej listy",
+      "detail": "Usunięto dodatkowe kafelki pracowników. Osoba odpowiedzialna jest wybierana wyłącznie z listy rozwijanej."
     }
   ]
 }
