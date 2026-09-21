@@ -1,5 +1,5 @@
 (()=>{
-  let mode='all';
+  let mode='collapsed';
   const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
   const current=()=>window.perekoLoggedPerson||{};
   const mine=who=>{
@@ -33,6 +33,7 @@
     });
     return items
       .filter(x=>
+        mode==='collapsed' ? false :
         mode==='all' ||
         (mode==='projects' && x.kind==='project') ||
         (mode==='project-tasks' && x.kind==='project-task') ||
@@ -43,6 +44,10 @@
   const renderAgenda=()=>{
     const list=document.querySelector('#deadlineList');if(!list)return;
     const items=collect();
+    const collapsed=mode==='collapsed';
+    list.hidden=collapsed;
+    list.setAttribute('aria-hidden',collapsed?'true':'false');
+    if(collapsed){list.innerHTML='';return}
     list.innerHTML=items.length?items.map(x=>{
       const d=dateLabel(x.date);
       const type=x.kind==='project'?'PROJEKT':(x.kind==='project-task'?'ZADANIE':'TASK');
