@@ -48,7 +48,7 @@
   <link rel="stylesheet" href="pwa.css?v=10" />
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=22" />
-  <link rel="stylesheet" href="stability-pass.css?v=9" />
+  <link rel="stylesheet" href="stability-pass.css?v=10" />
   <link rel="stylesheet" href="project-inline-workspace.css?v=5" />
 </head>
 <body style="visibility:hidden">
@@ -274,10 +274,10 @@
     </div>
   </section>
 
-  <div class="modal" id="modal">
-    <div class="modal-card">
+  <div class="modal new-project-modal" id="modal">
+    <div class="modal-card new-project-modal-card">
       <div class="modal-head"><div><span class="module-label">NOWY PROJEKT</span><h3>Dodaj projekt marketingowy</h3></div><button class="icon-close" id="closeModal" type="button">×</button></div>
-      <form id="projectForm">
+      <form id="projectForm" class="new-project-form">
         <div class="form-grid">
           <div class="field full"><label>Nazwa projektu</label><input name="name" required placeholder="np. Kampania Q4" /></div>
           <div class="field full"><label>Opis</label><textarea name="desc" placeholder="Krótki opis celu i zakresu projektu"></textarea></div>
@@ -293,7 +293,7 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="auth-guard.js"></script>
-  <script src="app.js?v=7"></script>
+  <script src="app.js?v=8"></script>
   <script src="project-detail.js"></script>
   <script src="task-calendar.js?v=4"></script>
   <script src="project-cards.js?v=2"></script>
@@ -307,6 +307,6 @@
   <script src="gantt.js?v=4"></script>
   <script src="account-security.js"></script>
   <script src="light-theme.js?v=1"></script>
-  <script src="pwa.js?v=16"></script>
+  <script src="pwa.js?v=17"></script>
 </body>
 </html>
