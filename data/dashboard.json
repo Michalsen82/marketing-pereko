@@ -232,11 +232,18 @@
   "tasks": [
     {
       "text": "Ustalić najbliższe terminy dla wszystkich projektów",
-      "done": true,
+      "done": false,
       "id": "481b1465-ed29-48e8-8e9d-cf48e11f1019",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-21",
       "history": [
+        {
+          "id": "3c1d5edf-d7ac-4685-9393-7b5967183ff5",
+          "type": "reopen",
+          "text": "Task ponownie otwarty i przeniesiony na dziś",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T06:19:27.062Z"
+        },
         {
           "id": "be00046f-6a4c-4013-9301-e9d24dd0d154",
           "type": "done",
@@ -269,8 +276,8 @@
       "assignee": "Michał Bukowski",
       "taskNumber": 1,
       "taskYear": 2026,
-      "completedAt": "2026-09-21T06:06:52.002Z",
-      "completedOn": "2026-09-21"
+      "completedAt": null,
+      "completedOn": null
     },
     {
       "text": "Rozpisać kolejne etapy Centrum Partnera PEREKO",
@@ -567,5 +574,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T06:07:29.425Z"
+  "updatedAt": "2026-09-21T06:19:27.717Z"
 }
