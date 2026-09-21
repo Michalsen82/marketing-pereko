@@ -32,7 +32,9 @@
           "text": "987",
           "assignee": "Michał Bukowski",
           "deadline": "2026-09-21",
-          "done": false
+          "done": true,
+          "completedAt": "2026-09-21T05:24:04.462Z",
+          "completedOn": "2026-09-21"
         },
         {
           "id": "a644e3a4-bfdc-435c-a1f9-cfeae3c44707",
@@ -329,11 +331,18 @@
     },
     {
       "text": "Ustalić zakres materiałów do Świata Kominków",
-      "done": false,
+      "done": true,
       "id": "de10a715-5f38-4a07-858d-d4e2f1b622ff",
       "createdAt": "2026-09-18T11:57:42.914Z",
       "scheduledFor": "2026-09-21",
       "history": [
+        {
+          "id": "7cdd7904-3611-4407-86f4-0b96a75a2431",
+          "type": "done",
+          "text": "Task oznaczono jako wykonany",
+          "date": "2026-09-21",
+          "createdAt": "2026-09-21T05:24:07.182Z"
+        },
         {
           "id": "65747d98-4474-4bc1-a328-c64073054aaa",
           "type": "rollover",
@@ -358,7 +367,9 @@
       ],
       "assignee": "Michał Bukowski",
       "taskNumber": 4,
-      "taskYear": 2026
+      "taskYear": 2026,
+      "completedAt": "2026-09-21T05:24:07.182Z",
+      "completedOn": "2026-09-21"
     },
     {
       "id": "d2cc27ea-f6ec-4757-8d2a-00d6e0c76905",
@@ -480,5 +491,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T05:24:00.792Z"
+  "updatedAt": "2026-09-21T05:24:04.397Z"
 }
