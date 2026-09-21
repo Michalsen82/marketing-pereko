@@ -1109,3 +1109,59 @@ html body input[type="date"]::-webkit-clear-button{
   color:#ffb0aa!important;
 }
 
+
+
+/* =========================================================
+   PROD FIX — NEW PROJECT MODAL
+   One owner select + readable controls in dark mode.
+   ========================================================= */
+#modal .field label{
+  color:rgba(255,255,255,.76)!important;
+}
+#modal .field input,
+#modal .field select,
+#modal .field textarea{
+  width:100%!important;
+  min-height:44px!important;
+  box-sizing:border-box!important;
+  background:#232729!important;
+  color:#fff!important;
+  -webkit-text-fill-color:#fff!important;
+  border:1px solid rgba(255,255,255,.18)!important;
+}
+#modal .field textarea{
+  min-height:112px!important;
+}
+#modal .field input::placeholder,
+#modal .field textarea::placeholder{
+  color:rgba(255,255,255,.48)!important;
+  -webkit-text-fill-color:rgba(255,255,255,.48)!important;
+}
+#modal #newProjectOwner{
+  display:block!important;
+  appearance:auto!important;
+}
+#modal .new-project-owner-picker{
+  display:none!important;
+}
+#modal .new-project-progress-note{
+  min-height:44px!important;
+  display:flex!important;
+  align-items:center!important;
+  padding:0 12px!important;
+  border:1px solid rgba(255,255,255,.12)!important;
+  border-radius:9px!important;
+  background:rgba(255,255,255,.045)!important;
+  color:rgba(255,255,255,.58)!important;
+  font-size:10px!important;
+}
+#modal .btn.primary{
+  background:#ffdd00!important;
+  color:#17191a!important;
+  border-color:#ffdd00!important;
+}
+#modal .btn.primary:hover{
+  background:#ffe538!important;
+  border-color:#ffe538!important;
+}
+
