@@ -120,6 +120,12 @@
       ],
       "comments": [
         {
+          "id": "37f356bd-6b43-48d2-8ecb-4475b9e45c37",
+          "text": "Vxhx ciekawe czy to działa Jeżeli będę mówił do telefonu",
+          "author": "Michał Bukowski",
+          "createdAt": "2026-09-21T08:24:32.754Z"
+        },
+        {
           "id": "612e77e8-e279-4551-ae3f-4c79d7d9aeb0",
           "text": "test 3",
           "author": "Michał Bukowski",
@@ -552,5 +558,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T08:22:03.743Z"
+  "updatedAt": "2026-09-21T08:24:33.753Z"
 }
