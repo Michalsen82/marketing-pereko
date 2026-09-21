@@ -191,43 +191,6 @@
       "comments": [],
       "projectNumber": 2,
       "projectYear": 2026
-    },
-    {
-      "id": "p3",
-      "name": "Upominki świąteczne",
-      "owner": "Wiktoria",
-      "status": "plan",
-      "progress": 0,
-      "deadline": "2026-11-20",
-      "desc": "Koncepcja, budżet, lista odbiorców, zamówienie i dystrybucja upominków.",
-      "members": [
-        "Wiktoria"
-      ],
-      "projectTasks": [
-        {
-          "id": "72c72d18-858d-4c67-a4fd-5088c5b586f8",
-          "taskNumber": 20,
-          "taskYear": 2026,
-          "createdAt": "2026-09-20T12:29:25.902Z",
-          "text": "7",
-          "assignee": "Michał Bukowski",
-          "deadline": "2026-10-02",
-          "done": false
-        },
-        {
-          "id": "08edabd3-ad95-4e24-9bf2-db24f1a6aa75",
-          "taskNumber": 19,
-          "taskYear": 2026,
-          "createdAt": "2026-09-19T20:26:00.434Z",
-          "text": "6",
-          "assignee": "Michał Bukowski",
-          "deadline": "2026-09-24",
-          "done": false
-        }
-      ],
-      "comments": [],
-      "projectNumber": 3,
-      "projectYear": 2026
     }
   ],
   "tasks": [
@@ -589,5 +552,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-21T06:31:48.073Z"
+  "updatedAt": "2026-09-21T08:22:03.743Z"
 }
