@@ -49,6 +49,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=22" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
+  <link rel="stylesheet" href="project-inline-workspace.css?v=6" />
 </head>
 <body style="visibility:hidden">
   <header class="topbar-shell">
@@ -110,9 +111,9 @@
         <div class="date-box" id="todayBox"></div>
         <div class="intro-project-actions">
           <button class="intro-add-project" id="addProject" type="button"><span>+</span> Nowy projekt</button>
-          <button class="stats-toggle-btn" id="toggleStats" type="button" aria-expanded="true">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v2H4V5Zm0 6h16v2H4v-2Zm0 6h16v2H4v-2Z"/></svg>
-            <span>Ukryj kafelki</span>
+          <button class="stats-toggle-btn active" id="toggleStats" type="button" aria-expanded="true">
+            <span class="stats-toggle-dot" aria-hidden="true"></span>
+            <span class="stats-toggle-label">Ukryj kafelki</span>
           </button>
         </div>
       </div>
@@ -158,13 +159,17 @@
 
         <section class="module deadline-agenda-module">
           <div class="module-head compact deadline-agenda-head">
-            <div><span class="module-label">TERMINY</span><h2>Najbliższe terminy</h2></div>
-            <div class="deadline-agenda-filters" role="group" aria-label="Filtr najbliższych terminów">
-              <button type="button" class="deadline-agenda-filter active" data-deadline-filter="collapsed">Zwinięte</button>
-              <button type="button" class="deadline-agenda-filter" data-deadline-filter="all">Wszystko</button>
-              <button type="button" class="deadline-agenda-filter" data-deadline-filter="projects">Projekty</button>
-              <button type="button" class="deadline-agenda-filter" data-deadline-filter="project-tasks">Zadania</button>
-              <button type="button" class="deadline-agenda-filter" data-deadline-filter="tasks">Taski</button>
+            <div class="deadline-agenda-title"><span class="module-label">TERMINY</span><h2>Najbliższe<br>terminy</h2></div>
+            <div class="deadline-agenda-controls">
+              <div class="deadline-agenda-filters" role="group" aria-label="Filtr najbliższych terminów">
+                <button type="button" class="deadline-agenda-filter active" data-deadline-filter="all">Wszystko</button>
+                <button type="button" class="deadline-agenda-filter" data-deadline-filter="projects">Projekty</button>
+                <button type="button" class="deadline-agenda-filter" data-deadline-filter="project-tasks">Zadania</button>
+              </div>
+              <button type="button" class="deadline-agenda-toggle" id="deadlineAgendaToggle" aria-expanded="false">
+                <span class="deadline-agenda-toggle-dot" aria-hidden="true"></span>
+                <span class="deadline-agenda-toggle-label">Pokaż terminy</span>
+              </button>
             </div>
           </div>
           <div class="deadlines deadline-agenda-list" id="deadlineList"></div>
@@ -288,19 +293,20 @@
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="auth-guard.js"></script>
-  <script src="app.js?v=6"></script>
+  <script src="app.js?v=7"></script>
   <script src="project-detail.js"></script>
   <script src="task-calendar.js?v=4"></script>
   <script src="project-cards.js?v=2"></script>
-  <script src="deadline-agenda.js?v=3"></script>
+  <script src="deadline-agenda.js?v=4"></script>
   <script src="global-search.js"></script>
   <script src="project-files.js"></script>
+  <script src="project-inline-workspace.js?v=3"></script>
   <script src="footer.js?v=2"></script>
   <script src="team.js"></script>
   <script src="user-avatar.js"></script>
   <script src="gantt.js?v=4"></script>
   <script src="account-security.js"></script>
   <script src="light-theme.js?v=1"></script>
-  <script src="pwa.js?v=16"></script>
+  <script src="pwa.js?v=17"></script>
 </body>
 </html>
