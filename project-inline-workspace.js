@@ -425,4 +425,111 @@
   document.addEventListener('pereko:user-ready',enhance);
   document.addEventListener('pereko:team-changed',enhance);
   enhance();
+
+
+  /* ===== EXPERIMENT PATCH 02: własne dropdowny + działające daty ===== */
+  function choiceHtml(key,options,selected='',placeholder='Wybierz'){
+    const normalized=(options||[]).map(x=>typeof x==='string'?{value:x,label:x}:x);
+    const current=normalized.find(x=>String(x.value)===String(selected));
+    return '<div class="piw-choice" data-piw-choice="'+esc(key)+'" data-value="'+esc(selected)+'">'+
+      '<button class="piw-choice-trigger" type="button" aria-expanded="false"><span>'+esc(current?.label||placeholder)+'</span><b>⌄</b></button>'+
+      '<div class="piw-choice-menu">'+normalized.map(x=>'<button type="button" class="piw-choice-option '+(String(x.value)===String(selected)?'selected':'')+'" data-value="'+esc(x.value)+'">'+esc(x.label)+'</button>').join('')+'</div>'+
+    '</div>';
+  }
+  function bindChoices(scope){
+    scope.querySelectorAll('.piw-choice').forEach(choice=>{
+      const trigger=choice.querySelector('.piw-choice-trigger');
+      trigger.onclick=()=>{
+        const open=!choice.classList.contains('open');
+        scope.querySelectorAll('.piw-choice.open').forEach(x=>{if(x!==choice){x.classList.remove('open');x.querySelector('.piw-choice-trigger')?.setAttribute('aria-expanded','false')}});
+        choice.classList.toggle('open',open);
+        trigger.setAttribute('aria-expanded',open?'true':'false');
+      };
+      choice.querySelectorAll('.piw-choice-option').forEach(opt=>opt.onclick=()=>{
+        choice.dataset.value=opt.dataset.value||'';
+        choice.querySelectorAll('.piw-choice-option').forEach(x=>x.classList.toggle('selected',x===opt));
+        const label=trigger.querySelector('span');if(label)label.textContent=opt.textContent;
+        choice.classList.remove('open');trigger.setAttribute('aria-expanded','false');
+      });
+    });
+  }
+  const choiceValue=(scope,key)=>scope.querySelector('[data-piw-choice="'+key+'"]')?.dataset.value||'';
+  function activateDate(input){
+    if(!input)return;
+    input.classList.add('piw-date-input');
+    input.addEventListener('click',()=>{try{input.showPicker?.()}catch{}});
+  }
+
+  function openTaskModal(p,index=null){
+    ensure(p);
+    const edit=index!==null&&p.projectTasks[index],modal=buildModal('piwTaskModal');
+    const choices=[{value:'',label:'Bez przypisania'},...[...new Set([...teamNames(),...p.members,p.owner].filter(Boolean))].map(x=>({value:x,label:x}))];
+    modal.innerHTML='<div class="piw-modal-card"><div class="piw-modal-head"><div><span class="piw-kicker">'+(edit?'EDYCJA ZADANIA':'NOWE ZADANIE')+'</span><h3>'+(edit?'Edytuj zadanie':'Dodaj zadanie')+'</h3><p>Po zapisaniu okno zostanie zamknięte, a zadanie pojawi się w projekcie.</p></div><button class="piw-icon-btn" type="button" data-close>×</button></div>'+
+      '<div class="piw-form"><label class="piw-field"><span>Nazwa zadania</span><input data-task-text value="'+esc(edit?.text||'')+'" placeholder="Co trzeba zrobić?"></label>'+
+      '<div class="piw-field"><span>Osoba odpowiedzialna</span>'+choiceHtml('task-assignee',choices,edit?.assignee||'','Bez przypisania')+'</div>'+
+      '<label class="piw-field"><span>Termin</span><input data-task-deadline type="date" value="'+esc(edit?.deadline||'')+'"></label></div>'+
+      '<div class="piw-modal-actions"><button class="piw-btn" type="button" data-cancel>Anuluj</button><button class="piw-btn primary" type="button" data-save>Zapisz</button></div></div>';
+    bindChoices(modal);activateDate(modal.querySelector('[data-task-deadline]'));
+    modal.querySelector('[data-close]').onclick=modal.querySelector('[data-cancel]').onclick=()=>closeModal(modal);
+    modal.querySelector('[data-save]').onclick=()=>{
+      const text=modal.querySelector('[data-task-text]').value.trim();if(!text)return;
+      const payload={text,assignee:choiceValue(modal,'task-assignee'),deadline:modal.querySelector('[data-task-deadline]').value};
+      if(edit)p.projectTasks[index]={...p.projectTasks[index],...payload};
+      else{
+        const identity=window.perekoNextTaskIdentity?.()||{taskNumber:1,taskYear:new Date().getFullYear()};
+        p.projectTasks.unshift({id:crypto.randomUUID(),...identity,createdAt:new Date().toISOString(),...payload,done:false});
+      }
+      projectProgress(p);closeModal(modal);saveAndRender();
+    };
+    modal.classList.add('open');setTimeout(()=>modal.querySelector('[data-task-text]')?.focus(),50);
+  }
+
+  function openMemberModal(p){
+    ensure(p);
+    const modal=buildModal('piwMemberModal');
+    const available=teamNames().filter(x=>!p.members.includes(x));
+    const options=[{value:'',label:'Wybierz osobę'},...available.map(x=>({value:x,label:x}))];
+    modal.innerHTML='<div class="piw-modal-card"><div class="piw-modal-head"><div><span class="piw-kicker">ZESPÓŁ PROJEKTU</span><h3>Przypisz osobę</h3><p>Wybierz współpracownika, który ma dołączyć do projektu.</p></div><button class="piw-icon-btn" type="button" data-close>×</button></div>'+
+      '<div class="piw-field"><span>Osoba</span>'+choiceHtml('member',options,'','Wybierz osobę')+'</div>'+
+      '<div class="piw-modal-actions"><button class="piw-btn" type="button" data-cancel>Anuluj</button><button class="piw-btn primary" type="button" data-save '+(!available.length?'disabled':'')+'>Przypisz</button></div></div>';
+    bindChoices(modal);
+    modal.querySelector('[data-close]').onclick=modal.querySelector('[data-cancel]').onclick=()=>closeModal(modal);
+    modal.querySelector('[data-save]').onclick=()=>{
+      const name=choiceValue(modal,'member');if(!name)return;
+      if(!p.members.includes(name))p.members.push(name);
+      closeModal(modal);saveAndRender();
+    };
+    modal.classList.add('open');
+  }
+
+  function openProjectEditModal(p){
+    const modal=buildModal('piwProjectEditModal');
+    const owners=[...new Set([...teamNames(),...p.members,p.owner].filter(Boolean))];
+    const ownerOptions=[{value:'',label:'Brak'},...owners.map(x=>({value:x,label:x}))];
+    const statusOptions=[
+      {value:'work',label:'W realizacji'},
+      {value:'plan',label:'Planowany'},
+      {value:'done',label:'Zakończony'}
+    ];
+    modal.innerHTML='<div class="piw-modal-card"><div class="piw-modal-head"><div><span class="piw-kicker">DANE PROJEKTU</span><h3>Edytuj projekt</h3><p>Zmień temat i najważniejsze informacje projektu.</p></div><button class="piw-icon-btn" type="button" data-close>×</button></div>'+
+      '<div class="piw-form"><label class="piw-field"><span>Temat projektu</span><input data-name value="'+esc(p.name||'')+'" placeholder="Nazwa projektu"></label>'+
+      '<div class="piw-field"><span>Status</span>'+choiceHtml('project-status',statusOptions,p.status||'work','W realizacji')+'</div>'+
+      '<label class="piw-field"><span>Termin projektu</span><input type="date" data-deadline value="'+esc(p.deadline||'')+'"></label>'+
+      '<div class="piw-field"><span>Osoba odpowiedzialna</span>'+choiceHtml('project-owner',ownerOptions,p.owner||'','Brak')+'</div>'+
+      '<label class="piw-field"><span>Opis projektu</span><textarea data-desc>'+esc(p.desc||'')+'</textarea></label></div>'+
+      '<div class="piw-modal-actions"><button class="piw-btn" type="button" data-cancel>Anuluj</button><button class="piw-btn primary" type="button" data-save>Zapisz zmiany</button></div></div>';
+    bindChoices(modal);activateDate(modal.querySelector('[data-deadline]'));
+    modal.querySelector('[data-close]').onclick=modal.querySelector('[data-cancel]').onclick=()=>closeModal(modal);
+    modal.querySelector('[data-save]').onclick=()=>{
+      const name=modal.querySelector('[data-name]').value.trim();if(!name)return;
+      p.name=name;
+      p.status=choiceValue(modal,'project-status')||'work';
+      p.deadline=modal.querySelector('[data-deadline]').value;
+      p.owner=choiceValue(modal,'project-owner');
+      p.desc=modal.querySelector('[data-desc]').value.trim();
+      if(p.owner&&!p.members.includes(p.owner))p.members.unshift(p.owner);
+      projectProgress(p);closeModal(modal);saveAndRender();
+    };
+    modal.classList.add('open');
+  }
 })();
