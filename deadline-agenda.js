@@ -1,5 +1,6 @@
 (()=>{
-  let mode='collapsed';
+  let mode='all';
+  let expanded=false;
   const norm=v=>String(v||'').normalize('NFD').replace(/[\u0300-\u036f]/g,'').toLowerCase().replace(/\s+/g,' ').trim();
   const current=()=>window.perekoLoggedPerson||{};
   const mine=who=>{
@@ -25,51 +26,55 @@
         }
       });
     });
-    (tasks||[]).forEach(t=>{
-      const date=t.scheduledFor||t.deadline;
-      if(!t.done&&date&&mine(t.assignee)){
-        items.push({kind:'task',date,title:t.text,meta:(t.assignee||'Bez przypisania')+' · Task osobisty',taskId:t.id,global:true});
-      }
-    });
     return items
       .filter(x=>
-        mode==='collapsed' ? false :
         mode==='all' ||
-        (mode==='projects' && x.kind==='project') ||
-        (mode==='project-tasks' && x.kind==='project-task') ||
-        (mode==='tasks' && x.kind==='task')
+        (mode==='projects'&&x.kind==='project') ||
+        (mode==='project-tasks'&&x.kind==='project-task')
       )
       .sort((a,b)=>String(a.date).localeCompare(String(b.date)));
   };
+  const syncToggle=()=>{
+    const btn=document.querySelector('#deadlineAgendaToggle');
+    if(!btn)return;
+    btn.classList.toggle('active',expanded);
+    btn.setAttribute('aria-expanded',expanded?'true':'false');
+    const label=btn.querySelector('.deadline-agenda-toggle-label');
+    if(label)label.textContent=expanded?'Ukryj terminy':'Pokaż terminy';
+  };
   const renderAgenda=()=>{
     const list=document.querySelector('#deadlineList');if(!list)return;
+    syncToggle();
+    list.hidden=!expanded;
+    list.setAttribute('aria-hidden',expanded?'false':'true');
+    if(!expanded){list.innerHTML='';return}
     const items=collect();
-    const collapsed=mode==='collapsed';
-    list.hidden=collapsed;
-    list.setAttribute('aria-hidden',collapsed?'true':'false');
-    if(collapsed){list.innerHTML='';return}
     list.innerHTML=items.length?items.map(x=>{
       const d=dateLabel(x.date);
-      const type=x.kind==='project'?'PROJEKT':(x.kind==='project-task'?'ZADANIE':'TASK');
-      const action=x.kind==='project'?'Przejdź do projektu':(x.kind==='project-task'?'Przejdź do zadania':'Przejdź do taska');
-      const itemClass=x.kind==='project'?'is-project':(x.kind==='project-task'?'is-project-task':'is-task');
+      const type=x.kind==='project'?'PROJEKT':'ZADANIE';
+      const action=x.kind==='project'?'Przejdź do projektu':'Przejdź do zadania';
+      const itemClass=x.kind==='project'?'is-project':'is-project-task';
       return '<article class="deadline-agenda-item '+itemClass+'">'+
         '<div class="datebox"><b>'+d.day+'</b><span>'+d.mon+'</span></div>'+
         '<div class="deadline-agenda-copy"><span class="deadline-agenda-type">'+type+'</span><h5>'+esc(x.title)+'</h5><p>'+esc(x.meta)+'</p></div>'+
-        '<button type="button" class="deadline-agenda-open" data-agenda-kind="'+x.kind+'" data-agenda-project="'+esc(x.projectId||'')+'" data-agenda-task="'+esc(x.taskId||'')+'" data-agenda-date="'+esc(x.date)+'">'+action+' <span>→</span></button>'+
+        '<button type="button" class="deadline-agenda-open" data-agenda-kind="'+x.kind+'" data-agenda-project="'+esc(x.projectId||'')+'" data-agenda-task="'+esc(x.taskId||'')+'">'+action+' <span>→</span></button>'+
       '</article>';
     }).join(''):'<div class="empty deadline-agenda-empty">Brak przypisanych terminów.</div>';
     list.querySelectorAll('.deadline-agenda-open').forEach(btn=>btn.onclick=()=>{
-      const kind=btn.dataset.agendaKind,projectId=btn.dataset.agendaProject,taskId=btn.dataset.agendaTask,date=btn.dataset.agendaDate;
+      const kind=btn.dataset.agendaKind,projectId=btn.dataset.agendaProject,taskId=btn.dataset.agendaTask;
       if(kind==='project'){window.openProjectDetail?.(projectId);return}
-      if(kind==='project-task'&&projectId){window.perekoOpenDeepLink?.({projectId,taskId});return}
-      window.perekoOpenTaskCalendar?.(date,taskId);
+      if(kind==='project-task'&&projectId)window.perekoOpenDeepLink?.({projectId,taskId});
     });
   };
   const bind=()=>{
+    document.querySelector('#deadlineAgendaToggle')?.addEventListener('click',()=>{
+      expanded=!expanded;
+      renderAgenda();
+    });
     document.querySelectorAll('[data-deadline-filter]').forEach(btn=>btn.onclick=()=>{
       mode=btn.dataset.deadlineFilter;
       document.querySelectorAll('[data-deadline-filter]').forEach(x=>x.classList.toggle('active',x===btn));
+      if(!expanded)expanded=true;
       renderAgenda();
     });
   };
