@@ -246,8 +246,9 @@ function applyStatsVisibility(){
   const grid=$('.stats-grid'),btn=$('#toggleStats');if(!grid||!btn)return;
   const hidden=localStorage.getItem('pereko_stats_hidden')==='1';
   grid.classList.toggle('is-hidden',hidden);
-  const label=btn.querySelector('span');
+  const label=btn.querySelector('.stats-toggle-label')||btn.querySelector('span');
   if(label)label.textContent=hidden?'Pokaż kafelki':'Ukryj kafelki';
+  btn.classList.toggle('active',!hidden);
   btn.setAttribute('aria-expanded',hidden?'false':'true');
 }
 $('#toggleStats')?.addEventListener('click',()=>{
