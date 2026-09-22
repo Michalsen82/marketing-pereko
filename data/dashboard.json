@@ -150,7 +150,7 @@
       "name": "Targi HVAC 2027",
       "owner": "Michał",
       "status": "work",
-      "progress": 25,
+      "progress": 75,
       "deadline": "2027-03-01",
       "desc": "Plan targów, harmonogram, ekspozycja, materiały i komunikacja.",
       "members": [
@@ -165,7 +165,9 @@
           "text": "test web push v5",
           "assignee": "Michał Bukowski",
           "deadline": "2026-10-02",
-          "done": false
+          "done": true,
+          "completedAt": "2026-09-22T05:18:46.877Z",
+          "completedOn": "2026-09-22"
         },
         {
           "id": "735745ae-4962-46ee-a577-b1fe47fdb8d6",
@@ -175,7 +177,9 @@
           "text": "test web push v4",
           "assignee": "Michał Bukowski",
           "deadline": "2026-09-30",
-          "done": false
+          "done": true,
+          "completedAt": "2026-09-22T05:18:46.082Z",
+          "completedOn": "2026-09-22"
         },
         {
           "id": "60bbfd2d-f29d-413c-8945-105c16810e4f",
@@ -641,5 +645,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-22T05:18:43.884Z"
+  "updatedAt": "2026-09-22T05:18:45.494Z"
 }
