@@ -16,6 +16,9 @@
   const openDetails=document.querySelector('#openProjectDetails');
   const closeDetails=document.querySelector('#closeProjectDetails');
   const detailsPanel=document.querySelector('#projectDetailsPanel');
+  const openSuppliers=document.querySelector('#openSuppliers');
+  const closeSuppliers=document.querySelector('#closeSuppliers');
+  const supplierModal=document.querySelector('#supplierModal');
 
   const defaultRows=[
     'Noclegi',
@@ -273,6 +276,17 @@
     if(!detailsPanel.hidden)detailsPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
   });
   closeDetails?.addEventListener('click',()=>{if(detailsPanel)detailsPanel.hidden=true});
+
+  function setSupplierModal(open){
+    if(!supplierModal)return;
+    supplierModal.classList.toggle('open',open);
+    supplierModal.setAttribute('aria-hidden',open?'false':'true');
+    document.body.style.overflow=open?'hidden':'';
+  }
+  openSuppliers?.addEventListener('click',()=>setSupplierModal(true));
+  closeSuppliers?.addEventListener('click',()=>setSupplierModal(false));
+  supplierModal?.addEventListener('click',e=>{if(e.target===supplierModal)setSupplierModal(false)});
+  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&supplierModal?.classList.contains('open'))setSupplierModal(false)});
 
   loadPlan();
   try{loadNotes()}catch(error){console.error(error)}
