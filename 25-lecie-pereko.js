@@ -387,6 +387,26 @@
   closeAlerts?.addEventListener('click',()=>setAlertModal(false));
   alertModal?.addEventListener('click',e=>{if(e.target===alertModal)setAlertModal(false)});
 
+  function markContactedStarSuppliers(){
+    const sentEmails=new Set([
+      'info@militarymonkeys.pl','kontaktzgraczykiem@gmail.com','kontakt@muzeumgryf.pl','info@dzwig-trans.pl',
+      'podnosnikiszczecinek@gmail.com','marcin.dzwig@interia.eu','dzwig@onet.eu','biuro@liftstar.pl',
+      'marcinfilusz@gmail.com','uslugidzwig.krzys@wp.pl','p.w.kowalczyk@wp.pl','piotr.adamczyk@starsanduo.pl',
+      'lukasz.glica@starsanduo.pl','sylwia@starsanduo.pl','damian.banasik@starsanduo.pl','biuro@motodemont.com.pl',
+      'rmr@rmrhandel.pl'
+    ]);
+    document.querySelectorAll('.supplier-card').forEach(card=>{
+      const emails=[...card.querySelectorAll('a[href^="mailto:"]')].map(a=>a.getAttribute('href').slice(7).toLowerCase());
+      if(!emails.some(email=>sentEmails.has(email)))return;
+      card.classList.add('supplier-contacted');
+      if(card.querySelector('.supplier-contact-status'))return;
+      const status=document.createElement('div');
+      status.className='supplier-contact-status';
+      status.textContent='Zapytanie wysłane · 23.09.2026 · oczekuje na odpowiedź';
+      card.appendChild(status);
+    });
+  }
+
   function setSupplierModal(open){
     if(!supplierModal)return;
     supplierModal.classList.toggle('open',open);
@@ -407,4 +427,5 @@
   try{loadDetails()}catch(error){console.error(error)}
   try{loadBudgets()}catch(error){console.error(error)}
   try{renderAlerts()}catch(error){console.error(error)}
+  try{markContactedStarSuppliers()}catch(error){console.error(error)}
 })();
