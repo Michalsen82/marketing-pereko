@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=23" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
-  <link rel="stylesheet" href="25-lecie-pereko.css?v=3" />
+  <link rel="stylesheet" href="25-lecie-pereko.css?v=4" />
 </head>
 <body style="visibility:hidden">
   <div class="anniversary-project-page">
@@ -168,15 +168,25 @@
         </div>
 
         <aside class="work-side">
-          <section class="ann-card">
-            <div class="ann-card-head"><div><span class="ann-label">SZCZEGÓŁY</span><h2>Ustalenia projektu</h2></div></div>
-            <div class="detail-fields">
-              <label><span>Planowany termin — Europa</span><input data-detail="europa-date" value="11–13.06.2027 ± 2 tygodnie"></label>
-              <label><span>Planowany termin — Manor House</span><input data-detail="manor-date" value="06–08.06.2027 ± 2 tygodnie"></label>
-              <label><span>Liczba osób</span><input data-detail="people" value="70"></label>
-              <label><span>Pokoje 2-os.</span><input data-detail="double-rooms" value="32"></label>
-              <label><span>Pokoje 1-os.</span><input data-detail="single-rooms" value="6"></label>
-              <label><span>Wybrany hotel</span><select data-detail="selected-hotel"><option value="">— brak decyzji —</option><option>Hotel Europa</option><option>Manor House</option></select></label>
+          <section class="ann-card work-history-card">
+            <div class="ann-card-head"><div><span class="ann-label">HISTORIA PRACY</span><h2>Przebieg projektu</h2></div><span class="ann-badge">najnowsze u góry</span></div>
+            <div class="work-history">
+              <article class="history-item">
+                <div class="history-no">02</div>
+                <div class="history-copy">
+                  <span>23.09.2026</span>
+                  <h3>Wysłanie zapytań do hoteli</h3>
+                  <p>Wysłano kompleksowe zapytania ofertowe do Hotelu Europa w Starachowicach oraz Manor House w Chlewiskach. Zapytania obejmują noclegi, wyżywienie, kolacje, alkohol, salę bankietową i atrakcje.</p>
+                </div>
+              </article>
+              <article class="history-item">
+                <div class="history-no">01</div>
+                <div class="history-copy">
+                  <span>23.09.2026</span>
+                  <h3>Ustalenie listy projektu</h3>
+                  <p>Utworzono plan działań, dwa warianty kosztorysowe oraz podstawowy zakres organizacyjny jubileuszu 25-lecia marki PEREKO.</p>
+                </div>
+              </article>
             </div>
           </section>
 
@@ -197,12 +207,31 @@
           </section>
         </aside>
       </section>
+      <section class="bottom-details-panel" id="projectDetailsPanel" hidden>
+        <div class="bottom-details-inner">
+          <div class="ann-card-head">
+            <div><span class="ann-label">USTALENIA PROJEKTU</span><h2>Parametry robocze</h2></div>
+            <button class="details-close-btn" type="button" id="closeProjectDetails">Zamknij ×</button>
+          </div>
+          <div class="detail-fields detail-fields-bottom">
+            <label><span>Planowany termin — Europa</span><input data-detail="europa-date" value="11–13.06.2027 ± 2 tygodnie"></label>
+            <label><span>Planowany termin — Manor House</span><input data-detail="manor-date" value="06–08.06.2027 ± 2 tygodnie"></label>
+            <label><span>Liczba osób</span><input data-detail="people" value="70"></label>
+            <label><span>Pokoje 2-os.</span><input data-detail="double-rooms" value="32"></label>
+            <label><span>Pokoje 1-os.</span><input data-detail="single-rooms" value="6"></label>
+            <label><span>Wybrany hotel</span><select data-detail="selected-hotel"><option value="">— brak decyzji —</option><option>Hotel Europa</option><option>Manor House</option></select></label>
+          </div>
+        </div>
+      </section>
     </main>
 
     <footer class="site-footer">
       <div class="site-footer-inner">
         <div class="footer-brand"><div class="footer-logo" aria-hidden="true"></div><div class="footer-copy"><strong>Centrum Projektów Marketingowych</strong><span>25-lecie marki PEREKO · karta zarządzania projektem</span><small class="footer-author">Opiekun projektu: Michał Bukowski</small></div></div>
-        <div class="footer-actions"><div class="footer-status-btn" data-state="ok" role="status"><span class="footer-status-dot"></span><span>Projekt aktywny</span></div></div>
+        <div class="footer-actions">
+          <button class="footer-project-details-btn" id="openProjectDetails" type="button">Ustalenia projektu</button>
+          <div class="footer-status-btn" data-state="ok" role="status"><span class="footer-status-dot"></span><span>Projekt aktywny</span></div>
+        </div>
       </div>
     </footer>
   </div>
@@ -212,6 +241,6 @@
   <script src="light-theme.js?v=1"></script>
   <script src="user-avatar.js"></script>
   <script src="account-security.js"></script>
-  <script src="25-lecie-pereko.js?v=3"></script>
+  <script src="25-lecie-pereko.js?v=4"></script>
 </body>
 </html>
