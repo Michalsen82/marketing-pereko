@@ -318,3 +318,6 @@ html[data-theme="light"] .supplier-lines a{color:#7f6d00}
   .supplier-modal{padding:12px}
   .supplier-modal-card{padding:16px;max-height:92vh}
 }
+
+.supplier-card-priority{border-color:rgba(255,230,0,.42);background:rgba(255,230,0,.035)}
+html[data-theme="light"] .supplier-card-priority{border-color:#d4bc28;background:#fffbea}
