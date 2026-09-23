@@ -202,6 +202,61 @@ export async function onRequestGet(context) {
   }
 }
 
+export async function onRequestPatch(context) {
+  try {
+    const user = await requireUser(context.request);
+    if (!user) return Response.json({ error: 'Brak autoryzacji' }, { status: 401 });
+    const token = context.env.GITHUB_TOKEN;
+    if (!token) return Response.json({ error: 'Brak sekretu GITHUB_TOKEN' }, { status: 500 });
+
+    const body = await context.request.json();
+    const projectId = String(body?.projectId || '');
+    const progress = Math.max(0, Math.min(100, Number(body?.progress) || 0));
+    const done = Math.max(0, Number(body?.done) || 0);
+    const total = Math.max(0, Number(body?.total) || 0);
+    if (!projectId) return Response.json({ error: 'Brak projectId' }, { status: 400 });
+
+    const current = await getCurrentFile(token);
+    const payload = JSON.parse(decodeBase64Utf8(current.content));
+    if (!Array.isArray(payload.projects) || !Array.isArray(payload.tasks)) {
+      return Response.json({ error: 'Nieprawidłowy format danych' }, { status: 500 });
+    }
+
+    const project = payload.projects.find(p => String(p?.id || '') === projectId);
+    if (!project) return Response.json({ error: 'Nie znaleziono projektu' }, { status: 404 });
+
+    project.progress = progress;
+    project.specialProgressManaged = true;
+    project.specialProgressDone = done;
+    project.specialProgressTotal = total;
+    project.specialProgressUpdatedAt = new Date().toISOString();
+    payload.updatedAt = new Date().toISOString();
+
+    const url = `https://api.github.com/repos/${OWNER}/${REPO}/contents/${FILE_PATH}`;
+    const response = await fetch(url, {
+      method: 'PUT',
+      headers: { ...ghHeaders(token), 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        message: 'Aktualizacja postępu projektu specjalnego',
+        content: encodeBase64Utf8(JSON.stringify(payload, null, 2) + '\n'),
+        sha: current.sha,
+        branch: BRANCH
+      })
+    });
+
+    if (!response.ok) {
+      const details = await response.text();
+      throw new Error(`GitHub PUT failed: ${response.status} ${details}`);
+    }
+
+    return Response.json({ ok: true, projectId, progress, done, total, updatedAt: payload.updatedAt }, {
+      headers: { 'Cache-Control': 'no-store' }
+    });
+  } catch (error) {
+    return Response.json({ error: error.message }, { status: 500 });
+  }
+}
+
 export async function onRequestPut(context) {
   try {
     const user = await requireUser(context.request);
