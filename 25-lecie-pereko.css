@@ -111,3 +111,64 @@ html[data-theme="light"] .document-meta b{color:#46545a}
   .document-download{grid-column:1/-1;width:100%}
   .document-meta{grid-template-columns:1fr}
 }
+
+
+/* PROJECT HISTORY + ACCESSIBILITY */
+.anniversary-shell{font-size:16px}
+.ann-label{font-size:10px;letter-spacing:.14em;color:#ffe600;text-shadow:0 0 12px rgba(255,230,0,.14)}
+.project-head h1{font-size:34px}
+.project-meta span{font-size:10.5px;color:rgba(255,255,255,.82)}
+.project-status-grid article>span{font-size:9.5px;color:rgba(255,255,255,.62)}
+.project-status-grid strong{font-size:24px}
+.project-status-grid small{font-size:10px;color:rgba(255,255,255,.58)}
+.ann-card-head h2{font-size:21px}
+.ann-badge{font-size:9.5px;color:#ffe600;border-color:rgba(255,230,0,.5);background:rgba(255,230,0,.11)}
+.ann-badge.muted{font-size:9.5px;color:rgba(255,255,255,.72)}
+.ann-checklist b{font-size:12.5px}
+.ann-checklist small{font-size:10.5px;color:rgba(255,255,255,.6)}
+.budget-title span,.document-type{color:#ffe600;font-size:9.5px}
+.budget-title h3{font-size:16px}
+.budget-title>strong{font-size:19px;color:#ffe600}
+.budget-add,.document-download{font-size:10px;color:#151819;background:#ffe600;border-color:#ffe600}
+.budget-add:hover,.document-download:hover{background:#fff06b;border-color:#fff06b}
+.document-main h3{font-size:13.5px}
+.document-meta span{font-size:10px;color:rgba(255,255,255,.65)}
+.document-meta b{color:#fff}
+.document-main p{font-size:10.5px;color:rgba(255,255,255,.58)}
+.ann-notes{font-size:12px}
+.detail-fields span{font-size:10px;color:rgba(255,255,255,.62)}
+.detail-fields input,.detail-fields select{font-size:11.5px}
+.decision-list b{font-size:11.5px}
+.decision-list span{font-size:9.5px;color:#ffe600}
+.work-history{display:grid}
+.history-item{display:grid;grid-template-columns:46px minmax(0,1fr);gap:12px;padding:16px 0;border-top:1px solid rgba(255,255,255,.07)}
+.history-item:first-child{border-top:0;padding-top:4px}
+.history-no{width:42px;height:42px;display:grid;place-items:center;background:#ffe600;color:#151819;font:900 12px/1 'Montserrat',sans-serif}
+.history-copy>span{display:block;color:#ffe600;font:800 9.5px/1 'Montserrat',sans-serif;letter-spacing:.08em}
+.history-copy h3{margin:6px 0 5px;color:#fff;font:800 13.5px/1.25 'Montserrat',sans-serif}
+.history-copy p{margin:0;color:rgba(255,255,255,.62);font-size:11px;line-height:1.5}
+.bottom-details-panel{width:min(1400px,calc(100% - 48px));margin:0 auto 16px;border:1px solid rgba(255,255,255,.09);background:rgba(255,255,255,.035)}
+.bottom-details-panel[hidden]{display:none}
+.bottom-details-inner{padding:20px}
+.detail-fields-bottom{grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.details-close-btn{min-height:34px;padding:0 12px;border:1px solid rgba(255,255,255,.12);background:transparent;color:#fff;font:800 9.5px/1 'Montserrat',sans-serif;cursor:pointer}
+.footer-project-details-btn{min-height:34px;padding:0 12px;border:1px solid #ffe600;background:#ffe600;color:#151819;font:800 9.5px/1 'Montserrat',sans-serif;cursor:pointer}
+.footer-project-details-btn:hover{background:#fff06b;border-color:#fff06b}
+html[data-theme="light"] .ann-label,html[data-theme="light"] .history-copy>span,html[data-theme="light"] .decision-list span,html[data-theme="light"] .budget-title span,html[data-theme="light"] .document-type{color:#8a7600;text-shadow:none}
+html[data-theme="light"] .ann-badge{color:#6f5e00;border-color:#c5aa00;background:#fff5a6}
+html[data-theme="light"] .project-meta span,html[data-theme="light"] .project-status-grid article>span,html[data-theme="light"] .project-status-grid small,html[data-theme="light"] .ann-checklist small,html[data-theme="light"] .document-meta span,html[data-theme="light"] .document-main p,html[data-theme="light"] .history-copy p,html[data-theme="light"] .detail-fields span{color:#536268}
+html[data-theme="light"] .history-copy h3{color:#202a2f}
+html[data-theme="light"] .bottom-details-panel{background:#fff;border-color:#dfe4e5}
+html[data-theme="light"] .details-close-btn{color:#263238;border-color:#d7dddf;background:#f8fafa}
+html[data-theme="light"] .footer-project-details-btn{background:#ffe600;color:#151819;border-color:#d2b900}
+@media(max-width:900px){
+  .detail-fields-bottom{grid-template-columns:1fr 1fr}
+  .project-head h1{font-size:30px}
+}
+@media(max-width:620px){
+  .detail-fields-bottom{grid-template-columns:1fr}
+  .bottom-details-panel{width:calc(100% - 28px)}
+  .ann-card-head h2{font-size:19px}
+  .ann-checklist b{font-size:12px}
+  .history-copy h3{font-size:13px}
+}
