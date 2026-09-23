@@ -41,10 +41,17 @@
   function loadChecks(){
     let saved={};
     try{saved=JSON.parse(localStorage.getItem(CHECK_KEY)||'{}')||{}}catch{}
+    const defaults={europa-mail:true,manor-mail:true};
     checklist?.querySelectorAll('[data-task]').forEach(input=>{
-      input.checked=!!saved[input.dataset.task];
+      const key=input.dataset.task;
+      input.checked=Object.prototype.hasOwnProperty.call(saved,key)?!!saved[key]:!!defaults[key];
       input.closest('label')?.classList.toggle('done',input.checked);
     });
+    if(!localStorage.getItem(CHECK_KEY)){
+      const initial={};
+      checklist?.querySelectorAll('[data-task]').forEach(input=>initial[input.dataset.task]=input.checked);
+      localStorage.setItem(CHECK_KEY,JSON.stringify(initial));
+    }
     refreshProgress();
   }
   function saveChecks(){
