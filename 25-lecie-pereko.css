@@ -412,3 +412,7 @@ html[data-theme="light"] .alert-disable-btn{color:#526168;border-color:#d5dcde}
 .correspondence-compact .document-main h3{margin-bottom:7px}
 html[data-theme="light"] .correspondence-group-note{color:#5f6e74;background:#fffdf0;border-color:#e6e1be}
 html[data-theme="light"] .correspondence-group-note b{color:#202a2f}
+
+.supplier-contacted{border-color:rgba(255,230,0,.28)}
+.supplier-contact-status{margin-top:12px;padding:8px 9px;border:1px solid rgba(255,230,0,.28);background:rgba(255,230,0,.06);color:#ffe600;font:800 8.5px/1.35 'Montserrat',sans-serif}
+html[data-theme="light"] .supplier-contact-status{color:#756300;background:#fff8cf;border-color:#d8c35c}
