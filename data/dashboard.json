@@ -5,7 +5,7 @@
       "name": "25-lecie marki PEREKO",
       "owner": "Michał Bukowski",
       "status": "work",
-      "progress": 0,
+      "progress": 19,
       "deadline": "2027-05-30",
       "desc": "Event dla dystrybutorów marki PEREKO na jubileusz 25-lecia marki PEREKO.",
       "members": [
@@ -16,7 +16,11 @@
       "projectNumber": 3,
       "projectYear": 2026,
       "createdAt": "2026-09-23T08:20:00.000Z",
-      "specialPage": "25-lecie-pereko.html"
+      "specialPage": "25-lecie-pereko.html",
+      "specialProgressManaged": true,
+      "specialProgressDone": 3,
+      "specialProgressTotal": 16,
+      "specialProgressUpdatedAt": "2026-09-23T11:48:28.527Z"
     },
     {
       "id": "p1",
@@ -698,5 +702,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-23T11:46:31.875Z"
+  "updatedAt": "2026-09-23T11:48:28.531Z"
 }
