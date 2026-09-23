@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=23" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
-  <link rel="stylesheet" href="25-lecie-pereko.css?v=8" />
+  <link rel="stylesheet" href="25-lecie-pereko.css?v=9" />
 </head>
 <body style="visibility:hidden">
   <div class="anniversary-project-page">
@@ -64,11 +64,18 @@
           <span class="ann-label">PROJEKT SPECJALNY · JUBILEUSZ 2027</span>
           <h1>25-lecie marki PEREKO</h1>
         </div>
-        <div class="project-progress-box">
-          <span>POSTĘP PROJEKTU</span>
-          <strong id="annProgress">0%</strong>
-          <div class="ann-progressbar"><span id="annProgressBar"></span></div>
-          <small><b id="annDoneCount">0</b> z <b id="annAllCount">0</b> działań wykonanych</small>
+        <div class="project-head-tools">
+          <button class="project-alert-box" id="openAlerts" type="button" aria-label="Pokaż alerty projektu">
+            <span>ALERTY</span>
+            <strong><b id="activeAlertCount">0</b> nowych</strong>
+            <small id="activeAlertHint">Brak zaległych odpowiedzi</small>
+          </button>
+          <div class="project-progress-box">
+            <span>POSTĘP PROJEKTU</span>
+            <strong id="annProgress">0%</strong>
+            <div class="ann-progressbar"><span id="annProgressBar"></span></div>
+            <small><b id="annDoneCount">0</b> z <b id="annAllCount">0</b> działań wykonanych</small>
+          </div>
         </div>
       </section>
 
@@ -84,47 +91,63 @@
 
           <section class="ann-card project-documents">
             <div class="ann-card-head">
-              <div><span class="ann-label">DOKUMENTY I PLIKI</span><h2>Korespondencja ofertowa</h2></div>
-              <span class="ann-badge muted">2 pliki</span>
+              <div><span class="ann-label">KORESPONDENCJA OFERTOWA</span><h2>Zapytania i odpowiedzi</h2></div>
+              <span class="ann-badge muted">alert po 3 dniach bez odpowiedzi</span>
             </div>
-            <div class="document-grid">
-              <article class="document-card">
-                <div class="document-icon">EML</div>
-                <div class="document-main">
-                  <span class="document-type">ZAPYTANIE OFERTOWE · HOTEL EUROPA</span>
-                  <h3>Kompleksowa organizacja eventu jubileuszowego PEREKO</h3>
-                  <div class="document-meta">
-                    <span><b>Data wysłania:</b> 23.09.2026, 12:47</span>
-                    <span><b>Adresat:</b> hotel@europa-hotel.pl</span>
-                    <span><b>Nadawca:</b> Michał Bukowski</span>
-                    <span><b>Format źródłowy:</b> Outlook MSG</span>
-                    <span><b>Rozmiar pliku źródłowego:</b> 134 144 B (ok. 131 KB)</span>
-                    <span><b>Status:</b> wysłane</span>
-                  </div>
-                  <p>Zapytanie dotyczące noclegów, pełnego wyżywienia, dwóch kolacji, alkoholu, sali bankietowej, atrakcji hotelowych oraz warunków rezerwacji dla grupy ok. 70 osób.</p>
-                </div>
-                <a class="document-download" href="/docs/25-lecie-pereko/zapytanie-hotel-europa-2026-09-23.eml" download>Pobierz plik</a>
-              </article>
 
-              <article class="document-card">
-                <div class="document-icon">EML</div>
-                <div class="document-main">
-                  <span class="document-type">ZAPYTANIE OFERTOWE · MANOR HOUSE</span>
-                  <h3>Kompleksowa organizacja eventu jubileuszowego PEREKO</h3>
-                  <div class="document-meta">
-                    <span><b>Data wysłania:</b> 23.09.2026, 12:45</span>
-                    <span><b>Adresat:</b> karolina@manorhouse.pl</span>
-                    <span><b>Nadawca:</b> Michał Bukowski</span>
-                    <span><b>Format źródłowy:</b> Outlook MSG</span>
-                    <span><b>Rozmiar pliku źródłowego:</b> 135 168 B (ok. 132 KB)</span>
-                    <span><b>Status:</b> wysłane</span>
-                  </div>
-                  <p>Zapytanie dotyczące noclegów, pełnego wyżywienia, dwóch kolacji, alkoholu, sali bankietowej, SPA, atrakcji grupowych i warunków rezerwacji dla grupy ok. 70 osób.</p>
+            <div class="correspondence-groups">
+              <details class="correspondence-group" open>
+                <summary>
+                  <div><span class="correspondence-no">01</span><strong>Hotele</strong><small>2 wysłane zapytania</small></div>
+                  <span class="correspondence-arrow">⌄</span>
+                </summary>
+                <div class="correspondence-list">
+                  <article class="document-card correspondence-item" data-offer-id="hotel-europa-2026-09-23" data-sent-at="2026-09-23T12:47:00+02:00" data-replied="false">
+                    <div class="document-icon">EML</div>
+                    <div class="document-main">
+                      <span class="document-type">HOTEL EUROPA · ZAPYTANIE OFERTOWE</span>
+                      <h3>Kompleksowa organizacja eventu jubileuszowego PEREKO</h3>
+                      <div class="document-meta">
+                        <span><b>Data wysłania:</b> 23.09.2026, 12:47</span>
+                        <span><b>Adresat:</b> hotel@europa-hotel.pl</span>
+                        <span><b>Status:</b> <em class="correspondence-status pending">oczekuje na odpowiedź</em></span>
+                        <span><b>Alert:</b> po 3 dniach bez odpowiedzi</span>
+                        <span><b>Format źródłowy:</b> Outlook MSG</span>
+                        <span><b>Rozmiar:</b> ok. 131 KB</span>
+                      </div>
+                    </div>
+                    <a class="document-download" href="/docs/25-lecie-pereko/zapytanie-hotel-europa-2026-09-23.eml" download>Pobierz plik</a>
+                  </article>
+
+                  <article class="document-card correspondence-item" data-offer-id="manor-house-2026-09-23" data-sent-at="2026-09-23T12:45:00+02:00" data-replied="false">
+                    <div class="document-icon">EML</div>
+                    <div class="document-main">
+                      <span class="document-type">MANOR HOUSE · ZAPYTANIE OFERTOWE</span>
+                      <h3>Kompleksowa organizacja eventu jubileuszowego PEREKO</h3>
+                      <div class="document-meta">
+                        <span><b>Data wysłania:</b> 23.09.2026, 12:45</span>
+                        <span><b>Adresat:</b> karolina@manorhouse.pl</span>
+                        <span><b>Status:</b> <em class="correspondence-status pending">oczekuje na odpowiedź</em></span>
+                        <span><b>Alert:</b> po 3 dniach bez odpowiedzi</span>
+                        <span><b>Format źródłowy:</b> Outlook MSG</span>
+                        <span><b>Rozmiar:</b> ok. 132 KB</span>
+                      </div>
+                    </div>
+                    <a class="document-download" href="/docs/25-lecie-pereko/zapytanie-manor-house-2026-09-23.eml" download>Pobierz plik</a>
+                  </article>
                 </div>
-                <a class="document-download" href="/docs/25-lecie-pereko/zapytanie-manor-house-2026-09-23.eml" download>Pobierz plik</a>
-              </article>
+              </details>
+
+              <details class="correspondence-group">
+                <summary>
+                  <div><span class="correspondence-no">02</span><strong>STAR-y</strong><small>brak wysłanych zapytań</small></div>
+                  <span class="correspondence-arrow">⌄</span>
+                </summary>
+                <div class="correspondence-empty">
+                  Gdy poinformujesz mnie o wysłaniu zapytania do konkretnego dostawcy STAR-a, dodam tutaj wpis z datą wysłania. Jeżeli po 3 dniach nie odnotujemy odpowiedzi, system automatycznie pokaże alert.
+                </div>
+              </details>
             </div>
-            <div class="document-note">Pliki źródłowe zostały przekazane w formacie Outlook MSG. Na stronie projektu udostępniłem ich kopie EML do pobrania, zachowujące treść i podstawowe nagłówki wiadomości.</div>
           </section>
 
           <section class="ann-card">
@@ -158,6 +181,14 @@
             <div class="ann-card-head"><div><span class="ann-label">HISTORIA PRACY</span><h2>Przebieg projektu</h2></div><span class="ann-badge">najnowsze u góry</span></div>
             <div class="work-history">
               <article class="history-item">
+                <div class="history-no">04</div>
+                <div class="history-copy">
+                  <span>23.09.2026</span>
+                  <h3>Rozbudowa bazy STAR i system kontroli odpowiedzi</h3>
+                  <p>Rozszerzono bazę dostawców STAR-ów, pogrupowano korespondencję ofertową oraz uruchomiono alerty po 3 dniach bez odpowiedzi z możliwością odroczenia lub wyłączenia.</p>
+                </div>
+              </article>
+              <article class="history-item">
                 <div class="history-no">03</div>
                 <div class="history-copy">
                   <span>23.09.2026</span>
@@ -187,7 +218,7 @@
           <section class="ann-card supplier-launch-card">
             <div class="ann-card-head">
               <div><span class="ann-label">DOSTAWCY</span><h2>Kontakty dostawców</h2></div>
-              <span class="ann-badge">7 kontaktów</span>
+              <span class="ann-badge">16 kontaktów</span>
             </div>
             <p class="supplier-launch-copy">Hotele, wynajem STAR-ów oraz lokalni partnerzy techniczni. Lista będzie rozwijana wraz z projektem.</p>
             <button class="supplier-open-btn" id="openSuppliers" type="button">Pokaż kontakty dostawców</button>
@@ -261,72 +292,97 @@
           </div>
         </div>
 
-        <div class="supplier-section">
-          <div class="supplier-section-head"><span>02</span><div><h3>STAR — wynajem i kontakty do pojazdów</h3><p>Podmioty do równoległego kontaktu w sprawie STAR-ów z kierowcami i organizacji przejazdu.</p></div></div>
+                <div class="supplier-section">
+          <div class="supplier-section-head"><span>02</span><div><h3>STAR — wynajem i dostęp do pojazdów</h3><p>Podmioty do równoległego kontaktu. Szukamy pojazdu z kierowcą i minimum dwoma miejscami pasażerskimi w kabinie.</p></div></div>
           <div class="supplier-grid">
-            <article class="supplier-card">
+            <article class="supplier-card supplier-card-priority">
               <div class="supplier-card-top"><span>BEZPOŚREDNI WYNAJEM</span><strong>Military Monkeys</strong></div>
-              <div class="supplier-lines">
-                <span><b>Kontakt:</b> Marcin Bartczak</span>
-                <span><b>Lokalizacja:</b> 09-470 Bodzanów</span>
-                <span><b>Telefon:</b> +48 507 541 914</span>
-                <span><b>E-mail:</b> <a href="mailto:info@militarymonkeys.pl">info@militarymonkeys.pl</a></span>
-                <span><b>Flota:</b> m.in. STAR 266; przejażdżki i eventy militarne</span>
-              </div>
+              <div class="supplier-lines"><span><b>Kontakt:</b> Marcin Bartczak</span><span><b>Lokalizacja:</b> Bodzanów</span><span><b>Telefon:</b> +48 507 541 914</span><span><b>E-mail:</b> <a href="mailto:info@militarymonkeys.pl">info@militarymonkeys.pl</a></span><span><b>Zakres:</b> STAR 266, pojazdy militarne, przejażdżki i eventy.</span></div>
               <a class="supplier-web" href="https://militarymonkeys.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
             </article>
-
-            <article class="supplier-card">
-              <div class="supplier-card-top"><span>WYNAJEM POJAZDÓW</span><strong>Samochody Graczyka</strong></div>
-              <div class="supplier-lines">
-                <span><b>Kontakt:</b> Tomasz Graczyk</span>
-                <span><b>Adres:</b> ul. Mokra 6, Opacz-Kolonia, 05-816 Michałowice</span>
-                <span><b>Telefon:</b> +48 697 070 707</span>
-                <span><b>E-mail:</b> <a href="mailto:kontaktzgraczykiem@gmail.com">kontaktzgraczykiem@gmail.com</a></span>
-                <span><b>Zakres:</b> zabytkowe pojazdy, transport, opieka techniczna i asysta</span>
-              </div>
+            <article class="supplier-card supplier-card-priority">
+              <div class="supplier-card-top"><span>BEZPOŚREDNI WYNAJEM</span><strong>Samochody Graczyka</strong></div>
+              <div class="supplier-lines"><span><b>Kontakt:</b> Tomasz Graczyk</span><span><b>Lokalizacja:</b> Opacz-Kolonia / Michałowice</span><span><b>Telefon:</b> +48 697 070 707</span><span><b>E-mail:</b> <a href="mailto:kontaktzgraczykiem@gmail.com">kontaktzgraczykiem@gmail.com</a></span><span><b>Zakres:</b> STAR 266, STAR 200, transport i opieka techniczna.</span></div>
               <a class="supplier-web" href="https://samochodygraczyka.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
             </article>
-
-            <article class="supplier-card supplier-card-priority">
-              <div class="supplier-card-top"><span>PRIORYTET · SIEĆ WŁAŚCICIELI STAR-ÓW</span><strong>Stowarzyszenie Legenda STARa</strong></div>
-              <div class="supplier-lines">
-                <span><b>Adres rejestrowy:</b> Ostrożanka 46, 27-220 Mirzec</span>
-                <span><b>E-mail stowarzyszenia:</b> <a href="mailto:biuro@legendastara.eu">biuro@legendastara.eu</a></span>
-                <span><b>Kontakt organizacyjny Legendy STARa:</b> +48 41 276 09 42</span>
-                <span><b>E-mail organizacyjny:</b> <a href="mailto:legendastara@powiat.starachowice.pl">legendastara@powiat.starachowice.pl</a></span>
-                <span><b>Cel kontaktu:</b> zebranie 5 sprawnych, zarejestrowanych STAR-ów z kierowcami i min. 2 miejscami pasażerskimi w kabinie.</span>
-              </div>
-              <a class="supplier-web" href="https://www.legendastara.eu/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>PRZEJAŻDŻKI / POJAZDY WOJSKOWE</span><strong>Muzeum Techniki Wojskowej GRYF</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 667 910 060</span><span><b>E-mail:</b> <a href="mailto:kontakt@muzeumgryf.pl">kontakt@muzeumgryf.pl</a></span><span><b>Zakres:</b> STAR 266 i komercyjne przejażdżki; warto pytać o usługę wyjazdową.</span></div>
+              <a class="supplier-web" href="https://muzeumgryf.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
             </article>
-
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM SPRZĘTU</span><strong>DŹWIG-TRANS Andrzej Jelonkiewicz</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 605 615 615</span><span><b>E-mail:</b> <a href="mailto:info@dzwig-trans.pl">info@dzwig-trans.pl</a></span><span><b>Pojazd:</b> STAR 266 P-183; obsługa także w rejonie Starachowic.</span></div>
+              <a class="supplier-web" href="https://dzwig-trans.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM SPRZĘTU</span><strong>P.U.H. Łukasz Borkowski</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 503 918 912</span><span><b>E-mail:</b> <a href="mailto:podnosnikiszczecinek@gmail.com">podnosnikiszczecinek@gmail.com</a></span><span><b>Pojazd:</b> STAR 266 w aktywnej flocie wynajmu.</span></div>
+              <a class="supplier-web" href="https://elewacje-podnosniki.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM Z OBSŁUGĄ</span><strong>Usługi Dźwigowe Marcin Cecuga</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 695 298 332 / +48 534 298 332</span><span><b>E-mail:</b> <a href="mailto:marcin.dzwig@interia.eu">marcin.dzwig@interia.eu</a></span><span><b>Pojazd:</b> STAR 266 P-184H.</span></div>
+              <a class="supplier-web" href="https://dzwigicecuga.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM SPRZĘTU</span><strong>HAK Usługi Dźwigowe S. Woźniak</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 601 361 422</span><span><b>E-mail:</b> <a href="mailto:dzwig@onet.eu">dzwig@onet.eu</a></span><span><b>Pojazd:</b> STAR 266 P-183.</span></div>
+              <a class="supplier-web" href="https://dzwig.leszno.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM SPRZĘTU</span><strong>LIFTSTAR — Warszawa</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 796 334 501</span><span><b>E-mail:</b> <a href="mailto:biuro@liftstar.pl">biuro@liftstar.pl</a></span><span><b>Pojazd:</b> STAR 200 BUMAR P-183.</span></div>
+              <a class="supplier-web" href="https://www.liftstar.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM SPRZĘTU</span><strong>MIX Marcin Filusz</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 606 781 692</span><span><b>E-mail:</b> <a href="mailto:marcinfilusz@gmail.com">marcinfilusz@gmail.com</a></span><span><b>Pojazd:</b> STAR 200 P-183.</span></div>
+              <a class="supplier-web" href="https://uslugipodnosnikiem24.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM SPRZĘTU</span><strong>KRZYŚ — Usługi Dźwigowe</strong></div>
+              <div class="supplier-lines"><span><b>Lokalizacja:</b> Elbląg</span><span><b>Telefon:</b> +48 660 304 349 / +48 666 368 123</span><span><b>E-mail:</b> <a href="mailto:uslugidzwig.krzys@wp.pl">uslugidzwig.krzys@wp.pl</a></span><span><b>Pojazd:</b> STAR 244 P-183.</span></div>
+              <a class="supplier-web" href="https://www.krzys-dzwig-podnosnik-elblag.com/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM Z WŁASNĄ OBSŁUGĄ</span><strong>P.W. Kowalczyk</strong></div>
+              <div class="supplier-lines"><span><b>Lokalizacja:</b> Złocieniec</span><span><b>Telefon:</b> +48 608 070 451</span><span><b>E-mail:</b> <a href="mailto:p.w.kowalczyk@wp.pl">p.w.kowalczyk@wp.pl</a></span><span><b>Pojazd:</b> STAR 244; możliwe zlecenia w całym kraju.</span></div>
+              <a class="supplier-web" href="https://www.pwkowalczyk.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
             <article class="supplier-card supplier-card-priority">
               <div class="supplier-card-top"><span>PRIORYTET · LOKALNY PARTNER TECHNICZNY</span><strong>Star San Duo</strong></div>
-              <div class="supplier-lines">
-                <span><b>Adres:</b> ul. Krańcowa 4, 27-200 Starachowice</span>
-                <span><b>Biuro:</b> +48 41 275 26 97</span>
-                <span><b>E-mail biura:</b> <a href="mailto:biuro@starsanduo.pl">biuro@starsanduo.pl</a></span>
-                <span><b>Piotr Adamczyk — Dyrektor Działu Sprzedaży i Logistyki:</b> +48 696 325 819</span>
-                <span><b>E-mail bezpośredni:</b> <a href="mailto:piotr.adamczyk@starsanduo.pl">piotr.adamczyk@starsanduo.pl</a></span>
-                <span><b>WhatsApp:</b> +48 696 325 819</span>
-                <span><b>Cel kontaktu:</b> możliwość pozyskania lub skoordynowania 5 STAR-ów z kierowcami na event w Starachowicach.</span>
-              </div>
+              <div class="supplier-lines"><span><b>Adres:</b> ul. Krańcowa 4, 27-200 Starachowice</span><span><b>Biuro:</b> +48 41 275 26 97</span><span><b>E-mail biura:</b> <a href="mailto:biuro@starsanduo.pl">biuro@starsanduo.pl</a></span><span><b>Piotr Adamczyk:</b> +48 696 325 819 · <a href="mailto:piotr.adamczyk@starsanduo.pl">piotr.adamczyk@starsanduo.pl</a></span><span><b>Dodatkowe e-maile:</b> <a href="mailto:lukasz.glica@starsanduo.pl">lukasz.glica@starsanduo.pl</a>, <a href="mailto:sylwia@starsanduo.pl">sylwia@starsanduo.pl</a>, <a href="mailto:damian.banasik@starsanduo.pl">damian.banasik@starsanduo.pl</a></span><span><b>Cel:</b> pozyskanie lub skoordynowanie kilku STAR-ów z kierowcami.</span></div>
               <a class="supplier-web" href="https://starsanduo.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
             </article>
-
             <article class="supplier-card">
-              <div class="supplier-card-top"><span>PARTNER LOKALNY</span><strong>Muzeum Przyrody i Techniki</strong></div>
-              <div class="supplier-lines">
-                <span><b>Adres:</b> ul. Wielkopiecowa 1, 27-200 Starachowice</span>
-                <span><b>Wejście dla gości:</b> ul. Marszałka Piłsudskiego 95</span>
-                <span><b>Informacja / rezerwacje:</b> +48 41 275 40 83, +48 783 730 094</span>
-                <span><b>E-mail:</b> <a href="mailto:mpt@ekomuzeum.pl">mpt@ekomuzeum.pl</a></span>
-                <span><b>Zakres:</b> historia STAR-a, kontakty lokalne, obsługa grup i potencjalna współpraca przy trasie</span>
-              </div>
-              <a class="supplier-web" href="https://ekomuzeum.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+              <div class="supplier-card-top"><span>SPECJALISTA STAR</span><strong>P.W. Motodemont</strong></div>
+              <div class="supplier-lines"><span><b>Lokalizacja:</b> Kaźmierz</span><span><b>Telefon:</b> +48 507 193 300 / +48 602 198 901</span><span><b>E-mail:</b> <a href="mailto:biuro@motodemont.com.pl">biuro@motodemont.com.pl</a></span><span><b>Zakres:</b> remonty, modernizacje i transport STAR 266.</span></div>
+              <a class="supplier-web" href="https://motodemont.com.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>POJAZDY WOJSKOWE</span><strong>RMR Serock</strong></div>
+              <div class="supplier-lines"><span><b>Telefon:</b> +48 501 105 901 / +48 504 248 843</span><span><b>E-mail:</b> <a href="mailto:rmr@rmrhandel.pl">rmr@rmrhandel.pl</a></span><span><b>Zakres:</b> STAR 266 i inne pojazdy wojskowe; kontakt rezerwowy.</span></div>
+              <a class="supplier-web" href="https://rmrhandel.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+            <article class="supplier-card supplier-card-priority">
+              <div class="supplier-card-top"><span>PRIORYTET · SIEĆ WŁAŚCICIELI STAR-ÓW</span><strong>Stowarzyszenie Legenda STARa</strong></div>
+              <div class="supplier-lines"><span><b>Adres:</b> Ostrożanka 46, 27-220 Mirzec</span><span><b>Telefon organizacyjny:</b> +48 41 276 09 42</span><span><b>E-mail:</b> <a href="mailto:biuro@legendastara.eu">biuro@legendastara.eu</a></span><span><b>E-mail organizacyjny:</b> <a href="mailto:legendastara@powiat.starachowice.pl">legendastara@powiat.starachowice.pl</a></span><span><b>Cel:</b> dotarcie do wielu właścicieli sprawnych STAR-ów jednocześnie.</span></div>
+              <a class="supplier-web" href="https://www.legendastara.eu/" target="_blank" rel="noopener">Strona WWW ↗</a>
             </article>
           </div>
         </div>
+      </div>
+    </div>
+
+    <div class="alert-modal" id="alertModal" aria-hidden="true">
+      <div class="alert-modal-card" role="dialog" aria-modal="true" aria-labelledby="alertModalTitle">
+        <div class="supplier-modal-head">
+          <div><span class="ann-label">KONTROLA ODPOWIEDZI</span><h2 id="alertModalTitle">Alerty projektu</h2></div>
+          <button class="supplier-close-btn" id="closeAlerts" type="button" aria-label="Zamknij">×</button>
+        </div>
+        <p class="alert-modal-intro">Alert pojawia się automatycznie po 3 dniach od wysłania zapytania ofertowego, jeżeli odpowiedź nie została odnotowana.</p>
+        <div class="alert-list" id="alertList"></div>
       </div>
     </div>
 
@@ -346,6 +402,6 @@
   <script src="light-theme.js?v=1"></script>
   <script src="user-avatar.js"></script>
   <script src="account-security.js"></script>
-  <script src="25-lecie-pereko.js?v=7"></script>
+  <script src="25-lecie-pereko.js?v=8"></script>
 </body>
 </html>
