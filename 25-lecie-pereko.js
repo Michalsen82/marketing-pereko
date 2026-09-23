@@ -340,7 +340,7 @@
 
     alertList.innerHTML=alerts.map(entry=>
       '<article class="alert-item" data-alert-id="'+escapeAttr(entry.id)+'">'+
-        '<div class="alert-item-head"><span>BRAM ODPOWIEDZI</span><strong>'+escapeHtml(entry.title)+'</strong></div>'+
+        '<div class="alert-item-head"><span>BRAK ODPOWIEDZI</span><strong>'+escapeHtml(entry.title)+'</strong></div>'+
         '<p>'+escapeHtml(entry.subject)+'</p>'+
         '<small>Wysłano: '+formatDateTime(entry.sentAt)+' · termin alertu: '+formatDateTime(dueAt(entry))+'</small>'+
         '<div class="alert-actions">'+
