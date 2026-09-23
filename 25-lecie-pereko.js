@@ -59,7 +59,7 @@
     {id:'manor-offer',title:'Otrzymać i wpisać ofertę Manor House',desc:'uzupełnić kosztorys poniżej',done:false},
     {id:'hotel-compare',title:'Porównać oferty i wybrać hotel',desc:'koszt całkowity + program + logistyka',done:false},
     {id:'guests',title:'Przygotować listę 30 dystrybutorów',desc:'30 osób + osoby towarzyszące',done:false},
-    {id:'stars',title:'Zorganizować przejazd STAR-ami',desc:'pojazdy, kierowcy, trasa, liczba kursów',done:false},
+    {id:'stars',title:'Zorganizować przejazd STAR-ami',desc:'zapytania ofertowe wysłane do 17 podmiotów; kolejne kroki: odpowiedzi, wybór pojazdów, kierowcy, trasa, liczba kursów',done:true},
     {id:'factory',title:'Przygotować program zwiedzania fabryki PEREKO',desc:'trasa, prowadzący, grupy, BHP',done:false},
     {id:'parallel',title:'Przygotować program równoległy w hotelu',desc:'SPA / atrakcje dla osób nieuczestniczących w części technicznej',done:false},
     {id:'live-music',title:'Wybrać zespół / muzykę na żywo',desc:'drugi wieczór',done:false},
@@ -75,6 +75,16 @@
 
   function uid(){
     return 'plan-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
+  }
+
+  function migrateStarTaskStatus(){
+    const idx=planItems.findIndex(item=>item.id==='stars');
+    if(idx<0)return false;
+    let changed=false;
+    const wantedDesc='zapytania ofertowe wysłane do 17 podmiotów; kolejne kroki: odpowiedzi, wybór pojazdów, kierowcy, trasa, liczba kursów';
+    if(planItems[idx].desc!==wantedDesc){planItems[idx].desc=wantedDesc;changed=true}
+    if(!planItems[idx].done){planItems[idx].done=true;changed=true}
+    return changed;
   }
 
   function loadPlan(){
@@ -94,6 +104,7 @@
       }));
       savePlan();
     }
+    if(migrateStarTaskStatus())savePlan();
     renderPlan();
   }
 
