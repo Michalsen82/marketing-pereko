@@ -17,8 +17,7 @@
     }catch(e){}
     window.__perekoInstallPrompt=null;
     window.addEventListener('beforeinstallprompt',function(event){
-      event.preventDefault();
-      window.__perekoInstallPrompt=event;
+      event.preventDefault();window.__perekoInstallPrompt=event;
       window.dispatchEvent(new Event('pereko:install-prompt-ready'));
     });
     window.addEventListener('appinstalled',function(){window.__perekoInstallPrompt=null;});
@@ -40,13 +39,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=23" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
-  <style>
-    .anniversary-project-page{min-height:calc(100dvh - 88px);display:flex;flex-direction:column}
-    .anniversary-project-empty{width:min(1400px,calc(100% - 48px));margin:0 auto;flex:1;min-height:520px}
-    .anniversary-brand-link{text-decoration:none}
-    @media(max-width:900px){.anniversary-project-empty{width:calc(100% - 32px)}}
-    @media(max-width:620px){.anniversary-project-empty{width:calc(100% - 24px);min-height:420px}}
-  </style>
+  <link rel="stylesheet" href="25-lecie-pereko.css?v=1" />
 </head>
 <body style="visibility:hidden">
   <div class="anniversary-project-page">
@@ -54,37 +47,21 @@
       <div class="topbar">
         <a class="brand-zone anniversary-brand-link" href="index.html" aria-label="Wróć do Centrum Projektów Marketingowych">
           <div class="brand-badge">P</div>
-          <div class="brand-copy">
-            <strong>PEREKO</strong>
-            <span>Centrum Projektów Marketingowych</span>
-          </div>
+          <div class="brand-copy"><strong>PEREKO</strong><span>Centrum Projektów Marketingowych</span></div>
         </a>
         <div class="topbar-actions">
+          <a class="anniversary-back-btn" href="index.html">← Centrum projektów</a>
           <button class="theme-toggle-btn top-action-icon" id="themeToggle" type="button" data-tooltip="Przełącz motyw" aria-label="Przełącz na jasny motyw" aria-pressed="false">
             <svg class="theme-icon theme-icon-sun" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 8a4 4 0 1 1 0 8 4 4 0 0 1 0-8Zm0-6h1v4h-2V2h1Zm0 16h1v4h-2v-4h1ZM2 11h4v2H2v-2Zm16 0h4v2h-4v-2ZM4.22 5.64l1.42-1.42 2.83 2.83-1.42 1.42-2.83-2.83Zm11.31 11.31 1.42-1.42 2.83 2.83-1.42 1.42-2.83-2.83Zm0-9.9 2.83-2.83 1.42 1.42-2.83 2.83-1.42-1.42ZM4.22 18.36l2.83-2.83 1.42 1.42-2.83 2.83-1.42-1.42Z"/></svg>
             <svg class="theme-icon theme-icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.2 15.3A8.5 8.5 0 0 1 8.7 3.8 9 9 0 1 0 20.2 15.3ZM12 20a7 7 0 0 1-5.8-10.9A10.5 10.5 0 0 0 14.9 17.8 7 7 0 0 1 12 20Z"/></svg>
           </button>
-          <button class="team-top-btn top-action-icon" id="teamTopBtn" type="button" data-tooltip="Zespół i współpracownicy" aria-label="Zespół i współpracownicy">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 19.5C2 15.91 4.91 13 8.5 13S15 15.91 15 19.5V21H2v-1.5Zm13.1-6.38A6.96 6.96 0 0 1 17 18v3h5v-1.25c0-3.1-2.52-5.63-5.63-5.63-.44 0-.86.05-1.27.14Z"/></svg>
-          </button>
-          <button class="password-change-btn top-action-icon" id="changePasswordBtn" type="button" data-tooltip="Zmień hasło" aria-label="Zmień hasło">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 1 5 5v2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h1V7a5 5 0 0 1 5-5Zm3 7V7a3 3 0 0 0-6 0v2h6Zm-3 4a2 2 0 0 0-1 3.73V19h2v-2.27A2 2 0 0 0 12 13Z"/></svg>
-          </button>
-          <a class="logout-btn top-action-icon" id="logoutBtn" href="login.html" data-tooltip="Wyloguj" aria-label="Wyloguj">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-8v-2h8V5h-8V3Zm1.4 5.4L10 7l-5 5 5 5 1.4-1.4L8.8 13H16v-2H8.8l2.6-2.6Z"/></svg>
-          </a>
+          <button class="team-top-btn top-action-icon" id="teamTopBtn" type="button" data-tooltip="Zespół i współpracownicy" aria-label="Zespół i współpracownicy"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8.5 11a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7Zm7-1a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM2 19.5C2 15.91 4.91 13 8.5 13S15 15.91 15 19.5V21H2v-1.5Zm13.1-6.38A6.96 6.96 0 0 1 17 18v3h5v-1.25c0-3.1-2.52-5.63-5.63-5.63-.44 0-.86.05-1.27.14Z"/></svg></button>
+          <button class="password-change-btn top-action-icon" id="changePasswordBtn" type="button" data-tooltip="Zmień hasło" aria-label="Zmień hasło"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a5 5 0 0 1 5 5v2h1a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2v-9a2 2 0 0 1 2-2h1V7a5 5 0 0 1 5-5Zm3 7V7a3 3 0 0 0-6 0v2h6Zm-3 4a2 2 0 0 0-6 0v2h6V7Zm-3 6h6v-4H9v4Z"/></svg></button>
+          <a class="logout-btn top-action-icon" id="logoutBtn" href="login.html" data-tooltip="Wyloguj" aria-label="Wyloguj"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M10 3h8a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-8v-2h8V5h-8V3Zm1.4 5.4L10 7l-5 5 5 5 1.4-1.4L8.8 13H16v-2H8.8l2.6-2.6Z"/></svg></a>
           <div class="user-zone" aria-label="Zalogowany użytkownik">
-            <div class="user-zone-copy">
-              <strong id="loggedUserName">Michał Bukowski</strong>
-              <span>Zalogowany użytkownik</span>
-            </div>
+            <div class="user-zone-copy"><strong id="loggedUserName">Michał Bukowski</strong><span>Zalogowany użytkownik</span></div>
             <label class="user-avatar-control" for="userAvatarInput" title="Dodaj lub zmień zdjęcie">
-              <span class="user-avatar-circle" id="userAvatarCircle">
-                <img id="userAvatarImg" alt="Zdjęcie użytkownika" />
-                <span class="user-avatar-placeholder" id="userAvatarPlaceholder" aria-hidden="true">
-                  <svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/></svg>
-                </span>
-              </span>
+              <span class="user-avatar-circle" id="userAvatarCircle"><img id="userAvatarImg" alt="Zdjęcie użytkownika" /><span class="user-avatar-placeholder" id="userAvatarPlaceholder" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 12a5 5 0 1 0 0-10 5 5 0 0 0 0 10Zm0 2c-4.42 0-8 2.24-8 5v1h16v-1c0-2.76-3.58-5-8-5Z"/></svg></span></span>
               <span class="user-avatar-plus" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 4.5 10.2 3h3.6L15 4.5h3A2.5 2.5 0 0 1 20.5 7v10A2.5 2.5 0 0 1 18 19.5H6A2.5 2.5 0 0 1 3.5 17V7A2.5 2.5 0 0 1 6 4.5h3ZM12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8Zm0 2a2 2 0 1 1 0 4 2 2 0 0 1 0-4Z"/></svg></span>
             </label>
             <input type="file" id="userAvatarInput" accept="image/*" hidden />
@@ -93,24 +70,163 @@
       </div>
     </header>
 
-    <main class="anniversary-project-empty" aria-label="Karta projektu 25-lecie marki PEREKO"></main>
+    <main class="anniversary-shell">
+      <section class="anniversary-hero">
+        <div>
+          <span class="anniversary-kicker">PROJEKT SPECJALNY · JUBILEUSZ 2027</span>
+          <h1>25-lecie marki PEREKO</h1>
+          <p>Trzydniowy event jubileuszowy dla kluczowych dystrybutorów marki PEREKO, łączący relacje biznesowe, historię Starachowic, zwiedzanie fabryki i program premium.</p>
+        </div>
+        <div class="anniversary-hero-status">
+          <span>ETAP</span><strong>Planowanie</strong><small>Decyzja hotelowa i logistyka</small>
+        </div>
+      </section>
+
+      <section class="anniversary-kpis">
+        <article><span>UCZESTNICY</span><strong>70</strong><small>60 gości + ok. 10 osób PEREKO/obsługi</small></article>
+        <article><span>DYSTRYBUTORZY</span><strong>30</strong><small>30 osób + 30 osób towarzyszących</small></article>
+        <article><span>NOCLEGI</span><strong>38</strong><small>32 pokoje 2-os. + 6 pokoi 1-os.</small></article>
+        <article><span>CZAS EVENTU</span><strong>3 dni</strong><small>2 noce · czerwiec 2027</small></article>
+      </section>
+
+      <section class="anniversary-grid">
+        <div class="anniversary-main">
+          <section class="ann-card">
+            <div class="ann-card-head">
+              <div><span class="ann-label">ETAP 01</span><h2>Zakwaterowanie — porównanie</h2></div>
+              <span class="ann-badge">2 opcje analizowane równolegle</span>
+            </div>
+
+            <div class="hotel-grid">
+              <article class="hotel-card">
+                <div class="hotel-title">
+                  <div><span>STARACHOWICE</span><h3>Hotel Europa****</h3></div>
+                  <span class="hotel-date">11–13 VI 2027 · pt–nd</span>
+                </div>
+                <p class="hotel-summary">Najmocniejsza opcja logistycznie: event odbywa się w mieście PEREKO, blisko fabryki i atrakcji związanych z marką STAR.</p>
+                <div class="hotel-facts">
+                  <div><span>Pokoje</span><strong>150 / ok. 380 miejsc</strong></div>
+                  <div><span>Event</span><strong>9 sal konferencyjnych</strong></div>
+                  <div><span>Duża sala</span><strong>do 380 osób</strong></div>
+                </div>
+                <h4>Atrakcje na miejscu</h4>
+                <ul class="ann-list">
+                  <li>bezchlorowy kompleks basenów, hydromasaże i jacuzzi wewnętrzne/zewnętrzne</li>
+                  <li>3 sauny, w tym duża sauna eventowa i seanse saunowe</li>
+                  <li>SPA, masaże, grota solna</li>
+                  <li>siłownia, squash, wypożyczalnia rowerów</li>
+                  <li>restauracja, sale bankietowe i zaplecze konferencyjne</li>
+                </ul>
+                <div class="hotel-fit"><b>Największy atut:</b> prostsza logistyka STAR + fabryka + historia Starachowic.</div>
+                <a class="ann-link" href="https://www.europa-hotel.pl/" target="_blank" rel="noopener">Oficjalna strona hotelu ↗</a>
+              </article>
+
+              <article class="hotel-card hotel-card-featured">
+                <div class="hotel-title">
+                  <div><span>CHLEWISKA</span><h3>Manor House SPA**** / Pałac Odrowążów*****</h3></div>
+                  <span class="hotel-date">06–08 VI 2027 · nd–wt</span>
+                </div>
+                <p class="hotel-summary">Znacznie bogatszy program atrakcji wewnątrz samego obiektu — dobry kierunek, jeśli hotel ma być częścią doświadczenia jubileuszowego.</p>
+                <div class="ann-alert">
+                  <strong>Uwaga terminowa</strong>
+                  <span>6 czerwca 2027 wypada w niedzielę, a Manor House komunikuje, że eventy biznesowe organizuje w dni powszednie. Do równoległego sprawdzenia: 06–08 VI oraz bezpieczniejsza alternatywa 07–09 VI (pon–śr).</span>
+                </div>
+                <div class="hotel-facts">
+                  <div><span>Pokoje</span><strong>58 + Domy Kopułowe</strong></div>
+                  <div><span>Sala Balowa</span><strong>do 130 osób</strong></div>
+                  <div><span>Sala Koniuszego</span><strong>do 150 osób</strong></div>
+                </div>
+                <h4>Atrakcje na miejscu</h4>
+                <ul class="ann-list">
+                  <li>bezchlorowy basen, Łaźnie Rzymskie, rozbudowane SPA</li>
+                  <li>10-hektarowy zabytkowy park, stawy, hamaki i trasy spacerowe</li>
+                  <li>Witalna Wioska®, grota solna, joga, koncerty na gongi i misy</li>
+                  <li>własna stajnia, zajęcia z końmi, siłownia, bilard, outdoor fitness</li>
+                  <li>gra integracyjna „Ucieczka z lochów”, firewalking, degustacje win i miodów</li>
+                  <li>w pobliżu zabytkowa Huta Żelaza w Chlewiskach</li>
+                </ul>
+                <div class="hotel-fit"><b>Największy atut:</b> bardzo dużo atrakcji dostępnych bez wyjazdu z obiektu — mocne zabezpieczenie programu równoległego.</div>
+                <a class="ann-link" href="https://www.manorhouse.pl/" target="_blank" rel="noopener">Oficjalna strona hotelu ↗</a>
+              </article>
+            </div>
+
+            <div class="comparison-conclusion">
+              <div><span>WSTĘPNY WNIOSEK</span><strong>Manor House daje bogatsze doświadczenie „resortowe”; Europa wygrywa logistyką i osadzeniem jubileuszu w Starachowicach.</strong></div>
+              <p>Na tym etapie oba kierunki pozostają otwarte. Następny krok to porównywalne zapytanie ofertowe dla 70 osób, 38 pokoi, 2 noclegów, pełnego wyżywienia, sali na 70 osób oraz dwóch kolacji jubileuszowych.</p>
+            </div>
+          </section>
+
+          <section class="ann-card">
+            <div class="ann-card-head"><div><span class="ann-label">PROGRAM</span><h2>Roboczy szkielet 3 dni</h2></div><span class="ann-badge muted">wersja 0.1</span></div>
+            <div class="timeline">
+              <article><span class="day">DZIEŃ 1</span><div><h3>Przyjazd i otwarcie jubileuszu</h3><p>Zakwaterowanie · powitanie · czas wolny / SPA · wieczorna wystawna kolacja · krótkie otwarcie 25-lecia PEREKO.</p></div></article>
+              <article><span class="day">DZIEŃ 2</span><div><h3>Historia, fabryka i główny wieczór</h3><p>Zwiedzanie PEREKO · przejazd historycznymi STAR-ami po Starachowicach · równoległy program hotelowy dla osób nieuczestniczących w części technicznej · wieczorem kolacja galowa, muzyka na żywo i atrakcja sceniczna.</p></div></article>
+              <article><span class="day">DZIEŃ 3</span><div><h3>Relacje i zakończenie</h3><p>Śniadanie · lekki program integracyjny / relaks · podsumowanie jubileuszu · pożegnanie i wyjazd.</p></div></article>
+            </div>
+          </section>
+
+          <section class="ann-card">
+            <div class="ann-card-head"><div><span class="ann-label">STARACHOWICE / STAR</span><h2>Przejażdżka historycznymi STAR-ami</h2></div><span class="ann-badge warning">do potwierdzenia</span></div>
+            <p class="ann-copy">Nie znalazłem na ten moment potwierdzonej, stałej komercyjnej usługi wynajmu floty STAR-ów z kierowcami. Są jednak trzy bardzo mocne lokalne punkty kontaktowe, które warto uruchomić równolegle.</p>
+            <div class="lead-grid">
+              <article><span>01</span><h3>Muzeum Przyrody i Techniki</h3><p>Ma ekspozycję ciężarówek STAR i doświadczenie w obsłudze grup. Pierwszy kontakt organizacyjny w sprawie pojazdów, historii i trasy.</p><small>Informacja i rezerwacje: +48 783 730 094 · mpt@ekomuzeum.pl</small></article>
+              <article><span>02</span><h3>Star San Duo</h3><p>Firma z Starachowic, która remontuje i modernizuje pojazdy oraz aktywnie współtworzy projekt „Ścieżka STAR-a”.</p><small>+48 41 275 26 97 · Krańcowa 4, Starachowice</small></article>
+              <article><span>03</span><h3>AutoBox Innovations</h3><p>Firma związana z modernizacją STAR-ów 266 i lokalnym dziedzictwem motoryzacyjnym. Potencjalny partner techniczny lub kontakt do właścicieli pojazdów.</p><small>+48 41 273 71 34 · ul. Samochodu „Star 266” 1</small></article>
+            </div>
+          </section>
+
+          <section class="ann-card">
+            <div class="ann-card-head"><div><span class="ann-label">WIECZÓR GALOWY</span><h2>Pomysły na atrakcję drugiego wieczoru</h2></div></div>
+            <div class="idea-grid">
+              <article><span>01</span><h3>Muzyka live + stand-up firmowy</h3><p>Zespół grający w tle podczas kolacji, a po deserze 30–40 minut stand-upu przygotowanego pod grupę biznesową.</p></article>
+              <article><span>02</span><h3>Muzyka live + iluzjonista</h3><p>Najbardziej uniwersalny wariant: close-up przy stołach, a później krótki pokaz sceniczny. Małe ryzyko „nietrafionego” humoru.</p></article>
+              <article><span>03</span><h3>Historia STAR-a na scenie</h3><p>Krótka, dynamiczna opowieść z archiwalnymi zdjęciami/filmami, prowadzona przez lokalnego pasjonata lub byłego pracownika FSC, spięta z 25-leciem PEREKO.</p></article>
+              <article><span>04</span><h3>Degustacja premium</h3><p>Wino / miody pitne / whisky z sommelierem jako spokojniejsza atrakcja po kolacji. Szczególnie naturalna w Manor House.</p></article>
+            </div>
+          </section>
+        </div>
+
+        <aside class="anniversary-side">
+          <section class="ann-card sticky-card">
+            <div class="ann-card-head"><div><span class="ann-label">KONTROLA PROJEKTU</span><h2>Lista do załatwienia</h2></div><span class="ann-progress" id="annProgress">0%</span></div>
+            <div class="ann-progressbar"><span id="annProgressBar"></span></div>
+            <div class="ann-checklist" id="annChecklist">
+              <label><input type="checkbox" data-task="europa-offer"><span><b>Hotel Europa</b><small>Zapytanie ofertowe na 11–13.06.2027</small></span></label>
+              <label><input type="checkbox" data-task="manor-offer"><span><b>Manor House</b><small>Zapytanie 06–08.06 i 07–09.06.2027</small></span></label>
+              <label><input type="checkbox" data-task="rooms"><span><b>Potwierdzić pokoje</b><small>32 × 2-os. + 6 × 1-os.</small></span></label>
+              <label><input type="checkbox" data-task="hotel-decision"><span><b>Wybrać hotel i termin</b><small>Decyzja po porównaniu pełnych ofert</small></span></label>
+              <label><input type="checkbox" data-task="star-contacts"><span><b>Uruchomić kontakty STAR</b><small>Muzeum + Star San Duo + AutoBox</small></span></label>
+              <label><input type="checkbox" data-task="factory"><span><b>Program zwiedzania PEREKO</b><small>Trasa, prowadzący, bezpieczeństwo</small></span></label>
+              <label><input type="checkbox" data-task="parallel"><span><b>Program równoległy</b><small>SPA / atrakcje dla chętnych zamiast części technicznej</small></span></label>
+              <label><input type="checkbox" data-task="dinner1"><span><b>Kolacja dzień 1</b><small>Menu, sala, scenariusz powitania</small></span></label>
+              <label><input type="checkbox" data-task="dinner2"><span><b>Gala dzień 2</b><small>Menu, muzyka live, atrakcja sceniczna</small></span></label>
+              <label><input type="checkbox" data-task="guests"><span><b>Lista 30 dystrybutorów</b><small>Gość + osoba towarzysząca</small></span></label>
+            </div>
+          </section>
+
+          <section class="ann-card">
+            <div class="ann-card-head"><div><span class="ann-label">NOTATKI</span><h2>Notatnik roboczy</h2></div></div>
+            <textarea id="annNotes" class="ann-notes" placeholder="Dopisuj ustalenia, telefony, ceny, pomysły…"></textarea>
+            <small class="ann-save-note" id="annSaveNote">Notatki zapisują się na tym urządzeniu.</small>
+          </section>
+
+          <section class="ann-card">
+            <div class="ann-card-head"><div><span class="ann-label">NASTĘPNY KROK</span><h2>Co procedujemy teraz?</h2></div></div>
+            <ol class="ann-next">
+              <li>Wysłać identyczne zapytanie do obu hoteli.</li>
+              <li>Potwierdzić realną dostępność 38 pokoi i sali dla 70 osób.</li>
+              <li>Zdobyć konkretną ofertę na STAR-y z kierowcami.</li>
+              <li>Dopiero potem zamknąć program godzinowy i budżet.</li>
+            </ol>
+          </section>
+        </aside>
+      </section>
+    </main>
 
     <footer class="site-footer">
       <div class="site-footer-inner">
-        <div class="footer-brand">
-          <div class="footer-logo" aria-hidden="true"></div>
-          <div class="footer-copy">
-            <strong>Centrum Projektów Marketingowych</strong>
-            <span>Planowanie, realizacja i kontrola działań marketingowych PEREKO</span>
-            <small class="footer-author">Zaprojektował i wykonał Michał Bukowski</small>
-          </div>
-        </div>
-        <div class="footer-actions">
-          <div class="footer-status-btn" data-state="ok" role="status">
-            <span class="footer-status-dot"></span>
-            <span>Karta projektu</span>
-          </div>
-        </div>
+        <div class="footer-brand"><div class="footer-logo" aria-hidden="true"></div><div class="footer-copy"><strong>Centrum Projektów Marketingowych</strong><span>25-lecie marki PEREKO · projekt specjalny</span><small class="footer-author">Opiekun projektu: Michał Bukowski</small></div></div>
+        <div class="footer-actions"><div class="footer-status-btn" data-state="ok" role="status"><span class="footer-status-dot"></span><span>Karta projektu aktywna</span></div></div>
       </div>
     </footer>
   </div>
@@ -122,6 +238,6 @@
   <script src="user-avatar.js"></script>
   <script src="account-security.js"></script>
   <script src="pwa.js?v=18"></script>
-  <script src="footer.js?v=2"></script>
+  <script src="25-lecie-pereko.js?v=1"></script>
 </body>
 </html>
