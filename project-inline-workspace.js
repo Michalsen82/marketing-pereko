@@ -100,6 +100,9 @@
     const members=p.members.map((m,i)=>
       '<div class="piw-member"><div class="piw-avatar">'+esc(initials(m))+'</div><div class="piw-member-copy"><strong>'+esc(m)+'</strong><span>'+(m===p.owner?'Osoba odpowiedzialna':'Zespół projektu')+'</span></div><button class="piw-icon-btn" type="button" data-piw-member-remove="'+i+'" aria-label="Usuń osobę">×</button></div>'
     ).join('');
+    const specialProjectCard=p.specialPage
+      ?'<div class="piw-special-project-card"><button class="piw-special-project-btn" type="button" data-piw-special-page="'+esc(p.specialPage)+'"><span>Pokaż kartę projektu</span><b aria-hidden="true">→</b></button></div>'
+      :'';
 
     return '<div class="piw-workspace">'+
       '<div class="piw-main">'+
@@ -142,7 +145,7 @@
           '<div class="piw-danger-zone"><button class="piw-btn danger" type="button" data-piw-delete-project>Usuń projekt</button></div>'+
         '</section>'+
       '</aside>'+
-    '</div>';
+    '</div>'+specialProjectCard;
   }
 
   function renderWorkspace(card,p){
@@ -187,6 +190,10 @@
     preview.querySelector('[data-piw-edit-project]')?.addEventListener('click',()=>openProjectEditModal(p));
     preview.querySelector('[data-piw-delete-project]')?.addEventListener('click',()=>openDeleteModal(p));
     preview.querySelector('[data-piw-add-material]')?.addEventListener('click',()=>openMaterialModal(p));
+    preview.querySelector('[data-piw-special-page]')?.addEventListener('click',e=>{
+      const url=e.currentTarget.dataset.piwSpecialPage;
+      if(url)window.location.href=url;
+    });
     loadMaterialsInto(p,preview.querySelector('[data-piw-material-list]'),preview.querySelector('[data-piw-material-status]'));
   }
 
