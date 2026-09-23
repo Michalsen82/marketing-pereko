@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=23" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
-  <link rel="stylesheet" href="25-lecie-pereko.css?v=10" />
+  <link rel="stylesheet" href="25-lecie-pereko.css?v=11" />
 </head>
 <body style="visibility:hidden">
   <div class="anniversary-project-page">
@@ -96,7 +96,7 @@
             </div>
 
             <div class="correspondence-groups">
-              <details class="correspondence-group" open>
+              <details class="correspondence-group">
                 <summary>
                   <div><span class="correspondence-no">01</span><strong>Hotele</strong><small>2 wysłane zapytania</small></div>
                   <span class="correspondence-arrow">⌄</span>
@@ -138,7 +138,7 @@
                 </div>
               </details>
 
-              <details class="correspondence-group" open>
+              <details class="correspondence-group">
                 <summary>
                   <div><span class="correspondence-no">02</span><strong>STAR-y</strong><small>17 wysłanych zapytań · 23.09.2026</small></div>
                   <span class="correspondence-arrow">⌄</span>
@@ -390,9 +390,13 @@
             </div>
           </section>
 
-          <section class="ann-card">
-            <div class="ann-card-head"><div><span class="ann-label">KOSZTORYS</span><h2>Dwa warianty hotelowe</h2></div><span class="ann-badge muted">kwoty brutto</span></div>
-            <div class="budget-columns">
+          <section class="ann-card budget-collapsible-card">
+            <details class="budget-collapse">
+              <summary>
+                <div><span class="ann-label">KOSZTORYS</span><h2>Dwa warianty hotelowe</h2></div>
+                <div class="budget-summary-actions"><span class="ann-badge muted">kwoty brutto</span><span class="budget-toggle-icon">⌄</span></div>
+              </summary>
+              <div class="budget-columns">
               <div class="budget-option" data-budget="europa">
                 <div class="budget-title"><div><span>WARIANT A</span><h3>Hotel Europa</h3></div><strong id="europaTotal">0 zł</strong></div>
                 <div class="budget-rows"></div>
@@ -406,7 +410,8 @@
                 <button class="budget-add" type="button" data-add-cost="manor">+ Dodaj pozycję</button>
                 <div class="budget-footer"><span>Rezerwa / bufor</span><input type="number" min="0" step="100" data-reserve="manor" placeholder="0"><b id="manorGrand">0 zł</b></div>
               </div>
-            </div>
+              </div>
+            </details>
           </section>
         </div>
 
