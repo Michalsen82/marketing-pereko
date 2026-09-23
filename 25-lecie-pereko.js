@@ -13,6 +13,35 @@
   const notes=document.querySelector('#annNotes');
   const saveNote=document.querySelector('#annSaveNote');
   const addPlanItem=document.querySelector('#addPlanItem');
+  const openDetails=document.querySelector('#openProjectDetails');
+  const closeDetails=document.querySelector('#closeProjectDetails');
+  const detailsPanel=document.querySelector('#projectDetailsPanel');
+
+  const defaultRows=[
+    'Noclegi',
+    'Śniadania',
+    'Lunche',
+    'Kolacja dzień 1',
+    'Kolacja galowa dzień 2',
+    'Alkohol',
+    'Sala / bankiet',
+    'Atrakcje hotelowe / SPA',
+    'Muzyka na żywo',
+    'Atrakcja sceniczna',
+    'STAR-y / transport lokalny',
+    'Materiały / dekoracje',
+    'Inne'
+  ];
+
+  const state={
+    budgets:{
+      europa:{reserve:0,rows:defaultRows.map(name=>({name,value:0}))},
+      manor:{reserve:0,rows:defaultRows.map(name=>({name,value:0}))}
+    }
+  };
+
+  const money=n=>new Intl.NumberFormat('pl-PL',{style:'currency',currency:'PLN',maximumFractionDigits:0}).format(Number(n)||0);
+  const num=v=>Math.max(0,Number(String(v??'').replace(',','.'))||0);
   const defaultPlanItems=[
     {id:'europa-mail',title:'Wysłać zapytanie do Hotelu Europa',desc:'noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje',done:true},
     {id:'manor-mail',title:'Wysłać zapytanie do Manor House',desc:'noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje',done:true},
@@ -42,7 +71,10 @@
     let saved=null;
     try{saved=JSON.parse(localStorage.getItem(PLAN_KEY)||'null')}catch{}
     if(Array.isArray(saved)&&saved.length){
-      planItems=saved.map(x=>({id:String(x.id||uid()),title:String(x.title||''),desc:String(x.desc||''),done:!!x.done}));
+      planItems=saved
+        .map(x=>({id:String(x.id||uid()),title:String(x.title||'').trim(),desc:String(x.desc||''),done:!!x.done}))
+        .filter(x=>x.title);
+      if(!planItems.length)planItems=defaultPlanItems.map(item=>({...item}));
     }else{
       let old={};
       try{old=JSON.parse(localStorage.getItem(CHECK_KEY)||'{}')||{}}catch{}
@@ -243,7 +275,7 @@
   closeDetails?.addEventListener('click',()=>{if(detailsPanel)detailsPanel.hidden=true});
 
   loadPlan();
-  loadNotes();
-  loadDetails();
-  loadBudgets();
+  try{loadNotes()}catch(error){console.error(error)}
+  try{loadDetails()}catch(error){console.error(error)}
+  try{loadBudgets()}catch(error){console.error(error)}
 })();
