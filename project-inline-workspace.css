@@ -747,3 +747,49 @@ html[data-theme="light"] .deadline-agenda-filter.active{
     align-self:flex-end!important;
   }
 }
+
+
+/* =========================================================
+   SPECJALNA KARTA PROJEKTU
+   ========================================================= */
+.piw-special-project-card{
+  margin-top:16px;
+  display:flex;
+  justify-content:flex-end;
+}
+.piw-special-project-btn{
+  min-height:46px;
+  padding:0 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:12px;
+  border:1px solid #ffdd00;
+  background:#ffdd00;
+  color:#151819;
+  font:800 11px/1 'Montserrat',sans-serif;
+  box-shadow:none;
+  transition:.16s ease;
+}
+.piw-special-project-btn:hover{
+  background:#ffe538;
+  border-color:#ffe538;
+  transform:translateY(-1px);
+}
+.piw-special-project-btn b{
+  font-size:17px;
+  line-height:1;
+}
+html[data-theme="light"] .piw-special-project-btn{
+  background:#ffdd00!important;
+  border-color:#d7bd00!important;
+  color:#151819!important;
+}
+@media(max-width:640px){
+  .piw-special-project-card{
+    justify-content:stretch;
+  }
+  .piw-special-project-btn{
+    width:100%;
+  }
+}
