@@ -11,6 +11,9 @@
   const allCount=document.querySelector('#annAllCount');
   const notes=document.querySelector('#annNotes');
   const saveNote=document.querySelector('#annSaveNote');
+  const openDetails=document.querySelector('#openProjectDetails');
+  const closeDetails=document.querySelector('#closeProjectDetails');
+  const detailsPanel=document.querySelector('#projectDetailsPanel');
 
   const defaultRows=[
     'Noclegi',
@@ -175,6 +178,13 @@
     state.budgets[key].rows.push({name:'Nowa pozycja',value:0});
     saveBudgets();renderBudget(key);
   }));
+
+  openDetails?.addEventListener('click',()=>{
+    if(!detailsPanel)return;
+    detailsPanel.hidden=!detailsPanel.hidden;
+    if(!detailsPanel.hidden)detailsPanel.scrollIntoView({behavior:'smooth',block:'nearest'});
+  });
+  closeDetails?.addEventListener('click',()=>{if(detailsPanel)detailsPanel.hidden=true});
 
   loadChecks();
   loadNotes();
