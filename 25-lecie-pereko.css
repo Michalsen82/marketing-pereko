@@ -210,3 +210,47 @@ html[data-theme="light"] .plan-edit-btn,html[data-theme="light"] .plan-delete-bt
   .plan-actions{grid-column:2;justify-content:flex-start}
   .plan-head-actions{justify-content:flex-start}
 }
+
+
+/* HEADER PROGRESS REWORK */
+.project-head{align-items:center}
+.project-progress-box{
+  width:230px;
+  padding:14px 16px;
+  border:1px solid rgba(255,255,255,.12);
+  background:rgba(255,255,255,.07);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.015)
+}
+.project-progress-box>span{
+  display:block;
+  color:rgba(255,255,255,.62);
+  font:800 9.5px/1 'Montserrat',sans-serif;
+  letter-spacing:.1em
+}
+.project-progress-box>strong{
+  display:block;
+  margin-top:8px;
+  color:#fff;
+  font:800 27px/1 'Montserrat',sans-serif
+}
+.project-progress-box .ann-progressbar{margin-top:10px}
+.project-progress-box small{
+  display:block;
+  margin-top:8px;
+  color:rgba(255,255,255,.52);
+  font-size:9.5px
+}
+.project-progress-box small b{color:#fff}
+.project-status-grid{display:none!important}
+.project-meta{display:none!important}
+html[data-theme="light"] .project-progress-box{
+  background:#eef1f2;
+  border-color:#d5dcde
+}
+html[data-theme="light"] .project-progress-box>span,
+html[data-theme="light"] .project-progress-box small{color:#64747a}
+html[data-theme="light"] .project-progress-box>strong,
+html[data-theme="light"] .project-progress-box small b{color:#202a2f}
+@media(max-width:700px){
+  .project-progress-box{width:100%}
+}
