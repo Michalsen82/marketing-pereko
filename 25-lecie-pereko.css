@@ -416,3 +416,22 @@ html[data-theme="light"] .correspondence-group-note b{color:#202a2f}
 .supplier-contacted{border-color:rgba(255,230,0,.28)}
 .supplier-contact-status{margin-top:12px;padding:8px 9px;border:1px solid rgba(255,230,0,.28);background:rgba(255,230,0,.06);color:#ffe600;font:800 8.5px/1.35 'Montserrat',sans-serif}
 html[data-theme="light"] .supplier-contact-status{color:#756300;background:#fff8cf;border-color:#d8c35c}
+
+
+/* COLLAPSIBLE BUDGET */
+.budget-collapsible-card{padding:0}
+.budget-collapse>summary{
+  list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;
+  gap:14px;padding:16px 18px
+}
+.budget-collapse>summary::-webkit-details-marker{display:none}
+.budget-collapse>summary h2{margin:4px 0 0}
+.budget-summary-actions{display:flex;align-items:center;gap:10px}
+.budget-toggle-icon{display:grid;place-items:center;width:30px;height:30px;border:1px solid rgba(255,255,255,.12);color:#ffe600;font-size:16px;transition:transform .18s ease}
+.budget-collapse[open] .budget-toggle-icon{transform:rotate(180deg)}
+.budget-collapse>.budget-columns{padding:0 18px 18px}
+html[data-theme="light"] .budget-toggle-icon{border-color:#d7dddf;color:#786700}
+@media(max-width:760px){
+  .budget-collapse>summary{align-items:flex-start}
+  .budget-summary-actions{flex-shrink:0}
+}
