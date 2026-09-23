@@ -72,6 +72,8 @@
   ];
 
   let planItems=[];
+  let specialProgressSyncTimer=null;
+  let lastSpecialProgressSignature='';
 
   function uid(){
     return 'plan-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
@@ -158,6 +160,31 @@
     refreshProgress();
   }
 
+  function syncSpecialProgress(pct,done,total){
+    const signature=[pct,done,total].join('|');
+    if(signature===lastSpecialProgressSignature)return;
+    clearTimeout(specialProgressSyncTimer);
+    specialProgressSyncTimer=setTimeout(async()=>{
+      try{
+        if(typeof window.perekoAuthFetch!=='function')return;
+        const response=await window.perekoAuthFetch('/api/dashboard',{
+          method:'PATCH',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify({
+            projectId:'pereko-25-lecie-2027',
+            progress:pct,
+            done,
+            total
+          })
+        });
+        if(!response.ok)throw new Error('HTTP '+response.status);
+        lastSpecialProgressSignature=signature;
+      }catch(error){
+        console.warn('Synchronizacja postępu P-003:',error);
+      }
+    },450);
+  }
+
   function refreshProgress(){
     const done=planItems.filter(x=>x.done).length;
     const total=planItems.length;
@@ -166,6 +193,7 @@
     if(bar)bar.style.width=pct+'%';
     if(doneCount)doneCount.textContent=String(done);
     if(allCount)allCount.textContent=String(total);
+    syncSpecialProgress(pct,done,total);
   }
 
   addPlanItem?.addEventListener('click',()=>{
