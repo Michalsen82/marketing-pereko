@@ -1,5 +1,6 @@
 (()=>{
   const CHECK_KEY='pereko_25ann_checklist_v2';
+  const PLAN_KEY='pereko_25ann_plan_v1';
   const NOTE_KEY='pereko_25ann_notes_v2';
   const DETAIL_KEY='pereko_25ann_details_v1';
   const BUDGET_KEY='pereko_25ann_budget_v1';
@@ -11,69 +12,124 @@
   const allCount=document.querySelector('#annAllCount');
   const notes=document.querySelector('#annNotes');
   const saveNote=document.querySelector('#annSaveNote');
-  const openDetails=document.querySelector('#openProjectDetails');
-  const closeDetails=document.querySelector('#closeProjectDetails');
-  const detailsPanel=document.querySelector('#projectDetailsPanel');
-
-  const defaultRows=[
-    'Noclegi',
-    'Śniadania',
-    'Lunche',
-    'Kolacja dzień 1',
-    'Kolacja galowa dzień 2',
-    'Alkohol',
-    'Sala / bankiet',
-    'Atrakcje hotelowe / SPA',
-    'Muzyka na żywo',
-    'Atrakcja sceniczna',
-    'STAR-y / transport lokalny',
-    'Materiały / dekoracje',
-    'Inne'
+  const addPlanItem=document.querySelector('#addPlanItem');
+  const defaultPlanItems=[
+    {id:'europa-mail',title:'Wysłać zapytanie do Hotelu Europa',desc:'noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje',done:true},
+    {id:'manor-mail',title:'Wysłać zapytanie do Manor House',desc:'noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje',done:true},
+    {id:'europa-offer',title:'Otrzymać i wpisać ofertę Hotelu Europa',desc:'uzupełnić kosztorys poniżej',done:false},
+    {id:'manor-offer',title:'Otrzymać i wpisać ofertę Manor House',desc:'uzupełnić kosztorys poniżej',done:false},
+    {id:'hotel-compare',title:'Porównać oferty i wybrać hotel',desc:'koszt całkowity + program + logistyka',done:false},
+    {id:'guests',title:'Przygotować listę 30 dystrybutorów',desc:'30 osób + osoby towarzyszące',done:false},
+    {id:'stars',title:'Zorganizować przejazd STAR-ami',desc:'pojazdy, kierowcy, trasa, liczba kursów',done:false},
+    {id:'factory',title:'Przygotować program zwiedzania fabryki PEREKO',desc:'trasa, prowadzący, grupy, BHP',done:false},
+    {id:'parallel',title:'Przygotować program równoległy w hotelu',desc:'SPA / atrakcje dla osób nieuczestniczących w części technicznej',done:false},
+    {id:'live-music',title:'Wybrać zespół / muzykę na żywo',desc:'drugi wieczór',done:false},
+    {id:'stage-attraction',title:'Wybrać atrakcję sceniczną',desc:'stand-up / iluzjonista / inna opcja',done:false},
+    {id:'menu',title:'Ustalić menu i alkohol na oba wieczory',desc:'kolacja dzień 1 + gala dzień 2',done:false},
+    {id:'transport',title:'Zamknąć transport i logistykę',desc:'hotel ↔ fabryka ↔ atrakcje',done:false},
+    {id:'invites',title:'Przygotować zaproszenia jubileuszowe',desc:'projekt, lista, wysyłka, RSVP',done:false},
+    {id:'schedule',title:'Zamknąć finalny harmonogram 3 dni',desc:'godzina po godzinie',done:false},
+    {id:'budget',title:'Zatwierdzić budżet końcowy',desc:'wybrany wariant + rezerwa',done:false}
   ];
 
-  const state={
-    budgets:{
-      europa:{reserve:0,rows:defaultRows.map(name=>({name,value:0}))},
-      manor:{reserve:0,rows:defaultRows.map(name=>({name,value:0}))}
+  let planItems=[];
+
+  function uid(){
+    return 'plan-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,7);
+  }
+
+  function loadPlan(){
+    let saved=null;
+    try{saved=JSON.parse(localStorage.getItem(PLAN_KEY)||'null')}catch{}
+    if(Array.isArray(saved)&&saved.length){
+      planItems=saved.map(x=>({id:String(x.id||uid()),title:String(x.title||''),desc:String(x.desc||''),done:!!x.done}));
+    }else{
+      let old={};
+      try{old=JSON.parse(localStorage.getItem(CHECK_KEY)||'{}')||{}}catch{}
+      planItems=defaultPlanItems.map(item=>({
+        ...item,
+        done:Object.prototype.hasOwnProperty.call(old,item.id)?!!old[item.id]:item.done
+      }));
+      savePlan();
     }
-  };
+    renderPlan();
+  }
 
-  const money=n=>new Intl.NumberFormat('pl-PL',{style:'currency',currency:'PLN',maximumFractionDigits:0}).format(Number(n)||0);
-  const num=v=>Math.max(0,Number(String(v??'').replace(',','.'))||0);
+  function savePlan(){
+    localStorage.setItem(PLAN_KEY,JSON.stringify(planItems));
+  }
 
-  function loadChecks(){
-    let saved={};
-    try{saved=JSON.parse(localStorage.getItem(CHECK_KEY)||'{}')||{}}catch{}
-    const defaults={'europa-mail':true,'manor-mail':true};
-    checklist?.querySelectorAll('[data-task]').forEach(input=>{
-      const key=input.dataset.task;
-      input.checked=Object.prototype.hasOwnProperty.call(saved,key)?!!saved[key]:!!defaults[key];
-      input.closest('label')?.classList.toggle('done',input.checked);
+  function renderPlan(){
+    if(!checklist)return;
+    checklist.innerHTML=planItems.map((item,index)=>
+      '<div class="plan-item '+(item.done?'done':'')+'" data-plan-id="'+escapeAttr(item.id)+'">'+
+        '<input class="plan-check" type="checkbox" '+(item.done?'checked':'')+' aria-label="Oznacz jako wykonane">'+
+        '<div class="plan-copy"><b>'+(index+1)+'. '+escapeHtml(item.title)+'</b><small>'+escapeHtml(item.desc||'')+'</small></div>'+
+        '<div class="plan-actions">'+
+          '<button class="plan-edit-btn" type="button" title="Edytuj wpis">Edytuj</button>'+
+          '<button class="plan-delete-btn" type="button" title="Usuń wpis">Usuń</button>'+
+        '</div>'+
+      '</div>'
+    ).join('');
+
+    checklist.querySelectorAll('.plan-item').forEach(row=>{
+      const id=row.dataset.planId;
+      const item=planItems.find(x=>x.id===id);
+      row.querySelector('.plan-check')?.addEventListener('change',e=>{
+        if(!item)return;
+        item.done=e.target.checked;
+        savePlan();
+        renderPlan();
+      });
+      row.querySelector('.plan-edit-btn')?.addEventListener('click',()=>{
+        if(!item)return;
+        const title=prompt('Nazwa wpisu:',item.title);
+        if(title===null)return;
+        const cleanTitle=title.trim();
+        if(!cleanTitle)return;
+        const desc=prompt('Krótki opis / szczegóły:',item.desc||'');
+        if(desc===null)return;
+        item.title=cleanTitle;
+        item.desc=desc.trim();
+        savePlan();
+        renderPlan();
+      });
+      row.querySelector('.plan-delete-btn')?.addEventListener('click',()=>{
+        if(!item)return;
+        if(!confirm('Usunąć wpis „'+item.title+'”?'))return;
+        planItems=planItems.filter(x=>x.id!==item.id);
+        savePlan();
+        renderPlan();
+      });
     });
-    if(!localStorage.getItem(CHECK_KEY)){
-      const initial={};
-      checklist?.querySelectorAll('[data-task]').forEach(input=>initial[input.dataset.task]=input.checked);
-      localStorage.setItem(CHECK_KEY,JSON.stringify(initial));
-    }
     refreshProgress();
   }
-  function saveChecks(){
-    const saved={};
-    checklist?.querySelectorAll('[data-task]').forEach(input=>saved[input.dataset.task]=input.checked);
-    localStorage.setItem(CHECK_KEY,JSON.stringify(saved));
-    refreshProgress();
-  }
+
   function refreshProgress(){
-    const all=[...(checklist?.querySelectorAll('[data-task]')||[])];
-    const done=all.filter(x=>x.checked).length;
-    const pct=all.length?Math.round(done/all.length*100):0;
+    const done=planItems.filter(x=>x.done).length;
+    const total=planItems.length;
+    const pct=total?Math.round(done/total*100):0;
     if(progress)progress.textContent=pct+'%';
     if(bar)bar.style.width=pct+'%';
     if(doneCount)doneCount.textContent=String(done);
-    if(allCount)allCount.textContent=String(all.length);
-    all.forEach(input=>input.closest('label')?.classList.toggle('done',input.checked));
+    if(allCount)allCount.textContent=String(total);
   }
-  checklist?.addEventListener('change',e=>{if(e.target.matches('[data-task]'))saveChecks()});
+
+  addPlanItem?.addEventListener('click',()=>{
+    const title=prompt('Nazwa nowego wpisu:');
+    if(title===null)return;
+    const cleanTitle=title.trim();
+    if(!cleanTitle)return;
+    const desc=prompt('Krótki opis / szczegóły:','');
+    if(desc===null)return;
+    planItems.push({id:uid(),title:cleanTitle,desc:desc.trim(),done:false});
+    savePlan();
+    renderPlan();
+  });
+
+  function escapeHtml(v){
+    return String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
 
   function loadNotes(){
     if(!notes)return;
@@ -186,7 +242,7 @@
   });
   closeDetails?.addEventListener('click',()=>{if(detailsPanel)detailsPanel.hidden=true});
 
-  loadChecks();
+  loadPlan();
   loadNotes();
   loadDetails();
   loadBudgets();
