@@ -4,6 +4,7 @@
   const NOTE_KEY='pereko_25ann_notes_v2';
   const DETAIL_KEY='pereko_25ann_details_v1';
   const BUDGET_KEY='pereko_25ann_budget_v1';
+  const ALERT_KEY='pereko_25ann_alerts_v1';
 
   const checklist=document.querySelector('#annChecklist');
   const progress=document.querySelector('#annProgress');
@@ -19,6 +20,12 @@
   const openSuppliers=document.querySelector('#openSuppliers');
   const closeSuppliers=document.querySelector('#closeSuppliers');
   const supplierModal=document.querySelector('#supplierModal');
+  const openAlerts=document.querySelector('#openAlerts');
+  const closeAlerts=document.querySelector('#closeAlerts');
+  const alertModal=document.querySelector('#alertModal');
+  const alertList=document.querySelector('#alertList');
+  const activeAlertCount=document.querySelector('#activeAlertCount');
+  const activeAlertHint=document.querySelector('#activeAlertHint');
 
   const defaultRows=[
     'Noclegi',
@@ -277,6 +284,109 @@
   });
   closeDetails?.addEventListener('click',()=>{if(detailsPanel)detailsPanel.hidden=true});
 
+  function loadAlertState(){
+    try{return JSON.parse(localStorage.getItem(ALERT_KEY)||'{}')||{}}catch{return {}}
+  }
+
+  function saveAlertState(stateValue){
+    localStorage.setItem(ALERT_KEY,JSON.stringify(stateValue));
+  }
+
+  function correspondenceEntries(){
+    return [...document.querySelectorAll('.correspondence-item[data-offer-id]')].map(el=>({
+      id:el.dataset.offerId,
+      sentAt:el.dataset.sentAt,
+      replied:el.dataset.replied==='true',
+      title:el.querySelector('.document-type')?.textContent?.trim()||'Zapytanie ofertowe',
+      subject:el.querySelector('.document-main h3')?.textContent?.trim()||''
+    }));
+  }
+
+  function dueAt(entry){
+    const sent=new Date(entry.sentAt);
+    return new Date(sent.getTime()+3*24*60*60*1000);
+  }
+
+  function activeAlerts(){
+    const now=Date.now();
+    const stateValue=loadAlertState();
+    return correspondenceEntries().filter(entry=>{
+      if(entry.replied)return false;
+      const itemState=stateValue[entry.id]||{};
+      if(itemState.disabled)return false;
+      const snoozeUntil=itemState.snoozeUntil?new Date(itemState.snoozeUntil).getTime():0;
+      return now>=dueAt(entry).getTime() && now>=snoozeUntil;
+    });
+  }
+
+  function formatDateTime(value){
+    const d=new Date(value);
+    return d.toLocaleString('pl-PL',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'});
+  }
+
+  function renderAlerts(){
+    const alerts=activeAlerts();
+    if(activeAlertCount)activeAlertCount.textContent=String(alerts.length);
+    if(activeAlertHint)activeAlertHint.textContent=alerts.length
+      ? (alerts.length===1?'1 firma bez odpowiedzi':'Firmy bez odpowiedzi: '+alerts.length)
+      : 'Brak zaległych odpowiedzi';
+    openAlerts?.classList.toggle('has-alerts',alerts.length>0);
+
+    if(!alertList)return;
+    if(!alerts.length){
+      alertList.innerHTML='<div class="alert-empty"><b>Brak aktywnych alertów.</b><span>System pilnuje wysłanej korespondencji i pokaże tutaj brak odpowiedzi po 3 dniach.</span></div>';
+      return;
+    }
+
+    alertList.innerHTML=alerts.map(entry=>
+      '<article class="alert-item" data-alert-id="'+escapeAttr(entry.id)+'">'+
+        '<div class="alert-item-head"><span>BRAM ODPOWIEDZI</span><strong>'+escapeHtml(entry.title)+'</strong></div>'+
+        '<p>'+escapeHtml(entry.subject)+'</p>'+
+        '<small>Wysłano: '+formatDateTime(entry.sentAt)+' · termin alertu: '+formatDateTime(dueAt(entry))+'</small>'+
+        '<div class="alert-actions">'+
+          '<select class="alert-snooze-select" aria-label="Odrocz alert">'+
+            '<option value="1">Odrocz o 1 dzień</option>'+
+            '<option value="3">Odrocz o 3 dni</option>'+
+            '<option value="7">Odrocz o 7 dni</option>'+
+            '<option value="14">Odrocz o 14 dni</option>'+
+          '</select>'+
+          '<button class="alert-snooze-btn" type="button">Odrocz</button>'+
+          '<button class="alert-disable-btn" type="button">Wyłącz alert</button>'+
+        '</div>'+
+      '</article>'
+    ).join('');
+
+    alertList.querySelectorAll('.alert-item').forEach(row=>{
+      const id=row.dataset.alertId;
+      row.querySelector('.alert-snooze-btn')?.addEventListener('click',()=>{
+        const days=Number(row.querySelector('.alert-snooze-select')?.value||1);
+        const stateValue=loadAlertState();
+        stateValue[id]={...(stateValue[id]||{}),snoozeUntil:new Date(Date.now()+days*24*60*60*1000).toISOString(),disabled:false};
+        saveAlertState(stateValue);
+        renderAlerts();
+      });
+      row.querySelector('.alert-disable-btn')?.addEventListener('click',()=>{
+        if(!confirm('Wyłączyć ten alert? Nie pojawi się ponownie, dopóki nie zresetujemy jego ustawienia.'))return;
+        const stateValue=loadAlertState();
+        stateValue[id]={...(stateValue[id]||{}),disabled:true};
+        saveAlertState(stateValue);
+        renderAlerts();
+      });
+    });
+  }
+
+  function setAlertModal(open){
+    if(!alertModal)return;
+    if(open)renderAlerts();
+    alertModal.classList.toggle('open',open);
+    alertModal.setAttribute('aria-hidden',open?'false':'true');
+    document.body.style.overflow=open?'hidden':'';
+  }
+
+  openAlerts?.addEventListener('click',()=>setAlertModal(true));
+  closeAlerts?.addEventListener('click',()=>setAlertModal(false));
+  alertModal?.addEventListener('click',e=>{if(e.target===alertModal)setAlertModal(false)});
+
   function setSupplierModal(open){
     if(!supplierModal)return;
     supplierModal.classList.toggle('open',open);
@@ -286,10 +396,15 @@
   openSuppliers?.addEventListener('click',()=>setSupplierModal(true));
   closeSuppliers?.addEventListener('click',()=>setSupplierModal(false));
   supplierModal?.addEventListener('click',e=>{if(e.target===supplierModal)setSupplierModal(false)});
-  document.addEventListener('keydown',e=>{if(e.key==='Escape'&&supplierModal?.classList.contains('open'))setSupplierModal(false)});
+  document.addEventListener('keydown',e=>{
+    if(e.key!=='Escape')return;
+    if(supplierModal?.classList.contains('open'))setSupplierModal(false);
+    if(alertModal?.classList.contains('open'))setAlertModal(false);
+  });
 
   loadPlan();
   try{loadNotes()}catch(error){console.error(error)}
   try{loadDetails()}catch(error){console.error(error)}
   try{loadBudgets()}catch(error){console.error(error)}
+  try{renderAlerts()}catch(error){console.error(error)}
 })();
