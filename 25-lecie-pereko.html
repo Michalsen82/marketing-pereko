@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=23" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
-  <link rel="stylesheet" href="25-lecie-pereko.css?v=4" />
+  <link rel="stylesheet" href="25-lecie-pereko.css?v=5" />
 </head>
 <body style="visibility:hidden">
   <div class="anniversary-project-page">
@@ -81,25 +81,11 @@
       <section class="work-grid">
         <div class="work-main">
           <section class="ann-card">
-            <div class="ann-card-head"><div><span class="ann-label">PLAN DZIAŁAŃ</span><h2>Lista projektu</h2></div><span class="ann-badge">kolejność robocza</span></div>
-            <div class="ann-checklist" id="annChecklist">
-              <label><input type="checkbox" data-task="europa-mail"><span><b>1. Wysłać zapytanie do Hotelu Europa</b><small>noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje</small></span></label>
-              <label><input type="checkbox" data-task="manor-mail"><span><b>2. Wysłać zapytanie do Manor House</b><small>noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje</small></span></label>
-              <label><input type="checkbox" data-task="europa-offer"><span><b>3. Otrzymać i wpisać ofertę Hotelu Europa</b><small>uzupełnić kosztorys poniżej</small></span></label>
-              <label><input type="checkbox" data-task="manor-offer"><span><b>4. Otrzymać i wpisać ofertę Manor House</b><small>uzupełnić kosztorys poniżej</small></span></label>
-              <label><input type="checkbox" data-task="hotel-compare"><span><b>5. Porównać oferty i wybrać hotel</b><small>koszt całkowity + program + logistyka</small></span></label>
-              <label><input type="checkbox" data-task="guests"><span><b>6. Przygotować listę 30 dystrybutorów</b><small>30 osób + osoby towarzyszące</small></span></label>
-              <label><input type="checkbox" data-task="stars"><span><b>7. Zorganizować przejazd STAR-ami</b><small>pojazdy, kierowcy, trasa, liczba kursów</small></span></label>
-              <label><input type="checkbox" data-task="factory"><span><b>8. Przygotować program zwiedzania fabryki PEREKO</b><small>trasa, prowadzący, grupy, BHP</small></span></label>
-              <label><input type="checkbox" data-task="parallel"><span><b>9. Przygotować program równoległy w hotelu</b><small>SPA / atrakcje dla osób nieuczestniczących w części technicznej</small></span></label>
-              <label><input type="checkbox" data-task="live-music"><span><b>10. Wybrać zespół / muzykę na żywo</b><small>drugi wieczór</small></span></label>
-              <label><input type="checkbox" data-task="stage-attraction"><span><b>11. Wybrać atrakcję sceniczną</b><small>stand-up / iluzjonista / inna opcja</small></span></label>
-              <label><input type="checkbox" data-task="menu"><span><b>12. Ustalić menu i alkohol na oba wieczory</b><small>kolacja dzień 1 + gala dzień 2</small></span></label>
-              <label><input type="checkbox" data-task="transport"><span><b>13. Zamknąć transport i logistykę</b><small>hotel ↔ fabryka ↔ atrakcje</small></span></label>
-              <label><input type="checkbox" data-task="invites"><span><b>14. Przygotować zaproszenia jubileuszowe</b><small>projekt, lista, wysyłka, RSVP</small></span></label>
-              <label><input type="checkbox" data-task="schedule"><span><b>15. Zamknąć finalny harmonogram 3 dni</b><small>godzina po godzinie</small></span></label>
-              <label><input type="checkbox" data-task="budget"><span><b>16. Zatwierdzić budżet końcowy</b><small>wybrany wariant + rezerwa</small></span></label>
+            <div class="ann-card-head">
+              <div><span class="ann-label">PLAN DZIAŁAŃ</span><h2>Lista projektu</h2></div>
+              <div class="plan-head-actions"><span class="ann-badge">kolejność robocza</span><button class="plan-add-btn" id="addPlanItem" type="button">+ Dodaj wpis</button></div>
             </div>
+            <div class="ann-checklist" id="annChecklist"></div>
           </section>
 
           <section class="ann-card project-documents">
@@ -168,6 +154,12 @@
         </div>
 
         <aside class="work-side">
+          <section class="ann-card">
+            <div class="ann-card-head"><div><span class="ann-label">NOTATKI</span><h2>Notatnik roboczy</h2></div></div>
+            <textarea id="annNotes" class="ann-notes" placeholder="Ceny, telefony, ustalenia, pomysły, odpowiedzi hoteli…"></textarea>
+            <small class="ann-save-note" id="annSaveNote">Zmiany zapisują się automatycznie.</small>
+          </section>
+
           <section class="ann-card work-history-card">
             <div class="ann-card-head"><div><span class="ann-label">HISTORIA PRACY</span><h2>Przebieg projektu</h2></div><span class="ann-badge">najnowsze u góry</span></div>
             <div class="work-history">
@@ -188,12 +180,6 @@
                 </div>
               </article>
             </div>
-          </section>
-
-          <section class="ann-card">
-            <div class="ann-card-head"><div><span class="ann-label">NOTATKI</span><h2>Notatnik roboczy</h2></div></div>
-            <textarea id="annNotes" class="ann-notes" placeholder="Ceny, telefony, ustalenia, pomysły, odpowiedzi hoteli…"></textarea>
-            <small class="ann-save-note" id="annSaveNote">Zmiany zapisują się automatycznie.</small>
           </section>
 
           <section class="ann-card">
@@ -241,6 +227,6 @@
   <script src="light-theme.js?v=1"></script>
   <script src="user-avatar.js"></script>
   <script src="account-security.js"></script>
-  <script src="25-lecie-pereko.js?v=4"></script>
+  <script src="25-lecie-pereko.js?v=5"></script>
 </body>
 </html>
