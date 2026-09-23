@@ -33,7 +33,7 @@
   <link rel="stylesheet" href="sharp-corners.css" />
   <link rel="stylesheet" href="light-theme.css?v=23" />
   <link rel="stylesheet" href="stability-pass.css?v=9" />
-  <link rel="stylesheet" href="25-lecie-pereko.css?v=6" />
+  <link rel="stylesheet" href="25-lecie-pereko.css?v=7" />
 </head>
 <body style="visibility:hidden">
   <div class="anniversary-project-page">
@@ -158,6 +158,14 @@
             <div class="ann-card-head"><div><span class="ann-label">HISTORIA PRACY</span><h2>Przebieg projektu</h2></div><span class="ann-badge">najnowsze u góry</span></div>
             <div class="work-history">
               <article class="history-item">
+                <div class="history-no">03</div>
+                <div class="history-copy">
+                  <span>23.09.2026</span>
+                  <h3>Utworzenie bazy kontaktów dostawców</h3>
+                  <p>Dodano bazę kontaktów do hoteli oraz podmiotów związanych z wynajmem, organizacją i dostępem do samochodów STAR na potrzeby przejażdżki jubileuszowej.</p>
+                </div>
+              </article>
+              <article class="history-item">
                 <div class="history-no">02</div>
                 <div class="history-copy">
                   <span>23.09.2026</span>
@@ -174,6 +182,15 @@
                 </div>
               </article>
             </div>
+          </section>
+
+          <section class="ann-card supplier-launch-card">
+            <div class="ann-card-head">
+              <div><span class="ann-label">DOSTAWCY</span><h2>Kontakty dostawców</h2></div>
+              <span class="ann-badge">7 kontaktów</span>
+            </div>
+            <p class="supplier-launch-copy">Hotele, wynajem STAR-ów oraz lokalni partnerzy techniczni. Lista będzie rozwijana wraz z projektem.</p>
+            <button class="supplier-open-btn" id="openSuppliers" type="button">Pokaż kontakty dostawców</button>
           </section>
 
           <section class="ann-card">
@@ -205,6 +222,112 @@
       </section>
     </main>
 
+    <div class="supplier-modal" id="supplierModal" aria-hidden="true">
+      <div class="supplier-modal-card" role="dialog" aria-modal="true" aria-labelledby="supplierModalTitle">
+        <div class="supplier-modal-head">
+          <div>
+            <span class="ann-label">BAZA KONTAKTÓW</span>
+            <h2 id="supplierModalTitle">Kontakty dostawców</h2>
+          </div>
+          <button class="supplier-close-btn" id="closeSuppliers" type="button" aria-label="Zamknij">×</button>
+        </div>
+
+        <div class="supplier-section">
+          <div class="supplier-section-head"><span>01</span><div><h3>Hotele</h3><p>Zakwaterowanie, gastronomia i obsługa eventu.</p></div></div>
+          <div class="supplier-grid">
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>HOTEL</span><strong>Hotel Europa Business &amp; Spa</strong></div>
+              <div class="supplier-lines">
+                <span><b>Adres:</b> ul. Radomska 76a, 27-200 Starachowice</span>
+                <span><b>Rezerwacje grupowe:</b> +48 535 235 513, +48 533 888 746</span>
+                <span><b>E-mail grupowy:</b> <a href="mailto:rezerwacja@europa-hotel.pl">rezerwacja@europa-hotel.pl</a></span>
+                <span><b>Recepcja:</b> +48 41 276 78 00</span>
+                <span><b>E-mail:</b> <a href="mailto:hotel@europa-hotel.pl">hotel@europa-hotel.pl</a></span>
+              </div>
+              <a class="supplier-web" href="https://www.europa-hotel.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>HOTEL</span><strong>Manor House SPA / Pałac Odrowążów</strong></div>
+              <div class="supplier-lines">
+                <span><b>Adres:</b> ul. Czachowskiego 56, 26-510 Chlewiska</span>
+                <span><b>Grupy / konferencje:</b> +48 48 628 72 85 wew. 313</span>
+                <span><b>E-mail grupowy:</b> <a href="mailto:konferencje@manorhouse.pl">konferencje@manorhouse.pl</a></span>
+                <span><b>Recepcja:</b> +48 48 628 70 61, +48 607 195 315</span>
+                <span><b>E-mail:</b> <a href="mailto:chlewiska@manorhouse.pl">chlewiska@manorhouse.pl</a></span>
+              </div>
+              <a class="supplier-web" href="https://www.manorhouse.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+          </div>
+        </div>
+
+        <div class="supplier-section">
+          <div class="supplier-section-head"><span>02</span><div><h3>STAR — wynajem i kontakty do pojazdów</h3><p>Podmioty do równoległego kontaktu w sprawie STAR-ów z kierowcami i organizacji przejazdu.</p></div></div>
+          <div class="supplier-grid">
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>BEZPOŚREDNI WYNAJEM</span><strong>Military Monkeys</strong></div>
+              <div class="supplier-lines">
+                <span><b>Kontakt:</b> Marcin Bartczak</span>
+                <span><b>Lokalizacja:</b> 09-470 Bodzanów</span>
+                <span><b>Telefon:</b> +48 507 541 914</span>
+                <span><b>E-mail:</b> <a href="mailto:info@militarymonkeys.pl">info@militarymonkeys.pl</a></span>
+                <span><b>Flota:</b> m.in. STAR 266; przejażdżki i eventy militarne</span>
+              </div>
+              <a class="supplier-web" href="https://militarymonkeys.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>WYNAJEM POJAZDÓW</span><strong>Samochody Graczyka</strong></div>
+              <div class="supplier-lines">
+                <span><b>Kontakt:</b> Tomasz Graczyk</span>
+                <span><b>Adres:</b> ul. Mokra 6, Opacz-Kolonia, 05-816 Michałowice</span>
+                <span><b>Telefon:</b> +48 697 070 707</span>
+                <span><b>E-mail:</b> <a href="mailto:kontaktzgraczykiem@gmail.com">kontaktzgraczykiem@gmail.com</a></span>
+                <span><b>Zakres:</b> zabytkowe pojazdy, transport, opieka techniczna i asysta</span>
+              </div>
+              <a class="supplier-web" href="https://samochodygraczyka.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>STOWARZYSZENIE / WŁAŚCICIELE STAR-ÓW</span><strong>Stowarzyszenie Legenda STARa</strong></div>
+              <div class="supplier-lines">
+                <span><b>Adres rejestrowy:</b> Ostrożanka 46, 27-220</span>
+                <span><b>E-mail stowarzyszenia:</b> <a href="mailto:biuro@legendastara.eu">biuro@legendastara.eu</a></span>
+                <span><b>Kontakt organizacyjny zlotu:</b> +48 41 276 09 42</span>
+                <span><b>E-mail organizacyjny:</b> <a href="mailto:legendastara@powiat.starachowice.pl">legendastara@powiat.starachowice.pl</a></span>
+                <span><b>Zakres:</b> środowisko właścicieli i pasjonatów ciężarówek STAR</span>
+              </div>
+              <a class="supplier-web" href="https://www.legendastara.eu/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>PARTNER TECHNICZNY</span><strong>Star San Duo</strong></div>
+              <div class="supplier-lines">
+                <span><b>Adres:</b> ul. Krańcowa 4, 27-200 Starachowice</span>
+                <span><b>Biuro:</b> +48 41 275 26 97</span>
+                <span><b>E-mail:</b> <a href="mailto:biuro@starsanduo.pl">biuro@starsanduo.pl</a></span>
+                <span><b>Piotr Adamczyk:</b> +48 696 325 819</span>
+                <span><b>E-mail:</b> <a href="mailto:piotr.adamczyk@starsanduo.pl">piotr.adamczyk@starsanduo.pl</a></span>
+              </div>
+              <a class="supplier-web" href="https://starsanduo.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+
+            <article class="supplier-card">
+              <div class="supplier-card-top"><span>PARTNER LOKALNY</span><strong>Muzeum Przyrody i Techniki</strong></div>
+              <div class="supplier-lines">
+                <span><b>Adres:</b> ul. Wielkopiecowa 1, 27-200 Starachowice</span>
+                <span><b>Wejście dla gości:</b> ul. Marszałka Piłsudskiego 95</span>
+                <span><b>Informacja / rezerwacje:</b> +48 41 275 40 83, +48 783 730 094</span>
+                <span><b>E-mail:</b> <a href="mailto:mpt@ekomuzeum.pl">mpt@ekomuzeum.pl</a></span>
+                <span><b>Zakres:</b> historia STAR-a, kontakty lokalne, obsługa grup i potencjalna współpraca przy trasie</span>
+              </div>
+              <a class="supplier-web" href="https://ekomuzeum.pl/" target="_blank" rel="noopener">Strona WWW ↗</a>
+            </article>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <footer class="site-footer">
       <div class="site-footer-inner">
         <div class="footer-brand"><div class="footer-logo" aria-hidden="true"></div><div class="footer-copy"><strong>Centrum Projektów Marketingowych</strong><span>25-lecie marki PEREKO · karta zarządzania projektem</span><small class="footer-author">Opiekun projektu: Michał Bukowski</small></div></div>
@@ -221,6 +344,6 @@
   <script src="light-theme.js?v=1"></script>
   <script src="user-avatar.js"></script>
   <script src="account-security.js"></script>
-  <script src="25-lecie-pereko.js?v=6"></script>
+  <script src="25-lecie-pereko.js?v=7"></script>
 </body>
 </html>
