@@ -41,7 +41,7 @@
   function loadChecks(){
     let saved={};
     try{saved=JSON.parse(localStorage.getItem(CHECK_KEY)||'{}')||{}}catch{}
-    const defaults={europa-mail:true,manor-mail:true};
+    const defaults={'europa-mail':true,'manor-mail':true};
     checklist?.querySelectorAll('[data-task]').forEach(input=>{
       const key=input.dataset.task;
       input.checked=Object.prototype.hasOwnProperty.call(saved,key)?!!saved[key]:!!defaults[key];
