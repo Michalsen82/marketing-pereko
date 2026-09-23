@@ -209,10 +209,16 @@ window.perekoFlushSync=async()=>{
   return pushRemote(true);
 };
 const projectProgressInfo=p=>{
+  if(p?.specialProgressManaged){
+    const progress=Math.max(0,Math.min(100,Number(p.progress)||0));
+    const done=Math.max(0,Number(p.specialProgressDone)||0);
+    const total=Math.max(0,Number(p.specialProgressTotal)||0);
+    return {progress,done,total,hasTasks:true,special:true};
+  }
   const list=Array.isArray(p.projectTasks)?p.projectTasks:[];
   if(!list.length)return {progress:0,done:0,total:0,hasTasks:false};
   const done=list.filter(t=>t.done).length;
-  return {progress:Math.round(done/list.length*100),done,total:list.length,hasTasks:true};
+  return {progress:Math.round(done/list.length*100),done,total:list.length,hasTasks:true,special:false};
 };
 function render(){
   const visible=activeFilter==='all'?projects:projects.filter(p=>p.status===activeFilter);
@@ -227,7 +233,7 @@ function render(){
       </div>
       <div class="progress-wrap ${pi.hasTasks?'':'no-tasks'}">
         <div class="progress"><span style="width:${pi.progress}%"></span></div>
-        <div class="project-progress-caption">${pi.hasTasks?`<strong>${pi.progress}%</strong><span>${pi.done}/${pi.total} zadań zakończonych</span>`:'<strong>—</strong><span>Podłącz zadania, aby liczyć postęp</span>'}</div>
+        <div class="project-progress-caption">${pi.hasTasks?`<strong>${pi.progress}%</strong><span>${pi.special?`${pi.done}/${pi.total} działań wykonanych`:`${pi.done}/${pi.total} zadań zakończonych`}</span>`:'<strong>—</strong><span>Podłącz zadania, aby liczyć postęp</span>'}</div>
       </div>
     </article>`;
   }).join(''):'<div class="empty">Brak projektów.</div>';
