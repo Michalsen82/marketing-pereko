@@ -5,7 +5,7 @@
   const DETAIL_KEY='pereko_25ann_details_v1';
   const BUDGET_KEY='pereko_25ann_budget_v1';
   const ALERT_KEY='pereko_25ann_alerts_v1';
-  const EUROPA_OFFER_KEY='pereko_25ann_europa_offer_2026_09_24_v1';
+  const EUROPA_OFFER_KEY='pereko_25ann_europa_offer_2026_09_24_net_v2';
 
   const checklist=document.querySelector('#annChecklist');
   const progress=document.querySelector('#annProgress');
@@ -56,7 +56,7 @@
   const defaultPlanItems=[
     {id:'europa-mail',title:'Wysłać zapytanie do Hotelu Europa',desc:'noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje',done:true},
     {id:'manor-mail',title:'Wysłać zapytanie do Manor House',desc:'noclegi, pełne wyżywienie, 2 kolacje, alkohol, sala, atrakcje',done:true},
-    {id:'europa-offer',title:'Otrzymać i wpisać ofertę Hotelu Europa',desc:'oferta otrzymana 24.09.2026 i wpisana do kosztorysu: 63 080,50 zł brutto',done:true},
+    {id:'europa-offer',title:'Otrzymać i wpisać ofertę Hotelu Europa',desc:'oferta otrzymana 24.09.2026 i wpisana do kosztorysu: 57 581,52 zł netto',done:true},
     {id:'manor-offer',title:'Otrzymać i wpisać ofertę Manor House',desc:'uzupełnić kosztorys poniżej',done:false},
     {id:'hotel-compare',title:'Porównać oferty i wybrać hotel',desc:'koszt całkowity + program + logistyka',done:false},
     {id:'guests',title:'Przygotować listę 30 dystrybutorów',desc:'30 osób + osoby towarzyszące',done:false},
@@ -84,7 +84,7 @@
     const idx=planItems.findIndex(item=>item.id==='europa-offer');
     if(idx<0)return false;
     let changed=false;
-    const wantedDesc='oferta otrzymana 24.09.2026 i wpisana do kosztorysu: 63 080,50 zł brutto';
+    const wantedDesc='oferta otrzymana 24.09.2026 i wpisana do kosztorysu: 57 581,52 zł netto';
     if(planItems[idx].desc!==wantedDesc){planItems[idx].desc=wantedDesc;changed=true}
     if(!planItems[idx].done){planItems[idx].done=true;changed=true}
     return changed;
@@ -261,15 +261,15 @@
     state.budgets.europa={
       reserve:num(state.budgets.europa?.reserve),
       rows:[
-        {name:'Noclegi · 6 pokoi 1-os. · 2 noce',value:4080},
-        {name:'Noclegi · 32 pokoje 2-os. · 2 noce',value:25600},
+        {name:'Noclegi · 6 pokoi 1-os. · 2 noce',value:3777.84},
+        {name:'Noclegi · 32 pokoje 2-os. · 2 noce',value:23703.68},
         {name:'Śniadania · w cenie noclegów',value:0},
-        {name:'Lunch 12.06 · Menu Bufetowe IV · 70 os.',value:7182},
-        {name:'Kolacja 11.06 · Menu Bufetowe III · 70 os.',value:7182},
-        {name:'Kolacja galowa 12.06 · menu serwowane + bufety · 70 os.',value:11718},
-        {name:'Napoje do kolacji 11.06 · 70 os.',value:1722},
-        {name:'Napoje do lunchu 12.06 · 70 os.',value:1722},
-        {name:'Open Soft II do 6 godz. · 70 os.',value:3874.5},
+        {name:'Lunch 12.06 · Menu Bufetowe IV · 70 os.',value:6650},
+        {name:'Kolacja 11.06 · Menu Bufetowe III · 70 os.',value:6650},
+        {name:'Kolacja galowa 12.06 · menu serwowane + bufety · 70 os.',value:10850},
+        {name:'Napoje do kolacji 11.06 · 70 os.',value:1400},
+        {name:'Napoje do lunchu 12.06 · 70 os.',value:1400},
+        {name:'Open Soft II do 6 godz. · 70 os.',value:3150},
         {name:'Sala Europejska 12.06 · GRATIS',value:0},
         {name:'Strefa Relaksu / baseny / jacuzzi / sauna · w cenie',value:0}
       ]
