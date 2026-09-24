@@ -435,3 +435,14 @@ html[data-theme="light"] .budget-toggle-icon{border-color:#d7dddf;color:#786700}
   .budget-collapse>summary{align-items:flex-start}
   .budget-summary-actions{flex-shrink:0}
 }
+
+.offer-budget-summary{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin:10px 0 12px;padding:10px;border:1px solid rgba(255,230,0,.18);background:rgba(255,230,0,.035)}
+.offer-budget-summary span{font-size:9.5px;color:rgba(255,255,255,.62)}
+.offer-budget-summary b{color:#fff}
+.correspondence-status.answered{color:#7ddf9b}
+.correspondence-response{border-color:rgba(125,223,155,.24);background:rgba(125,223,155,.025)}
+html[data-theme="light"] .offer-budget-summary{background:#fffbea;border-color:#dfcf79}
+html[data-theme="light"] .offer-budget-summary span{color:#617077}
+html[data-theme="light"] .offer-budget-summary b{color:#202a2f}
+html[data-theme="light"] .correspondence-status.answered{color:#267845}
+@media(max-width:620px){.offer-budget-summary{grid-template-columns:1fr}}
