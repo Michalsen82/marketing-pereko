@@ -588,12 +588,19 @@
       "taskYear": 2026,
       "text": "Artykuł - ŚWIAT KOMINKÓW",
       "assignee": "Michał Bukowski",
-      "done": false,
+      "done": true,
       "createdAt": "2026-09-21T06:07:09.190Z",
       "scheduledFor": "2026-09-24",
-      "completedAt": null,
-      "completedOn": null,
+      "completedAt": "2026-09-24T06:07:25.485Z",
+      "completedOn": "2026-09-24",
       "history": [
+        {
+          "id": "87d899e5-69e0-493f-9fff-f5e8b9a3029f",
+          "type": "done",
+          "text": "Task oznaczono jako wykonany",
+          "date": "2026-09-24",
+          "createdAt": "2026-09-24T06:07:25.486Z"
+        },
         {
           "id": "147d9a5b-a2f6-47be-8e44-83e1ca4e3a97",
           "type": "rollover",
@@ -737,5 +744,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-24T05:13:23.140Z"
+  "updatedAt": "2026-09-24T06:07:26.703Z"
 }
