@@ -420,10 +420,17 @@
       "assignee": "Wiktoria Adamczyk",
       "done": false,
       "createdAt": "2026-09-18T12:07:00.202Z",
-      "scheduledFor": "2026-09-23",
+      "scheduledFor": "2026-09-24",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "d5221d82-f525-48cf-b58a-df1984f46c55",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 23.09",
+          "date": "2026-09-24",
+          "createdAt": "2026-09-24T05:13:22.292Z"
+        },
         {
           "id": "f0f241a3-9d2a-4b3c-ba3a-0369d8cc76cc",
           "type": "rollover",
@@ -476,10 +483,17 @@
       "assignee": "Łukasz Drozdowski",
       "done": false,
       "createdAt": "2026-09-18T12:43:04.598Z",
-      "scheduledFor": "2026-09-23",
+      "scheduledFor": "2026-09-24",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "3858e938-381e-45de-8c5c-d8e816cfada1",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 23.09",
+          "date": "2026-09-24",
+          "createdAt": "2026-09-24T05:13:22.292Z"
+        },
         {
           "id": "ca186229-5728-414f-a971-c3aa0e95d4eb",
           "type": "rollover",
@@ -576,10 +590,17 @@
       "assignee": "Michał Bukowski",
       "done": false,
       "createdAt": "2026-09-21T06:07:09.190Z",
-      "scheduledFor": "2026-09-23",
+      "scheduledFor": "2026-09-24",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "147d9a5b-a2f6-47be-8e44-83e1ca4e3a97",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 23.09",
+          "date": "2026-09-24",
+          "createdAt": "2026-09-24T05:13:22.292Z"
+        },
         {
           "id": "87d8d535-15af-4789-b547-6790fa3bc6c9",
           "type": "rollover",
@@ -639,10 +660,17 @@
       "assignee": "Michał Bukowski",
       "done": false,
       "createdAt": "2026-09-21T09:12:55.689Z",
-      "scheduledFor": "2026-09-23",
+      "scheduledFor": "2026-09-24",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "52725e96-ec25-4286-8fcd-d023a4c9ea09",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 23.09",
+          "date": "2026-09-24",
+          "createdAt": "2026-09-24T05:13:22.292Z"
+        },
         {
           "id": "ffdc2629-fbee-4e8f-b137-cf05c3248e37",
           "type": "rollover",
@@ -674,10 +702,17 @@
       "assignee": "Michał Bukowski",
       "done": false,
       "createdAt": "2026-09-21T09:13:31.132Z",
-      "scheduledFor": "2026-09-23",
+      "scheduledFor": "2026-09-24",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "4989d5ad-e2db-4ce5-850e-91ecc981875f",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 23.09",
+          "date": "2026-09-24",
+          "createdAt": "2026-09-24T05:13:22.293Z"
+        },
         {
           "id": "62bf5210-46f2-488d-97ff-d70e10df88f2",
           "type": "rollover",
@@ -702,5 +737,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-23T11:48:28.531Z"
+  "updatedAt": "2026-09-24T05:13:23.140Z"
 }
