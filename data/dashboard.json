@@ -420,10 +420,17 @@
       "assignee": "Wiktoria Adamczyk",
       "done": false,
       "createdAt": "2026-09-18T12:07:00.202Z",
-      "scheduledFor": "2026-09-30",
+      "scheduledFor": "2026-10-04",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "c7322e47-7685-4481-a718-43fee7ab6343",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 30.09",
+          "date": "2026-10-04",
+          "createdAt": "2026-10-04T07:53:17.313Z"
+        },
         {
           "id": "b8251be3-070d-46ae-ad0a-a6d1fbc66973",
           "type": "rollover",
@@ -511,10 +518,17 @@
       "assignee": "Łukasz Drozdowski",
       "done": false,
       "createdAt": "2026-09-18T12:43:04.598Z",
-      "scheduledFor": "2026-09-30",
+      "scheduledFor": "2026-10-04",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "65e25251-8c01-4a4d-9e62-4e85440160fc",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 30.09",
+          "date": "2026-10-04",
+          "createdAt": "2026-10-04T07:53:17.313Z"
+        },
         {
           "id": "0fb222c6-d8f5-4e4c-9bfd-2b77b9043c5f",
           "type": "rollover",
@@ -723,10 +737,17 @@
       "assignee": "Michał Bukowski",
       "done": false,
       "createdAt": "2026-09-21T09:12:55.689Z",
-      "scheduledFor": "2026-09-30",
+      "scheduledFor": "2026-10-04",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "f9bdee17-0c63-495d-8fef-a7be96dbd887",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 30.09",
+          "date": "2026-10-04",
+          "createdAt": "2026-10-04T07:53:17.313Z"
+        },
         {
           "id": "3d544c09-cf75-4042-9ece-ba054c343fc7",
           "type": "rollover",
@@ -793,10 +814,17 @@
       "assignee": "Michał Bukowski",
       "done": false,
       "createdAt": "2026-09-21T09:13:31.132Z",
-      "scheduledFor": "2026-09-30",
+      "scheduledFor": "2026-10-04",
       "completedAt": null,
       "completedOn": null,
       "history": [
+        {
+          "id": "6e57cef9-7c30-40df-bef1-85769ddb52a1",
+          "type": "rollover",
+          "text": "Przeniesiono automatycznie z 30.09",
+          "date": "2026-10-04",
+          "createdAt": "2026-10-04T07:53:17.313Z"
+        },
         {
           "id": "3a0deaf5-c212-479f-b055-0846f423a207",
           "type": "rollover",
@@ -856,5 +884,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-09-30T06:19:18.063Z"
+  "updatedAt": "2026-10-04T07:53:18.293Z"
 }
