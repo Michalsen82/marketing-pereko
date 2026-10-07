@@ -8,36 +8,179 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--yellow:#ffdd00;--yellow-soft:#fff2a8;--dark:#485156;--dark2:#343b3f;--mid:#6e777d;--light:#dadfe1;--soft:#f6f7f7;--ink:#343b3f;--red:#a63a3a;--red-soft:#fff0f0;--green:#2f6f45}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif}.wrap{width:min(1240px,calc(100% - 64px));margin:0 auto}h1,h2,h3,.project-no,.open-btn,.status-badge,.project-type,.project-meta span,.section-no,.task-add,.task-delete,.task-edit,.panel-title,.search-label,.brand-word,.chat-link{font-family:'Montserrat',sans-serif}
+:root{--yellow:#ffdd00;--yellow-soft:#fff2a8;--dark:#485156;--dark2:#343b3f;--mid:#6e777d;--light:#dadfe1;--soft:#f6f7f7;--ink:#343b3f;--red:#a63a3a;--red-soft:#fff0f0;--green:#2f6f45;--blue:#426887}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif}
+.wrap{width:min(1240px,calc(100% - 64px));margin:0 auto}
+h1,h2,h3,.ui,.project-no,.open-btn,.status-badge,.project-type,.project-meta span,.section-no,.task-add,.task-delete,.task-edit,.panel-title,.search-label{font-family:'Montserrat',sans-serif}
+
 .topbar{position:sticky;top:0;z-index:1000;background:rgba(72,81,86,.98);border-bottom:1px solid rgba(255,255,255,.12)}
-.topbar .wrap{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.brand-group{display:flex;align-items:center;gap:20px}.brand-word{color:#fff;font-size:32px;line-height:1;font-weight:900;letter-spacing:.045em;white-space:nowrap}.brand-divider{width:1px;height:36px;background:rgba(255,255,255,.34);flex:0 0 auto;margin:0 2px}.panel-title{display:flex;flex-direction:column;justify-content:center;line-height:1.1;color:#fff}.panel-title .line1{font-size:10px;font-weight:500;letter-spacing:.02em;color:#f0f2f3}.panel-title .line2{margin-top:5px;font-size:12px;font-weight:900;letter-spacing:.02em;color:#fff}
-.chat-link{display:inline-flex;align-items:center;gap:9px;color:#fff;text-decoration:none;border:1px solid rgba(255,255,255,.32);border-radius:7px;padding:9px 12px;font-size:9px;font-weight:800;letter-spacing:.04em;transition:.18s;white-space:nowrap}.chat-link:hover{background:#fff;color:var(--dark)}.chat-icon{width:20px;height:20px;border-radius:50%;display:grid;place-items:center;border:1px solid currentColor;font-size:10px;font-weight:900;line-height:1}
-.hero{background:var(--dark);color:#fff}.hero .wrap{padding:28px 0 32px}.search-label{font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#d8dee1;margin-bottom:9px}.search-wrap{max-width:760px;position:relative}.search-input{width:100%;border:0;border-radius:8px;padding:16px 50px 16px 17px;font:600 14px 'Montserrat',sans-serif;outline:none;color:var(--dark)}.search-icon{position:absolute;right:17px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--mid)}.search-help{margin-top:8px;color:#d7dddf;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.03em}
-main{padding:48px 0 80px}.dashboard-home{display:grid;grid-template-columns:minmax(0,7fr) minmax(300px,3fr);gap:24px;align-items:start}.registry-head,.tasks-head{margin-bottom:20px}.section-no{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mid)}.registry-head h2,.tasks-head h2{margin:4px 0 0;font-family:'Montserrat',sans-serif;font-size:32px;line-height:1.1;color:var(--dark)}
-.project-list{display:grid;gap:16px}.project-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:18px;align-items:center;padding:18px;border:1px solid var(--light);border-radius:9px;background:#fff;box-shadow:0 10px 30px rgba(72,81,86,.045);transition:.18s;position:relative}.project-card:hover{transform:translateY(-1px);border-color:#bbc1c4}.project-card.overdue{border:2px solid var(--red);background:var(--red-soft);box-shadow:0 8px 24px rgba(166,58,58,.12)}.project-no{background:var(--yellow-soft);border-radius:7px;padding:14px 10px;text-align:center;font-size:16px;font-weight:900;color:var(--dark)}.project-type{display:inline-flex;background:#eceff0;color:var(--mid);border-radius:999px;padding:4px 8px;font-size:8px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}.project-card h3{margin:8px 0 0;font-family:'Montserrat',sans-serif;font-size:20px;color:var(--dark)}.project-card p{margin:7px 0 0;color:var(--mid);max-width:760px}.project-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}.project-meta span{font-size:9px;font-weight:700;color:var(--mid);border:1px solid var(--light);padding:4px 7px;border-radius:4px;background:#fafafa}.status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}.status-label{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--mid);font-weight:800;text-transform:uppercase;letter-spacing:.05em}.status-badge,.deadline-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:5px;font-family:'Montserrat',sans-serif;font-size:8px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}.status-zaplanowany{background:#eceff0;color:#5f696e}.status-w-realizacji{background:#fff1b0;color:#665800}.status-przekazany-dalej{background:#e8f1f7;color:#345c78}.status-zakonczony{background:#eaf4ed;color:#2f6f45}.deadline-badge{display:none;background:#f3e5e5;color:#8b3030}.project-card.has-alarm .deadline-badge{display:inline-flex}.project-card.overdue .deadline-badge{background:var(--red);color:#fff}.open-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--dark);color:#fff;padding:10px 13px;border-radius:6px;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}.open-btn:hover{background:var(--dark2)}.empty{display:none;margin-top:22px;padding:22px;border:1px dashed #c8cdd0;border-radius:8px;background:#fafafa;color:var(--mid)}
-.tasks-pane{border-left:1px solid var(--light);padding-left:24px;min-width:0}.task-entry{display:flex;gap:8px;margin-bottom:14px}.task-input{flex:1;min-width:0;border:1px solid var(--light);border-radius:7px;padding:11px 12px;font:600 13px 'Montserrat',sans-serif;outline:none}.task-add{border:0;border-radius:7px;background:var(--yellow);color:var(--dark);padding:10px 13px;font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}.task-list{display:grid;gap:8px}.task-item{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid var(--light);border-radius:7px;background:#fff}.task-check{margin-top:4px;accent-color:var(--dark)}.task-copy{flex:1;min-width:0}.task-text{font-weight:700;color:var(--dark);word-break:break-word}.task-item.done .task-text{text-decoration:line-through;color:#9aa1a5}.task-meta{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--mid);margin-top:3px}.task-actions{display:flex;align-items:center;gap:2px}.task-edit,.task-delete{border:0;background:transparent;color:#929a9e;line-height:1;cursor:pointer;padding:3px 4px}.task-edit{font-size:14px}.task-delete{font-size:18px}.task-edit:hover,.task-delete:hover{color:var(--dark)}.task-empty{padding:16px;border:1px dashed #c8cdd0;border-radius:7px;color:var(--mid);font-size:14px;background:#fafafa}
-.footer{background:var(--dark);color:#fff;padding:34px 0}.footer strong{font-family:'Montserrat',sans-serif}.footer div:last-child{color:#dce1e3;margin-top:3px}
-@media(max-width:960px){.dashboard-home{grid-template-columns:1fr}.tasks-pane{border-left:0;border-top:1px solid var(--light);padding-left:0;padding-top:26px}.project-card{grid-template-columns:1fr}.open-btn{width:max-content}}
-@media(max-width:700px){.topbar .wrap{padding:12px 0;align-items:flex-start;flex-direction:column}.chat-link{align-self:flex-start}}
-@media(max-width:560px){.wrap{width:calc(100% - 28px)}.brand-group{gap:14px}.brand-word{font-size:27px}.brand-divider{height:32px}.panel-title .line1{font-size:9px}.panel-title .line2{font-size:10px}}
+.topbar .wrap{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand-group{display:flex;align-items:center;gap:20px;min-width:0}
+.brand-word{font-family:'Montserrat',sans-serif;color:#fff;font-size:32px;line-height:1;font-weight:900;letter-spacing:.045em;white-space:nowrap}
+.brand-divider{width:1px;height:34px;background:rgba(255,255,255,.34);flex:0 0 auto}
+.panel-title{display:flex;flex-direction:column;justify-content:center;line-height:1.1;color:#fff;white-space:nowrap}
+.panel-title .line1{font-family:'Montserrat',sans-serif;font-size:12px;font-weight:500;letter-spacing:.02em;color:#f0f2f3}
+.panel-title .line2{margin-top:5px;font-family:'Montserrat',sans-serif;font-size:14px;font-weight:900;letter-spacing:.02em;color:#fff}
+.topbar-tools{display:flex;align-items:center;gap:10px}
+.chat-link{display:inline-flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid rgba(255,255,255,.28);border-radius:8px;background:rgba(255,255,255,.04);text-decoration:none;color:#fff;font-family:'Montserrat',sans-serif;font-size:12px;font-weight:800;letter-spacing:.01em}
+.chat-link:hover{background:rgba(255,255,255,.08)}
+.chat-icon{width:22px;height:22px;border-radius:50%;background:#fff;color:var(--dark);border:0;display:inline-flex;align-items:center;justify-content:center;font-family:'Montserrat',sans-serif;font-size:8px;font-weight:900;line-height:1;letter-spacing:-.03em;overflow:hidden;white-space:nowrap;flex:0 0 22px}
+
+.hero{background:var(--dark);color:#fff}
+.hero .wrap{padding:28px 0 32px}
+.search-label{font-size:10px;font-weight:900;letter-spacing:.14em;text-transform:uppercase;color:#d8dee1;margin-bottom:9px}
+.search-wrap{max-width:760px;position:relative}
+.search-input{width:100%;border:0;border-radius:8px;padding:16px 50px 16px 17px;font:600 14px 'Montserrat',sans-serif;outline:none;color:var(--dark)}
+.search-icon{position:absolute;right:17px;top:50%;transform:translateY(-50%);font-size:20px;color:var(--mid)}
+.search-help{margin-top:8px;color:#d7dddf;font-family:'Montserrat',sans-serif;font-size:9px;font-weight:700;letter-spacing:.03em}
+
+main{padding:48px 0 80px}
+.dashboard-home{display:grid;grid-template-columns:minmax(0,7fr) minmax(300px,3fr);gap:24px;align-items:start}
+.registry-head,.tasks-head{margin-bottom:20px}
+.section-no{font-size:10px;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--mid)}
+.registry-head h2,.tasks-head h2{margin:4px 0 0;font-family:'Montserrat',sans-serif;font-size:32px;line-height:1.1;color:var(--dark)}
+.project-list{display:grid;gap:16px}
+.project-card{display:grid;grid-template-columns:120px minmax(0,1fr) auto;gap:18px;align-items:center;padding:18px;border:1px solid var(--light);border-radius:9px;background:#fff;box-shadow:0 10px 30px rgba(72,81,86,.045);transition:.18s;position:relative}
+.project-card:hover{transform:translateY(-1px);border-color:#bbc1c4}
+.project-card.overdue{border:2px solid var(--red);background:var(--red-soft);box-shadow:0 8px 24px rgba(166,58,58,.12)}
+.project-no{background:var(--yellow-soft);border-radius:7px;padding:14px 10px;text-align:center;font-size:16px;font-weight:900;color:var(--dark)}
+.project-type{display:inline-flex;background:#eceff0;color:var(--mid);border-radius:999px;padding:4px 8px;font-size:8px;font-weight:900;letter-spacing:.1em;text-transform:uppercase}
+.project-card h3{margin:8px 0 0;font-family:'Montserrat',sans-serif;font-size:20px;color:var(--dark)}
+.project-card p{margin:7px 0 0;color:var(--mid);max-width:760px}
+.project-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.project-meta span{font-size:9px;font-weight:700;color:var(--mid);border:1px solid var(--light);padding:4px 7px;border-radius:4px;background:#fafafa}
+.status-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:10px}
+.status-label{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--mid);font-weight:800;text-transform:uppercase;letter-spacing:.05em}
+.status-badge,.deadline-badge{display:inline-flex;align-items:center;padding:5px 8px;border-radius:5px;font-family:'Montserrat',sans-serif;font-size:8px;font-weight:900;letter-spacing:.07em;text-transform:uppercase}
+.status-zaplanowany{background:#eceff0;color:#5f696e}.status-w-realizacji{background:#fff1b0;color:#665800}.status-przekazany-dalej{background:#e8f1f7;color:#345c78}.status-zakonczony{background:#eaf4ed;color:#2f6f45}
+.deadline-badge{display:none;background:#f3e5e5;color:#8b3030}
+.project-card.has-alarm .deadline-badge{display:inline-flex}
+.project-card.overdue .deadline-badge{background:var(--red);color:#fff}
+.open-btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;background:var(--dark);color:#fff;padding:10px 13px;border-radius:6px;font-size:9px;font-weight:900;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap}
+.open-btn:hover{background:var(--dark2)}
+.empty{display:none;margin-top:22px;padding:22px;border:1px dashed #c8cdd0;border-radius:8px;background:#fafafa;color:var(--mid)}
+
+.tasks-pane{border-left:1px solid var(--light);padding-left:24px;min-width:0}
+.task-entry{display:flex;gap:8px;margin-bottom:14px}
+.task-input{flex:1;min-width:0;border:1px solid var(--light);border-radius:7px;padding:11px 12px;font:600 13px 'Montserrat',sans-serif;outline:none}
+.task-add{border:0;border-radius:7px;background:var(--yellow);color:var(--dark);padding:10px 13px;font-size:9px;font-weight:900;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+.task-list{display:grid;gap:8px}
+.task-item{display:flex;align-items:flex-start;gap:10px;padding:11px 12px;border:1px solid var(--light);border-radius:7px;background:#fff}
+.task-check{margin-top:4px;accent-color:var(--dark)}
+.task-copy{flex:1;min-width:0}
+.task-text{font-weight:700;color:var(--dark);word-break:break-word}
+.task-item.done .task-text{text-decoration:line-through;color:#9aa1a5}
+.task-meta{font-family:'Montserrat',sans-serif;font-size:9px;color:var(--mid);margin-top:3px}
+.task-actions{display:flex;align-items:center;gap:2px}
+.task-edit,.task-delete{border:0;background:transparent;color:#929a9e;line-height:1;cursor:pointer;padding:3px 4px}
+.task-edit{font-size:14px}
+.task-delete{font-size:18px}
+.task-edit:hover,.task-delete:hover{color:var(--dark)}
+.task-empty{padding:16px;border:1px dashed #c8cdd0;border-radius:7px;color:var(--mid);font-size:14px;background:#fafafa}
+
+.footer{background:var(--dark);color:#fff;padding:34px 0}
+.footer strong{font-family:'Montserrat',sans-serif}
+.footer div:last-child{color:#dce1e3;margin-top:3px}
+
+@media(max-width:960px){
+  .dashboard-home{grid-template-columns:1fr}
+  .tasks-pane{border-left:0;border-top:1px solid var(--light);padding-left:0;padding-top:26px}
+  .project-card{grid-template-columns:1fr}
+  .open-btn{width:max-content}
+}
+@media(max-width:560px){
+  .wrap{width:calc(100% - 28px)}
+  .topbar .wrap{padding:12px 0;align-items:flex-start;flex-direction:column}
+  .brand-group{gap:14px}
+  .brand-word{font-size:27px}
+  .brand-divider{height:28px}
+  .panel-title .line1{font-size:10px}
+  .panel-title .line2{font-size:12px}
+  .chat-link{font-size:11px;padding:7px 10px}
+  .chat-icon{width:22px;height:22px;flex-basis:22px;font-size:8px}
+}
 </style>
 </head>
 <body>
-<nav class="topbar"><div class="wrap"><div class="brand-group"><div class="brand-word">PEREKO</div><div class="brand-divider"></div><div class="panel-title"><span class="line1">Panel główny</span><span class="line2">Projekty PEREKO</span></div></div><a class="chat-link" href="https://chatgpt.com/g/g-p-6ac4a386c1f481919dc5408ac4eaa089-projekty-marketing-pereko/c/6ac4a01e-f198-83ed-906a-264c6ddf46e8" target="_blank" rel="noopener noreferrer" title="Otwórz rozmowę projektu w ChatGPT"><span class="chat-icon">GPT</span><span>ChatGPT · ten projekt</span></a></div></nav>
-<header class="hero"><div class="wrap"><div class="search-label">Wyszukiwarka projektów</div><div class="search-wrap"><input id="projectSearch" class="search-input" type="search" placeholder="Wpisz numer projektu, nazwę lub frazę…" oninput="filterProjects()"><span class="search-icon">⌕</span></div><div class="search-help">Przykład: „195/26”, „karta gwarancyjna”, „Termosar Pro”, „25-lecie”, „Hotel Europa”.</div></div></header>
-<main><div class="wrap dashboard-home"><section class="projects-pane"><div class="registry-head"><div class="section-no">01 · rejestr projektów</div><h2>Lista projektów</h2></div><div id="projectList" class="project-list">
-<article class="project-card" data-project-id="195-2026" data-search="195/26 195/2026 195 26 2026 nowa karta gwarancyjna pompy ciepła termosar pro dokument dokumentacja gwarancja wersjonowanie jira lukasz pdf v0.1 v0.2"><div class="project-no">195/26</div><div><span class="project-type">Dokumentacja / pompy ciepła</span><h3>Nowa karta gwarancyjna do pomp ciepła Termosar Pro</h3><p>Opracowanie nowej karty gwarancyjnej dla serii Termosar Pro z pełnym rejestrem kolejnych wersji dokumentu i historią zmian.</p><div class="project-meta"><span>Termosar Pro</span><span>wersja v0.2</span><span>zmiany dla Łukasza</span></div><div class="status-row"><span class="status-label">Status</span><span class="status-badge"></span><span class="deadline-badge"></span></div></div><a class="open-btn" href="projekty/195-2026/">Otwórz projekt →</a></article>
-<article class="project-card" data-project-id="194-2026" data-search="194/26 194/2026 194 26 2026 25-lecie pereko event jubileusz hotel europa starachowice dystrybutorzy gala star stary muzeum fabryka projekt eventowy"><div class="project-no">194/26</div><div><span class="project-type">Event / jubileusz</span><h3>25-lecie PEREKO</h3><p>Organizacja jubileuszu 25-lecia marki PEREKO dla kluczowych dystrybutorów i ich partnerek. Aktualnie rozwijany wariant: Hotel Europa w Starachowicach.</p><div class="project-meta"><span>Hotel Europa</span><span>Gala jubileuszowa</span><span>STAR-y / muzeum / fabryka</span></div><div class="status-row"><span class="status-label">Status</span><span class="status-badge"></span><span class="deadline-badge"></span></div></div><a class="open-btn" href="projekty/194-2026/">Otwórz projekt →</a></article>
-</div><div id="emptyState" class="empty">Brak projektów pasujących do wpisanej frazy.</div></section><aside class="tasks-pane"><div class="tasks-head"><div class="section-no">02 · rejestr tasków</div><h2>Taski na dziś</h2></div><div class="task-entry"><input id="taskInput" class="task-input" type="text" placeholder="Wpisz task…" autocomplete="off"><button id="taskAdd" class="task-add">Dodaj</button></div><div id="taskList" class="task-list"></div></aside></div></main>
+<nav class="topbar">
+  <div class="wrap">
+    <div class="brand-group">
+      <div class="brand-word">PEREKO</div>
+      <span class="brand-divider"></span>
+      <div class="panel-title"><span class="line1">Panel główny</span><span class="line2">Projekty PEREKO</span></div>
+    </div>
+    <div class="topbar-tools">
+      <a class="chat-link" href="https://chatgpt.com/g/g-p-6ac4a386c1f481919dc5408ac4eaa089-projekty-marketing-pereko/c/6ac4a01e-f198-83ed-906a-264c6ddf46e8" target="_blank" rel="noopener">
+        <span class="chat-icon">GPT</span>
+        <span>ChatGPT · ten projekt</span>
+      </a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="search-label">Wyszukiwarka projektów</div>
+    <div class="search-wrap">
+      <input id="projectSearch" class="search-input" type="search" placeholder="Wpisz numer projektu, nazwę lub frazę…" oninput="filterProjects()">
+      <span class="search-icon">⌕</span>
+    </div>
+    <div class="search-help">Przykład: „195/26”, „karta gwarancyjna”, „Termosar Pro”, „25-lecie”, „Hotel Europa”.</div>
+  </div>
+</header>
+
+<main>
+<div class="wrap dashboard-home">
+<section class="projects-pane">
+  <div class="registry-head"><div class="section-no">01 · rejestr projektów</div><h2>Lista projektów</h2></div>
+  <div id="projectList" class="project-list">
+    <article class="project-card" data-project-id="195-2026" data-search="195/26 195/2026 195 26 2026 nowa karta gwarancyjna pompy ciepła termosar pro dokument dokumentacja gwarancja wersjonowanie jira lukasz Łukasz pdf v0.1 v0.2">
+      <div class="project-no">195/26</div>
+      <div>
+        <span class="project-type">Dokumentacja / pompy ciepła</span>
+        <h3>Nowa karta gwarancyjna do pomp ciepła Termosar Pro</h3>
+        <p>Opracowanie nowej karty gwarancyjnej dla serii Termosar Pro z pełnym rejestrem kolejnych wersji dokumentu i historią zmian.</p>
+        <div class="project-meta"><span>Termosar Pro</span><span>wersja v0.2</span><span>zmiany dla Łukasza</span></div>
+        <div class="status-row"><span class="status-label">Status</span><span class="status-badge"></span><span class="deadline-badge"></span></div>
+      </div>
+      <a class="open-btn" href="projekty/195-2026/">Otwórz projekt →</a>
+    </article>
+
+    <article class="project-card" data-project-id="194-2026" data-search="194/26 194/2026 194 26 2026 25-lecie 25 lecie pereko event jubileusz hotel europa starachowice dystrybutorzy gala star stary muzeum fabryka projekt eventowy">
+      <div class="project-no">194/26</div>
+      <div>
+        <span class="project-type">Event / jubileusz</span>
+        <h3>25-lecie PEREKO</h3>
+        <p>Organizacja jubileuszu 25-lecia marki PEREKO dla kluczowych dystrybutorów i ich partnerek. Aktualnie rozwijany wariant: Hotel Europa w Starachowicach.</p>
+        <div class="project-meta"><span>Hotel Europa</span><span>Gala jubileuszowa</span><span>STAR-y / muzeum / fabryka</span></div>
+        <div class="status-row"><span class="status-label">Status</span><span class="status-badge"></span><span class="deadline-badge"></span></div>
+      </div>
+      <a class="open-btn" href="projekty/194-2026/">Otwórz projekt →</a>
+    </article>
+  </div>
+  <div id="emptyState" class="empty">Brak projektów pasujących do wpisanej frazy.</div>
+</section>
+
+<aside class="tasks-pane">
+  <div class="tasks-head"><div class="section-no">02 · rejestr tasków</div><h2>Taski na dziś</h2></div>
+  <div class="task-entry"><input id="taskInput" class="task-input" type="text" placeholder="Wpisz task…" autocomplete="off"><button id="taskAdd" class="task-add">Dodaj</button></div>
+  <div id="taskList" class="task-list"></div>
+</aside>
+</div>
+</main>
+
 <footer class="footer"><div class="wrap"><strong>PEREKO • Centrum projektów</strong><div>Rejestr projektów roboczych</div></div></footer>
+
 <script>
 function normalize(text){return (text||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[\\/\-_.,;:()\[\]{}]+/g,' ').replace(/\s+/g,' ').trim()}
-function filterProjects(){const terms=normalize(document.getElementById('projectSearch').value.trim()).split(' ').filter(Boolean),cards=[...document.querySelectorAll('.project-card')];let visible=0;cards.forEach(card=>{const hay=normalize((card.dataset.search||'')+' '+card.innerText),match=!terms.length||terms.every(term=>hay.includes(term));card.style.display=match?'grid':'none';if(match)visible++});document.getElementById('emptyState').style.display=visible?'none':'block'}
+function filterProjects(){const input=document.getElementById('projectSearch');const raw=input.value.trim();const terms=normalize(raw).split(' ').filter(Boolean);const cards=[...document.querySelectorAll('.project-card')];let visible=0;cards.forEach(card=>{const hay=normalize((card.dataset.search||'')+' '+card.innerText);const match=!terms.length||terms.every(term=>hay.includes(term));card.style.display=match?'grid':'none';if(match)visible++});document.getElementById('emptyState').style.display=visible?'none':'block'}
 const TASK_KEY='pereko_home_tasks_v1',ALARM_KEY='pereko_project_alarms_v1',STATUS_KEY='pereko_project_statuses_v1';
-function readObj(key){try{return JSON.parse(localStorage.getItem(key)||'{}')}catch(e){return {}}}function writeObj(key,obj){localStorage.setItem(key,JSON.stringify(obj))}
-function loadTasks(){let tasks=[];try{tasks=JSON.parse(localStorage.getItem(TASK_KEY)||'[]')}catch(e){}const now=Date.now();tasks=tasks.filter(t=>!(t.doneAt&&now-new Date(t.doneAt).getTime()>=86400000));localStorage.setItem(TASK_KEY,JSON.stringify(tasks));return tasks}function saveTasks(tasks){localStorage.setItem(TASK_KEY,JSON.stringify(tasks))}
+function readObj(key){try{return JSON.parse(localStorage.getItem(key)||'{}')}catch(e){return {}}}
+function writeObj(key,obj){localStorage.setItem(key,JSON.stringify(obj))}
+function loadTasks(){let tasks=[];try{tasks=JSON.parse(localStorage.getItem(TASK_KEY)||'[]')}catch(e){}const now=Date.now();tasks=tasks.filter(t=>!(t.doneAt&&now-new Date(t.doneAt).getTime()>=86400000));localStorage.setItem(TASK_KEY,JSON.stringify(tasks));return tasks}
+function saveTasks(tasks){localStorage.setItem(TASK_KEY,JSON.stringify(tasks))}
 function renderTasks(){const list=document.getElementById('taskList'),tasks=loadTasks();list.innerHTML='';if(!tasks.length){list.innerHTML='<div class="task-empty">Brak tasków na dziś.</div>';return}tasks.forEach(t=>{const row=document.createElement('div');row.className='task-item'+(t.doneAt?' done':'');const d=new Date(t.createdAt),dd=String(d.getDate()).padStart(2,'0'),mo=String(d.getMonth()+1).padStart(2,'0'),yy=d.getFullYear(),hh=String(d.getHours()).padStart(2,'0'),mm=String(d.getMinutes()).padStart(2,'0');row.innerHTML=`<input class="task-check" type="checkbox" ${t.doneAt?'checked':''}><div class="task-copy"><div class="task-text"></div><div class="task-meta">dodano ${dd}.${mo}.${yy} · ${hh}:${mm}${t.editedAt?' · edytowano':''}${t.doneAt?' · wykonane':''}</div></div><div class="task-actions"><button class="task-edit" title="Edytuj task">✎</button><button class="task-delete" title="Usuń task">×</button></div>`;row.querySelector('.task-text').textContent=t.text;row.querySelector('.task-check').onchange=e=>{const a=loadTasks(),i=a.find(x=>x.id===t.id);if(i){i.doneAt=e.target.checked?new Date().toISOString():null;saveTasks(a);renderTasks()}};row.querySelector('.task-edit').onclick=()=>{const next=prompt('Edytuj task:',t.text);if(next===null)return;const value=next.trim();if(!value)return;const a=loadTasks(),i=a.find(x=>x.id===t.id);if(i){i.text=value;i.editedAt=new Date().toISOString();saveTasks(a);renderTasks()}};row.querySelector('.task-delete').onclick=()=>{saveTasks(loadTasks().filter(x=>x.id!==t.id));renderTasks()};list.appendChild(row)})}
 function addTask(){const i=document.getElementById('taskInput'),text=i.value.trim();if(!text)return;const a=loadTasks();a.unshift({id:String(Date.now()),text,createdAt:new Date().toISOString(),doneAt:null});saveTasks(a);i.value='';renderTasks()}
 function slugStatus(s){return 'status-'+normalize(s).replace(/\s+/g,'-')}
