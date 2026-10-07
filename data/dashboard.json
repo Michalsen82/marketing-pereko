@@ -20,7 +20,7 @@
       "specialProgressManaged": true,
       "specialProgressDone": 4,
       "specialProgressTotal": 16,
-      "specialProgressUpdatedAt": "2026-09-24T08:35:15.411Z"
+      "specialProgressUpdatedAt": "2026-10-07T10:27:27.193Z"
     },
     {
       "id": "p1",
@@ -912,5 +912,5 @@
       ]
     }
   ],
-  "updatedAt": "2026-10-07T10:15:15.060Z"
+  "updatedAt": "2026-10-07T10:27:27.193Z"
 }
