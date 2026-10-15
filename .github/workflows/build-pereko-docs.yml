@@ -39,7 +39,14 @@ jobs:
           git add docs/pereko-docs/pl
           if git diff --cached --quiet; then
             echo "No document changes to commit."
-            exit 0
+          else
+            git commit -m "Aktualizuj publiczne dokumenty PEREKO"
+            git push
           fi
-          git commit -m "Aktualizuj publiczne dokumenty PEREKO"
-          git push
+
+      - name: Package current PL documents
+        uses: actions/upload-artifact@v4
+        with:
+          name: pereko-docs-pl
+          path: docs/pereko-docs/pl/*.pdf
+          retention-days: 1
