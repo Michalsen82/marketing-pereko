@@ -1,13 +1,12 @@
-# Triggered by source changes and workflow updates.
+# Generator publicznych, rozdzielonych dokumentów PEREKO.
 from __future__ import annotations
 
-import io
 import json
 import re
 import urllib.request
 from pathlib import Path
 
-from pypdf import PdfReader, PdfWriter
+import fitz  # PyMuPDF
 
 OUT = Path("docs/pereko-docs/pl")
 OUT.mkdir(parents=True, exist_ok=True)
@@ -26,41 +25,53 @@ def download(filename: str) -> bytes:
     return data
 
 
+def open_pdf(data: bytes) -> fitz.Document:
+    return fitz.open(stream=data, filetype="pdf")
+
+
 def write_pdf(data: bytes, ranges: list[tuple[int, int]], output_name: str, expected_pages: int | None = None) -> dict:
-    reader = PdfReader(io.BytesIO(data))
-    page_count = len(reader.pages)
+    src = open_pdf(data)
+    page_count = src.page_count
     if expected_pages is not None and page_count != expected_pages:
+        src.close()
         raise RuntimeError(f"{output_name}: źródło ma {page_count} stron, oczekiwano {expected_pages}")
 
-    writer = PdfWriter()
-    selected = []
+    out = fitz.open()
+    selected_count = 0
     for start, end in ranges:
         if start < 0 or end >= page_count or start > end:
+            out.close()
+            src.close()
             raise RuntimeError(f"{output_name}: błędny zakres stron {start}-{end} przy {page_count} stronach")
-        for i in range(start, end + 1):
-            writer.add_page(reader.pages[i])
-            selected.append(i)
+        out.insert_pdf(src, from_page=start, to_page=end, links=True, annots=True)
+        selected_count += end - start + 1
 
     target = OUT / output_name
-    with target.open("wb") as f:
-        writer.write(f)
-    return {"file": output_name, "pages": len(selected), "source_pages": page_count}
+    out.save(target, garbage=4, deflate=True, clean=True)
+    out.close()
+    src.close()
+    return {"file": output_name, "pages": selected_count, "source_pages": page_count}
 
 
 def copy_pdf(data: bytes, output_name: str) -> dict:
-    reader = PdfReader(io.BytesIO(data))
+    src = open_pdf(data)
+    page_count = src.page_count
+    src.close()
     target = OUT / output_name
     target.write_bytes(data)
-    return {"file": output_name, "pages": len(reader.pages), "source_pages": len(reader.pages)}
+    return {"file": output_name, "pages": page_count, "source_pages": page_count}
 
 
 def detect_px100_start(data: bytes) -> int:
-    reader = PdfReader(io.BytesIO(data))
-    for i, page in enumerate(reader.pages):
-        text = (page.extract_text() or "").upper()
-        normalized = re.sub(r"\s+", " ", text)
-        if "PX100" in normalized and "REGULATOR" in normalized and "INSTRUKCJA" in normalized:
-            return i
+    src = open_pdf(data)
+    try:
+        for i in range(src.page_count):
+            text = src.load_page(i).get_text("text").upper()
+            normalized = re.sub(r"\s+", " ", text)
+            if "PX100" in normalized and "REGULATOR" in normalized and "INSTRUKCJA" in normalized:
+                return i
+    finally:
+        src.close()
     raise RuntimeError("Nie znaleziono początku instrukcji PX100 w PI")
 
 
@@ -147,13 +158,15 @@ add_split(
 )
 
 pi_data = download("pi-dtr.pdf")
-pi_reader = PdfReader(io.BytesIO(pi_data))
+pi_doc = open_pdf(pi_data)
+pi_pages = pi_doc.page_count
+pi_doc.close()
 pi_start = detect_px100_start(pi_data)
 manifest["PI"] = {
     "source": BASE + "pi-dtr.pdf",
     "detected_controller_start_page_1_based": pi_start + 1,
     "dtr": write_pdf(pi_data, [(0, pi_start - 1)], "pi-dtr-pl.pdf"),
-    "controller": write_pdf(pi_data, [(pi_start, len(pi_reader.pages) - 1)], "pi-sterownik-px100-pl.pdf"),
+    "controller": write_pdf(pi_data, [(pi_start, pi_pages - 1)], "pi-sterownik-px100-pl.pdf"),
 }
 
 add_split(
