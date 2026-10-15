@@ -2,7 +2,6 @@
 from __future__ import annotations
 
 import json
-import re
 import urllib.request
 from pathlib import Path
 
@@ -60,19 +59,6 @@ def copy_pdf(data: bytes, output_name: str) -> dict:
     target = OUT / output_name
     target.write_bytes(data)
     return {"file": output_name, "pages": page_count, "source_pages": page_count}
-
-
-def detect_px100_start(data: bytes) -> int:
-    src = open_pdf(data)
-    try:
-        for i in range(src.page_count):
-            text = src.load_page(i).get_text("text").upper()
-            normalized = re.sub(r"\s+", " ", text)
-            if "PX100" in normalized and "REGULATOR" in normalized and "INSTRUKCJA" in normalized:
-                return i
-    finally:
-        src.close()
-    raise RuntimeError("Nie znaleziono początku instrukcji PX100 w PI")
 
 
 manifest: dict[str, dict] = {}
@@ -157,16 +143,17 @@ add_split(
     "ksm-sterownik-ecomax-910r1-pl.pdf",
 )
 
+# PI: właściwa DTR kotła zajmuje strony 1-12 źródła. Dalej w pliku znajdują się
+# różne generacje instrukcji regulatorów. Dla aktualnie opisanych wariantów kotła
+# wydzielamy osobno IE-80v1 (3,2 kW) oraz PX100 (10 i 21 kW).
 pi_data = download("pi-dtr.pdf")
-pi_doc = open_pdf(pi_data)
-pi_pages = pi_doc.page_count
-pi_doc.close()
-pi_start = detect_px100_start(pi_data)
 manifest["PI"] = {
     "source": BASE + "pi-dtr.pdf",
-    "detected_controller_start_page_1_based": pi_start + 1,
-    "dtr": write_pdf(pi_data, [(0, pi_start - 1)], "pi-dtr-pl.pdf"),
-    "controller": write_pdf(pi_data, [(pi_start, pi_pages - 1)], "pi-sterownik-px100-pl.pdf"),
+    "dtr": write_pdf(pi_data, [(0, 11)], "pi-dtr-pl.pdf", 118),
+    "controller": {
+        "3.2": write_pdf(pi_data, [(52, 77)], "pi-sterownik-ie-80v1-pl.pdf", 118),
+        "10-21": write_pdf(pi_data, [(78, 117)], "pi-sterownik-px100-pl.pdf", 118),
+    },
 }
 
 add_split(
