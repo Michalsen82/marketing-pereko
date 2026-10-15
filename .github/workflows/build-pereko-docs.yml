@@ -5,7 +5,6 @@ on:
   push:
     paths:
       - "scripts/split_pereko_docs.py"
-      - "scripts/inspect_pi_pdf.py"
       - ".github/workflows/build-pereko-docs.yml"
 
 permissions:
@@ -29,9 +28,6 @@ jobs:
 
       - name: Install PDF library
         run: python -m pip install --disable-pip-version-check pymupdf
-
-      - name: Inspect PI source PDF
-        run: python scripts/inspect_pi_pdf.py
 
       - name: Download and split official PEREKO PDFs
         run: python scripts/split_pereko_docs.py
