@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PEREKO – Projekt 197/26 | Portal plików dla Łukasza Szymborskiego</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--yellow:#ffdd00;--yellow-soft:#fff2a8;--dark:#485156;--dark2:#343b3f;--mid:#6e777d;--light:#dadfe1;--soft:#f6f7f7;--ink:#343b3f}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);font-family:'Source Sans 3',sans-serif;background:#fff}.wrap{width:min(1240px,calc(100% - 64px));margin:0 auto}h1,h2,h3,.brand,.ui,.btn,.section-no,.status-select{font-family:'Montserrat',sans-serif}
+.top{position:sticky;top:0;z-index:1000;background:var(--dark);color:#fff}.top .wrap{min-height:80px;display:flex;align-items:center;justify-content:space-between;gap:20px}.top-left{display:flex;align-items:center;gap:18px;flex-wrap:wrap}.brand{font-size:32px;font-weight:900;letter-spacing:.045em}.divider{width:1px;height:34px;background:#ffffff55}.title{font-family:'Montserrat',sans-serif;font-size:13px;font-weight:800}.btn{color:#fff;text-decoration:none;border:1px solid #ffffff55;padding:8px 11px;border-radius:5px;font-size:9px;font-weight:800}.hero{background:var(--dark);color:#fff}.hero .wrap{padding:42px 0 46px}.hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(250px,.45fr);gap:18px;align-items:start}.hero h1{margin:0;font-size:clamp(38px,5vw,62px);line-height:1.03;letter-spacing:-.04em}.hero p{max-width:900px;margin:16px 0 0;color:#e9ecee;font-size:18px}.status{background:var(--yellow);color:var(--dark);padding:14px 15px;border-radius:8px}.status .ui{font-size:9px;font-weight:900}.status-select{width:100%;margin-top:8px;padding:9px 10px;border-radius:5px;border:1px solid #0002;background:#fff;font-size:9px;font-weight:800}.section{padding:44px 0;border-bottom:1px solid var(--light)}.section-head{display:grid;grid-template-columns:270px 1fr;gap:38px;margin-bottom:22px}.section-no{font-size:9px;font-weight:900;letter-spacing:.12em;color:var(--mid)}h2{margin:5px 0 0;font-size:clamp(28px,3vw,40px)}.lead{margin:0;color:var(--mid);font-size:17px}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--light);border-radius:8px;padding:18px;background:#fff}.card h3{margin:0;font-size:17px}.card p{margin:7px 0 0;color:var(--mid)}.note{margin-top:16px;padding:15px 16px;border-left:4px solid var(--yellow);background:#fafaf8}.footer{background:var(--dark);color:#fff;padding:32px 0}.footer strong{font-family:'Montserrat',sans-serif}.alarm-panel{position:fixed;inset:0;background:#0007;display:none;place-items:center;z-index:2000}.alarm-panel.show{display:grid}.alarm-dialog{width:min(440px,calc(100% - 40px));background:#fff;padding:22px;border-radius:9px}.alarm-dialog input{width:100%;padding:11px;border:1px solid var(--light);border-radius:6px}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.actions button{border:0;border-radius:5px;padding:9px 11px;font:800 8px Montserrat}.save{background:var(--yellow)}.cancel{background:var(--dark);color:#fff}@media(max-width:900px){.hero-grid,.section-head{grid-template-columns:1fr}.cards{grid-template-columns:1fr}.top .wrap{padding:10px 0;align-items:flex-start;flex-direction:column}}@media(max-width:600px){.wrap{width:calc(100% - 28px)}.brand{font-size:27px}}
+</style>
+</head>
+<body>
+<nav class="top"><div class="wrap"><div class="top-left"><div class="brand">PEREKO</div><span class="divider"></span><div class="title">Projekt 197/26 · Portal dokumentów dla Łukasza Szymborskiego</div><a class="btn" href="/">← Projekty</a><button id="alarmTopBtn" class="btn" onclick="openAlarm()">Ustaw alarm</button></div></div></nav>
+<header class="hero"><div class="wrap"><div class="hero-grid"><div><h1>Portal plików dla Łukasza Szymborskiego</h1><p>Projekt dedykowanej strony HTML, z której będzie można pobierać dokumentację techniczno-ruchową, instrukcje obsługi oraz cenniki urządzeń grzewczych PEREKO w różnych językach i walutach.</p></div><div class="status"><div class="ui">STATUS PROJEKTU</div><select id="projectStatus" class="status-select" onchange="saveStatus()"><option value="zaplanowany">Zaplanowany</option><option value="w realizacji">W realizacji</option><option value="przekazany dalej">Przekazany dalej</option><option value="zakończony">Zakończony</option></select></div></div></div></header>
+<main>
+<section class="section"><div class="wrap"><div class="section-head"><div><div class="section-no">01 · CEL PROJEKTU</div><h2>Zakres strony</h2></div><p class="lead">Strona będzie centralnym miejscem pobierania materiałów przeznaczonych dla Łukasza Szymborskiego. Gotowy plik HTML zostanie podpięty do projektu po zakończeniu prac.</p></div><div class="cards"><div class="card"><h3>DTR i dokumentacja</h3><p>Dokumentacja techniczno-ruchowa do urządzeń grzewczych PEREKO.</p></div><div class="card"><h3>Instrukcje obsługi</h3><p>Instrukcje użytkownika i materiały eksploatacyjne dla poszczególnych urządzeń.</p></div><div class="card"><h3>Cenniki</h3><p>Cenniki w różnych językach oraz wersjach walutowych.</p></div></div><div class="note"><strong>Aktualny etap:</strong> projekt otwarty. Oczekujemy na gotowy plik HTML, który zostanie później zaimplementowany jako właściwa strona projektu.</div></div></section>
+</main>
+<footer class="footer"><div class="wrap"><strong>PEREKO • Projekt 197/26</strong><div>Portal dokumentów i cenników dla Łukasza Szymborskiego</div></div></footer>
+<div id="alarmPanel" class="alarm-panel" onclick="if(event.target===this)closeAlarm()"><div class="alarm-dialog"><h3>Alarm projektu 197/26</h3><input id="alarmDate" type="date"><div class="actions"><button onclick="clearAlarm()">Wyłącz alarm</button><button class="cancel" onclick="closeAlarm()">Anuluj</button><button class="save" onclick="saveAlarm()">Ustaw alarm</button></div></div></div>
+<script>
+const PROJECT_ID='197-2026',STATUS_KEY='pereko_project_statuses_v1',ALARM_KEY='pereko_project_alarms_v1';
+function readObj(k){try{return JSON.parse(localStorage.getItem(k)||'{}')}catch(e){return {}}}function writeObj(k,o){localStorage.setItem(k,JSON.stringify(o))}
+function loadStatus(){const s=readObj(STATUS_KEY);if(!s[PROJECT_ID]){s[PROJECT_ID]='w realizacji';writeObj(STATUS_KEY,s)}document.getElementById('projectStatus').value=s[PROJECT_ID]}
+function saveStatus(){const s=readObj(STATUS_KEY);s[PROJECT_ID]=document.getElementById('projectStatus').value;writeObj(STATUS_KEY,s)}
+function openAlarm(){const a=readObj(ALARM_KEY);document.getElementById('alarmDate').value=a[PROJECT_ID]||'';document.getElementById('alarmPanel').classList.add('show')}
+function closeAlarm(){document.getElementById('alarmPanel').classList.remove('show')}
+function saveAlarm(){const d=document.getElementById('alarmDate').value;if(!d)return;const a=readObj(ALARM_KEY);a[PROJECT_ID]=d;writeObj(ALARM_KEY,a);closeAlarm();refreshAlarm()}
+function clearAlarm(){const a=readObj(ALARM_KEY);delete a[PROJECT_ID];writeObj(ALARM_KEY,a);closeAlarm();refreshAlarm()}
+function refreshAlarm(){const d=readObj(ALARM_KEY)[PROJECT_ID];document.getElementById('alarmTopBtn').textContent=d?'Alarm: '+d:'Ustaw alarm'}
+loadStatus();refreshAlarm();
+</script>
+</body>
+</html>
