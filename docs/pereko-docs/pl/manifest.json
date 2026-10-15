@@ -1,0 +1,171 @@
+{
+  "QMPELL EVO": {
+    "source": "https://www.pereko.pl/downloads/qmpell-evo-dtr.pdf",
+    "dtr": {
+      "file": "qmpell-evo-dtr-pl.pdf",
+      "pages": 28,
+      "source_pages": 76
+    },
+    "controller": {
+      "file": "qmpell-evo-sterownik-ecomaxx-920p1-touch-pl.pdf",
+      "pages": 48,
+      "source_pages": 76
+    }
+  },
+  "QMPELL DUO": {
+    "source": "https://www.pereko.pl/downloads/qmpell-duo-dtr.pdf",
+    "dtr": {
+      "file": "qmpell-duo-dtr-pl.pdf",
+      "pages": 24,
+      "source_pages": 72
+    },
+    "controller": {
+      "file": "qmpell-duo-sterownik-ecomaxx-920p1-touch-pl.pdf",
+      "pages": 48,
+      "source_pages": 72
+    }
+  },
+  "COMFORT-PELL": {
+    "source": "https://www.pereko.pl/downloads/comfort-pell-dtr.pdf",
+    "dtr": {
+      "file": "comfort-pell-dtr-pl.pdf",
+      "pages": 40,
+      "source_pages": 88
+    },
+    "controller": {
+      "file": "comfort-pell-sterownik-ecomax860p3-c-touch-pl.pdf",
+      "pages": 48,
+      "source_pages": 88
+    }
+  },
+  "SPARK EVO": {
+    "source": "https://www.pereko.pl/downloads/spark-evo-dtr.pdf",
+    "dtr": {
+      "file": "spark-evo-dtr-pl.pdf",
+      "pages": 32,
+      "source_pages": 48
+    },
+    "controller": {
+      "file": "spark-evo-instrukcja-sterowania-pl.pdf",
+      "pages": 17,
+      "source_pages": 48
+    }
+  },
+  "PELL-STAR": {
+    "source": "https://www.pereko.pl/downloads/pell-star-dtr.pdf",
+    "dtr": {
+      "file": "pell-star-dtr-pl.pdf",
+      "pages": 44,
+      "source_pages": 96
+    },
+    "controller": {
+      "file": "pell-star-sterownik-st-976-pl.pdf",
+      "pages": 52,
+      "source_pages": 96
+    }
+  },
+  "PELL-STAR PRO": {
+    "source": "https://www.pereko.pl/downloads/pell-star-pro-dtr.pdf",
+    "dtr": {
+      "file": "pell-star-pro-dtr-pl.pdf",
+      "pages": 40,
+      "source_pages": 92
+    },
+    "controller": {
+      "file": "pell-star-pro-sterownik-st-976-pl.pdf",
+      "pages": 52,
+      "source_pages": 92
+    }
+  },
+  "KSM": {
+    "source": "https://www.pereko.pl/downloads/ksm-dtr.pdf",
+    "dtr": {
+      "file": "ksm-dtr-pl.pdf",
+      "pages": 24,
+      "source_pages": 72
+    },
+    "controller": {
+      "file": "ksm-sterownik-ecomax-910r1-pl.pdf",
+      "pages": 48,
+      "source_pages": 72
+    }
+  },
+  "PI": {
+    "source": "https://www.pereko.pl/downloads/pi-dtr.pdf",
+    "detected_controller_start_page_1_based": 3,
+    "dtr": {
+      "file": "pi-dtr-pl.pdf",
+      "pages": 2,
+      "source_pages": 118
+    },
+    "controller": {
+      "file": "pi-sterownik-px100-pl.pdf",
+      "pages": 116,
+      "source_pages": 118
+    }
+  },
+  "SONIC": {
+    "source": "https://www.pereko.pl/downloads/sonic-dtr.pdf",
+    "dtr": {
+      "file": "sonic-dtr-pl.pdf",
+      "pages": 12,
+      "source_pages": 52
+    },
+    "controller": {
+      "file": "sonic-sterownik-px100-pl.pdf",
+      "pages": 40,
+      "source_pages": 52
+    }
+  },
+  "RETRO DUO": {
+    "source": "https://www.pereko.pl/downloads/retro-duo-dtr.pdf",
+    "dtr": {
+      "file": "retro-duo-dtr-pl.pdf",
+      "pages": 24,
+      "source_pages": 24
+    },
+    "controller": null
+  },
+  "RETRO": {
+    "source": "https://www.pereko.pl/downloads/retro-d-dtr.pdf",
+    "dtr": {
+      "file": "retro-dtr-pl.pdf",
+      "pages": 20,
+      "source_pages": 20
+    },
+    "controller": null
+  },
+  "KARBO": {
+    "source": "https://www.pereko.pl/downloads/karbo-dtr.pdf",
+    "dtr": {
+      "file": "karbo-dtr-pl.pdf",
+      "pages": 20,
+      "source_pages": 20
+    },
+    "controller": null
+  },
+  "TERMOSTAR PRO": {
+    "dtr": {
+      "6-18": {
+        "file": "termostar-pro-6-18-dtr-pl.pdf",
+        "pages": 68,
+        "source_pages": 68
+      },
+      "19-28": {
+        "file": "termostar-pro-19-28-dtr-pl.pdf",
+        "pages": 56,
+        "source_pages": 56
+      },
+      "38-48": {
+        "file": "termostar-pro-38-48-dtr-pl.pdf",
+        "pages": 60,
+        "source_pages": 60
+      }
+    },
+    "controller": {
+      "file": "termostar-pro-sterownik-px300-pl.pdf",
+      "pages": 40,
+      "source_pages": 40
+    }
+  }
+}
