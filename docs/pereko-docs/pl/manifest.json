@@ -92,16 +92,22 @@
   },
   "PI": {
     "source": "https://www.pereko.pl/downloads/pi-dtr.pdf",
-    "detected_controller_start_page_1_based": 3,
     "dtr": {
       "file": "pi-dtr-pl.pdf",
-      "pages": 2,
+      "pages": 12,
       "source_pages": 118
     },
     "controller": {
-      "file": "pi-sterownik-px100-pl.pdf",
-      "pages": 116,
-      "source_pages": 118
+      "3.2": {
+        "file": "pi-sterownik-ie-80v1-pl.pdf",
+        "pages": 26,
+        "source_pages": 118
+      },
+      "10-21": {
+        "file": "pi-sterownik-px100-pl.pdf",
+        "pages": 40,
+        "source_pages": 118
+      }
     }
   },
   "SONIC": {
