@@ -27,7 +27,7 @@ jobs:
           python-version: "3.12"
 
       - name: Install PDF library
-        run: python -m pip install --disable-pip-version-check pypdf
+        run: python -m pip install --disable-pip-version-check pymupdf
 
       - name: Download and split official PEREKO PDFs
         run: python scripts/split_pereko_docs.py
