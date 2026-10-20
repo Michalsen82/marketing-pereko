@@ -1378,3 +1378,29 @@ body.project-detail-page .summary .card small{
   margin-bottom:6px!important;
   color:#819097!important;
 }
+
+/* v3.12 — exact two-line heading for project 195 */
+body.project-detail-page .thermostar-title{
+  max-width:none!important;
+  width:max-content!important;
+  font-size:clamp(42px,4.15vw,62px)!important;
+  line-height:1.02!important;
+}
+body.project-detail-page .thermostar-title>span{
+  display:block!important;
+  white-space:nowrap!important;
+}
+@media(max-width:1100px){
+  body.project-detail-page .thermostar-title{
+    width:auto!important;
+    font-size:clamp(38px,5vw,54px)!important;
+  }
+}
+@media(max-width:760px){
+  body.project-detail-page .thermostar-title{
+    font-size:clamp(32px,9vw,44px)!important;
+  }
+  body.project-detail-page .thermostar-title>span{
+    white-space:normal!important;
+  }
+}
