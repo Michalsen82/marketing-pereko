@@ -1404,3 +1404,27 @@ body.project-detail-page .thermostar-title>span{
     white-space:normal!important;
   }
 }
+
+/* v3.13 — approved job-copy marker */
+body.project-detail-page .job-approved{
+  display:inline-flex!important;
+  align-items:center!important;
+  gap:6px!important;
+  margin:0 0 6px!important;
+  color:#7a6500!important;
+  font-size:9px!important;
+  line-height:1!important;
+  font-weight:800!important;
+  letter-spacing:.08em!important;
+  text-transform:uppercase!important;
+}
+body.project-detail-page .job-approved:before{
+  content:"✓"!important;
+  display:inline-block!important;
+  color:#7a6500!important;
+  font-size:11px!important;
+  font-weight:900!important;
+}
+body.project-detail-page .job-card.approved .job-no{
+  border-color:#d9c96d!important;
+}
