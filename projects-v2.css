@@ -360,3 +360,341 @@ body.home-dashboard .dashboard-home{width:min(1480px,calc(100% - 68px))!importan
   .pv-footer-logo{width:104px!important}
   .pv-profile-copy{display:none}
 }
+
+
+/* v3.5 — all project detail pages in Partner B2B 2.0 visual language */
+body.project-detail-page{
+  --pd-ink:#172126;
+  --pd-text:#44535a;
+  --pd-muted:#839198;
+  --pd-line:#dfe4e7;
+  --pd-soft:#f8f9f9;
+  --pd-yellow:#f2c900;
+  --pd-gold:#987900;
+}
+body.project-detail-page main{padding-bottom:88px!important}
+body.project-detail-page .wrap,
+body.project-detail-page .w{width:min(1480px,calc(100% - 68px))!important;margin-left:auto!important;margin-right:auto!important}
+
+/* calmer project hero */
+body.project-detail-page .hero .wrap,
+body.project-detail-page .hero>.w{
+  padding:64px 0 54px!important;
+  border-bottom:1px solid var(--pd-line)!important;
+}
+body.project-detail-page .hero-grid,
+body.project-detail-page .heroGrid{
+  display:grid!important;
+  grid-template-columns:minmax(0,1.5fr) minmax(250px,.5fr)!important;
+  gap:82px!important;
+  align-items:start!important;
+}
+body.project-detail-page .kicker,
+body.project-detail-page .hero .ui{
+  color:var(--pd-gold)!important;
+  font-size:10px!important;
+  letter-spacing:.13em!important;
+  font-weight:850!important;
+  text-transform:uppercase!important;
+}
+body.project-detail-page .hero h1{
+  max-width:900px!important;
+  font-size:clamp(42px,4.8vw,66px)!important;
+  line-height:1.01!important;
+  letter-spacing:-.055em!important;
+  font-weight:800!important;
+}
+body.project-detail-page .hero p{
+  max-width:800px!important;
+  color:#6f7e85!important;
+  font-size:15px!important;
+  line-height:1.72!important;
+}
+body.project-detail-page .hero-side,
+body.project-detail-page .status{
+  border-left:1px solid var(--pd-line)!important;
+  padding:5px 0 5px 30px!important;
+  background:#fff!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+}
+body.project-detail-page .status-select{
+  width:100%!important;
+  border:0!important;
+  border-bottom:1px solid var(--pd-line)!important;
+  border-radius:0!important;
+  padding:11px 0!important;
+  background:#fff!important;
+  font-size:11px!important;
+  color:var(--pd-ink)!important;
+}
+
+/* all sections: more air, fewer boxes */
+body.project-detail-page .section,
+body.project-detail-page .sec{
+  padding:64px 0!important;
+  border-bottom:1px solid var(--pd-line)!important;
+  background:#fff!important;
+}
+body.project-detail-page .section-head,
+body.project-detail-page .head{
+  display:grid!important;
+  grid-template-columns:290px minmax(0,1fr)!important;
+  gap:70px!important;
+  align-items:start!important;
+  margin-bottom:34px!important;
+}
+body.project-detail-page .section-no,
+body.project-detail-page .n{
+  color:var(--pd-gold)!important;
+  font-size:9px!important;
+  font-weight:850!important;
+  letter-spacing:.14em!important;
+}
+body.project-detail-page .section h2,
+body.project-detail-page .sec h2{
+  margin:7px 0 0!important;
+  font-size:31px!important;
+  line-height:1.16!important;
+  letter-spacing:-.035em!important;
+  color:var(--pd-ink)!important;
+}
+body.project-detail-page .lead{
+  margin:0!important;
+  max-width:780px!important;
+  color:#79878e!important;
+  font-size:14px!important;
+  line-height:1.72!important;
+}
+
+/* generic former cards become editorial rows */
+body.project-detail-page .cards,
+body.project-detail-page .summary,
+body.project-detail-page .template-grid{
+  border-top:1px solid var(--pd-line)!important;
+  gap:0!important;
+}
+body.project-detail-page .card,
+body.project-detail-page .template-card,
+body.project-detail-page .date-card,
+body.project-detail-page .info-card{
+  border:0!important;
+  border-bottom:1px solid var(--pd-line)!important;
+  border-radius:0!important;
+  background:#fff!important;
+  box-shadow:none!important;
+  padding:22px 4px!important;
+}
+body.project-detail-page .card h3,
+body.project-detail-page .template-card h3{
+  color:var(--pd-ink)!important;
+  font-size:14px!important;
+  font-weight:750!important;
+}
+body.project-detail-page .card p,
+body.project-detail-page .template-card p{
+  color:#819097!important;
+  font-size:12px!important;
+  line-height:1.6!important;
+}
+body.project-detail-page .note{
+  margin-top:28px!important;
+  border:0!important;
+  border-left:2px solid var(--pd-yellow)!important;
+  border-radius:0!important;
+  background:#fffdf3!important;
+  padding:17px 20px!important;
+  color:#5c6b72!important;
+  font-size:12px!important;
+  line-height:1.62!important;
+}
+
+/* buttons: quiet, rectangular, sparse */
+body.project-detail-page button,
+body.project-detail-page .btn,
+body.project-detail-page .project-back,
+body.project-detail-page .alarm-btn,
+body.project-detail-page .mini-btn,
+body.project-detail-page .toggle-btn{
+  border-radius:6px!important;
+  box-shadow:none!important;
+}
+body.project-detail-page .mini-btn,
+body.project-detail-page .toggle-btn,
+body.project-detail-page .project-back,
+body.project-detail-page .alarm-btn{
+  border:1px solid var(--pd-line)!important;
+  background:#fff!important;
+  color:#68777e!important;
+  font-size:9px!important;
+  font-weight:750!important;
+  padding:8px 10px!important;
+}
+body.project-detail-page .mini-btn:hover,
+body.project-detail-page .toggle-btn:hover{background:#fafbfb!important;color:var(--pd-ink)!important}
+body.project-detail-page .status-pill,
+body.project-detail-page .tag,
+body.project-detail-page .source-badge{
+  border-radius:4px!important;
+  font-size:8px!important;
+  padding:4px 6px!important;
+  letter-spacing:.03em!important;
+}
+
+/* Project 194 — budget, agenda, contacts */
+body.project-detail-page .budget-group{margin:0!important;border-top:1px solid var(--pd-line)!important}
+body.project-detail-page .budget-group>div,
+body.project-detail-page .budget-row{border-bottom:1px solid var(--pd-line)!important}
+body.project-detail-page .hotel{background:#fffdf3!important}
+body.project-detail-page .steps{
+  display:grid!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:0!important;
+  border-top:1px solid var(--pd-line)!important;
+}
+body.project-detail-page .step{
+  border:0!important;
+  border-right:1px solid var(--pd-line)!important;
+  border-bottom:1px solid var(--pd-line)!important;
+  border-radius:0!important;
+  padding:22px!important;
+  background:#fff!important;
+}
+body.project-detail-page .step:nth-child(3n){border-right:0!important}
+body.project-detail-page .day-block{
+  border:0!important;
+  border-top:1px solid var(--pd-line)!important;
+  border-radius:0!important;
+  margin:0!important;
+  background:#fff!important;
+}
+body.project-detail-page .day-head{
+  background:#fff!important;
+  border-bottom:1px solid var(--pd-line)!important;
+  padding:18px 0!important;
+}
+body.project-detail-page .day-content{padding:24px 0 40px!important}
+body.project-detail-page .meal-row{border-bottom:1px solid #edf0f1!important;padding:14px 0!important}
+body.project-detail-page .contacts{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 50px!important}
+body.project-detail-page .contact{
+  border:0!important;border-bottom:1px solid var(--pd-line)!important;border-radius:0!important;padding:18px 0!important;background:#fff!important
+}
+
+/* Project 195 — files, versions, changes, key rules */
+body.project-detail-page .banner{
+  border:0!important;border-left:2px solid var(--pd-yellow)!important;border-radius:0!important;background:#fffdf3!important;padding:17px 20px!important
+}
+body.project-detail-page .files,
+body.project-detail-page .versions,
+body.project-detail-page .changes,
+body.project-detail-page .keys{gap:0!important;border-top:1px solid var(--pd-line)!important}
+body.project-detail-page .file,
+body.project-detail-page .ver,
+body.project-detail-page .chg,
+body.project-detail-page .keys>*{
+  border:0!important;border-bottom:1px solid var(--pd-line)!important;border-radius:0!important;background:#fff!important;box-shadow:none!important;padding:18px 4px!important
+}
+body.project-detail-page .v{border-radius:4px!important;background:#f3f5f5!important;color:#65737a!important}
+
+/* Project 196 — Gantt and budget */
+body.project-detail-page .gantt-card{
+  border:0!important;border-radius:0!important;box-shadow:none!important;background:#fff!important;padding:0!important
+}
+body.project-detail-page .gantt-toolbar{
+  padding:0 0 18px!important;border-bottom:1px solid var(--pd-line)!important;background:#fff!important
+}
+body.project-detail-page .gantt-head{
+  background:#fff!important;border-bottom:1px solid var(--pd-line)!important
+}
+body.project-detail-page .gantt-row{
+  min-height:92px!important;border-bottom:1px solid #e7ebed!important;background:#fff!important
+}
+body.project-detail-page .gantt-row.foreign-row{background:#fafbfb!important}
+body.project-detail-page .event-name{font-size:13px!important;color:var(--pd-ink)!important}
+body.project-detail-page .event-place,
+body.project-detail-page .event-form,
+body.project-detail-page .event-note{font-size:10px!important;color:#829097!important}
+body.project-detail-page .timeline-grid{opacity:.6!important}
+body.project-detail-page .bar{border-radius:2px!important;box-shadow:none!important}
+body.project-detail-page .legend{
+  border-top:1px solid var(--pd-line)!important;
+  padding:18px 0 0!important;
+  margin-top:18px!important;
+}
+body.project-detail-page .legend-dot{border-radius:2px!important}
+body.project-detail-page .budget-table{
+  border:0!important;border-top:1px solid var(--pd-line)!important;border-radius:0!important;box-shadow:none!important
+}
+body.project-detail-page .budget-table th,
+body.project-detail-page .budget-table td{padding:14px 8px!important}
+body.project-detail-page .gallery{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  gap:0!important;border-top:1px solid var(--pd-line)!important
+}
+body.project-detail-page .gallery-slot{
+  min-height:180px!important;border:0!important;border-right:1px solid var(--pd-line)!important;border-bottom:1px solid var(--pd-line)!important;border-radius:0!important;background:#fff!important
+}
+body.project-detail-page .gallery-slot:nth-child(3n){border-right:0!important}
+
+/* Project 197 — simple portal scope */
+body.project-detail-page .cards{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr))!important}
+body.project-detail-page .cards .card{border-right:1px solid var(--pd-line)!important}
+body.project-detail-page .cards .card:last-child{border-right:0!important}
+
+/* Project 198 — job library, minimal controls */
+body.project-detail-page .jobs{gap:0!important;border-top:1px solid var(--pd-line)!important}
+body.project-detail-page .job-card{
+  border:0!important;border-bottom:1px solid var(--pd-line)!important;border-radius:0!important;background:#fff!important;box-shadow:none!important
+}
+body.project-detail-page .job-head{
+  min-height:82px!important;padding:18px 0!important;background:#fff!important;border:0!important
+}
+body.project-detail-page .job-no{
+  width:38px!important;height:38px!important;border:1px solid var(--pd-line)!important;border-radius:50%!important;background:#fff!important;color:#829097!important;font-size:9px!important
+}
+body.project-detail-page .job-head h3{font-size:14px!important;font-weight:750!important}
+body.project-detail-page .job-meta{font-size:10px!important;color:#8a989e!important}
+body.project-detail-page .job-actions{gap:5px!important}
+body.project-detail-page .toggle-job,
+body.project-detail-page .edit-job,
+body.project-detail-page .save-job,
+body.project-detail-page .cancel-job,
+body.project-detail-page .copy-btn{
+  min-height:32px!important;padding:0 9px!important;border:1px solid var(--pd-line)!important;border-radius:5px!important;background:#fff!important;color:#6a787f!important;font-size:8px!important;font-weight:750!important
+}
+body.project-detail-page .save-job{background:var(--pd-yellow)!important;border-color:var(--pd-yellow)!important;color:#171c1f!important}
+body.project-detail-page .job-body{
+  padding:8px 52px 34px!important;max-width:1050px!important;color:#4e5e65!important;font-size:13px!important;line-height:1.7!important
+}
+body.project-detail-page .job-body h4{
+  margin:24px 0 9px!important;font-size:13px!important;color:var(--pd-ink)!important
+}
+body.project-detail-page .job-body li{margin:5px 0!important}
+
+/* modal/dialogs */
+body.project-detail-page .alarm-dialog,
+body.project-detail-page .info-dialog,
+body.project-detail-page .dlg{
+  border:1px solid var(--pd-line)!important;border-radius:8px!important;box-shadow:0 20px 60px rgba(24,32,36,.15)!important
+}
+
+/* footer on project pages */
+body.project-detail-page .footer{margin-top:0!important}
+
+@media(max-width:980px){
+  body.project-detail-page .wrap,
+  body.project-detail-page .w{width:calc(100% - 36px)!important}
+  body.project-detail-page .hero-grid,
+  body.project-detail-page .heroGrid{grid-template-columns:1fr!important;gap:28px!important}
+  body.project-detail-page .hero-side,
+  body.project-detail-page .status{border-left:0!important;border-top:1px solid var(--pd-line)!important;padding:22px 0 0!important}
+  body.project-detail-page .section-head,
+  body.project-detail-page .head{grid-template-columns:1fr!important;gap:14px!important}
+  body.project-detail-page .steps,
+  body.project-detail-page .cards{grid-template-columns:1fr!important}
+  body.project-detail-page .step,
+  body.project-detail-page .cards .card{border-right:0!important}
+  body.project-detail-page .contacts,
+  body.project-detail-page .gallery{grid-template-columns:1fr!important}
+  body.project-detail-page .gallery-slot{border-right:0!important}
+}
