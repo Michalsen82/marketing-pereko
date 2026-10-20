@@ -1160,3 +1160,11 @@ body.home-dashboard .task-search input{
   padding:0;
 }
 body.home-dashboard .task-search input::placeholder{color:#8c989e}
+
+/* v3.10 — project search filtering */
+body.home-dashboard .project-card.search-hidden{
+  display:none!important;
+}
+body.home-dashboard .task-search{
+  display:none!important;
+}
