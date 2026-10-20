@@ -300,3 +300,36 @@ body .footer div:last-child{
   body .footer .wrap{align-items:flex-start!important}
   body .footer .wrap:before{font-size:18px}
 }
+
+/* v3.3 — exact PEREKO logo + typography harmonization */
+.pv-logo-img{width:152px!important;max-height:none!important;height:auto!important}
+.pv-footer-logo{display:block;width:128px;height:auto;object-fit:contain}
+.pv-footer-divider{width:1px;height:30px;background:#cfd5d8;flex:0 0 1px}
+.pv-footer-copy strong,.pv-footer-copy span{display:block}
+.pv-footer-copy strong{font-size:12px!important;font-weight:800!important;color:#2a3338!important;line-height:1.2!important}
+.pv-footer-copy span{margin-top:3px;font-size:10px!important;font-weight:400!important;color:#8b989e!important;line-height:1.2!important}
+body .footer .wrap:before{content:none!important}
+body .footer strong{padding-left:0!important;border-left:0!important}
+body.home-dashboard .project-card h3,
+body.home-dashboard .task-text{
+  font-size:15px!important;
+  line-height:1.32!important;
+  font-weight:700!important;
+  letter-spacing:-.018em!important;
+  color:#172126!important;
+}
+body.home-dashboard .project-card p,
+body.home-dashboard .task-meta{
+  font-size:12px!important;
+  line-height:1.52!important;
+  font-weight:400!important;
+  letter-spacing:0!important;
+  color:#7f8f97!important;
+}
+body.home-dashboard .task-meta{margin-top:4px!important}
+body.home-dashboard .task-item{align-items:flex-start!important}
+body.home-dashboard .task-check{margin-top:3px!important}
+@media(max-width:700px){
+  .pv-logo-img{width:136px!important}
+  .pv-footer-logo{width:116px}
+}
