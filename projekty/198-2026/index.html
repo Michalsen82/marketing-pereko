@@ -18,7 +18,8 @@
 .footer{background:var(--dark);color:#fff;padding:32px 0}.footer strong{font-family:'Montserrat',sans-serif}.alarm-panel{position:fixed;inset:0;background:#0007;display:none;place-items:center;z-index:2000}.alarm-panel.show{display:grid}.alarm-dialog{width:min(440px,calc(100% - 40px));background:#fff;padding:22px;border-radius:9px}.alarm-dialog input{width:100%;padding:11px;border:1px solid var(--light);border-radius:6px}.actions{display:flex;justify-content:flex-end;gap:8px;margin-top:14px}.actions button{border:0;border-radius:5px;padding:9px 11px;font:800 8px Montserrat}.save{background:var(--yellow)}.cancel{background:var(--dark);color:#fff}
 @media(max-width:900px){.hero-grid,.section-head{grid-template-columns:1fr}.template-grid{grid-template-columns:1fr}.top .wrap{padding:10px 0;align-items:flex-start;flex-direction:column}.job-head{grid-template-columns:auto 1fr}.job-actions{grid-column:1/-1}.copy-btn{width:max-content}}@media(max-width:600px){.wrap{width:calc(100% - 28px)}.brand{font-size:27px}}
 </style>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/projects-v2.css">\n</head>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"><link rel="stylesheet" href="/projects-v2.css">
+</head>
 <body>
 <nav class="top"><div class="wrap"><div class="top-left"><div class="brand">PEREKO</div><span class="divider"></span><div class="title">Projekt 198/26 · Ogłoszenia o pracę</div><a class="btn" href="/">← Projekty</a><button id="alarmTopBtn" class="btn" onclick="openAlarm()">Ustaw alarm</button></div></div></nav>
 <header class="hero"><div class="wrap"><div class="hero-grid"><div><h1>Ogłoszenia o pracę PEREKO</h1><p>Biblioteka gotowych treści ogłoszeń rekrutacyjnych do publikacji na portalach z ofertami pracy. Treści ogłoszeń są domyślnie ukryte. Po rozwinięciu wybranego ogłoszenia można je skopiować jednym kliknięciem.</p></div><div class="status"><div class="ui">STATUS PROJEKTU</div><select id="projectStatus" class="status-select" onchange="saveStatus()"><option value="zaplanowany">Zaplanowany</option><option value="w realizacji">W realizacji</option><option value="przekazany dalej">Przekazany dalej</option><option value="zakończony">Zakończony</option></select></div></div></div></header>
@@ -190,5 +191,6 @@ async function loadJobEdits(){try{const r=await fetch('/api/job-postings',{cache
 async function copyJob(id,btn){const text=document.getElementById(id).innerText.trim();try{await navigator.clipboard.writeText(text)}catch(e){const t=document.createElement('textarea');t.value=text;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}const old=btn.textContent;btn.textContent='Skopiowano ✓';btn.classList.add('done');setTimeout(()=>{btn.textContent=old;btn.classList.remove('done')},1600)}
 loadStatus();refreshAlarm();loadJobEdits();
 </script>
-<script src="/projects-v2.js"></script>\n</body>
+<script src="/projects-v2.js"></script>
+</body>
 </html>
