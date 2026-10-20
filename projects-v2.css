@@ -1066,3 +1066,69 @@ body.project-detail-page .cards .card h3{font-size:17px!important}
   body.project-detail-page .job-actions{grid-column:1/-1!important;justify-content:flex-start!important}
   body.project-detail-page .job-body{padding:12px 0 34px!important}
 }
+
+
+/* v3.8 — refined job action controls */
+body.project-detail-page .job-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:0!important;
+  flex-wrap:nowrap!important;
+}
+body.project-detail-page .toggle-job,
+body.project-detail-page .edit-job,
+body.project-detail-page .save-job,
+body.project-detail-page .cancel-job,
+body.project-detail-page .copy-btn{
+  min-height:auto!important;
+  padding:6px 11px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:transparent!important;
+  color:#596870!important;
+  font-size:11px!important;
+  line-height:1.2!important;
+  font-weight:650!important;
+  box-shadow:none!important;
+  white-space:nowrap!important;
+}
+body.project-detail-page .job-actions > button + button{
+  border-left:1px solid #e1e6e8!important;
+}
+body.project-detail-page .toggle-job{
+  color:#1e2a30!important;
+  font-weight:750!important;
+}
+body.project-detail-page .toggle-job:after{
+  content:" ↓";
+  color:#9a7a00!important;
+  font-weight:800!important;
+}
+body.project-detail-page .job-card.open .toggle-job:after{content:" ↑"}
+body.project-detail-page .edit-job:hover,
+body.project-detail-page .copy-btn:hover,
+body.project-detail-page .cancel-job:hover,
+body.project-detail-page .toggle-job:hover{
+  color:#9a7a00!important;
+  background:transparent!important;
+}
+body.project-detail-page .save-job{
+  color:#7a6500!important;
+  background:transparent!important;
+  font-weight:750!important;
+}
+body.project-detail-page .save-job:hover{color:#1e2a30!important}
+body.project-detail-page .copy-btn.done{
+  color:#2f6f45!important;
+  background:transparent!important;
+}
+@media(max-width:760px){
+  body.project-detail-page .job-actions{flex-wrap:wrap!important;justify-content:flex-start!important}
+  body.project-detail-page .job-actions > button + button{border-left:0!important}
+  body.project-detail-page .toggle-job,
+  body.project-detail-page .edit-job,
+  body.project-detail-page .save-job,
+  body.project-detail-page .cancel-job,
+  body.project-detail-page .copy-btn{padding-left:0!important;padding-right:14px!important}
+}
