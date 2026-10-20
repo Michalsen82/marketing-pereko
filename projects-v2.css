@@ -333,3 +333,30 @@ body.home-dashboard .task-check{margin-top:3px!important}
   .pv-logo-img{width:136px!important}
   .pv-footer-logo{width:116px}
 }
+
+/* v3.4 — B2B 2.0 gutters, black logo, profile */
+.pv-head{width:min(1480px,calc(100% - 68px))!important}
+body .wrap,
+body.home-dashboard .dashboard-home{width:min(1480px,calc(100% - 68px))!important}
+.pv-logo-img{width:137px!important;filter:brightness(0)!important}
+.pv-footer-logo{width:115px!important;filter:brightness(0)!important}
+.pv-head{grid-template-columns:minmax(300px,1fr) auto auto!important}
+.pv-profile{display:flex;align-items:center;gap:10px;margin-left:8px;padding-left:14px;border-left:1px solid #e1e5e7;white-space:nowrap}
+.pv-profile-avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;border:1px solid #d9dfe2;background:#f2f4f5;display:grid;place-items:center;cursor:pointer;position:relative}
+.pv-profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.pv-profile-avatar span{font-size:9px;font-weight:850;color:#7d8a90}
+.pv-profile-copy strong,.pv-profile-copy span{display:block}
+.pv-profile-copy strong{font-size:11px!important;font-weight:750!important;color:#2a3338!important;line-height:1.2!important}
+.pv-profile-copy span{margin-top:2px;font-size:9px!important;font-weight:500!important;color:#8b989e!important}
+.pv-profile-upload{display:none}
+@media(max-width:1280px){
+  .pv-head{grid-template-columns:1fr auto!important}
+  .pv-profile{grid-column:2;grid-row:1}
+  .pv-tools{grid-column:1/-1;justify-content:flex-start!important;padding-bottom:12px}
+}
+@media(max-width:760px){
+  .pv-head,body .wrap,body.home-dashboard .dashboard-home{width:calc(100% - 28px)!important}
+  .pv-logo-img{width:123px!important}
+  .pv-footer-logo{width:104px!important}
+  .pv-profile-copy{display:none}
+}
