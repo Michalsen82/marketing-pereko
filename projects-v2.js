@@ -1,7 +1,7 @@
 (function(){
   const path=location.pathname.replace(/\/+$/,'/')||'/';
   const isHome=path==='/';
-  if(isHome) document.body.classList.add('home-dashboard');
+  if(isHome) document.body.classList.add('home-dashboard'); else document.body.classList.add('project-detail-page');
 
   const header=document.createElement('header');
   header.className='pv-header';
