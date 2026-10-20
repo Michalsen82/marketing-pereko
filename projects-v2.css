@@ -146,3 +146,81 @@ body .mobile-switch{display:none!important}
   body .project-card{grid-template-columns:46px 1fr auto!important;min-height:112px!important}
   body .project-card p{display:none}.job-body{padding-left:0!important;padding-right:0!important}
 }
+
+
+/* v3.1 — main projects dashboard aligned to current Partner B2B header */
+.pv-header{background:#fff!important;border-bottom:1px solid #dfe4e7!important;box-shadow:none!important}
+.pv-head{width:min(1280px,calc(100% - 48px))!important;min-height:92px!important;grid-template-columns:minmax(310px,1fr) auto!important;gap:24px!important}
+.pv-brand{gap:17px!important}
+.pv-logo-img{display:block;width:142px;height:auto;object-fit:contain}
+.pv-brand-copy{padding-left:17px!important}
+.pv-brand-copy strong{font-size:13px!important;color:#2a3338!important}
+.pv-brand-copy span{font-size:10px!important;color:#8b989e!important}
+.pv-tools{display:flex;align-items:center;justify-content:flex-end;gap:7px;flex-wrap:wrap}
+.pv-tool{
+  display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:0 11px;
+  border:1px solid #dbe1e4;border-radius:8px;background:#fff;color:#344047;text-decoration:none;
+  font-size:9px;font-weight:800;white-space:nowrap;transition:.15s ease
+}
+.pv-tool:hover{border-color:#bfc8cc;background:#fafbfb}
+.pv-tool-icon{
+  width:22px;height:22px;border-radius:50%;display:grid;place-items:center;background:#f3f5f6;color:#56646b;
+  font-size:8px;font-weight:900;flex:0 0 22px
+}
+.pv-tool.chat{background:#fff}
+.pv-tool.chat .pv-tool-icon{background:#21292e;color:#fff;font-size:7px;letter-spacing:-.03em}
+
+/* home: remove the large introductory hero entirely */
+body.home-dashboard .hero{display:none!important}
+body.home-dashboard main{padding-top:48px!important}
+body.home-dashboard .dashboard-home{
+  display:grid!important;grid-template-columns:minmax(0,2fr) minmax(310px,1fr)!important;
+  gap:52px!important;align-items:start!important;width:min(1280px,calc(100% - 48px))!important
+}
+body.home-dashboard .projects-pane{padding:0!important}
+body.home-dashboard .registry-head{margin:0 0 26px!important}
+body.home-dashboard .registry-head:before{content:"PROJEKTY PEREKO"!important}
+body.home-dashboard .registry-head h2{font-size:28px!important}
+body.home-dashboard .project-list{
+  display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:0 48px!important
+}
+body.home-dashboard .project-card{
+  grid-template-columns:48px minmax(0,1fr) 30px!important;min-height:122px!important;padding:18px 0!important
+}
+body.home-dashboard .project-no{width:40px;height:40px!important;font-size:9px!important}
+body.home-dashboard .project-card h3{font-size:14px!important}
+body.home-dashboard .project-card p{font-size:11px!important;line-height:1.45!important}
+body.home-dashboard .tasks-pane{
+  position:sticky;top:118px;border-left:1px solid #dfe4e7!important;border-top:0!important;padding:0 0 0 30px!important;max-width:none!important
+}
+body.home-dashboard .tasks-head{margin-bottom:19px!important}
+body.home-dashboard .tasks-head .section-no{color:#9a7a00!important}
+body.home-dashboard .tasks-head h2{font-size:27px!important}
+body.home-dashboard .task-sync{margin:-6px 0 12px!important}
+body.home-dashboard .task-entry{margin-bottom:8px!important}
+body.home-dashboard .task-input{font-size:12px!important}
+body.home-dashboard .task-add{font-size:9px!important}
+body.home-dashboard .task-item{padding:12px 0!important}
+body.home-dashboard .task-empty{border:0!important;border-top:1px solid #e2e7e9!important;border-radius:0!important;background:#fff!important;padding:16px 0!important}
+body.home-dashboard .mobile-switch{display:none!important}
+
+@media(max-width:1150px){
+  .pv-head{grid-template-columns:1fr!important;padding:14px 0!important}
+  .pv-tools{justify-content:flex-start!important}
+}
+@media(max-width:980px){
+  body.home-dashboard .dashboard-home{grid-template-columns:1fr!important;gap:36px!important}
+  body.home-dashboard .tasks-pane{position:static!important;border-left:0!important;border-top:1px solid #dfe4e7!important;padding:34px 0 0!important}
+  body.home-dashboard .project-list{grid-template-columns:1fr!important}
+}
+@media(max-width:700px){
+  .pv-head{width:calc(100% - 28px)!important}
+  .pv-logo-img{width:126px}
+  .pv-brand-copy strong{font-size:12px!important}
+  .pv-brand-copy span{font-size:9px!important}
+  .pv-tools{gap:6px!important}
+  .pv-tool{padding:0 9px!important;font-size:0!important}
+  .pv-tool .pv-tool-icon{margin:0!important}
+  body.home-dashboard main{padding-top:28px!important}
+  body.home-dashboard .dashboard-home{width:calc(100% - 28px)!important}
+}
