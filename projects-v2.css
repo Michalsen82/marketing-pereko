@@ -698,3 +698,41 @@ body.project-detail-page .footer{margin-top:0!important}
   body.project-detail-page .gallery{grid-template-columns:1fr!important}
   body.project-detail-page .gallery-slot{border-right:0!important}
 }
+
+/* v3.6 — compact project search on home */
+body.home-dashboard .home-project-search{
+  position:relative;
+  display:grid;
+  grid-template-columns:28px minmax(0,1fr) auto;
+  align-items:center;
+  gap:8px;
+  margin:0 0 26px;
+  padding:0 0 10px;
+  border-bottom:1px solid #9aa5aa;
+  max-width:760px;
+}
+body.home-dashboard .home-project-search-icon{
+  color:#526168;
+  font-size:21px;
+  line-height:1;
+}
+body.home-dashboard .home-project-search input{
+  min-width:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#172126;
+  font-size:13px;
+  font-weight:500;
+  padding:0;
+}
+body.home-dashboard .home-project-search input::placeholder{color:#8c989e}
+body.home-dashboard .home-project-search-hint{
+  color:#a1abb0;
+  font-size:9px;
+  white-space:nowrap;
+}
+@media(max-width:760px){
+  body.home-dashboard .home-project-search{grid-template-columns:26px 1fr}
+  body.home-dashboard .home-project-search-hint{display:none}
+}
