@@ -1168,3 +1168,213 @@ body.home-dashboard .project-card.search-hidden{
 body.home-dashboard .task-search{
   display:none!important;
 }
+
+
+/* v3.11 — clearer Gantt axis + generous table/grid spacing */
+
+/* GANTT: yellow time axis, labels locked to markers and no clipping */
+body.project-detail-page .gantt-row{
+  min-height:126px!important;
+  overflow:visible!important;
+}
+body.project-detail-page .timeline{
+  position:relative!important;
+  overflow:visible!important;
+  min-height:126px!important;
+}
+body.project-detail-page .timeline::before{
+  content:""!important;
+  position:absolute!important;
+  left:18px!important;
+  right:18px!important;
+  top:66%!important;
+  height:2px!important;
+  transform:none!important;
+  background:#f2c900!important;
+  border-radius:0!important;
+  z-index:1!important;
+}
+body.project-detail-page .timeline-grid{
+  z-index:0!important;
+  opacity:.22!important;
+}
+body.project-detail-page .bar-wrap{
+  top:0!important;
+  transform:none!important;
+  height:100%!important;
+  min-width:28px!important;
+  display:block!important;
+  z-index:3!important;
+}
+body.project-detail-page .bar{
+  position:absolute!important;
+  left:0!important;
+  right:0!important;
+  top:calc(66% - 4px)!important;
+  height:8px!important;
+  border:0!important;
+  border-radius:0!important;
+  background:#4f5d63!important;
+  box-shadow:none!important;
+}
+body.project-detail-page .bar-wrap::after{
+  content:""!important;
+  position:absolute!important;
+  left:50%!important;
+  top:calc(66% - 8px)!important;
+  width:2px!important;
+  height:16px!important;
+  transform:translateX(-50%)!important;
+  background:#4f5d63!important;
+}
+body.project-detail-page .bar-label{
+  position:absolute!important;
+  left:50%!important;
+  top:calc(66% - 39px)!important;
+  bottom:auto!important;
+  transform:translateX(-50%)!important;
+  min-width:max-content!important;
+  max-width:220px!important;
+  white-space:nowrap!important;
+  padding:0!important;
+  background:#fff!important;
+  color:#34434a!important;
+  font-size:11px!important;
+  line-height:1.25!important;
+  font-weight:800!important;
+  text-align:center!important;
+  z-index:4!important;
+}
+body.project-detail-page .bar-wrap.edge-right .bar-label{
+  left:auto!important;
+  right:0!important;
+  transform:none!important;
+  text-align:right!important;
+}
+body.project-detail-page .confirmed .bar,
+body.project-detail-page .confirmed .bar-wrap::after{
+  background:#4f5d63!important;
+}
+body.project-detail-page .confirmed .bar-label{color:#34434a!important}
+body.project-detail-page .pending .bar{
+  height:0!important;
+  top:66%!important;
+  background:transparent!important;
+  border-top:2px dashed #7d6b22!important;
+}
+body.project-detail-page .pending .bar-wrap::after{
+  background:#7d6b22!important;
+  height:14px!important;
+  top:calc(66% - 6px)!important;
+}
+body.project-detail-page .pending .bar-label{
+  white-space:normal!important;
+  min-width:150px!important;
+  max-width:190px!important;
+  color:#6f6127!important;
+}
+body.project-detail-page .foreign-row .bar,
+body.project-detail-page .foreign-row .bar-wrap::after{
+  background:#8e9aa0!important;
+}
+body.project-detail-page .foreign-row .bar-label{color:#6f7d83!important;background:#fff!important}
+
+/* Cleaner month header: same yellow language as the axis */
+body.project-detail-page .month::after{
+  height:2px!important;
+  background:#f2c900!important;
+  opacity:.55!important;
+}
+
+/* Summary blocks / scenario grids / scope cards: no text hugging vertical dividers */
+body.project-detail-page .summary,
+body.project-detail-page .steps,
+body.project-detail-page .cards,
+body.project-detail-page .keys{
+  column-gap:32px!important;
+  row-gap:0!important;
+}
+body.project-detail-page .summary .card,
+body.project-detail-page .steps .step,
+body.project-detail-page .cards .card,
+body.project-detail-page .keys .card{
+  padding:24px 26px!important;
+  border-right:0!important;
+  border-left:0!important;
+}
+body.project-detail-page .summary .card:first-child,
+body.project-detail-page .steps .step:first-child,
+body.project-detail-page .cards .card:first-child,
+body.project-detail-page .keys .card:first-child{
+  padding-left:26px!important;
+}
+body.project-detail-page .summary .card:last-child,
+body.project-detail-page .steps .step:last-child,
+body.project-detail-page .cards .card:last-child,
+body.project-detail-page .keys .card:last-child{
+  padding-right:26px!important;
+}
+
+/* Remove the hard table-box feeling in project summaries */
+body.project-detail-page .summary,
+body.project-detail-page .steps,
+body.project-detail-page .cards,
+body.project-detail-page .keys{
+  border-top:1px solid var(--pd-line)!important;
+  border-bottom:1px solid var(--pd-line)!important;
+}
+body.project-detail-page .summary .card,
+body.project-detail-page .steps .step,
+body.project-detail-page .cards .card,
+body.project-detail-page .keys .card{
+  border-bottom:0!important;
+  background:#fff!important;
+}
+
+/* Actual tables get comfortable gutters too */
+body.project-detail-page table th,
+body.project-detail-page table td{
+  padding-left:22px!important;
+  padding-right:22px!important;
+}
+body.project-detail-page table th:first-child,
+body.project-detail-page table td:first-child{padding-left:24px!important}
+body.project-detail-page table th:last-child,
+body.project-detail-page table td:last-child{padding-right:24px!important}
+
+/* Project 197 scope cards: extra inner breathing room */
+body.project-detail-page .cards .card h3{margin-top:2px!important}
+body.project-detail-page .cards .card p{margin-top:10px!important}
+
+/* Project 194 scenario specifically — airy editorial grid */
+body.project-detail-page .steps{
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+}
+body.project-detail-page .steps .step{
+  min-height:112px!important;
+  display:flex!important;
+  flex-direction:column!important;
+  justify-content:center!important;
+}
+body.project-detail-page .steps .step b{
+  margin-bottom:12px!important;
+  color:#8a979d!important;
+  font-size:10px!important;
+}
+body.project-detail-page .steps .step strong{
+  font-size:16px!important;
+  line-height:1.3!important;
+}
+
+/* Project 195 current-stage summary */
+body.project-detail-page .summary .card strong,
+body.project-detail-page .summary .card b{
+  font-size:18px!important;
+  line-height:1.3!important;
+}
+body.project-detail-page .summary .card span,
+body.project-detail-page .summary .card small{
+  display:block!important;
+  margin-bottom:6px!important;
+  color:#819097!important;
+}
