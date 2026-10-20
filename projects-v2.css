@@ -1132,3 +1132,31 @@ body.project-detail-page .copy-btn.done{
   body.project-detail-page .cancel-job,
   body.project-detail-page .copy-btn{padding-left:0!important;padding-right:14px!important}
 }
+
+/* v3.9 — reliable project/task search */
+body.home-dashboard .task-search{
+  display:grid;
+  grid-template-columns:24px minmax(0,1fr);
+  align-items:center;
+  gap:8px;
+  margin:0 0 18px;
+  padding:0 0 9px;
+  border-bottom:1px solid #9aa5aa;
+}
+body.home-dashboard .task-search-icon{
+  color:#526168;
+  font-size:19px;
+  line-height:1;
+}
+body.home-dashboard .task-search input{
+  width:100%;
+  min-width:0;
+  border:0;
+  outline:0;
+  background:transparent;
+  color:#172126;
+  font-size:12px;
+  font-weight:500;
+  padding:0;
+}
+body.home-dashboard .task-search input::placeholder{color:#8c989e}
