@@ -736,3 +736,333 @@ body.home-dashboard .home-project-search-hint{
   body.home-dashboard .home-project-search{grid-template-columns:26px 1fr}
   body.home-dashboard .home-project-search-hint{display:none}
 }
+
+
+/* v3.7 — readability + professional project layouts */
+body.project-detail-page{
+  font-size:15px!important;
+  line-height:1.62!important;
+}
+body.project-detail-page .hero p,
+body.project-detail-page .lead,
+body.project-detail-page .card p,
+body.project-detail-page .template-card p,
+body.project-detail-page .job-body,
+body.project-detail-page td,
+body.project-detail-page li{
+  font-size:15px!important;
+  line-height:1.62!important;
+}
+body.project-detail-page .hero p{font-size:16px!important}
+body.project-detail-page .section-no,
+body.project-detail-page .n{font-size:10px!important}
+body.project-detail-page .section h2,
+body.project-detail-page .sec h2{font-size:34px!important}
+body.project-detail-page .card h3,
+body.project-detail-page .template-card h3,
+body.project-detail-page .job-head h3{font-size:17px!important}
+body.project-detail-page small{font-size:13px!important;line-height:1.5!important}
+body.project-detail-page th{font-size:11px!important}
+body.project-detail-page td{padding:16px 10px!important}
+body.project-detail-page .status-select{font-size:13px!important}
+body.project-detail-page .status .ui,
+body.project-detail-page .kicker{font-size:10px!important}
+
+/* 198 — keep actions tidy and readable */
+body.project-detail-page .job-head{
+  grid-template-columns:42px minmax(0,1fr) auto!important;
+  gap:16px!important;
+  align-items:center!important;
+}
+body.project-detail-page .job-actions{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:flex-end!important;
+  gap:7px!important;
+  flex-wrap:nowrap!important;
+}
+body.project-detail-page .toggle-job,
+body.project-detail-page .edit-job,
+body.project-detail-page .save-job,
+body.project-detail-page .cancel-job,
+body.project-detail-page .copy-btn{
+  min-height:36px!important;
+  padding:0 12px!important;
+  font-size:10px!important;
+  white-space:nowrap!important;
+}
+body.project-detail-page .job-meta{font-size:12px!important}
+body.project-detail-page .job-body{
+  max-width:1120px!important;
+  padding:14px 58px 42px!important;
+}
+body.project-detail-page .job-body h4{font-size:16px!important}
+
+/* 195 — version history as a clean timeline, no colored pills */
+body.project-detail-page .versions{
+  display:block!important;
+  border-top:1px solid var(--pd-line)!important;
+  position:relative!important;
+}
+body.project-detail-page .ver{
+  position:relative!important;
+  display:grid!important;
+  grid-template-columns:180px 180px minmax(0,1fr)!important;
+  gap:28px!important;
+  align-items:start!important;
+  padding:24px 0 24px 24px!important;
+  border:0!important;
+  border-bottom:1px solid var(--pd-line)!important;
+  background:#fff!important;
+}
+body.project-detail-page .ver:before{
+  content:""!important;
+  position:absolute!important;
+  left:0!important;
+  top:29px!important;
+  width:8px!important;
+  height:8px!important;
+  border-radius:50%!important;
+  background:#b9c2c6!important;
+}
+body.project-detail-page .ver.cur:before{background:var(--pd-yellow)!important}
+body.project-detail-page .ver.cur{
+  background:linear-gradient(90deg,#fffdf4 0,#fff 22%)!important;
+}
+body.project-detail-page .v{
+  display:block!important;
+  margin:0 0 5px!important;
+  padding:0!important;
+  background:transparent!important;
+  color:var(--pd-ink)!important;
+  font-size:17px!important;
+  font-weight:800!important;
+}
+body.project-detail-page .tag{
+  display:inline!important;
+  padding:0!important;
+  background:transparent!important;
+  border:0!important;
+  color:#9a7a00!important;
+  font-size:10px!important;
+  font-weight:800!important;
+  letter-spacing:.09em!important;
+}
+body.project-detail-page .ver>div:nth-child(2){
+  color:#68777e!important;
+  font-size:14px!important;
+  padding-top:2px!important;
+}
+body.project-detail-page .ver b{font-size:16px!important;color:var(--pd-ink)!important}
+body.project-detail-page .ver small{display:inline-block!important;margin-top:5px!important;color:#7f8e95!important}
+
+/* neutralise all childish traffic-light pills */
+body.project-detail-page .status-pill,
+body.project-detail-page .source-badge,
+body.project-detail-page .event-note,
+body.project-detail-page .legend-source{
+  background:#f3f5f6!important;
+  color:#66757c!important;
+  border:1px solid #dbe1e4!important;
+}
+body.project-detail-page .status-confirmed,
+body.project-detail-page .status-fixed,
+body.project-detail-page .status-estimate,
+body.project-detail-page .status-assumption,
+body.project-detail-page .status-internal,
+body.project-detail-page .status-pending{
+  background:#f5f6f7!important;
+  color:#68777e!important;
+  border:1px solid #dce2e5!important;
+}
+body.project-detail-page .event-note.done{
+  background:#fffdf1!important;
+  color:#816900!important;
+  border:1px solid #e7d66f!important;
+}
+
+/* 196 — open, editorial Gantt */
+body.project-detail-page .gantt-card{overflow:visible!important}
+body.project-detail-page .gantt-toolbar{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:space-between!important;
+  gap:22px!important;
+  padding:0 0 26px!important;
+}
+body.project-detail-page .gantt-toolbar-note{
+  color:#7c8a90!important;
+  font-size:14px!important;
+}
+body.project-detail-page .gantt-head{
+  grid-template-columns:400px 1fr!important;
+  border-top:1px solid var(--pd-line)!important;
+  min-height:62px!important;
+}
+body.project-detail-page .gantt-head-left{
+  padding:20px 0!important;
+  font-size:11px!important;
+  color:#8a979d!important;
+}
+body.project-detail-page .month{
+  min-height:62px!important;
+  border-left:0!important;
+}
+body.project-detail-page .month-name{
+  font-size:12px!important;
+  font-weight:700!important;
+  color:#607078!important;
+}
+body.project-detail-page .month::after{
+  left:20px!important;right:20px!important;bottom:10px!important;height:2px!important;
+  background:#e6eaec!important;border-radius:0!important
+}
+body.project-detail-page .gantt-row{
+  grid-template-columns:400px 1fr!important;
+  min-height:118px!important;
+  border-bottom:1px solid #e7ebed!important;
+}
+body.project-detail-page .event-info{
+  padding:24px 30px 24px 0!important;
+  background:#fff!important;
+}
+body.project-detail-page .event-name{
+  font-size:16px!important;
+  font-weight:750!important;
+  line-height:1.25!important;
+  color:var(--pd-ink)!important;
+}
+body.project-detail-page .event-place{font-size:13px!important;margin-top:5px!important}
+body.project-detail-page .event-form{
+  margin-top:9px!important;
+  font-size:11px!important;
+  font-weight:650!important;
+  letter-spacing:0!important;
+  color:#718087!important;
+}
+body.project-detail-page .event-note{
+  margin-top:8px!important;
+  padding:4px 7px!important;
+  border-radius:4px!important;
+  font-size:10px!important;
+}
+body.project-detail-page .timeline{background:#fff!important}
+body.project-detail-page .timeline::before{
+  left:18px!important;right:18px!important;top:60%!important;height:1px!important;
+  background:#dfe4e7!important;border-radius:0!important
+}
+body.project-detail-page .timeline-grid{opacity:.35!important}
+body.project-detail-page .bar-wrap{top:60%!important;height:34px!important}
+body.project-detail-page .bar{
+  height:5px!important;
+  border:0!important;
+  border-radius:0!important;
+  box-shadow:none!important;
+  background:#c2a100!important;
+}
+body.project-detail-page .confirmed .bar{background:#4f5d63!important}
+body.project-detail-page .pending .bar{
+  height:4px!important;
+  background:transparent!important;
+  border-top:2px dashed #9c8b43!important;
+}
+body.project-detail-page .foreign-row .bar{background:#9aa5aa!important;opacity:.65!important}
+body.project-detail-page .bar-label{
+  bottom:23px!important;
+  padding:0!important;
+  border:0!important;
+  background:transparent!important;
+  font-size:11px!important;
+  font-weight:750!important;
+  color:#4f5e65!important;
+}
+body.project-detail-page .legend{
+  gap:24px!important;
+  margin-top:22px!important;
+  padding-top:20px!important;
+  font-size:12px!important;
+}
+body.project-detail-page .legend-dot{
+  width:22px!important;height:4px!important;border:0!important;border-radius:0!important;background:#c2a100!important
+}
+body.project-detail-page .legend-dot.done{background:#4f5d63!important}
+body.project-detail-page .legend-dot.foreign{background:#9aa5aa!important}
+body.project-detail-page .legend-dot.pending{
+  height:1px!important;background:transparent!important;border-top:2px dashed #9c8b43!important
+}
+
+/* budgets: more spacing and less framing */
+body.project-detail-page .budget-table{
+  margin-top:6px!important;
+  border-top:1px solid var(--pd-line)!important;
+}
+body.project-detail-page .budget-table th,
+body.project-detail-page .budget-table td{
+  padding:17px 12px!important;
+}
+body.project-detail-page .budget-group td{
+  padding-top:28px!important;
+  padding-bottom:12px!important;
+  background:#fff!important;
+  color:#7b898f!important;
+  border-top:1px solid var(--pd-line)!important;
+  border-bottom:1px solid #edf0f1!important;
+  font-size:11px!important;
+  letter-spacing:.08em!important;
+}
+body.project-detail-page .budget-group.fire td,
+body.project-detail-page .budget-group.hotel td{background:#fff!important}
+body.project-detail-page .budget-subtotal td{background:#fafbfb!important}
+body.project-detail-page .budget-total{
+  margin-top:28px!important;
+  padding:18px 0 0!important;
+  border:0!important;
+  border-top:1px solid var(--pd-line)!important;
+  background:#fff!important;
+}
+
+/* 194 — more breathing room in summary, agenda and budget */
+body.project-detail-page .summary{
+  grid-template-columns:repeat(4,minmax(0,1fr))!important;
+}
+body.project-detail-page .summary .card{
+  padding:22px 16px 24px 0!important;
+}
+body.project-detail-page .summary .card strong{font-size:18px!important}
+body.project-detail-page .day-block{margin-top:28px!important}
+body.project-detail-page .day-head{padding:20px 0!important}
+body.project-detail-page .day-label{font-size:14px!important}
+body.project-detail-page .day-content{padding:26px 0 46px!important}
+body.project-detail-page .dual{gap:56px!important}
+body.project-detail-page .meal-row{padding:17px 0!important;margin:0!important}
+
+/* 197 — keep scope very light */
+body.project-detail-page .cards .card{padding:26px 28px 28px 0!important}
+body.project-detail-page .cards .card h3{font-size:17px!important}
+
+/* mobile */
+@media(max-width:1100px){
+  body.project-detail-page .gantt-head,
+  body.project-detail-page .gantt-row{grid-template-columns:310px 1fr!important}
+  body.project-detail-page .ver{grid-template-columns:130px 140px 1fr!important;gap:18px!important}
+  body.project-detail-page .job-actions{flex-wrap:wrap!important}
+}
+@media(max-width:760px){
+  body.project-detail-page .hero p,
+  body.project-detail-page .lead,
+  body.project-detail-page .card p,
+  body.project-detail-page .template-card p,
+  body.project-detail-page .job-body,
+  body.project-detail-page td,
+  body.project-detail-page li{font-size:14px!important}
+  body.project-detail-page .section h2,
+  body.project-detail-page .sec h2{font-size:29px!important}
+  body.project-detail-page .ver{grid-template-columns:1fr!important;padding-left:22px!important}
+  body.project-detail-page .gantt-card{overflow-x:auto!important}
+  body.project-detail-page .gantt-head,
+  body.project-detail-page .gantt-row{min-width:900px!important}
+  body.project-detail-page .summary{grid-template-columns:1fr 1fr!important}
+  body.project-detail-page .job-head{grid-template-columns:38px 1fr!important}
+  body.project-detail-page .job-actions{grid-column:1/-1!important;justify-content:flex-start!important}
+  body.project-detail-page .job-body{padding:12px 0 34px!important}
+}
