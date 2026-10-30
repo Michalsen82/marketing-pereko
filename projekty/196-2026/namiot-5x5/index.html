@@ -236,6 +236,25 @@ body.so-modal-open{overflow:hidden}
 .so-tent-loader{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:linear-gradient(125deg,#eff2f2,#e7eaea);color:#526269;font-size:13px;font-weight:750;letter-spacing:.01em}
 .so-tent-loader[hidden]{display:none!important}
 
+
+/* Namiot PEREKO — zatwierdzony kalendarz i kosztorys pakietowy 2027 */
+.so-tent-calendar{grid-template-columns:repeat(2,minmax(0,1fr))}
+.so-tent-calendar .so-calendar-entry{gap:14px}
+.so-tent-place{font:500 11px/1.5 Inter,system-ui,sans-serif;color:#819098}
+.so-tent-confirmed{color:#53755b!important}
+.so-tent-pending{color:#947500!important}
+.so-tent-budget-general{max-width:1120px;margin:0 0 28px;padding:25px 30px;border-left:3px solid var(--so-yellow);background:#fafbfb}
+.so-tent-budget-general h3{font:800 clamp(18px,2vw,24px)/1.25 Inter,system-ui,sans-serif;letter-spacing:-.025em;color:#27343a;margin:10px 0 9px}
+.so-tent-budget-general p{font:400 13px/1.8 Inter,system-ui,sans-serif;color:#66767f;margin:0}
+.so-tent-budget-general .so-tent-budget-detail{margin-top:11px;color:#87959b;font-size:11px}
+.so-tent-budget-indicator strong em{font-style:normal;font-size:12px;letter-spacing:0;font-weight:650;color:#6e7e85}
+.so-tent-budget-indicator-total strong{color:#8a7100}
+.so-tent-cost-section{margin-top:32px}
+.so-tent-cost-section .so-budget-table{min-width:700px}
+.so-tent-cost-section .so-budget-table tbody th{min-width:350px}
+.so-tent-budget-footer{margin-top:26px}
+@media(max-width:740px){.so-tent-calendar{grid-template-columns:1fr}.so-tent-budget-general{padding:20px 18px}}
+
 </style>
 </head>
 <body>
@@ -245,15 +264,15 @@ body.so-modal-open{overflow:hidden}
 <div>
 <div class="so-eyebrow">PROJEKT 196/26 · TARGI PEREKO · I–II KWARTAŁ 2027</div>
 <h1>Namiot wystawowy 5 × 5 m</h1>
-<p>Samodzielna ekspozycja PEREKO w wariancie budżetowym. Jeden wybrany projekt namiotu, wspólny standard prezentacji urządzeń na paletach i osobne budżetowanie udziału w poszczególnych wydarzeniach targowych.</p>
+<p>Samodzielna ekspozycja PEREKO podczas EXPO-INSTAL w Gliwicach i targów budownictwa w Nowym Targu. Własny namiot 5 × 5 m, urządzenia na paletach wystawowych oraz kompleksowy budżet dla każdego wydarzenia.</p>
 </div>
 <aside class="so-hero-meta so-tent-meta" aria-label="Parametry ekspozycji"><span>Wymiar namiotu<strong>5 × 5 m</strong></span><span>Powierzchnia<strong>25 m²</strong></span></aside>
 </div></div></header>
 <main class="so-main"><div class="so-wrap">
 <nav class="so-stage-nav so-tent-nav" aria-label="Sekcje podstrony">
 <a class="so-stage-link" href="#wybrany-namiot"><span class="so-stage-number">01</span><span class="so-stage-text"><strong>Wybrany namiot</strong><small>Jedna wizualizacja ekspozycji</small></span></a>
-<a class="so-stage-link" href="#wydarzenia-namiot"><span class="so-stage-number">02</span><span class="so-stage-text"><strong>Udział w wydarzeniach</strong><small>Do przypisania do harmonogramu</small></span></a>
-<a class="so-stage-link" href="#budzet-namiot"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Budżetowanie</strong><small>Struktura kosztów do uzupełnienia</small></span></a>
+<a class="so-stage-link" href="#wydarzenia-namiot"><span class="so-stage-number">02</span><span class="so-stage-text"><strong>Udział w wydarzeniach</strong><small>2 wydarzenia · daty i miejsca</small></span></a>
+<a class="so-stage-link" href="#budzet-namiot"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Budżetowanie</strong><small>15 600 zł netto · 2 targi</small></span></a>
 </nav>
 <section id="wybrany-namiot" class="so-section so-tent-section" aria-labelledby="wybrany-namiot-title">
 <div class="so-section-head"><div><div class="so-section-label">01 / WYBRANE STOISKO</div><h2 id="wybrany-namiot-title">Namiot wystawowy PEREKO 5 × 5 m</h2><p class="so-section-note">Jedna wizualizacja referencyjna — stanowi podstawę do dalszych prac organizacyjnych i kosztorysowych. Kliknięcie zdjęcia otwiera je w powiększeniu.</p></div><span class="so-quantity so-chosen-label">WYBRANY WARIANT</span></div>
@@ -270,25 +289,48 @@ body.so-modal-open{overflow:hidden}
 <article><span class="so-tent-number">01</span><div><strong>Wygląd i konstrukcja</strong><p>Żółto-biała forma namiotu, identyfikacja PEREKO i spójna ekspozycja urządzeń.</p></div></article>
 <article><span class="so-tent-number">02</span><div><strong>Palety wystawowe</strong><p>Urządzenia prezentowane na osobnych paletach z drewnianym blatem i ciemną podstawą.</p></div></article>
 <article><span class="so-tent-number">03</span><div><strong>Dobór urządzeń</strong><p>Modele widoczne na grafice mają charakter przykładowy; dobór produktów ustalimy dla danego wydarzenia.</p></div></article>
-<article><span class="so-tent-number">04</span><div><strong>Jeden wariant wizualny</strong><p>Nie tworzymy alternatywnej galerii namiotów. Uzupełnimy tylko informacje organizacyjne i wyceny.</p></div></article>
+<article><span class="so-tent-number">04</span><div><strong>Jeden wariant wizualny</strong><p>Pozostajemy przy jednej koncepcji namiotu. Dobór urządzeń na paletach i ich rozmieszczenie dostosujemy do konkretnego wydarzenia.</p></div></article>
 </div></div>
 </section>
 <section id="wydarzenia-namiot" class="so-section" aria-labelledby="wydarzenia-namiot-title">
-<div class="so-section-head"><div><div class="so-section-label">02 / HARMONOGRAM UCZESTNICTWA</div><h2 id="wydarzenia-namiot-title">Wydarzenia z namiotem 5 × 5 m</h2><p class="so-section-note">Powiązanie namiotu z konkretnymi targami opracujemy na podstawie planu uczestnictwa PEREKO.</p></div></div>
-<div class="so-tent-empty"><strong>Wydarzenia nie zostały jeszcze przypisane do tej formy ekspozycji</strong><p>W głównym harmonogramie projektu 196/26 figurują wydarzenia przypisane do Strefy Ognia i pozostałe wystąpienia PEREKO, ale brak jednoznacznego oznaczenia „namiot 5 × 5 m”. Nie przypisuję ich automatycznie. Po wskazaniu odpowiednich targów uzupełnimy nazwy, lokalizacje i dokładne daty.</p></div>
+<div class="so-section-head"><div><div class="so-section-label">02 / KALENDARZ UDZIAŁU</div><h2 id="wydarzenia-namiot-title">Wydarzenia w formule targów z namiotem</h2><p class="so-section-note">Dwa wydarzenia targowe z samodzielnym stoiskiem PEREKO 5 × 5 m. Terminy przyjęto zgodnie z harmonogramem projektu 196/26.</p></div><span class="so-quantity">2 WYDARZENIA</span></div>
+<ol class="so-calendar-list so-tent-calendar" aria-label="Kalendarz targów z namiotem 5 × 5 m">
+<li class="so-calendar-entry"><span class="so-calendar-index" aria-hidden="true">01</span><div class="so-calendar-content"><strong>27. Międzynarodowe Gliwickie Targi Budownictwa, Instalacji i Wnętrz / EXPO-INSTAL</strong><span class="so-tent-place">PreZero Arena Gliwice</span><time datetime="2027-03-13">13–14 marca 2027</time><small class="so-calendar-note so-tent-confirmed">Zamówienie wysłane 14.10.2026 – zgodnie z harmonogramem</small></div></li>
+<li class="so-calendar-entry"><span class="so-calendar-index" aria-hidden="true">02</span><div class="so-calendar-content"><strong>30. Podhalańskie Targi Budownictwa, Instalacji i OZE</strong><span class="so-tent-place">Miejska Hala Lodowa, Nowy Targ</span><time datetime="2027-05-14">14–16 maja 2027</time><small class="so-calendar-note so-tent-pending">Termin niepotwierdzony w harmonogramie</small></div></li>
+</ol>
 </section>
 <section id="budzet-namiot" class="so-section" aria-labelledby="budzet-namiot-title">
-<div class="so-section-head"><div><div class="so-section-label">03 / KOSZTORYS</div><h2 id="budzet-namiot-title">Budżet namiotu wystawowego</h2><p class="so-section-note">Przygotowana struktura budżetu, w której oddzielimy koszty jednorazowego przygotowania stoiska od kosztów ponoszonych podczas konkretnych targów. Kwoty uzupełnimy po otrzymaniu stawek.</p></div><span class="so-quantity">DO WYCENY</span></div>
-<div class="so-tent-budget-top" aria-label="Status budżetu">
-<div class="so-tent-budget-indicator"><span>Przygotowanie ekspozycji</span><strong>Do wyceny</strong><small>Elementy używane na wielu targach</small></div>
-<div class="so-tent-budget-indicator"><span>Udział w poszczególnych wydarzeniach</span><strong>Do wyceny</strong><small>Koszty związane z każdym eventem</small></div>
-<div class="so-tent-budget-indicator"><span>Łączny budżet</span><strong>Do uzupełnienia</strong><small>Po zebraniu wszystkich kosztów</small></div>
+<div class="so-section-head"><div><div class="so-section-label">03 / BUDŻET UCZESTNICTWA</div><h2 id="budzet-namiot-title">Budżet namiotu wystawowego 5 × 5 m</h2><p class="so-section-note">Dwa kompletne pakiety udziału w targach, w cenach przekazanych dla poszczególnych wydarzeń. Wszystkie kwoty podano netto.</p></div><span class="so-quantity">KWOTY NETTO</span></div>
+
+<div class="so-tent-budget-general">
+<span class="so-section-label">INFORMACJA OGÓLNA</span>
+<h3>Gotowe stoisko – jedna cena za wydarzenie</h3>
+<p>W obu przypadkach przyjmujemy kompleksową stawkę uczestnictwa obejmującą miejsce wystawiennicze, rozstawienie własnego namiotu PEREKO 5 × 5 m, wykładzinę, wyposażenie i stoliki oraz wymagane opłaty organizacyjne i rejestracyjne. Nie rozbijamy tych kosztów na dodatkowo płatne pozycje, ponieważ są już zawarte w podanych cenach. Przywozimy urządzenia grzewcze na paletach wystawowych, ustawiamy namiot i przygotowujemy ekspozycję.</p>
+<p class="so-tent-budget-detail">Kwoty dotyczą udziału w targach z wykorzystaniem namiotu PEREKO; nie oznaczają zakupu nowego namiotu. Zakres wycen opisujemy według przekazanych informacji.</p>
 </div>
-<div class="so-tent-scope">
-<article><h4>A · Zakupy i przygotowanie stoiska – jednorazowo</h4><p>Tu umieścimy pozycje i stawki związane z przygotowaniem namiotu, identyfikacji wizualnej oraz potrzebnego wyposażenia. Koszty wykonania zestawu policzymy jeden raz.</p><span class="so-tent-status">Oczekuje na pozycje i ceny</span></article>
-<article><h4>B · Koszty udziału w wydarzeniach</h4><p>Tu znajdą się koszty przypisane do poszczególnych targów, z liczbą wydarzeń i osobnymi podsumowaniami. Listę i stawki uzupełnimy po zatwierdzeniu zakresu.</p><span class="so-tent-status">Oczekuje na wydarzenia i stawki</span></article>
+
+<div class="so-tent-budget-top" aria-label="Podsumowanie budżetu netto">
+<div class="so-tent-budget-indicator"><span>EXPO-INSTAL · Gliwice</span><strong>9 400 zł <em>netto</em></strong><small>13–14 marca 2027</small></div>
+<div class="so-tent-budget-indicator"><span>Podhalańskie Targi · Nowy Targ</span><strong>6 200 zł <em>netto</em></strong><small>14–16 maja 2027 · termin niepotwierdzony</small></div>
+<div class="so-tent-budget-indicator so-tent-budget-indicator-total"><span>Łączny budżet udziału</span><strong>15 600 zł <em>netto</em></strong><small>2 wydarzenia · kompleksowe pakiety</small></div>
 </div>
-<p class="so-tent-note"><strong>Założenie do kolejnego etapu:</strong> nie wpisujemy jeszcze żadnych kwot ani sum szacunkowych. Gdy otrzymam specyfikację cen, rozbuduję budżet o tabele A/B, ilości, ceny jednostkowe, wartości łączne oraz podsumowanie — w tym samym stylu, co na podstronie Strefa Ognia.</p>
+
+<div class="so-tent-cost-section">
+<div class="so-cost-heading"><h4>A · Kompleksowe koszty udziału w targach</h4></div>
+<div class="so-table-scroll" role="region" tabindex="0" aria-label="Zestawienie kosztów targów z namiotem">
+<table class="so-budget-table">
+<thead><tr><th scope="col">Wydarzenie</th><th scope="col" class="so-numeric">Liczba</th><th scope="col" class="so-numeric">Cena jednostkowa netto</th><th scope="col" class="so-numeric">Wartość netto</th></tr></thead>
+<tbody>
+<tr><th scope="row"><span class="so-cost-name">EXPO-INSTAL – Gliwice</span><span class="so-cost-detail">27. Międzynarodowe Gliwickie Targi Budownictwa, Instalacji i Wnętrz · 13–14.03.2027</span><span class="so-cost-detail">Kompletny pakiet: namiot PEREKO 5 × 5 m, wykładzina, miejsce, wyposażenie, stoliki i opłaty rejestracyjne</span></th><td class="so-numeric">1</td><td class="so-numeric">9 400 zł</td><td class="so-numeric so-total-cell">9 400 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Podhalańskie Targi Budownictwa, Instalacji i OZE – Nowy Targ</span><span class="so-cost-detail">30. edycja · 14–16.05.2027 · termin niepotwierdzony</span><span class="so-cost-detail">Kompletny pakiet: miejsce, wykładzina, wyposażenie i stoliki; wykorzystujemy własny namiot 5 × 5 m</span></th><td class="so-numeric">1</td><td class="so-numeric">6 200 zł</td><td class="so-numeric so-total-cell">6 200 zł</td></tr>
+</tbody>
+</table>
+</div>
+<div class="so-cost-subtotal"><span>Łącznie za dwa wydarzenia (netto)</span><strong>15 600 zł</strong></div>
+</div>
+
+<div class="so-budget-footer so-tent-budget-footer"><span>EXPO-INSTAL: <strong>9 400 zł netto</strong></span><span>Podhalańskie Targi: <strong>6 200 zł netto</strong></span><span class="so-budget-final">Razem: <strong>15 600 zł netto</strong></span></div>
+<p class="so-budget-notes"><strong>Założenia kosztorysu:</strong> stawki 9 400 zł i 6 200 zł są cenami pakietowymi netto, bez ponownego doliczania zawartych w nich elementów. Nie wpisano żadnych nieprzekazanych kosztów dodatkowych. Termin targów w Nowym Targu wymaga potwierdzenia zgodnie z wykresem Gantta.</p>
 </section>
 <a class="so-bottom-link" href="../">← Powrót do harmonogramu projektu 196/26</a>
 </div></main>
