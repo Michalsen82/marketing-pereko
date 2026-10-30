@@ -3,43 +3,302 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Projekt PEREKO 196/26 – Namiot wystawowy 5 × 5 m. Wybrana wizualizacja ekspozycji i przygotowanie kosztorysu udziału w targach.">
 <title>PEREKO – Projekt 196/26 | Namiot wystawowy 5 × 5 m</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800;900&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root{--yellow:#ffdd00;--dark:#485156;--ink:#343b3f;--mid:#6e777d;--light:#d9dee1;--soft:#f6f7f7}
-*{box-sizing:border-box}
-body{margin:0;background:#fff;color:var(--ink);font-family:'Source Sans 3',sans-serif}
-.wrap{width:min(1280px,calc(100% - 64px));margin:auto}
-.topbar{background:var(--dark);border-bottom:1px solid rgba(255,255,255,.14)}
-.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;min-height:80px;flex-wrap:wrap;padding:12px 0}
-.brand{display:flex;align-items:center;gap:20px;color:#fff}
-.brand-word{font:900 32px 'Montserrat',sans-serif;letter-spacing:.045em}
-.brand-divider{width:1px;height:36px;background:rgba(255,255,255,.34)}
-.brand-title{display:flex;flex-direction:column;font:800 11px 'Montserrat',sans-serif;gap:6px}
-.brand-title small{font-size:10px;font-weight:600}
-.back{display:inline-flex;align-items:center;padding:10px 13px;border:1px solid rgba(255,255,255,.35);border-radius:6px;color:#fff;text-decoration:none;font:700 11px 'Montserrat',sans-serif}
-.back:hover{background:var(--yellow);border-color:var(--yellow);color:var(--dark)}
-.hero{background:var(--dark);color:#fff;padding:50px 0 54px}
-.eyebrow{color:var(--yellow);font:800 11px 'Montserrat',sans-serif;letter-spacing:.12em}
-h1{font:900 clamp(30px,4.5vw,58px)/1.08 'Montserrat',sans-serif;letter-spacing:-.035em;margin:15px 0 12px}
-.hero p{font-size:17px;line-height:1.6;color:#e9ecee;max-width:850px;margin:0}
-main{min-height:330px;padding:48px 0 80px}
-.placeholder{padding:40px;border:1px solid var(--light);border-radius:10px;background:var(--soft)}
-.placeholder-kicker{font:800 10px 'Montserrat',sans-serif;letter-spacing:.1em;color:var(--mid)}
-h2{margin:12px 0;font:900 clamp(22px,3vw,32px)/1.2 'Montserrat',sans-serif}
-.placeholder p{margin:0;color:var(--mid);font-size:16px;line-height:1.55}
-.footer{border-top:1px solid var(--light);padding:26px 0;color:var(--mid);font:700 11px 'Montserrat',sans-serif}
-@media(max-width:700px){.wrap{width:calc(100% - 28px)}.topbar .wrap{align-items:flex-start}.brand-word{font-size:24px}.brand{gap:12px}.hero{padding:35px 0}.placeholder{padding:26px}main{padding-top:30px}}
-</style>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="/projects-v2.css">
+<style id="namiot-5x5-specific">
+
+:root{--so-ink:#172126;--so-text:#45555d;--so-muted:#7c8b92;--so-line:#dfe5e8;--so-soft:#f8f9fa;--so-yellow:#f2c900;--so-gold:#987900}
+.so-wrap{width:min(1480px,calc(100% - 68px));margin:0 auto}
+.so-hero{border-bottom:1px solid var(--so-line);background:#fff}
+.so-hero-inner{padding:49px 0 46px}
+.so-crumb{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin-bottom:31px;color:#829198;font:650 11px/1.4 Inter,system-ui,sans-serif}
+.so-crumb a{color:#6c7b83;text-decoration:none}.so-crumb a:hover{text-decoration:underline;color:var(--so-ink)}.so-crumb b{font-weight:650;color:#b2bdc2}
+.so-hero-row{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:36px;align-items:end}
+.so-eyebrow{color:var(--so-gold);font:800 11px/1.4 Inter,system-ui,sans-serif;letter-spacing:.11em;text-transform:uppercase}
+.so-hero h1{font:800 clamp(38px,5vw,63px)/1.04 Inter,system-ui,sans-serif;letter-spacing:-.055em;color:var(--so-ink);margin:13px 0 17px}
+.so-hero p{font:400 15px/1.75 Inter,system-ui,sans-serif;color:#61737b;max-width:850px;margin:0}
+.so-hero-meta{border-left:1px solid var(--so-line);padding:8px 0 8px 30px;min-width:192px;display:flex;flex-direction:column;gap:14px}
+.so-hero-meta span{font:750 11px/1.5 Inter,system-ui,sans-serif;color:#7c8990}
+.so-hero-meta strong{display:block;color:var(--so-ink);font:800 22px/1.2 Inter,system-ui,sans-serif;margin:4px 0 0}
+.so-main{padding:35px 0 75px}
+body.project-detail-page main.so-main{padding:35px 0 75px!important}
+.so-stage-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:52px}
+.so-stage-link{min-height:91px;display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--so-line);border-radius:9px;background:#fff;color:var(--so-ink);text-decoration:none;transition:border-color .18s,background .18s}
+.so-stage-link:hover{background:#fffdf4;border-color:#d1b84b}
+.so-stage-link:focus-visible{outline:3px solid var(--so-yellow);outline-offset:3px}
+.so-stage-number{display:flex;justify-content:center;align-items:center;flex:0 0 43px;width:43px;height:43px;border-radius:9px;background:var(--so-yellow);color:#182226;font:850 15px/1 Inter,system-ui,sans-serif;letter-spacing:0;white-space:nowrap}
+.so-stage-link.is-later .so-stage-number{background:#edf0f2;color:#334149}
+.so-stage-text{min-width:0;display:flex;flex-direction:column;gap:5px}
+.so-stage-text strong{font:750 13px/1.3 Inter,system-ui,sans-serif;color:var(--so-ink)}
+.so-stage-text small{font:500 11px/1.4 Inter,system-ui,sans-serif;color:var(--so-muted)}
+.so-section{scroll-margin-top:120px;margin:0 0 58px}
+.so-section + .so-section{padding-top:43px;border-top:1px solid var(--so-line)}
+.so-section-head{display:flex;align-items:flex-end;justify-content:space-between;gap:18px;margin-bottom:21px}
+.so-section-label{font:800 10px/1.4 Inter,system-ui,sans-serif;letter-spacing:.10em;color:var(--so-gold);text-transform:uppercase}
+.so-section h2{font:800 clamp(22px,2.5vw,31px)/1.25 Inter,system-ui,sans-serif;letter-spacing:-.035em;margin:8px 0 10px;color:var(--so-ink)}
+.so-section-note{font:400 14px/1.7 Inter,system-ui,sans-serif;color:#718087;max-width:880px;margin:0}
+.so-quantity{display:inline-flex;flex-shrink:0;align-items:center;justify-content:center;padding:8px 12px;border:1px solid var(--so-line);border-radius:6px;color:#53636b;font:750 11px Inter,system-ui,sans-serif;white-space:nowrap}
+.so-gallery{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:12px;align-items:start}
+.so-card{min-width:0;background:#fff;border:1px solid var(--so-line);border-radius:9px;overflow:hidden;transition:border-color .18s,box-shadow .18s}
+.so-card:hover{border-color:#c4ccd0;box-shadow:0 3px 12px rgba(23,33,38,.06)}
+body.project-detail-page .so-photo{display:block;position:relative;width:100%;aspect-ratio:1/1.08;padding:0!important;border:0!important;background:#f2f3f3!important;overflow:hidden;cursor:zoom-in;border-radius:0!important}
+.so-photo img{display:block;width:100%;height:100%;object-fit:contain;object-position:center center;transition:transform .2s}
+.so-photo:hover img{transform:scale(1.035)}
+.so-photo:focus-visible{outline:3px solid var(--so-yellow);outline-offset:-4px}
+.so-photo-zoom{position:absolute;right:7px;bottom:7px;width:24px;height:24px;display:flex;align-items:center;justify-content:center;border-radius:5px;background:rgba(23,33,38,.87);color:#fff;font:750 14px Inter,system-ui,sans-serif}
+.so-card-caption{min-height:41px;padding:12px 8px 10px;color:#263238;font:750 10px/1.25 Inter,system-ui,sans-serif;text-align:center;display:flex;align-items:center;justify-content:center;overflow-wrap:anywhere}
+.so-pending{display:flex;align-items:flex-start;gap:18px;border:1px dashed #cbd4d8;border-radius:9px;background:#fafbfb;padding:27px 30px}
+.so-pending-mark{display:flex;align-items:center;justify-content:center;width:42px;height:42px;flex:0 0 42px;border-radius:8px;background:#e8edef;color:#506068;font:800 14px Inter,system-ui,sans-serif}
+.so-pending h3{margin:0 0 7px;color:var(--so-ink);font:750 15px/1.4 Inter,system-ui,sans-serif}
+.so-pending p{margin:0;max-width:890px;color:#7e8e95;font:400 13px/1.7 Inter,system-ui,sans-serif}
+.so-bottom-link{display:inline-flex;align-items:center;margin-top:12px;color:#52636c;text-decoration:none;font:750 12px Inter,system-ui,sans-serif}
+.so-bottom-link:hover{color:#947800;text-decoration:underline}
+.so-lightbox[hidden]{display:none!important}
+.so-lightbox{position:fixed;inset:0;z-index:9999;background:rgba(12,17,20,.96);display:grid;grid-template-rows:auto minmax(0,1fr) auto;place-items:stretch;color:#fff;padding:18px 66px 22px}
+.so-lightbox-top{display:flex;align-items:center;justify-content:space-between;gap:24px;width:100%;max-width:1360px;margin:0 auto}
+.so-lightbox-title{color:#fff;font:750 14px/1.5 Inter,system-ui,sans-serif}
+.so-lightbox-top small{display:block;margin-top:3px;color:#b2bfc5;font:500 11px Inter,system-ui,sans-serif}
+.so-lightbox-close{width:45px;height:45px;display:grid;place-items:center;color:#fff;background:rgba(255,255,255,.10);border:1px solid rgba(255,255,255,.32);border-radius:9px;font-size:25px;cursor:pointer}
+.so-lightbox-close:hover,.so-lightbox-arrow:hover{background:rgba(255,221,0,.18)}
+.so-lightbox-center{position:relative;width:100%;height:100%;min-height:0;display:grid;grid-template-columns:52px minmax(0,1fr) 52px;gap:16px;align-items:center}
+.so-lightbox-arrow{height:68px;width:52px;border:1px solid rgba(255,255,255,.35);border-radius:9px;color:#fff;background:rgba(255,255,255,.10);font:400 38px Inter,system-ui,sans-serif;cursor:pointer}
+.so-lightbox-figure{height:100%;min-height:0;max-width:100%;margin:0;display:flex;align-items:center;justify-content:center}
+.so-lightbox-image{display:block;max-width:100%;max-height:100%;width:auto;height:auto;object-fit:contain}
+.so-lightbox-footer{padding-top:9px;display:flex;align-items:center;justify-content:center;gap:12px;color:#d6dee1;font:550 12px/1.6 Inter,system-ui,sans-serif;text-align:center}
+.so-lightbox-index{color:#f2c900;font-weight:850}
+.so-lightbox button:focus-visible{outline:3px solid var(--so-yellow);outline-offset:2px}
+body.so-modal-open{overflow:hidden}
+@media(max-width:1080px){.so-gallery{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:1020px){.so-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}.so-stage-nav{grid-template-columns:1fr;gap:10px}.so-stage-link{min-height:72px}}
+@media(max-width:720px){
+ .so-wrap{width:calc(100% - 28px)}
+ .so-hero-inner{padding:25px 0 32px}.so-crumb{margin-bottom:24px}
+ .so-hero-row{grid-template-columns:1fr;gap:20px}.so-hero-meta{min-width:0;flex-direction:row;gap:25px;border-left:0;border-top:1px solid var(--so-line);padding:17px 0 0}.so-hero h1{font-size:43px}
+ .so-main{padding:24px 0 55px}body.project-detail-page main.so-main{padding:24px 0 55px!important}.so-stage-nav{margin-bottom:37px}
+ .so-section{margin-bottom:42px}.so-section + .so-section{padding-top:32px}
+ .so-section-head{align-items:start;flex-direction:column;gap:10px}
+ .so-gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+ .so-card-caption{min-height:39px;font-size:10px}
+ .so-pending{padding:20px;gap:12px}
+ .so-lightbox{padding:12px 12px 20px}
+ .so-lightbox-center{grid-template-columns:40px minmax(0,1fr) 40px;gap:5px}
+ .so-lightbox-arrow{width:40px;height:55px;font-size:30px}
+}
+@media(max-width:440px){.so-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.so-lightbox-center{grid-template-columns:32px minmax(0,1fr) 32px}.so-lightbox-arrow{width:32px;height:52px;font-size:26px}.so-lightbox-title{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.so-photo img,.so-card,.so-stage-link{transition:none}}
+
+/* Projekt 196/26 – małe, identyczne miniatury poziomych aranżacji */
+.so-gallery--arrangements{grid-template-columns:repeat(3,minmax(0,240px));justify-content:start}
+body.project-detail-page .so-gallery--arrangements .so-photo{aspect-ratio:16/9}
+.so-gallery--arrangements .so-card-caption{min-height:42px}
+@media(max-width:800px){.so-gallery--arrangements{grid-template-columns:repeat(2,minmax(0,240px))}}
+@media(max-width:450px){.so-gallery--arrangements{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+
+/* Projekt 196 / 04 – wybrane stoisko, terminarz i budżet */
+.so-stage-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+.so-chosen-label{color:#806800;border-color:#e4cf79}
+.so-feature-figure{margin:0 0 35px}
+body.project-detail-page .so-feature-button{position:relative;display:block;width:100%;max-width:1330px;margin:0 auto;padding:0!important;line-height:0!important;background:#f2f3f3!important;border:1px solid var(--so-line)!important;border-radius:9px!important;overflow:hidden;cursor:zoom-in}
+.so-feature-button img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+.so-feature-zoom{position:absolute;bottom:18px;right:18px;display:inline-flex;align-items:center;gap:7px;border-radius:6px;background:rgba(21,28,33,.9);color:#fff;padding:12px 15px;font:750 11px/1.2 Inter,system-ui,sans-serif}
+.so-feature-button:focus-visible{outline:3px solid var(--so-yellow);outline-offset:3px}
+.so-feature-figure figcaption{max-width:1330px;margin:9px auto 0;text-align:right;color:#87959d;font-size:11px;line-height:1.6}
+.so-flexibility{display:grid;grid-template-columns:minmax(250px,.42fr) minmax(0,1fr);gap:54px;padding:32px 0 42px;border-top:1px solid var(--so-line)}
+.so-flexibility-intro h3,.so-subhead h3{margin:8px 0 10px;color:var(--so-ink);font:800 clamp(19px,2.2vw,26px)/1.28 Inter,system-ui,sans-serif;letter-spacing:-.028em}
+.so-flexibility-intro p,.so-subhead p{margin:0;color:#74838a;font:400 13px/1.75 Inter,system-ui,sans-serif}
+.so-rules{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;row-gap:0}
+.so-rule{display:grid;grid-template-columns:36px minmax(0,1fr);gap:11px;align-items:start;padding:14px 0 18px;border-bottom:1px solid var(--so-line)}
+.so-rule-no{display:grid;place-items:center;width:34px;height:34px;border-radius:7px;background:#fff8d9;color:#7c6500;font:800 12px/1 Inter,system-ui,sans-serif}
+.so-rule p{margin:0;color:#65757d;font:400 13px/1.65 Inter,system-ui,sans-serif}
+.so-rule strong{color:#243137;font-weight:750}
+.so-events-block,.so-budget{padding-top:42px;margin-top:8px;border-top:1px solid var(--so-line)}
+.so-subhead{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 24px}
+.so-table-scroll{width:100%;overflow-x:auto;scrollbar-width:thin}
+.so-table-scroll:focus-visible{outline:2px solid var(--so-yellow);outline-offset:2px}
+body.project-detail-page .so-events-table,body.project-detail-page .so-budget-table{width:100%;border-collapse:collapse!important;border-top:1px solid #dfe5e8;background:#fff;table-layout:auto}
+body.project-detail-page .so-events-table th,body.project-detail-page .so-budget-table th,body.project-detail-page .so-events-table td,body.project-detail-page .so-budget-table td{padding:14px 15px!important;border:0!important;border-bottom:1px solid #e5e9eb!important;text-align:left;color:#34434a;vertical-align:middle}
+body.project-detail-page .so-events-table thead th,body.project-detail-page .so-budget-table thead th{background:#f6f8f8!important;color:#728189!important;font-size:10px!important;font-weight:800!important;letter-spacing:.025em;white-space:nowrap}
+body.project-detail-page .so-events-table{min-width:650px}
+body.project-detail-page .so-budget-table{min-width:740px}
+body.project-detail-page .so-events-table tbody th,body.project-detail-page .so-budget-table tbody th{font-size:12px;font-weight:700}
+body.project-detail-page .so-events-table .so-numeric,body.project-detail-page .so-budget-table .so-numeric{text-align:right!important;white-space:nowrap;min-width:80px;font-variant-numeric:tabular-nums}
+.so-event-no{width:54px;color:#91a0a7!important;font-size:11px}
+.so-event-title,.so-cost-name{display:block;font-weight:750;color:#27353b;line-height:1.38}
+.so-event-location,.so-cost-detail{display:block;margin-top:5px;font-weight:450;color:#8a98a0;font-size:11px;line-height:1.4}
+.so-event-date{min-width:165px;font-size:12px}
+.so-event-pending{display:block;color:#8b7011;margin-top:5px;font-size:10px;font-weight:750}
+.so-event-price{font-weight:750;color:#39464d}
+.so-budget{margin-top:50px}
+.so-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--so-line);border-bottom:1px solid var(--so-line);margin-bottom:38px}
+.so-summary-item{min-width:0;display:flex;flex-direction:column;padding:22px 20px 24px;border-right:1px solid var(--so-line)}
+.so-summary-item:first-child{padding-left:0}
+.so-summary-item:last-child{padding-right:0;border-right:0}
+.so-summary-item span{font-size:11px;font-weight:700;color:#77868d;line-height:1.45}
+.so-summary-item strong{font-size:clamp(19px,2.1vw,28px);line-height:1.22;font-weight:850;letter-spacing:-.035em;color:#233038;margin:11px 0}
+.so-summary-item small{color:#91a0a6;font-size:10px;line-height:1.5}
+.so-summary-main strong{color:#8b7200}
+.so-cost-section{margin:0 0 35px}
+.so-cost-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:0 0 11px}
+.so-cost-heading h4{margin:0;font:800 15px/1.4 Inter,system-ui,sans-serif;color:#223039}
+.so-cost-heading>span{font:850 16px/1.2 Inter,system-ui,sans-serif;color:#2b3941;white-space:nowrap;font-variant-numeric:tabular-nums}
+.so-cost-footnote{font-size:11px;line-height:1.6;color:#84929a;margin:9px 0 0}
+.so-cost-footnote strong{color:#4c5d65;font-weight:750}
+.so-total-cell{font-weight:800!important;color:#1d2c33!important}
+.so-budget-footer{display:flex;justify-content:flex-end;gap:25px;flex-wrap:wrap;padding:18px 0 20px;border-top:2px solid #263238;color:#58676f;font-size:12px}
+.so-budget-footer strong{color:#25343b;font-size:14px;font-weight:850}
+.so-budget-final{font-weight:750;color:#233039}
+.so-budget-final strong{font-size:20px;color:#806900}
+.so-budget-notes{max-width:1140px;border-left:3px solid var(--so-yellow);padding:11px 15px;background:#fbfcfc;font:400 11px/1.75 Inter,system-ui,sans-serif;color:#76858d}
+.so-budget-notes strong{color:#43535b}
+@media(max-width:1190px){.so-stage-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.so-flexibility{grid-template-columns:1fr;gap:16px}.so-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.so-summary-item{border-bottom:1px solid var(--so-line)}.so-summary-item:nth-child(2){border-right:0}.so-summary-item:nth-child(3){border-bottom:0;padding-left:0}.so-summary-item:nth-child(4){border-bottom:0}}
+@media(max-width:710px){.so-stage-nav{grid-template-columns:1fr}.so-rules{grid-template-columns:1fr}.so-summary-item{padding:18px 14px}.so-summary-item:nth-child(2){padding-right:0}.so-feature-zoom{right:9px;bottom:9px;padding:8px 10px;font-size:9px}.so-feature-figure figcaption{text-align:left}.so-flexibility{padding-top:23px}.so-budget-footer{justify-content:flex-start;gap:12px;flex-direction:column}}
+
+
+/* Strefa Ognia – porządek sekcji i czytelny terminarz niezależny od budżetu */
+.so-calendar-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 40px;border-top:1px solid var(--so-line)}
+.so-calendar-entry{min-width:0;display:grid;grid-template-columns:42px minmax(0,1fr);gap:16px;align-items:start;padding:19px 0 20px;border-bottom:1px solid var(--so-line)}
+.so-calendar-index{width:38px;height:38px;display:flex;align-items:center;justify-content:center;border:1px solid #e6d891;border-radius:8px;color:#896e00;font:800 12px/1 Inter,system-ui,sans-serif}
+.so-calendar-content{min-width:0;display:flex;flex-direction:column;gap:7px}
+.so-calendar-content strong{color:#243238;font:750 14px/1.45 Inter,system-ui,sans-serif}
+.so-calendar-content time{color:#8a7000;font:750 12px/1.45 Inter,system-ui,sans-serif}
+.so-calendar-note{display:block;color:#6f7f86;font:600 11px/1.5 Inter,system-ui,sans-serif}
+.so-cost-heading{padding-bottom:10px}
+.so-cost-heading h4{font:800 16px/1.4 Inter,system-ui,sans-serif}
+.so-obligatory-note{margin:0 0 17px;padding:13px 0 13px 17px;border-left:3px solid #cfb74c;color:#586a72;font:450 13px/1.75 Inter,system-ui,sans-serif}
+.so-obligatory-note strong{font-weight:800;color:#25353b}
+.so-cost-subtotal{display:flex;align-items:center;justify-content:flex-end;gap:24px;padding:15px 0 14px;margin:8px 0 0;border-top:2px solid #cbd3d7}
+.so-cost-subtotal span{font:750 12px/1.45 Inter,system-ui,sans-serif;color:#5c6b72}
+.so-cost-subtotal strong{font:850 21px/1.2 Inter,system-ui,sans-serif;letter-spacing:-.03em;color:#25353b;white-space:nowrap;font-variant-numeric:tabular-nums}
+@media(max-width:740px){.so-calendar-list{grid-template-columns:1fr}.so-calendar-entry{padding:17px 0}.so-cost-subtotal{justify-content:space-between;gap:12px}.so-cost-subtotal strong{font-size:18px}}
+
+
+
+/* Namiot 5×5 — zgodność ze stylem Strefa Ognia bez dodatkowych galerii */
+.so-tent-meta strong{font-variant-numeric:tabular-nums}
+.so-tent-section{padding-top:0!important}
+.so-tent-feature{margin:0 0 30px}
+.so-tent-feature .so-feature-button{max-width:none!important}
+.so-tent-feature .so-feature-zoom{z-index:1}
+.so-tent-facts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--so-line);border-bottom:1px solid var(--so-line);margin-bottom:20px}
+.so-tent-facts-item{padding:22px 26px;border-right:1px solid var(--so-line)}
+.so-tent-facts-item:first-child{padding-left:0}
+.so-tent-facts-item:last-child{border-right:0}
+.so-tent-facts-item span{display:block;font-size:11px;font-weight:700;color:#87949b;line-height:1.4}
+.so-tent-facts-item strong{display:block;margin-top:7px;color:var(--so-ink);font-size:15px;line-height:1.45;font-weight:750}
+.so-tent-facts-item p{margin:6px 0 0;font-size:12px;line-height:1.6;color:#809098}
+.so-tent-approach{display:grid;grid-template-columns:minmax(230px,.35fr) minmax(0,1fr);gap:52px;margin-top:24px;padding-top:32px;border-top:1px solid var(--so-line)}
+.so-tent-approach h3{margin:9px 0 12px;font-size:24px;letter-spacing:-.035em;color:var(--so-ink);line-height:1.2}
+.so-tent-approach p{margin:0;color:#718188;line-height:1.75;font-size:13px}
+.so-tent-approach-items{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0 22px}
+.so-tent-approach-items article{display:flex;gap:12px;align-items:start;border-bottom:1px solid var(--so-line);padding:14px 0 17px}
+.so-tent-number{flex:0 0 36px;height:36px;border-radius:8px;display:grid;place-items:center;background:#fff8d9;color:#856c00;font-weight:800;font-size:12px}
+.so-tent-approach-items strong{color:#25333a;font-size:13px;line-height:1.5}
+.so-tent-approach-items p{margin-top:5px;font-size:12px;line-height:1.6}
+.so-tent-empty{border:1px dashed #cbd4d8;border-radius:9px;background:#fbfcfc;padding:28px 30px}
+.so-tent-empty strong{display:block;font-weight:750;font-size:14px;line-height:1.5;color:#25343b}
+.so-tent-empty p{margin:8px 0 0;font-size:13px;line-height:1.75;color:#718189}
+.so-tent-budget-top{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;border-top:1px solid var(--so-line);border-bottom:1px solid var(--so-line);margin-bottom:30px}
+.so-tent-budget-indicator{min-width:0;padding:24px 24px 26px;border-right:1px solid var(--so-line)}
+.so-tent-budget-indicator:first-child{padding-left:0}
+.so-tent-budget-indicator:last-child{border-right:0}
+.so-tent-budget-indicator span{display:block;color:#74838a;font-weight:750;font-size:11px}
+.so-tent-budget-indicator strong{display:block;margin-top:12px;color:#52616a;font-weight:800;font-size:21px;line-height:1.25}
+.so-tent-budget-indicator small{display:block;margin-top:8px;color:#91a0a6;font-size:10px;line-height:1.5}
+.so-tent-scope{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.so-tent-scope article{padding:24px;border:1px solid var(--so-line);border-radius:9px;background:#fff}
+.so-tent-scope h4{font-size:15px;line-height:1.4;margin:0 0 12px;color:#26343b}
+.so-tent-scope p{font-size:12px;line-height:1.72;margin:0;color:#7a8990}
+.so-tent-scope .so-tent-status{display:inline-flex;align-items:center;gap:7px;margin-top:18px;padding:7px 9px;border-radius:6px;background:#f5f6f6;color:#73818a;font-size:10px;font-weight:750}
+.so-tent-status::before{content:"";width:7px;height:7px;border-radius:50%;background:#9faab0}
+.so-tent-note{margin:20px 0 0;padding:14px 18px;border-left:3px solid var(--so-yellow);background:#fbfcfc;color:#708087;font-size:12px;line-height:1.75}
+.so-tent-modal[hidden]{display:none!important}
+.so-tent-modal{position:fixed;inset:0;z-index:9999;background:rgba(12,17,20,.97);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;padding:72px 28px 34px}
+.so-tent-modal img{display:block;max-width:min(96vw,1600px);max-height:calc(100dvh - 135px);width:auto;height:auto;object-fit:contain}
+.so-tent-modal p{margin:0;color:#fff;font-size:13px;font-weight:750;text-align:center}
+body.project-detail-page .so-tent-modal-close{position:absolute;right:30px;top:23px;display:grid;place-items:center;width:46px;height:46px;border-radius:8px;border:1px solid #7a868c;background:rgba(255,255,255,.10);color:#fff;cursor:pointer;font-size:26px}
+body.project-detail-page .so-tent-modal-close:focus-visible{outline:3px solid var(--so-yellow);outline-offset:3px}
+body.so-modal-open{overflow:hidden}
+@media(max-width:950px){.so-tent-approach{grid-template-columns:1fr;gap:12px}}
+@media(max-width:740px){.so-tent-facts{grid-template-columns:1fr}.so-tent-facts-item{padding:15px 0!important;border-right:0;border-bottom:1px solid var(--so-line)}.so-tent-facts-item:last-child{border-bottom:0}.so-tent-budget-top{grid-template-columns:1fr}.so-tent-budget-indicator{padding:17px 0!important;border-right:0;border-bottom:1px solid var(--so-line)}.so-tent-budget-indicator:last-child{border-bottom:0}.so-tent-scope{grid-template-columns:1fr}.so-tent-approach-items{grid-template-columns:1fr}.so-tent-modal{padding:70px 10px 25px}.so-tent-modal img{max-height:calc(100dvh - 110px)}.so-tent-modal-close{right:15px;top:15px}}
+
+</style>
 </head>
 <body>
-<nav class="topbar"><div class="wrap"><div class="brand"><div class="brand-word">PEREKO</div><span class="brand-divider"></span><div class="brand-title"><small>Projekt 196/26 · Targi H1 2027</small>STOISKO BUDŻETOWE</div></div><a class="back" href="../">← Powrót do harmonogramu</a></div></nav>
-<header class="hero"><div class="wrap"><div class="eyebrow">02 / STOISKO BUDŻETOWE</div><h1>Namiot wystawowy 5 × 5 m</h1><p>Samodzielne wystawianie się PEREKO w wariancie budżetowym z własnym namiotem wystawowym.</p></div></header>
-<main><div class="wrap"><section class="placeholder" aria-label="Przestrzeń robocza"><div class="placeholder-kicker">PRZESTRZEŃ ROBOCZA</div><h2>Podstrona przygotowana do rozbudowy</h2><p>W tym miejscu znajdą się szczegóły organizacji stoiska oraz budżet tej formy uczestnictwa. Zakres uzupełnimy w kolejnym etapie projektu.</p></section></div></main>
-<footer class="footer"><div class="wrap">PEREKO • Projekt 196/26 • Targi I–II kwartał 2027</div></footer>
+<header class="so-hero"><div class="so-wrap so-hero-inner">
+<nav class="so-crumb" aria-label="Ścieżka nawigacji"><a href="/">Centrum Projektów</a><b aria-hidden="true">/</b><a href="../">Projekt 196/26</a><b aria-hidden="true">/</b><span aria-current="page">Namiot wystawowy 5 × 5 m</span></nav>
+<div class="so-hero-row">
+<div>
+<div class="so-eyebrow">PROJEKT 196/26 · TARGI PEREKO · I–II KWARTAŁ 2027</div>
+<h1>Namiot wystawowy 5 × 5 m</h1>
+<p>Samodzielna ekspozycja PEREKO w wariancie budżetowym. Jeden wybrany projekt namiotu, wspólny standard prezentacji urządzeń na paletach i osobne budżetowanie udziału w poszczególnych wydarzeniach targowych.</p>
+</div>
+<aside class="so-hero-meta so-tent-meta" aria-label="Parametry ekspozycji"><span>Wymiar namiotu<strong>5 × 5 m</strong></span><span>Powierzchnia<strong>25 m²</strong></span></aside>
+</div></div></header>
+<main class="so-main"><div class="so-wrap">
+<nav class="so-stage-nav" aria-label="Sekcje podstrony" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+<a class="so-stage-link" href="#wybrany-namiot"><span class="so-stage-number">01</span><span class="so-stage-text"><strong>Wybrany namiot</strong><small>Jedna wizualizacja ekspozycji</small></span></a>
+<a class="so-stage-link" href="#wydarzenia-namiot"><span class="so-stage-number">02</span><span class="so-stage-text"><strong>Udział w wydarzeniach</strong><small>Do przypisania do harmonogramu</small></span></a>
+<a class="so-stage-link" href="#budzet-namiot"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Budżetowanie</strong><small>Struktura kosztów do uzupełnienia</small></span></a>
+</nav>
+<section id="wybrany-namiot" class="so-section so-tent-section" aria-labelledby="wybrany-namiot-title">
+<div class="so-section-head"><div><div class="so-section-label">01 / WYBRANE STOISKO</div><h2 id="wybrany-namiot-title">Namiot wystawowy PEREKO 5 × 5 m</h2><p class="so-section-note">Jedna wizualizacja referencyjna — stanowi podstawę do dalszych prac organizacyjnych i kosztorysowych. Kliknięcie zdjęcia otwiera je w powiększeniu.</p></div><span class="so-quantity so-chosen-label">WYBRANY WARIANT</span></div>
+<figure class="so-feature-figure so-tent-feature"><button class="so-feature-button" type="button" id="so-tent-preview" aria-label="Powiększ wizualizację namiotu wystawowego PEREKO 5 × 5 m">
+<img src="assets/namiot-pereko-5x5.png" alt="Żółto-biały pneumatyczny namiot wystawowy PEREKO z trzema urządzeniami grzewczymi, ustawionymi na paletach wystawowych: SPARK EVO, RETRO DUO i QmPell EVO." width="1672" height="941" loading="eager" decoding="async">
+<span class="so-feature-zoom" aria-hidden="true">↗ Powiększ wizualizację</span></button><figcaption>Wybrana aranżacja namiotu PEREKO 5 × 5 m — jedna koncepcja, bez alternatywnych wariantów.</figcaption></figure>
+<div class="so-tent-facts">
+<div class="so-tent-facts-item"><span>Forma uczestnictwa</span><strong>Samodzielne stoisko PEREKO</strong><p>Ekspozycja budżetowa z własnym namiotem.</p></div>
+<div class="so-tent-facts-item"><span>Gabaryty projektowe</span><strong>5 × 5 m / 25 m²</strong><p>Wymiary przyjęte do dalszego planowania.</p></div>
+<div class="so-tent-facts-item"><span>Wizualizacja</span><strong>1 zatwierdzony kierunek</strong><p>Zdjęcie jest wzorcem wyglądu stoiska.</p></div>
+</div>
+<div class="so-tent-approach"><div><span class="so-section-label">ZASADY ORGANIZACYJNE</span><h3>Jeden namiot, elastyczna ekspozycja</h3><p>Układ prezentacji planujemy z zachowaniem stylu PEREKO. Ostateczne zestawienie urządzeń określimy dla konkretnych targów.</p></div>
+<div class="so-tent-approach-items">
+<article><span class="so-tent-number">01</span><div><strong>Wygląd i konstrukcja</strong><p>Żółto-biała forma namiotu, identyfikacja PEREKO i spójna ekspozycja urządzeń.</p></div></article>
+<article><span class="so-tent-number">02</span><div><strong>Palety wystawowe</strong><p>Urządzenia prezentowane na osobnych paletach z drewnianym blatem i ciemną podstawą.</p></div></article>
+<article><span class="so-tent-number">03</span><div><strong>Dobór urządzeń</strong><p>Modele widoczne na grafice mają charakter przykładowy; dobór produktów ustalimy dla danego wydarzenia.</p></div></article>
+<article><span class="so-tent-number">04</span><div><strong>Jeden wariant wizualny</strong><p>Nie tworzymy alternatywnej galerii namiotów. Uzupełnimy tylko informacje organizacyjne i wyceny.</p></div></article>
+</div></div>
+</section>
+<section id="wydarzenia-namiot" class="so-section" aria-labelledby="wydarzenia-namiot-title">
+<div class="so-section-head"><div><div class="so-section-label">02 / HARMONOGRAM UCZESTNICTWA</div><h2 id="wydarzenia-namiot-title">Wydarzenia z namiotem 5 × 5 m</h2><p class="so-section-note">Powiązanie namiotu z konkretnymi targami opracujemy na podstawie planu uczestnictwa PEREKO.</p></div></div>
+<div class="so-tent-empty"><strong>Wydarzenia nie zostały jeszcze przypisane do tej formy ekspozycji</strong><p>W głównym harmonogramie projektu 196/26 figurują wydarzenia przypisane do Strefy Ognia i pozostałe wystąpienia PEREKO, ale brak jednoznacznego oznaczenia „namiot 5 × 5 m”. Nie przypisuję ich automatycznie. Po wskazaniu odpowiednich targów uzupełnimy nazwy, lokalizacje i dokładne daty.</p></div>
+</section>
+<section id="budzet-namiot" class="so-section" aria-labelledby="budzet-namiot-title">
+<div class="so-section-head"><div><div class="so-section-label">03 / KOSZTORYS</div><h2 id="budzet-namiot-title">Budżet namiotu wystawowego</h2><p class="so-section-note">Przygotowana struktura budżetu, w której oddzielimy koszty jednorazowego przygotowania stoiska od kosztów ponoszonych podczas konkretnych targów. Kwoty uzupełnimy po otrzymaniu stawek.</p></div><span class="so-quantity">DO WYCENY</span></div>
+<div class="so-tent-budget-top" aria-label="Status budżetu">
+<div class="so-tent-budget-indicator"><span>Przygotowanie ekspozycji</span><strong>Do wyceny</strong><small>Elementy używane na wielu targach</small></div>
+<div class="so-tent-budget-indicator"><span>Udział w poszczególnych wydarzeniach</span><strong>Do wyceny</strong><small>Koszty związane z każdym eventem</small></div>
+<div class="so-tent-budget-indicator"><span>Łączny budżet</span><strong>Do uzupełnienia</strong><small>Po zebraniu wszystkich kosztów</small></div>
+</div>
+<div class="so-tent-scope">
+<article><h4>A · Zakupy i przygotowanie stoiska – jednorazowo</h4><p>Tu umieścimy pozycje i stawki związane z przygotowaniem namiotu, identyfikacji wizualnej oraz potrzebnego wyposażenia. Koszty wykonania zestawu policzymy jeden raz.</p><span class="so-tent-status">Oczekuje na pozycje i ceny</span></article>
+<article><h4>B · Koszty udziału w wydarzeniach</h4><p>Tu znajdą się koszty przypisane do poszczególnych targów, z liczbą wydarzeń i osobnymi podsumowaniami. Listę i stawki uzupełnimy po zatwierdzeniu zakresu.</p><span class="so-tent-status">Oczekuje na wydarzenia i stawki</span></article>
+</div>
+<p class="so-tent-note"><strong>Założenie do kolejnego etapu:</strong> nie wpisujemy jeszcze żadnych kwot ani sum szacunkowych. Gdy otrzymam specyfikację cen, rozbuduję budżet o tabele A/B, ilości, ceny jednostkowe, wartości łączne oraz podsumowanie — w tym samym stylu, co na podstronie Strefa Ognia.</p>
+</section>
+<a class="so-bottom-link" href="../">← Powrót do harmonogramu projektu 196/26</a>
+</div></main>
+<footer class="footer"><div class="so-wrap wrap"><strong>PEREKO • Projekt 196/26 • Namiot wystawowy 5 × 5 m</strong></div></footer>
+<div id="so-tent-lightbox" class="so-tent-modal" role="dialog" aria-modal="true" aria-label="Podgląd namiotu PEREKO" hidden>
+<button class="so-tent-modal-close" id="so-tent-close" type="button" aria-label="Zamknij zdjęcie">×</button>
+<img src="assets/namiot-pereko-5x5.png" alt="Powiększona wizualizacja żółto-białego namiotu wystawowego PEREKO z trzema kotłami na paletach wystawowych." width="1672" height="941">
+<p>Namiot wystawowy PEREKO 5 × 5 m</p>
+</div>
+<script>
+(function() {
+"use strict";
+const modal=document.getElementById("so-tent-lightbox"),preview=document.getElementById("so-tent-preview"),close=document.getElementById("so-tent-close");
+let previousFocus=null;
+function open(){previousFocus=document.activeElement;modal.hidden=false;document.body.classList.add("so-modal-open");close.focus();}
+function hide(){modal.hidden=true;document.body.classList.remove("so-modal-open");if(previousFocus&&document.contains(previousFocus))previousFocus.focus();}
+preview.addEventListener("click",open);
+close.addEventListener("click",hide);
+modal.addEventListener("click",e=>{if(e.target===modal)hide()});
+document.addEventListener("keydown",e=>{if(modal.hidden)return;if(e.key==="Escape"){e.preventDefault();hide()}else if(e.key==="Tab"&&document.activeElement!==close){e.preventDefault();close.focus();}});
+})();
+</script>
 <script src="/projects-v2.js"></script>
-</body>
-</html>
+</body></html>
