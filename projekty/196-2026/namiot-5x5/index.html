@@ -178,6 +178,7 @@ body.project-detail-page .so-events-table .so-numeric,body.project-detail-page .
 
 
 /* Namiot 5×5 — zgodność ze stylem Strefa Ognia bez dodatkowych galerii */
+.so-tent-nav{grid-template-columns:repeat(3,minmax(0,1fr))}
 .so-tent-meta strong{font-variant-numeric:tabular-nums}
 .so-tent-section{padding-top:0!important}
 .so-tent-feature{margin:0 0 30px}
@@ -222,6 +223,7 @@ body.project-detail-page .so-events-table .so-numeric,body.project-detail-page .
 body.project-detail-page .so-tent-modal-close{position:absolute;right:30px;top:23px;display:grid;place-items:center;width:46px;height:46px;border-radius:8px;border:1px solid #7a868c;background:rgba(255,255,255,.10);color:#fff;cursor:pointer;font-size:26px}
 body.project-detail-page .so-tent-modal-close:focus-visible{outline:3px solid var(--so-yellow);outline-offset:3px}
 body.so-modal-open{overflow:hidden}
+@media(max-width:1020px){.so-tent-nav{grid-template-columns:1fr}}
 @media(max-width:950px){.so-tent-approach{grid-template-columns:1fr;gap:12px}}
 @media(max-width:740px){.so-tent-facts{grid-template-columns:1fr}.so-tent-facts-item{padding:15px 0!important;border-right:0;border-bottom:1px solid var(--so-line)}.so-tent-facts-item:last-child{border-bottom:0}.so-tent-budget-top{grid-template-columns:1fr}.so-tent-budget-indicator{padding:17px 0!important;border-right:0;border-bottom:1px solid var(--so-line)}.so-tent-budget-indicator:last-child{border-bottom:0}.so-tent-scope{grid-template-columns:1fr}.so-tent-approach-items{grid-template-columns:1fr}.so-tent-modal{padding:70px 10px 25px}.so-tent-modal img{max-height:calc(100dvh - 110px)}.so-tent-modal-close{right:15px;top:15px}}
 
@@ -248,7 +250,7 @@ body.so-modal-open{overflow:hidden}
 <aside class="so-hero-meta so-tent-meta" aria-label="Parametry ekspozycji"><span>Wymiar namiotu<strong>5 × 5 m</strong></span><span>Powierzchnia<strong>25 m²</strong></span></aside>
 </div></div></header>
 <main class="so-main"><div class="so-wrap">
-<nav class="so-stage-nav" aria-label="Sekcje podstrony" style="grid-template-columns:repeat(3,minmax(0,1fr))">
+<nav class="so-stage-nav so-tent-nav" aria-label="Sekcje podstrony">
 <a class="so-stage-link" href="#wybrany-namiot"><span class="so-stage-number">01</span><span class="so-stage-text"><strong>Wybrany namiot</strong><small>Jedna wizualizacja ekspozycji</small></span></a>
 <a class="so-stage-link" href="#wydarzenia-namiot"><span class="so-stage-number">02</span><span class="so-stage-text"><strong>Udział w wydarzeniach</strong><small>Do przypisania do harmonogramu</small></span></a>
 <a class="so-stage-link" href="#budzet-namiot"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Budżetowanie</strong><small>Struktura kosztów do uzupełnienia</small></span></a>
