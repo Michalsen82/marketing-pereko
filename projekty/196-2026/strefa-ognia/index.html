@@ -89,6 +89,13 @@ body.so-modal-open{overflow:hidden}
 }
 @media(max-width:440px){.so-gallery{grid-template-columns:repeat(2,minmax(0,1fr))}.so-lightbox-center{grid-template-columns:32px minmax(0,1fr) 32px}.so-lightbox-arrow{width:32px;height:52px;font-size:26px}.so-lightbox-title{font-size:12px}}
 @media(prefers-reduced-motion:reduce){.so-photo img,.so-card,.so-stage-link{transition:none}}
+
+/* Projekt 196/26 – małe, identyczne miniatury poziomych aranżacji */
+.so-gallery--arrangements{grid-template-columns:repeat(3,minmax(0,240px));justify-content:start}
+body.project-detail-page .so-gallery--arrangements .so-photo{aspect-ratio:16/9}
+.so-gallery--arrangements .so-card-caption{min-height:42px}
+@media(max-width:800px){.so-gallery--arrangements{grid-template-columns:repeat(2,minmax(0,240px))}}
+@media(max-width:450px){.so-gallery--arrangements{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
 </style>
 </head>
 <body>
@@ -96,13 +103,13 @@ body.so-modal-open{overflow:hidden}
 <nav class="so-crumb" aria-label="Ścieżka nawigacji"><a href="/">Centrum Projektów</a><b aria-hidden="true">/</b><a href="../">Projekt 196/26</a><b aria-hidden="true">/</b><span aria-current="page">Strefa Ognia</span></nav>
 <div class="so-hero-row">
 <div><div class="so-eyebrow">PROJEKT 196/26 · TARGI PEREKO · I–II KWARTAŁ 2027</div><h1>Strefa Ognia</h1><p>Elastyczna ekspozycja PEREKO podczas wydarzeń targowych organizowanych przez „Świat Kominków”. Zależnie od rangi i wielkości wydarzenia dobieramy zestaw produktów: samodzielne urządzenia na paletach lub rozbudowane ekspozytory ze ściankami, grafiką i prezentacją multimedialną.</p></div>
-<aside class="so-hero-meta" aria-label="Stan przygotowania ekspozycji"><span>Grupy ekspozycji<strong>2 gotowe</strong></span><span>Wizualizacje<strong>12 zdjęć</strong></span></aside>
+<aside class="so-hero-meta" aria-label="Stan przygotowania ekspozycji"><span>Grupy ekspozycji<strong>3 gotowe</strong></span><span>Wizualizacje<strong>15 zdjęć</strong></span></aside>
 </div></div></header>
 <main class="so-main"><div class="so-wrap">
 <nav class="so-stage-nav" aria-label="Sekcje ekspozycji">
 <a class="so-stage-link" href="#palety"><span class="so-stage-number">01</span><span class="so-stage-text"><strong>Urządzenia na paletach</strong><small>8 zdjęć · galeria gotowa</small></span></a>
 <a class="so-stage-link" href="#scianki"><span class="so-stage-number">02</span><span class="so-stage-text"><strong>Palety ze ściankami LED</strong><small>4 zdjęcia · galeria gotowa</small></span></a>
-<a class="so-stage-link is-later" href="#aranzacje"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Aranżacje stoisk</strong><small>Kolejny etap projektu</small></span></a>
+<a class="so-stage-link" href="#aranzacje"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Aranżacje stoisk</strong><small>3 zdjęcia · galeria gotowa</small></span></a>
 </nav>
 <section id="palety" class="so-section" aria-labelledby="so-palety-title">
 <div class="so-section-head"><div><div class="so-section-label">01 / WIZUALIZACJE PRODUKTOWE</div><h2 id="so-palety-title">Urządzenia na paletach wystawowych</h2><p class="so-section-note">Podstawowy wariant ekspozycji: urządzenia na paletach z drewnianym blatem i ciemną metalową podstawą. Kliknij miniaturę, aby obejrzeć zdjęcie w powiększeniu i przeglądać tę galerię.</p></div><span class="so-quantity">8 ZDJĘĆ</span></div>
@@ -123,8 +130,12 @@ body.so-modal-open{overflow:hidden}
 <article class="so-card"><button class="so-photo" type="button" data-so-gallery="led" data-so-index="3" aria-label="Otwórz zdjęcie Comfort-Pell w powiększeniu"><img src="assets/led-comfort-pell.webp" alt="Kocioł Comfort-Pell na palecie z podświetlaną ścianką i ekranem prezentacyjnym" loading="lazy" decoding="async"><span class="so-photo-zoom" aria-hidden="true">↗</span></button><div class="so-card-caption" title="Comfort-Pell">Comfort-Pell</div></article></div>
 </section>
 <section id="aranzacje" class="so-section" aria-labelledby="so-aranzacje-title">
-<div class="so-section-head"><div><div class="so-section-label">03 / KONFIGURACJE PRZESTRZENNE</div><h2 id="so-aranzacje-title">Przykładowe aranżacje stoisk</h2><p class="so-section-note">Warianty zestawienia urządzeń, zieleni i ekspozytorów na stoiskach Strefy Ognia o różnej skali.</p></div></div>
-<div class="so-pending"><span class="so-pending-mark">03</span><div><h3>Przestrzeń przygotowana na kolejny zestaw zdjęć</h3><p>W kolejnym etapie dodamy wizualizacje ustawienia produktów. Budżetowanie opracujemy później osobno dla poszczególnych konfiguracji stoiska.</p></div></div>
+<div class="so-section-head"><div><div class="so-section-label">03 / KONFIGURACJE PRZESTRZENNE</div><h2 id="so-aranzacje-title">Przykładowe aranżacje stoisk</h2><p class="so-section-note">Trzy warianty połączenia urządzeń, zieleni i ekspozytorów na stoiskach Strefy Ognia. Kliknij miniaturkę, aby obejrzeć układ w powiększeniu i przejrzeć całą galerię.</p></div><span class="so-quantity">3 ZDJĘCIA</span></div>
+<div class="so-gallery so-gallery--arrangements" aria-label="Galeria przykładowych aranżacji stoisk">
+<article class="so-card"><button class="so-photo" type="button" data-so-gallery="aranzacje" data-so-index="0" aria-label="Otwórz zdjęcie: Aranżacja 01 · trzy ekspozytory"><img src="assets/aranzacja-01-trzy-ekspozytory.webp" alt="Stoisko PEREKO z trzema podświetlanymi ekspozytorami: QmPell EVO, TermoSTAR PRO i Comfort-Pell, z roślinami i materiałami reklamowymi" loading="lazy" decoding="async"><span class="so-photo-zoom" aria-hidden="true">↗</span></button><div class="so-card-caption" title="Aranżacja 01 · trzy ekspozytory">Aranżacja 01 · trzy ekspozytory</div></article>
+<article class="so-card"><button class="so-photo" type="button" data-so-gallery="aranzacje" data-so-index="1" aria-label="Otwórz zdjęcie: Aranżacja 02 · układ rozbudowany"><img src="assets/aranzacja-02-piecz-urzadzen.webp" alt="Aranżacja PEREKO z pompą ciepła TermoSTAR PRO w centralnym ekspozytorze oraz czterema kotłami na osobnych paletach" loading="lazy" decoding="async"><span class="so-photo-zoom" aria-hidden="true">↗</span></button><div class="so-card-caption" title="Aranżacja 02 · układ rozbudowany">Aranżacja 02 · układ rozbudowany</div></article>
+<article class="so-card"><button class="so-photo" type="button" data-so-gallery="aranzacje" data-so-index="2" aria-label="Otwórz zdjęcie: Aranżacja 03 · ekspozycja mieszana"><img src="assets/aranzacja-03-kotly-i-ekspozytor.webp" alt="Aranżacja PEREKO z kotłem Spark EVO, centralnym ekspozytorem QmPell EVO oraz kotłem Pell-Star i zasobnikiem" loading="lazy" decoding="async"><span class="so-photo-zoom" aria-hidden="true">↗</span></button><div class="so-card-caption" title="Aranżacja 03 · ekspozycja mieszana">Aranżacja 03 · ekspozycja mieszana</div></article>
+</div>
 <a class="so-bottom-link" href="../">← Powrót do harmonogramu projektu 196/26</a>
 </section>
 </div></main>
@@ -139,7 +150,8 @@ body.so-modal-open{overflow:hidden}
   "use strict";
   const galleries={
     palety: [{"name":"SPARK EVO","src":"assets/spark-evo.webp","alt":"Kocioł SPARK EVO na palecie wystawowej PEREKO"},{"name":"QmPell EVO","src":"assets/qmpell-evo.webp","alt":"Kocioł QmPell EVO na palecie wystawowej PEREKO"},{"name":"QmPell DUO","src":"assets/qmpell-duo.webp","alt":"Kocioł QmPell DUO z zasobnikiem na palecie wystawowej PEREKO"},{"name":"RETRO","src":"assets/retro.webp","alt":"Biały kocioł RETRO na palecie wystawowej PEREKO"},{"name":"RETRO DUO","src":"assets/retro-duo.webp","alt":"Ciemny kocioł RETRO DUO na palecie wystawowej PEREKO"},{"name":"SONIC","src":"assets/sonic.webp","alt":"Biały kocioł elektryczny SONIC na palecie wystawowej PEREKO"},{"name":"COMFORT-PELL","src":"assets/comfort-pell.webp","alt":"Kocioł COMFORT-PELL na palecie wystawowej PEREKO"},{"name":"PELL-STAR","src":"assets/pell-star.webp","alt":"Kocioł PELL-STAR z zasobnikiem na palecie wystawowej PEREKO"}],
-    led: [{"name":"TermoSTAR PRO","src":"assets/led-termostar-pro.webp","alt":"Pompa ciepła TermoSTAR PRO na palecie z podświetlaną ścianką, lamelami i monitorem"},{"name":"QmPell DUO","src":"assets/led-qmpell-duo.webp","alt":"Kocioł QmPell DUO na palecie z podświetlaną ścianką i drewnianymi lamelami"},{"name":"QmPell EVO","src":"assets/led-qmpell-evo.webp","alt":"Kocioł QmPell EVO z podświetlaną ścianką, lamelami i ekranem prezentacyjnym"},{"name":"Comfort-Pell","src":"assets/led-comfort-pell.webp","alt":"Kocioł Comfort-Pell na palecie z podświetlaną ścianką i ekranem prezentacyjnym"}]
+    led: [{"name":"TermoSTAR PRO","src":"assets/led-termostar-pro.webp","alt":"Pompa ciepła TermoSTAR PRO na palecie z podświetlaną ścianką, lamelami i monitorem"},{"name":"QmPell DUO","src":"assets/led-qmpell-duo.webp","alt":"Kocioł QmPell DUO na palecie z podświetlaną ścianką i drewnianymi lamelami"},{"name":"QmPell EVO","src":"assets/led-qmpell-evo.webp","alt":"Kocioł QmPell EVO z podświetlaną ścianką, lamelami i ekranem prezentacyjnym"},{"name":"Comfort-Pell","src":"assets/led-comfort-pell.webp","alt":"Kocioł Comfort-Pell na palecie z podświetlaną ścianką i ekranem prezentacyjnym"}],
+    aranzacje: [{"name":"Aranżacja 01 · trzy ekspozytory","src":"assets/aranzacja-01-trzy-ekspozytory.webp","alt":"Stoisko PEREKO z trzema podświetlanymi ekspozytorami: QmPell EVO, TermoSTAR PRO i Comfort-Pell, z roślinami i materiałami reklamowymi"},{"name":"Aranżacja 02 · układ rozbudowany","src":"assets/aranzacja-02-piecz-urzadzen.webp","alt":"Aranżacja PEREKO z pompą ciepła TermoSTAR PRO w centralnym ekspozytorze oraz czterema kotłami na osobnych paletach"},{"name":"Aranżacja 03 · ekspozycja mieszana","src":"assets/aranzacja-03-kotly-i-ekspozytor.webp","alt":"Aranżacja PEREKO z kotłem Spark EVO, centralnym ekspozytorem QmPell EVO oraz kotłem Pell-Star i zasobnikiem"}]
   };
   const overlay=document.getElementById("so-lightbox");
   const img=document.getElementById("so-lightbox-image");
@@ -153,7 +165,7 @@ body.so-modal-open{overflow:hidden}
   function render(){
     const items=galleries[group];const item=items[index];
     img.src=item.src;img.alt=item.alt;
-    title.textContent=group==="palety"?"Urządzenia na paletach wystawowych":"Palety ze ściankami LED";
+    title.textContent=group==="palety"?"Urządzenia na paletach wystawowych":group==="led"?"Palety ze ściankami LED":"Przykładowe aranżacje stoisk";
     caption.textContent=item.name+" · PEREKO";
     counter.textContent=(index+1)+" / "+items.length;
   }
