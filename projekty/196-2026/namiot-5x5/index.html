@@ -225,6 +225,15 @@ body.so-modal-open{overflow:hidden}
 @media(max-width:950px){.so-tent-approach{grid-template-columns:1fr;gap:12px}}
 @media(max-width:740px){.so-tent-facts{grid-template-columns:1fr}.so-tent-facts-item{padding:15px 0!important;border-right:0;border-bottom:1px solid var(--so-line)}.so-tent-facts-item:last-child{border-bottom:0}.so-tent-budget-top{grid-template-columns:1fr}.so-tent-budget-indicator{padding:17px 0!important;border-right:0;border-bottom:1px solid var(--so-line)}.so-tent-budget-indicator:last-child{border-bottom:0}.so-tent-scope{grid-template-columns:1fr}.so-tent-approach-items{grid-template-columns:1fr}.so-tent-modal{padding:70px 10px 25px}.so-tent-modal img{max-height:calc(100dvh - 110px)}.so-tent-modal-close{right:15px;top:15px}}
 
+
+/* Utrzymywanie poprawnego układu dużego zdjęcia podczas ładowania */
+.so-tent-feature .so-feature-button{aspect-ratio:1672/941}
+.so-tent-feature .so-feature-button img{display:block;width:100%;height:100%;object-fit:contain}
+.so-tent-feature .so-feature-button:disabled{cursor:progress;opacity:1}
+.so-tent-feature .so-feature-button:disabled .so-feature-zoom{display:none}
+.so-tent-loader{position:absolute;inset:0;z-index:2;display:grid;place-items:center;background:linear-gradient(125deg,#eff2f2,#e7eaea);color:#526269;font-size:13px;font-weight:750;letter-spacing:.01em}
+.so-tent-loader[hidden]{display:none!important}
+
 </style>
 </head>
 <body>
@@ -246,9 +255,9 @@ body.so-modal-open{overflow:hidden}
 </nav>
 <section id="wybrany-namiot" class="so-section so-tent-section" aria-labelledby="wybrany-namiot-title">
 <div class="so-section-head"><div><div class="so-section-label">01 / WYBRANE STOISKO</div><h2 id="wybrany-namiot-title">Namiot wystawowy PEREKO 5 × 5 m</h2><p class="so-section-note">Jedna wizualizacja referencyjna — stanowi podstawę do dalszych prac organizacyjnych i kosztorysowych. Kliknięcie zdjęcia otwiera je w powiększeniu.</p></div><span class="so-quantity so-chosen-label">WYBRANY WARIANT</span></div>
-<figure class="so-feature-figure so-tent-feature"><button class="so-feature-button" type="button" id="so-tent-preview" aria-label="Powiększ wizualizację namiotu wystawowego PEREKO 5 × 5 m">
-<img src="assets/namiot-pereko-5x5.png" alt="Żółto-biały pneumatyczny namiot wystawowy PEREKO z trzema urządzeniami grzewczymi, ustawionymi na paletach wystawowych: SPARK EVO, RETRO DUO i QmPell EVO." width="1672" height="941" loading="eager" decoding="async">
-<span class="so-feature-zoom" aria-hidden="true">↗ Powiększ wizualizację</span></button><figcaption>Wybrana aranżacja namiotu PEREKO 5 × 5 m — jedna koncepcja, bez alternatywnych wariantów.</figcaption></figure>
+<figure class="so-feature-figure so-tent-feature" aria-busy="true"><button class="so-feature-button" type="button" id="so-tent-preview" disabled aria-label="Powiększ wizualizację namiotu wystawowego PEREKO 5 × 5 m">
+<img data-tent-image alt="Żółto-biały pneumatyczny namiot wystawowy PEREKO z trzema urządzeniami grzewczymi, ustawionymi na paletach wystawowych: SPARK EVO, RETRO DUO i QmPell EVO." width="1672" height="941" loading="eager" decoding="async">
+<span class="so-feature-zoom" aria-hidden="true">↗ Powiększ wizualizację</span><span class="so-tent-loader" id="so-tent-loader" role="status" aria-live="polite">Wczytywanie wizualizacji…</span></button><figcaption>Wybrana aranżacja namiotu PEREKO 5 × 5 m — jedna koncepcja, bez alternatywnych wariantów.</figcaption></figure>
 <div class="so-tent-facts">
 <div class="so-tent-facts-item"><span>Forma uczestnictwa</span><strong>Samodzielne stoisko PEREKO</strong><p>Ekspozycja budżetowa z własnym namiotem.</p></div>
 <div class="so-tent-facts-item"><span>Gabaryty projektowe</span><strong>5 × 5 m / 25 m²</strong><p>Wymiary przyjęte do dalszego planowania.</p></div>
@@ -284,7 +293,7 @@ body.so-modal-open{overflow:hidden}
 <footer class="footer"><div class="so-wrap wrap"><strong>PEREKO • Projekt 196/26 • Namiot wystawowy 5 × 5 m</strong></div></footer>
 <div id="so-tent-lightbox" class="so-tent-modal" role="dialog" aria-modal="true" aria-label="Podgląd namiotu PEREKO" hidden>
 <button class="so-tent-modal-close" id="so-tent-close" type="button" aria-label="Zamknij zdjęcie">×</button>
-<img src="assets/namiot-pereko-5x5.png" alt="Powiększona wizualizacja żółto-białego namiotu wystawowego PEREKO z trzema kotłami na paletach wystawowych." width="1672" height="941">
+<img data-tent-image alt="Powiększona wizualizacja żółto-białego namiotu wystawowego PEREKO z trzema kotłami na paletach wystawowych." width="1672" height="941">
 <p>Namiot wystawowy PEREKO 5 × 5 m</p>
 </div>
 <script>
@@ -294,6 +303,37 @@ const modal=document.getElementById("so-tent-lightbox"),preview=document.getElem
 let previousFocus=null;
 function open(){previousFocus=document.activeElement;modal.hidden=false;document.body.classList.add("so-modal-open");close.focus();}
 function hide(){modal.hidden=true;document.body.classList.remove("so-modal-open");if(previousFocus&&document.contains(previousFocus))previousFocus.focus();}
+
+const imageParts=Array.from({length:11},(_,i)=>"assets/namiot-pereko-5x5.b64."+String(i).padStart(2,"0")+".txt");
+const loading=document.getElementById("so-tent-loader");
+const figure=document.querySelector(".so-tent-feature");
+async function loadImage(){
+  try{
+    const chunks=await Promise.all(imageParts.map(async url=>{
+      const response=await fetch(url,{cache:"force-cache"});
+      if(!response.ok)throw new Error("HTTP "+response.status+" "+url);
+      return await response.text();
+    }));
+    const base64=chunks.join("").trim();
+    if(!base64.startsWith("iVBORw0KGgo")||base64.length<1000000)throw new Error("Niepoprawny obraz");
+    const imageSource="data:image/png;base64,"+base64;
+    const imgs=[...document.querySelectorAll("[data-tent-image]")];
+    imgs.forEach(img=>{img.src=imageSource;});
+    await new Promise((resolve,reject)=>{
+      const im=imgs[0];
+      if(im.complete&&im.naturalWidth>0){resolve();return;}
+      im.addEventListener("load",resolve,{once:true});
+      im.addEventListener("error",()=>reject(new Error("Błąd dekodowania grafiki")),{once:true});
+    });
+    loading.hidden=true;preview.disabled=false;figure.setAttribute("aria-busy","false");
+  }catch(error){
+    loading.textContent="Nie udało się wczytać wizualizacji. Odśwież stronę, aby spróbować ponownie.";
+    figure.setAttribute("aria-busy","false");
+    console.error("PEREKO tent image loading:",error);
+  }
+}
+loadImage();
+
 preview.addEventListener("click",open);
 close.addEventListener("click",hide);
 modal.addEventListener("click",e=>{if(e.target===modal)hide()});
