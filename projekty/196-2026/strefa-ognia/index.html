@@ -96,6 +96,66 @@ body.project-detail-page .so-gallery--arrangements .so-photo{aspect-ratio:16/9}
 .so-gallery--arrangements .so-card-caption{min-height:42px}
 @media(max-width:800px){.so-gallery--arrangements{grid-template-columns:repeat(2,minmax(0,240px))}}
 @media(max-width:450px){.so-gallery--arrangements{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}}
+
+/* Projekt 196 / 04 – wybrane stoisko, terminarz i budżet */
+.so-stage-nav{grid-template-columns:repeat(4,minmax(0,1fr))}
+.so-chosen-label{color:#806800;border-color:#e4cf79}
+.so-feature-figure{margin:0 0 35px}
+body.project-detail-page .so-feature-button{position:relative;display:block;width:100%;max-width:1330px;margin:0 auto;padding:0!important;line-height:0!important;background:#f2f3f3!important;border:1px solid var(--so-line)!important;border-radius:9px!important;overflow:hidden;cursor:zoom-in}
+.so-feature-button img{display:block;width:100%;height:auto;aspect-ratio:1672/941;object-fit:contain}
+.so-feature-zoom{position:absolute;bottom:18px;right:18px;display:inline-flex;align-items:center;gap:7px;border-radius:6px;background:rgba(21,28,33,.9);color:#fff;padding:12px 15px;font:750 11px/1.2 Inter,system-ui,sans-serif}
+.so-feature-button:focus-visible{outline:3px solid var(--so-yellow);outline-offset:3px}
+.so-feature-figure figcaption{max-width:1330px;margin:9px auto 0;text-align:right;color:#87959d;font-size:11px;line-height:1.6}
+.so-flexibility{display:grid;grid-template-columns:minmax(250px,.42fr) minmax(0,1fr);gap:54px;padding:32px 0 42px;border-top:1px solid var(--so-line)}
+.so-flexibility-intro h3,.so-subhead h3{margin:8px 0 10px;color:var(--so-ink);font:800 clamp(19px,2.2vw,26px)/1.28 Inter,system-ui,sans-serif;letter-spacing:-.028em}
+.so-flexibility-intro p,.so-subhead p{margin:0;color:#74838a;font:400 13px/1.75 Inter,system-ui,sans-serif}
+.so-rules{display:grid;grid-template-columns:1fr 1fr;column-gap:28px;row-gap:0}
+.so-rule{display:grid;grid-template-columns:36px minmax(0,1fr);gap:11px;align-items:start;padding:14px 0 18px;border-bottom:1px solid var(--so-line)}
+.so-rule-no{display:grid;place-items:center;width:34px;height:34px;border-radius:7px;background:#fff8d9;color:#7c6500;font:800 12px/1 Inter,system-ui,sans-serif}
+.so-rule p{margin:0;color:#65757d;font:400 13px/1.65 Inter,system-ui,sans-serif}
+.so-rule strong{color:#243137;font-weight:750}
+.so-events-block,.so-budget{padding-top:42px;margin-top:8px;border-top:1px solid var(--so-line)}
+.so-subhead{display:flex;align-items:end;justify-content:space-between;gap:20px;margin:0 0 24px}
+.so-table-scroll{width:100%;overflow-x:auto;scrollbar-width:thin}
+.so-table-scroll:focus-visible{outline:2px solid var(--so-yellow);outline-offset:2px}
+body.project-detail-page .so-events-table,body.project-detail-page .so-budget-table{width:100%;border-collapse:collapse!important;border-top:1px solid #dfe5e8;background:#fff;table-layout:auto}
+body.project-detail-page .so-events-table th,body.project-detail-page .so-budget-table th,body.project-detail-page .so-events-table td,body.project-detail-page .so-budget-table td{padding:14px 15px!important;border:0!important;border-bottom:1px solid #e5e9eb!important;text-align:left;color:#34434a;vertical-align:middle}
+body.project-detail-page .so-events-table thead th,body.project-detail-page .so-budget-table thead th{background:#f6f8f8!important;color:#728189!important;font-size:10px!important;font-weight:800!important;letter-spacing:.025em;white-space:nowrap}
+body.project-detail-page .so-events-table{min-width:650px}
+body.project-detail-page .so-budget-table{min-width:740px}
+body.project-detail-page .so-events-table tbody th,body.project-detail-page .so-budget-table tbody th{font-size:12px;font-weight:700}
+body.project-detail-page .so-events-table .so-numeric,body.project-detail-page .so-budget-table .so-numeric{text-align:right!important;white-space:nowrap;min-width:80px;font-variant-numeric:tabular-nums}
+.so-event-no{width:54px;color:#91a0a7!important;font-size:11px}
+.so-event-title,.so-cost-name{display:block;font-weight:750;color:#27353b;line-height:1.38}
+.so-event-location,.so-cost-detail{display:block;margin-top:5px;font-weight:450;color:#8a98a0;font-size:11px;line-height:1.4}
+.so-event-date{min-width:165px;font-size:12px}
+.so-event-pending{display:block;color:#8b7011;margin-top:5px;font-size:10px;font-weight:750}
+.so-event-price{font-weight:750;color:#39464d}
+.so-budget{margin-top:50px}
+.so-summary{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--so-line);border-bottom:1px solid var(--so-line);margin-bottom:38px}
+.so-summary-item{min-width:0;display:flex;flex-direction:column;padding:22px 20px 24px;border-right:1px solid var(--so-line)}
+.so-summary-item:first-child{padding-left:0}
+.so-summary-item:last-child{padding-right:0;border-right:0}
+.so-summary-item span{font-size:11px;font-weight:700;color:#77868d;line-height:1.45}
+.so-summary-item strong{font-size:clamp(19px,2.1vw,28px);line-height:1.22;font-weight:850;letter-spacing:-.035em;color:#233038;margin:11px 0}
+.so-summary-item small{color:#91a0a6;font-size:10px;line-height:1.5}
+.so-summary-main strong{color:#8b7200}
+.so-cost-section{margin:0 0 35px}
+.so-cost-heading{display:flex;align-items:end;justify-content:space-between;gap:18px;margin:0 0 11px}
+.so-cost-heading h4{margin:0;font:800 15px/1.4 Inter,system-ui,sans-serif;color:#223039}
+.so-cost-heading>span{font:850 16px/1.2 Inter,system-ui,sans-serif;color:#2b3941;white-space:nowrap;font-variant-numeric:tabular-nums}
+.so-cost-footnote{font-size:11px;line-height:1.6;color:#84929a;margin:9px 0 0}
+.so-cost-footnote strong{color:#4c5d65;font-weight:750}
+.so-total-cell{font-weight:800!important;color:#1d2c33!important}
+.so-budget-footer{display:flex;justify-content:flex-end;gap:25px;flex-wrap:wrap;padding:18px 0 20px;border-top:2px solid #263238;color:#58676f;font-size:12px}
+.so-budget-footer strong{color:#25343b;font-size:14px;font-weight:850}
+.so-budget-final{font-weight:750;color:#233039}
+.so-budget-final strong{font-size:20px;color:#806900}
+.so-budget-notes{max-width:1140px;border-left:3px solid var(--so-yellow);padding:11px 15px;background:#fbfcfc;font:400 11px/1.75 Inter,system-ui,sans-serif;color:#76858d}
+.so-budget-notes strong{color:#43535b}
+@media(max-width:1190px){.so-stage-nav{grid-template-columns:repeat(2,minmax(0,1fr))}.so-flexibility{grid-template-columns:1fr;gap:16px}.so-summary{grid-template-columns:repeat(2,minmax(0,1fr))}.so-summary-item{border-bottom:1px solid var(--so-line)}.so-summary-item:nth-child(2){border-right:0}.so-summary-item:nth-child(3){border-bottom:0;padding-left:0}.so-summary-item:nth-child(4){border-bottom:0}}
+@media(max-width:710px){.so-stage-nav{grid-template-columns:1fr}.so-rules{grid-template-columns:1fr}.so-summary-item{padding:18px 14px}.so-summary-item:nth-child(2){padding-right:0}.so-feature-zoom{right:9px;bottom:9px;padding:8px 10px;font-size:9px}.so-feature-figure figcaption{text-align:left}.so-flexibility{padding-top:23px}.so-budget-footer{justify-content:flex-start;gap:12px;flex-direction:column}}
+
 </style>
 </head>
 <body>
@@ -110,6 +170,7 @@ body.project-detail-page .so-gallery--arrangements .so-photo{aspect-ratio:16/9}
 <a class="so-stage-link" href="#palety"><span class="so-stage-number">01</span><span class="so-stage-text"><strong>Urządzenia na paletach</strong><small>8 zdjęć · galeria gotowa</small></span></a>
 <a class="so-stage-link" href="#scianki"><span class="so-stage-number">02</span><span class="so-stage-text"><strong>Palety ze ściankami LED</strong><small>4 zdjęcia · galeria gotowa</small></span></a>
 <a class="so-stage-link" href="#aranzacje"><span class="so-stage-number">03</span><span class="so-stage-text"><strong>Aranżacje stoisk</strong><small>3 zdjęcia · galeria gotowa</small></span></a>
+<a class="so-stage-link" href="#wybrane-stoisko"><span class="so-stage-number">04</span><span class="so-stage-text"><strong>Wybrane stoisko i budżet</strong><small>Wariant, wydarzenia i kosztorys</small></span></a>
 </nav>
 <section id="palety" class="so-section" aria-labelledby="so-palety-title">
 <div class="so-section-head"><div><div class="so-section-label">01 / WIZUALIZACJE PRODUKTOWE</div><h2 id="so-palety-title">Urządzenia na paletach wystawowych</h2><p class="so-section-note">Podstawowy wariant ekspozycji: urządzenia na paletach z drewnianym blatem i ciemną metalową podstawą. Kliknij miniaturę, aby obejrzeć zdjęcie w powiększeniu i przeglądać tę galerię.</p></div><span class="so-quantity">8 ZDJĘĆ</span></div>
@@ -136,8 +197,66 @@ body.project-detail-page .so-gallery--arrangements .so-photo{aspect-ratio:16/9}
 <article class="so-card"><button class="so-photo" type="button" data-so-gallery="aranzacje" data-so-index="1" aria-label="Otwórz zdjęcie: Aranżacja 02 · układ rozbudowany"><img src="assets/aranzacja-02-piecz-urzadzen.webp" alt="Aranżacja PEREKO z pompą ciepła TermoSTAR PRO w centralnym ekspozytorze oraz czterema kotłami na osobnych paletach" loading="lazy" decoding="async"><span class="so-photo-zoom" aria-hidden="true">↗</span></button><div class="so-card-caption" title="Aranżacja 02 · układ rozbudowany">Aranżacja 02 · układ rozbudowany</div></article>
 <article class="so-card"><button class="so-photo" type="button" data-so-gallery="aranzacje" data-so-index="2" aria-label="Otwórz zdjęcie: Aranżacja 03 · ekspozycja mieszana"><img src="assets/aranzacja-03-kotly-i-ekspozytor.webp" alt="Aranżacja PEREKO z kotłem Spark EVO, centralnym ekspozytorem QmPell EVO oraz kotłem Pell-Star i zasobnikiem" loading="lazy" decoding="async"><span class="so-photo-zoom" aria-hidden="true">↗</span></button><div class="so-card-caption" title="Aranżacja 03 · ekspozycja mieszana">Aranżacja 03 · ekspozycja mieszana</div></article>
 </div>
-<a class="so-bottom-link" href="../">← Powrót do harmonogramu projektu 196/26</a>
 </section>
+
+<section class="so-section so-selection-section" id="wybrane-stoisko" aria-labelledby="so-wybrane-title">
+  <div class="so-section-head"><div>
+    <div class="so-section-label">04 / WYBÓR STOISKA I BUDŻETOWANIE</div>
+    <h2 id="so-wybrane-title">Wybrane stoisko – Strefa Ognia</h2>
+    <p class="so-section-note">Zatwierdzona koncepcja wyglądu ekspozycji. Widoczna aranżacja jest punktem odniesienia dla wszystkich wydarzeń, ale nie stanowi sztywnego wykazu prezentowanych urządzeń.</p>
+  </div><span class="so-quantity so-chosen-label">WYBRANY WARIANT</span></div>
+  <figure class="so-feature-figure">
+    <button type="button" class="so-feature-button" data-so-gallery="aranzacje" data-so-index="2" aria-label="Powiększ wybrane stoisko PEREKO i przejrzyj galerię aranżacji">
+      <img src="assets/aranzacja-03-kotly-i-ekspozytor.webp" alt="Wybrane stoisko PEREKO: trzy moduły ekspozycji, Spark EVO po lewej, QmPell EVO z podświetlaną ścianką pośrodku i Pell-Star z zasobnikiem po prawej" loading="eager" decoding="async">
+      <span class="so-feature-zoom" aria-hidden="true">↗ Powiększ wizualizację</span>
+    </button>
+    <figcaption>Wizualizacja referencyjna wybranego stoiska. Kliknij zdjęcie, aby otworzyć duży podgląd.</figcaption>
+  </figure>
+  <div class="so-flexibility">
+    <div class="so-flexibility-intro"><span class="so-section-label">ZASADA ORGANIZACYJNA</span><h3>Stały styl stoiska. Elastyczny dobór urządzeń.</h3><p>Na każdym wydarzeniu targowym konfigurację ekspozycji ustalamy osobno – zależnie od skali imprezy, profilu odwiedzających i aktualnych priorytetów PEREKO.</p></div>
+    <div class="so-rules">
+      <div class="so-rule"><span class="so-rule-no">01</span><p><strong>Wizualizacja określa wyłącznie wygląd stoiska.</strong> Kolorystyka, palety, układ modułów, rośliny i forma ekspozytorów stanowią wzorzec stylistyczny.</p></div>
+      <div class="so-rule"><span class="so-rule-no">02</span><p><strong>Kotły na paletach bocznych można wymieniać.</strong> Na jednych targach pokażemy wybrane modele, na innych zupełnie inny zestaw urządzeń grzewczych.</p></div>
+      <div class="so-rule"><span class="so-rule-no">03</span><p><strong>Ekspozytor środkowy także jest konfigurowalny.</strong> Możemy zmienić centralne urządzenie, dopasować do niego grafikę informacyjną i wgrać odpowiednią prezentację na monitor.</p></div>
+      <div class="so-rule"><span class="so-rule-no">04</span><p><strong>Wyposażenie wystawowe wykorzystujemy wielokrotnie.</strong> Palety, donice, uchwyt monitora i ścianki kupujemy lub wykonujemy jednorazowo na cały cykl wydarzeń.</p></div>
+    </div>
+  </div>
+  <div class="so-events-block" id="strefa-ognia-wydarzenia">
+    <div class="so-subhead"><div><span class="so-section-label">KALENDARZ UDZIAŁU</span><h3>Wydarzenia w formule Strefy Ognia</h3><p>Na podstawie harmonogramu Gantta projektu 196/26 (I–II kwartał 2027).</p></div><span class="so-quantity">5 WYDARZEŃ</span></div>
+    <div class="so-table-scroll" role="region" aria-label="Wykaz targów w Strefie Ognia" tabindex="0"><table class="so-events-table"><thead><tr><th scope="col">Lp.</th><th scope="col">Wydarzenie / miejsce</th><th scope="col">Termin</th><th scope="col" class="so-numeric">Powierzchnia</th></tr></thead><tbody><tr><td class="so-event-no">01</td><th scope="row"><span class="so-event-title">Solar Energy Expo</span><span class="so-event-location">Nadarzyn</span></th><td class="so-event-date"><span>12–14 stycznia 2027</span></td><td class="so-numeric so-event-price">2 500 zł</td></tr>
+<tr><td class="so-event-no">02</td><th scope="row"><span class="so-event-title">Garden Expo</span><span class="so-event-location">Nadarzyn</span></th><td class="so-event-date"><span>2–4 lutego 2027</span></td><td class="so-numeric so-event-price">2 500 zł</td></tr>
+<tr><td class="so-event-no">03</td><th scope="row"><span class="so-event-title">ENEX</span><span class="so-event-location">Kielce</span></th><td class="so-event-date"><span>3–4 marca 2027</span></td><td class="so-numeric so-event-price">2 500 zł</td></tr>
+<tr><td class="so-event-no">04</td><th scope="row"><span class="so-event-title">Wielkie Targi Domów Szkieletowych, Modułowych i Mobilnych</span><span class="so-event-location">Wrocław</span></th><td class="so-event-date"><span>14–16 maja 2027</span></td><td class="so-numeric so-event-price">2 500 zł</td></tr>
+<tr><td class="so-event-no">05</td><th scope="row"><span class="so-event-title">INSTALACJE 2027</span><span class="so-event-location">Poznań (MTP)</span></th><td class="so-event-date"><span>16–18 czerwca 2027</span><small class="so-event-pending">Termin niepotwierdzony</small></td><td class="so-numeric so-event-price">2 500 zł</td></tr></tbody></table></div>
+  </div>
+  <div class="so-budget" id="budzet-strefa-ognia">
+    <div class="so-subhead"><div><span class="so-section-label">BUDŻET STREFY OGNIA · H1 2027</span><h3>Kosztorys udziału i przygotowania stoiska</h3><p>Budżet obejmuje pięć wydarzeń i jeden wspólny zestaw elementów wystawowych. Kwoty w złotych według przekazanych stawek.</p></div></div>
+    <div class="so-summary" aria-label="Podsumowanie budżetu">
+      <div class="so-summary-item"><span>Reklama i wynajem powierzchni</span><strong>19 500 zł</strong><small>Koszty zależne od liczby targów i kwartałów</small></div>
+      <div class="so-summary-item"><span>Wyposażenie jednorazowe</span><strong>6950 zł</strong><small>Wspólny zestaw na wszystkie wydarzenia</small></div>
+      <div class="so-summary-item"><span>Rezerwa na dodatkowe wydatki</span><strong>2000 zł</strong><small>Jedna pozycja na cały cykl</small></div>
+      <div class="so-summary-item so-summary-main"><span>Łączny budżet</span><strong>28 450 zł</strong><small>I–II kwartał 2027</small></div>
+    </div>
+    <div class="so-cost-section"><div class="so-cost-heading"><h4>A · Reklama kwartalna</h4><span>7000 zł</span></div><div class="so-table-scroll" role="region" aria-label="Tabela kosztów reklamy kwartalnej" tabindex="0"><table class="so-budget-table"><thead><tr><th scope="col">Pozycja budżetowa</th><th scope="col" class="so-numeric">Ilość</th><th scope="col" class="so-numeric">Jedn.</th><th scope="col" class="so-numeric">Cena jednostkowa</th><th scope="col" class="so-numeric">Wartość</th></tr></thead><tbody><tr><th scope="row"><span class="so-cost-name">Reklama kwartalna „Świat Kominków”</span><span class="so-cost-detail">I i II kwartał 2027</span></th><td class="so-numeric">2</td><td class="so-numeric">kwartał</td><td class="so-numeric">3500 zł</td><td class="so-numeric so-total-cell">7000 zł</td></tr></tbody></table></div></div>
+    <div class="so-cost-section"><div class="so-cost-heading"><h4>B · Wynajem powierzchni na poszczególnych targach</h4><span>12 500 zł</span></div><div class="so-table-scroll" role="region" aria-label="Tabela kosztów wynajmu powierzchni" tabindex="0"><table class="so-budget-table"><thead><tr><th scope="col">Pozycja budżetowa</th><th scope="col" class="so-numeric">Ilość</th><th scope="col" class="so-numeric">Jedn.</th><th scope="col" class="so-numeric">Cena jednostkowa</th><th scope="col" class="so-numeric">Wartość</th></tr></thead><tbody><tr><th scope="row"><span class="so-cost-name">Solar Energy Expo</span><span class="so-cost-detail">Nadarzyn · 12–14.01.2027</span></th><td class="so-numeric">1</td><td class="so-numeric">targi</td><td class="so-numeric">2500 zł</td><td class="so-numeric so-total-cell">2500 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Garden Expo</span><span class="so-cost-detail">Nadarzyn · 02–04.02.2027</span></th><td class="so-numeric">1</td><td class="so-numeric">targi</td><td class="so-numeric">2500 zł</td><td class="so-numeric so-total-cell">2500 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">ENEX</span><span class="so-cost-detail">Kielce · 03–04.03.2027</span></th><td class="so-numeric">1</td><td class="so-numeric">targi</td><td class="so-numeric">2500 zł</td><td class="so-numeric so-total-cell">2500 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Wielkie Targi Domów Szkieletowych, Modułowych i Mobilnych</span><span class="so-cost-detail">Wrocław · 14–16.05.2027</span></th><td class="so-numeric">1</td><td class="so-numeric">targi</td><td class="so-numeric">2500 zł</td><td class="so-numeric so-total-cell">2500 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">INSTALACJE 2027</span><span class="so-cost-detail">Poznań · 16–18.06.2027 · termin niepotwierdzony</span></th><td class="so-numeric">1</td><td class="so-numeric">targi</td><td class="so-numeric">2500 zł</td><td class="so-numeric so-total-cell">2500 zł</td></tr></tbody></table></div><p class="so-cost-footnote">Wynajem: 2 500 zł × 5 wydarzeń = 12 500 zł. Obejmuje także planowane INSTALACJE 2027, których termin wymaga potwierdzenia.</p></div>
+    <div class="so-cost-section"><div class="so-cost-heading"><h4>C · Zakupy i wykonanie stoiska – jednorazowo</h4><span>6950 zł</span></div><div class="so-table-scroll" role="region" aria-label="Tabela kosztów zakupów i wykonania stoiska" tabindex="0"><table class="so-budget-table"><thead><tr><th scope="col">Pozycja budżetowa</th><th scope="col" class="so-numeric">Ilość</th><th scope="col" class="so-numeric">Jedn.</th><th scope="col" class="so-numeric">Cena jednostkowa</th><th scope="col" class="so-numeric">Wartość</th></tr></thead><tbody><tr><th scope="row"><span class="so-cost-name">Donice na kwiaty</span><span class="so-cost-detail">Wyposażenie wielokrotnego użytku</span></th><td class="so-numeric">2</td><td class="so-numeric">szt.</td><td class="so-numeric">500 zł</td><td class="so-numeric so-total-cell">1000 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Kwiaty / rośliny do donic</span><span class="so-cost-detail">Zakup do aranżacji stoiska</span></th><td class="so-numeric">2</td><td class="so-numeric">szt.</td><td class="so-numeric">300 zł</td><td class="so-numeric so-total-cell">600 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Paleta wystawowa środkowa, szerokość 1300 mm</span><span class="so-cost-detail">Pod urządzenie i elementy prezentacji</span></th><td class="so-numeric">1</td><td class="so-numeric">szt.</td><td class="so-numeric">1100 zł</td><td class="so-numeric so-total-cell">1100 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Uchwyt / stand pod monitor</span><span class="so-cost-detail">Do prezentacji urządzenia</span></th><td class="so-numeric">1</td><td class="so-numeric">szt.</td><td class="so-numeric">350 zł</td><td class="so-numeric so-total-cell">350 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Palety boczne bez plecków</span><span class="so-cost-detail">Pod lewy i prawy kocioł</span></th><td class="so-numeric">2</td><td class="so-numeric">szt.</td><td class="so-numeric">1000 zł</td><td class="so-numeric so-total-cell">2000 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Stand LED Box, czarny, 850 × 2000 mm</span><span class="so-cost-detail">Nadruk dwustronny; jedna ścianka może obsłużyć 2 różne modele kotłów</span></th><td class="so-numeric">1</td><td class="so-numeric">szt.</td><td class="so-numeric">1100 zł</td><td class="so-numeric so-total-cell">1100 zł</td></tr>
+<tr><th scope="row"><span class="so-cost-name">Ścianka z drewnianymi lamelami, 450 × 2000 mm</span><span class="so-cost-detail">Prawa część ekspozytora centralnego</span></th><td class="so-numeric">1</td><td class="so-numeric">szt.</td><td class="so-numeric">800 zł</td><td class="so-numeric so-total-cell">800 zł</td></tr></tbody></table></div><p class="so-cost-footnote">Stand LED Box: czarny, 850 × 2000 mm, <strong>nadruk dwustronny</strong>. Pozwala przygotować dwie wersje ekspozycji dla dwóch różnych modeli kotłów, zależnie od wybranej strony grafiki.</p></div>
+    <div class="so-cost-section"><div class="so-cost-heading"><h4>D · Rezerwa budżetowa</h4><span>2000 zł</span></div><div class="so-table-scroll" role="region" aria-label="Tabela kosztów rezerwy" tabindex="0"><table class="so-budget-table"><thead><tr><th scope="col">Pozycja budżetowa</th><th scope="col" class="so-numeric">Ilość</th><th scope="col" class="so-numeric">Jedn.</th><th scope="col" class="so-numeric">Cena jednostkowa</th><th scope="col" class="so-numeric">Wartość</th></tr></thead><tbody><tr><th scope="row"><span class="so-cost-name">Nieprzewidziane wydatki / inne</span><span class="so-cost-detail">Rezerwa budżetowa na cały cykl targów</span></th><td class="so-numeric">1</td><td class="so-numeric">pozycja</td><td class="so-numeric">2000 zł</td><td class="so-numeric so-total-cell">2000 zł</td></tr></tbody></table></div></div>
+    <div class="so-budget-footer"><span>Wydatki powtarzalne: <strong>19 500 zł</strong></span><span>Wydatki jednorazowe wraz z rezerwą: <strong>8950 zł</strong></span><span class="so-budget-final">Razem: <strong>28 450 zł</strong></span></div>
+    <p class="so-budget-notes"><strong>Założenia:</strong> wszystkie zakupy i wykonanie elementów ekspozycji liczymy tylko raz, niezależnie od liczby targów. Podane stawki nie zostały oznaczone jako netto ani brutto – wymaga to potwierdzenia. Nie doliczono osobnych kosztów transportu, montażu, zasilania ani zakupu samego monitora, ponieważ nie podano ich wycen.</p>
+  </div>
+  <a class="so-bottom-link" href="../">← Powrót do harmonogramu projektu 196/26</a>
+</section>
+
 </div></main>
 <footer class="footer"><div class="so-wrap wrap"><strong>PEREKO • Projekt 196/26 • Strefa Ognia</strong></div></footer>
 <div id="so-lightbox" class="so-lightbox" role="dialog" aria-modal="true" aria-label="Powiększenie zdjęcia" hidden>
