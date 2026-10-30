@@ -24,6 +24,7 @@
 .so-hero-meta span{font:750 11px/1.5 Inter,system-ui,sans-serif;color:#7c8990}
 .so-hero-meta strong{display:block;color:var(--so-ink);font:800 22px/1.2 Inter,system-ui,sans-serif;margin:4px 0 0}
 .so-main{padding:35px 0 75px}
+body.project-detail-page main.so-main{padding:35px 0 75px!important}
 .so-stage-nav{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin-bottom:52px}
 .so-stage-link{min-height:91px;display:flex;align-items:center;gap:15px;padding:16px 18px;border:1px solid var(--so-line);border-radius:9px;background:#fff;color:var(--so-ink);text-decoration:none;transition:border-color .18s,background .18s}
 .so-stage-link:hover{background:#fffdf4;border-color:#d1b84b}
@@ -70,13 +71,13 @@ body.project-detail-page .so-photo{display:block;position:relative;width:100%;as
 .so-lightbox-index{color:#f2c900;font-weight:850}
 .so-lightbox button:focus-visible{outline:3px solid var(--so-yellow);outline-offset:2px}
 body.so-modal-open{overflow:hidden}
-@media(max-width:1280px){.so-gallery{grid-template-columns:repeat(6,minmax(0,1fr))}}
+@media(max-width:1080px){.so-gallery{grid-template-columns:repeat(6,minmax(0,1fr))}}
 @media(max-width:1020px){.so-gallery{grid-template-columns:repeat(4,minmax(0,1fr))}.so-stage-nav{grid-template-columns:1fr;gap:10px}.so-stage-link{min-height:72px}}
 @media(max-width:720px){
  .so-wrap{width:calc(100% - 28px)}
  .so-hero-inner{padding:25px 0 32px}.so-crumb{margin-bottom:24px}
  .so-hero-row{grid-template-columns:1fr;gap:20px}.so-hero-meta{min-width:0;flex-direction:row;gap:25px;border-left:0;border-top:1px solid var(--so-line);padding:17px 0 0}.so-hero h1{font-size:43px}
- .so-main{padding:24px 0 55px}.so-stage-nav{margin-bottom:37px}
+ .so-main{padding:24px 0 55px}body.project-detail-page main.so-main{padding:24px 0 55px!important}.so-stage-nav{margin-bottom:37px}
  .so-section{margin-bottom:42px}.so-section + .so-section{padding-top:32px}
  .so-section-head{align-items:start;flex-direction:column;gap:10px}
  .so-gallery{grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
